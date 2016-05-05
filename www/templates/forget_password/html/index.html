@@ -1,0 +1,23 @@
+<ion-view title="Forget Password" hide-nav-bar="true" class="bg-sign">
+    <ion-content id="social-login" >
+        <div align="left"><a style="color: black"  ng-click="goto('app/home')" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a></div>
+        <form class="fakeLogin-form">
+            <div>
+                <img class="img-res" src="img/app_icon.png"/>
+            </div>
+            <div class="sub-header"><p class="custom-fontwhite custom-fontsize">Forget Password<p></div>
+            <div id="fakeLogin">
+                <md-input-container md-no-float="">
+                    <input ng-model="user.email" class="user-name" placeholder="Email">
+                </md-input-container>
+            </div>
+            <div>
+                <button ng-click="submit_forget_pwd()" class="md-raised social-button md-button md-default-theme material-background">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

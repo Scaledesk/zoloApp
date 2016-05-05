@@ -1,0 +1,75 @@
+<!--<ion-view title="{{packages_list.name}}">-->
+<ion-view>
+    <ion-nav-title>{{packages_list.name}}</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="navigateTo('app.subCategoryListing',packages_list.parent_id)"
+           class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content id="cloth-shop-content">
+        <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium toolbar-in-content">
+            <div>
+                <h1>SALE 40% OFF</h1>
+
+                <h2>Order Now !!</h2>
+
+                <h2>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </h2>
+            </div>
+        </md-toolbar>
+        <div ng-if="packages.length == '0'" class="text-center">
+          Sorry, no packages found regarding to {{packages_list.name}}
+        </div>
+        <div id="product-list" class="row">
+            <div class="col">
+                <div class="pin" ng-repeat="package in first_packages_row.data" ng-click="productDescription(package.id)">
+                    <img src="{{package.first_photo}}"/>
+                    <h4 style="font-size: 15px">{{package.name}}</h4>
+                    <p>
+                        By :{{package.seller_name}}
+                    </p>
+                    <div class="pin-footer">
+                        &#8377;<span class="pin-footer text-left font-sale">{{package.price}}</span>
+                        <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
+
+                        <!--wishlist icon-->
+                        <span  ng-if="package.wished_by_user==='yes'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="removefromWishlist(package.id)(package.id); $event.stopPropagation()"><i class="fa fa-heart"></i></span>
+                        <span ng-if="package.wished_by_user==='no'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="addToWishlist(package.id); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
+                        <span ng-if="package.wished_by_user==='user not logged in'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="showListBottomSheet($event); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
+                        <!--collection icon-->
+                        <!--<span class="pin-footer text-left" style="float:right;margin-right:12px;margin-left: 0px;margin-top: 0px;"><i class="fa fa-star-o"></i></span>-->
+                    </div>
+                </div><!--end pin section-->
+            </div>
+
+            <div class="col">
+                <div class="pin" ng-repeat="package in second_packages_row.data" ng-click="productDescription(package.id)">
+                    <img src="{{package.first_photo}}"/>
+
+                    <h4 style="font-size: 15px">{{package.name}}</h4>
+
+                    <p>
+                        By :{{package.seller_name}}
+                    </p>
+
+                    <div class="pin-footer">
+                        &#8377;<span class="pin-footer text-left font-sale">{{package.price}}</span>
+                        <span class="pin-footer text-left font-hot-sale">{{package.deal_price}}</span>
+                        <!--wishlist icon-->
+                        <span  ng-if="package.wished_by_user==='yes'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="removefromWishlist(package.id); $event.stopPropagation()"><i class="fa fa-heart"></i></span>
+                        <span ng-if="package.wished_by_user==='no'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="addToWishlist(package.id); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
+                        <span ng-if="package.wished_by_user==='user not logged in'" class="pin-footer text-left" style="float:right;margin-right:12px;margin-top: 0px;" ng-click="showListBottomSheet($event); $event.stopPropagation()"><i class="fa fa-heart-o"></i></span>
+                        <!--collection icon-->
+                        <!--<span class="pin-footer text-left" style="float:right;margin-right:12px;margin-left: 0px;margin-top: 0px;"><i class="fa fa-star-o"></i></span>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

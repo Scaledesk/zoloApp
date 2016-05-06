@@ -1131,23 +1131,10 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
         // End $stateProvider
 
-        //Use $urlRouterProvider.otherwise(Url);
-        //$urlRouterProvider.otherwise(window.globalVariable.startPage.url);
-        // if(window.localStorage['access_token']==null||window.localStorage['access_token']=='undefined'){
-        //     console.log("if")
-        //     $urlRouterProvider.otherwise("/mainWalkthrough");
-        // }else{
-        //     console.log(window.localStorage['access_token']);
-        //     console.log('local');
-        //     $urlRouterProvider.otherwise("app/home");
-        //
-        // }
-
         if(window.localStorage['SkipIntro']== 'true'){
-            console.log("if")
+            console.log("if");
             $urlRouterProvider.otherwise("app/home");
         }else{
-            console.log(window.localStorage['SkipIntro']);
             console.log('else');
             $urlRouterProvider.otherwise("/mainWalkthrough");
 

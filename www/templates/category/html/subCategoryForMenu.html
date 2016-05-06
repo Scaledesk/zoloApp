@@ -48,5 +48,8 @@
                 <b>{{sub_catagery.name}}</b>
             </ion-item>
         </ion-list>
+        <div ng-show="sub_catagery_list.subCategory.data.length == '0'" class="text-center">
+            Sorry,no sub category found!
+        </div>
     </ion-content>
 </ion-view>

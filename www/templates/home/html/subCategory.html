@@ -1,4 +1,3 @@
-<!--<ion-view title="{{sub_catagery_list.name}}">-->
 <ion-view>
     <ion-nav-title>{{sub_catagery_list.name}}</ion-nav-title>
     <ion-nav-buttons side="left">
@@ -48,5 +47,8 @@
                 <b>{{sub_catagery.name}}</b>
             </ion-item>
         </ion-list>
+        <div ng-show="sub_catagery_list.subCategory.data.length == '0'" class="text-center">
+            Sorry,no sub category found!
+        </div>
     </ion-content>
 </ion-view>

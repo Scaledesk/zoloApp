@@ -1,0 +1,43 @@
+<ion-view title="" hide-nav-bar="true">
+    <ion-content id="social-login" class="background_img_optional">
+        <div align="left"><a style="color: black" ng-click="goto('app/home')"
+                             class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a></div>
+
+        <form class="fakeLogin-form">
+            <div>
+                <img class="img-res" src="img/app_icon.png"/>
+            </div>
+            <div class="sub-header"><p class="custom-fontwhite custom-fontsize">Monetize Your Passion<p></div>
+            <div id="fakeLogin">
+                <div>
+                    <button type="button"
+                            class="md-raised social-button md-button md-default-theme material-background">
+                      Login with Facebook
+                    </button>
+                </div>
+                <div>
+                    <button type="button"
+                            class="md-raised social-button md-button md-default-theme material-background">
+                       Login wih Google+
+                    </button>
+                </div>
+                <div>
+                    Or use email
+                </div>
+                <div>
+                    <button ng-click="sign_up_modal()" type="button"
+                            class="md-raised social-button md-button md-default-theme material-background">
+                        Sign Up
+                    </button>
+                    <button ng-click="login_modal()" type="button"
+                            class="md-raised social-button md-button md-default-theme material-background">
+                        Login
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </ion-content>
+</ion-view>

@@ -1076,6 +1076,24 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.optional_index', {
+                url: "/optional_index",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp/html/optional.html",
+                        controller:"optionalCtrl"
+                    }
+                }
+            })
+            .state('app.login_index', {
+                url: "/login_index",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp/html/login.html",
+                        controller:"optionalLoginCtrl"
+                    }
+                }
+            })
             .state('app.forget_password', {
                 url: "/forget_password",
                 views: {
@@ -1114,27 +1132,12 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             });
 
-        // .state('app.project', {
-        //     url: "/project/:project_id",
-        //     views: {
-        //         'menuContent': {
-        //             templateUrl: "templates/project.html",
-        //             controller: 'ProjectCtrl'
-        //         }
-        //     },
-        //     resolve: {
-        //         project: function($stateParams) {
-        //             console.log(JSON.stringify($stateParams))
-        //         }
-        //     }
-        // })
-
-        // End $stateProvider
 
         if(window.localStorage['SkipIntro']== 'true'){
             console.log("if");
             $urlRouterProvider.otherwise("app/home");
         }else{
+            console.log(window.localStorage['SkipIntro']);
             console.log('else');
             $urlRouterProvider.otherwise("/mainWalkthrough");
 

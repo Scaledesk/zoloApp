@@ -24,8 +24,8 @@
                     <br/>
                     <span ng-if="user_profile===undefined" class="sub-title">Get anything done!</span>
                 </p>
-            </div><!--end menu header section-->
-        </div> <!--menu content section-->
+            </div>
+        </div>
         <ion-content id="toggle-menu-right-content">
             <md-list>
                 <md-list-item class="menu-list-item" ng-click="navigateTo('app.allCategory')">
@@ -40,13 +40,17 @@
                     <i class="fa fa-cube"></i>
                     <span> Login</span>
                 </md-list-item>
-            <md-list-item class="menu-list-item" ng-click="navigateTo('app.contact_us')">
-                <i class="fa fa-cube"></i>
-                <span>Contact Us</span>
-            </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('app.contact_us')">
+                    <i class="fa fa-cube"></i>
+                    <span>Contact Us</span>
+                </md-list-item>
                 <md-list-item class="menu-list-item" ng-click="navigateTo('app.about_us')">
                     <i class="fa fa-cube"></i>
                     <span>About Us</span>
+                </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('app.optional_index')">
+                    <i class="fa fa-cube"></i>
+                    <span>Login/Sign Up</span>
                 </md-list-item>
             </md-list>
         </ion-content>

@@ -153,6 +153,31 @@ appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeou
             });
     };
 
+    $scope.authenticate = function (provider) {
+        $auth.authenticate(provider)
+            .then(function (response) {
+                console.log("here");
+                console.log(response);
+                var user = {
+                    google_id: response.data.google_id,
+                    google_access_token: response.data.google_access_token,
+                    grant_type: "google",
+                    "client_id": "client_1",
+                    "client_secret": "client_secret"
+                };
+
+                /*social_auth_provider:response.data.social_auth_provider,
+                 social_auth_provider_id:response.data.social_auth_provider_id,
+                 social_auth_provider_access_token:response.data.social_auth_provider_access_token,
+                 grant_type:"social"*/
+
+                $scope.get_token(user);
+            }).catch(function (response) {
+            console.log(response);
+        });
+    }
+
+
     $scope.forget_pwd = function(){
         $state.go('app.forget_password');
     }

@@ -264,9 +264,9 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             });
             $authProvider.facebook({
                 url: serverConfig.address + 'api/auth/facebook',
-                clientId: '953913041345816',
-                clientSecret: 'e9652fa4cea1dca0a1d6658adaa0ab36',
-                redirectUri: 'http://'+location.hostname+'/'
+                clientId: '635963879879485',
+                clientSecret: 'cf528cf25d134fc76ba1831ab9aaefc9',
+                redirectUri: 'http://'+'192.168.1.4:8100/'
             });
             $authProvider.loginUrl = serverConfig.address + 'oauth/access_token';
         })

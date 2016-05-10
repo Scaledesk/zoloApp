@@ -1820,3 +1820,6 @@ md-sidenav {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover; }
+
+.header_color {
+  background-color: #673ab7; }

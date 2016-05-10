@@ -340,7 +340,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/app",
                 abstract: true,
                 templateUrl: "templates/menu/html/index.html",
-                controller: 'menuCtrl'
+                controller: 'MenuCtrl'
             })
             .state('app.categoryPage', {
                 url: "/categoryPage?id",
@@ -1090,7 +1090,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 views: {
                     'menuContent': {
                         templateUrl: "templates/login_signUp/html/login.html",
-                        controller:"optionalLoginCtrl"
+                        controller:"optionalCtrl"
                     }
                 }
             })

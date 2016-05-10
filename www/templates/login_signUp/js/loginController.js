@@ -1,25 +1,27 @@
 appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
                                                     serverConfig,$rootScope,$location,$ionicHistory,$ionicViewSwitcher,$ionicModal) {
-    $scope.navigateTo = function (stateName) {
-        if ($ionicHistory.currentStateName() != stateName) {
-            $ionicHistory.nextViewOptions({
-                disableAnimate: false,
-                disableBack: true
-            });
-
-            $ionicViewSwitcher.nextDirection('back');
-
-            $state.go(stateName, {
-                isAnimated: objectData,
-            });
-        }
-    };
+    // $scope.navigateTo = function (stateName) {
+    //     if ($ionicHistory.currentStateName() != stateName) {
+    //         $ionicHistory.nextViewOptions({
+    //             disableAnimate: false,
+    //             disableBack: true
+    //         });
+    //
+    //         $ionicViewSwitcher.nextDirection('back');
+    //
+    //         $state.go(stateName, {
+    //             isAnimated: objectData,
+    //         });
+    //     }
+    // };
     
     $scope.user = {};
-    $scope.goto=function(path){
-        console.log("goto:"+path);
-        $location.path(path);
+
+    $scope.back_page = function(){
+        $state.go('app.optional_index');
+        $scope.modal.hide();
     };
+
     //
     // $ionicModal.fromTemplateUrl('templates/login_signUp/html/login_modal.html', {
     //     scope: $scope

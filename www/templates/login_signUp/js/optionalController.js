@@ -34,6 +34,12 @@ appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeou
     $scope.closePictureModel = function () {
         $scope.modal.hide();
     };
+
+    $scope.back_page = function(){
+        console.log("ddddddddddddd")
+        $state.go('app.optional_index');
+        $scope.modal.hide();
+    };
     
     $scope.sign_in_value = 'sign_in';
 

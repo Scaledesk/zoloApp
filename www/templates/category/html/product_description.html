@@ -1,12 +1,19 @@
 <!--<ion-view title="{{package.slug}}">-->
 <ion-view>
     <ion-nav-title>{{package.slug}}</ion-nav-title>
-    <ion-nav-buttons side="left">
-        <a ng-click="navigateTo('app.package_list_menu',package.category.data.id)"
-           class="button back-button buttons button-clear header-item nav-back-btn">
-            <i class="ion-android-arrow-back"></i>
-        </a>
-    </ion-nav-buttons>
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+
+    <!--<ion-nav-buttons side="left">-->
+        <!--<a ng-click="navigateTo('app.package_list_menu',package.category.data.id)"-->
+           <!--class="button back-button buttons button-clear header-item nav-back-btn">-->
+            <!--<i class="ion-android-arrow-back"></i>-->
+        <!--</a>-->
+    <!--</ion-nav-buttons>-->
     <ion-content id="product-detail-content">
         <!--header section-->
         <md-card id="product-detail-tab-detail">

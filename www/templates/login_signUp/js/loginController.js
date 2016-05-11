@@ -2,11 +2,10 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                                                     serverConfig,$rootScope,$location,$ionicHistory,$ionicViewSwitcher,$ionicModal) {
 
     $scope.user = {};
-
+    
     $scope.back_page = function(){
         $state.go('app.optional_index');
     };
-
     $scope.login = function () {
         if ($scope.user.email == undefined || $scope.user.email == '') {
             $mdToast.show({
@@ -79,14 +78,11 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                     });
                     $state.go('app.home');
                 }
-                // $scope.navigateTo("app.packages",true);
-                //$location.path('app/dashboard')
             })
             .catch(function (response) {
                 console.log("Inside invalid credentials");
                 window.localStorage['access_token']=undefined;
                 $auth.logout();
-                // $scope.navigateTo("app.packages",true);
                 $mdToast.show({
                     controller: 'toastController',
                     templateUrl: 'toast.html',

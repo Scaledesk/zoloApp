@@ -23,10 +23,9 @@
                             <input  type="email" ng-model="user.email" placeholder="Email" style="border-bottom: 1px solid #ededed;">
                         </md-input-container>
                         <md-input-container md-no-float="">
-                            <input  type="password" ng-model="user.password" placeholder="Password" style="border-bottom: 1px solid #ededed;">
-                            <span class="password-s">show</span>
+                            <input ng-model="user.password" type="{{show_password ? 'text':'password'}}" placeholder="Password" style="border-bottom: 1px solid #ededed;">
+                            <span class="password-s" ng-click="show_password =!show_password">show</span>
                         </md-input-container>
-
 
                         <div class="login-btn" ng-click="signUp()">
                             <p>Register</p>

@@ -1,5 +1,6 @@
 appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
-                                                 serverConfig,$rootScope,$location,$ionicHistory,$ionicViewSwitcher,$ionicModal) {
+                                                 serverConfig,$rootScope,$location,$ionicHistory,$ionicViewSwitcher,$ionicModal,
+$cordovaOauth, $http) {
     $scope.navigateTo = function (stateName) {
         if ($ionicHistory.currentStateName() != stateName) {
             $ionicHistory.nextViewOptions({
@@ -14,104 +15,25 @@ appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeou
             });
         }
     };
-    $scope.login_modal = function(){
+    $scope.login_page = function(){
     $state.go('app.login_index');
-        $scope.modal.show();
-
     };
-
-
-    $ionicModal.fromTemplateUrl('templates/login_signUp/html/login_modal.html', {
-        scope: $scope
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
-
-    $scope.openPictureModel = function () {
-        // $scope.value = dataValue;
-        $scope.modal.show();
-    };
-    $scope.closePictureModel = function () {
-        $scope.modal.hide();
+    
+    $scope.sign_up_page = function(){
+        $state.go('app.signUp_index');
     };
 
     $scope.back_page = function(){
-        console.log("ddddddddddddd")
         $state.go('app.optional_index');
-        $scope.modal.hide();
     };
     
-    $scope.sign_in_value = 'sign_in';
-
-    $scope.sign_in = function(){
-        $scope.sign_in_value = 'sign_in';
-        $scope.sign_up_value = '';
-    };
-    $scope.sign_up = function(){
-        $scope.sign_up_value = 'sign_up';
-
-    };
 
     $scope.user = {};
     $scope.goto=function(path){
         console.log("goto:"+path);
         $location.path(path);
     };
-    $scope.login = function () {
-        console.log($scope.user);
 
-        if ($scope.user.email == undefined || $scope.user.email == '') {
-            $mdToast.show({
-                controller: 'toastController',
-                templateUrl: 'toast.html',
-                hideDelay: 800,
-                position: 'top',
-                locals: {
-                    displayOption: {
-                        title: 'Please Enter Email'
-                    }
-                }
-            });
-            return;
-        }
-        if ($scope.user.password == undefined || $scope.user.password == '') {
-            $mdToast.show({
-                controller: 'toastController',
-                templateUrl: 'toast.html',
-                hideDelay: 800,
-                position: 'top',
-                locals: {
-                    displayOption: {
-                        title: 'Please Enter Password'
-                    }
-                }
-            });
-            return;
-        }
-        if ($scope.user.email != undefined) {
-            if ($scope.user.email.indexOf("@") == -1 || $scope.user.email.indexOf(".") == -1) {
-                $mdToast.show({
-                    controller: 'toastController',
-                    templateUrl: 'toast.html',
-                    hideDelay: 800,
-                    position: 'top',
-                    locals: {
-                        displayOption: {
-                            title: 'Please Enter a valid Email'
-                        }
-                    }
-                });
-                return;
-            }
-        }
-        $scope.user.username = $scope.user.email;
-        $scope.user.grant_type = "password";
-        $scope.user.client_id = "client_1";
-        $scope.user.client_secret = "client_secret";
-        $scope.login_text = 'Please Wait...';
-        $scope.disabled = true;
-        $scope.get_token($scope.user);
-    };
     $scope.get_token = function(user){
         $auth.login(user)
             .then(function (response) {
@@ -131,14 +53,11 @@ appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeou
                     });
                     $state.go('app.home');
                 }
-                // $scope.navigateTo("app.packages",true);
-                //$location.path('app/dashboard')
             })
             .catch(function (response) {
                 console.log("Inside invalid credentials");
                 window.localStorage['access_token']=undefined;
                 $auth.logout();
-                // $scope.navigateTo("app.packages",true);
                 $mdToast.show({
                     controller: 'toastController',
                     templateUrl: 'toast.html',
@@ -153,11 +72,58 @@ appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeou
             });
     };
 
+
+
+        window.cordovaOauth = $cordovaOauth;
+        window.http = $http;
+
+    $scope.demo_fb = function()
+    {
+        $scope.facebookLogin(window.cordovaOauth, window.http);
+    };
+
+    $scope.facebookLogin = function($cordovaOauth, $http)
+    {
+        $cordovaOauth.facebook("1604761699851791", ["email", "public_profile"],
+            {redirect_uri: "http://localhost/callback"}).then(function(result){
+            $scope.displayData($http, result.access_token);
+        },  function(error){
+            alert("Error: " + error);
+        });
+    }
+
+    $scope.demo_Gplus = function()
+    {
+        $state.go('app.googlePlusLogin');
+    };
+
+
+    $scope.googleLogin = function() {
+        $cordovaOauth.google("936213911318-1mnllojl5hqu2b4o17e47hpbk2e4s66c.apps.googleusercontent.com",
+            ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
+            console.log(JSON.stringify(result));
+        }, function(error) {
+            console.log(error);
+        });
+    };
+    
+  $scope.displayData = function($http, access_token)
+    {
+        $http.get("https://graph.facebook.com/v2.2/me", {params: {access_token: access_token, fields: "name,gender,location,picture", format: "json" }}).then(function(result) {
+            var name = result.data.name;
+            var gender = result.data.gender;
+            var picture = result.data.picture;
+            console.log("suussssssssssssssssss",JSON.stringify(name),JSON.stringify(gender),JSON.stringify(picture))
+        }, function(error) {
+            alert("Error: " + error);
+        });
+    };
+
     $scope.authenticate = function (provider) {
         $auth.authenticate(provider)
             .then(function (response) {
                 console.log("here");
-                console.log(response);
+                console.log("if",JSON.stringify(response));
                 var user = {
                     google_id: response.data.google_id,
                     google_access_token: response.data.google_access_token,
@@ -165,20 +131,14 @@ appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeou
                     "client_id": "client_1",
                     "client_secret": "client_secret"
                 };
-
-                /*social_auth_provider:response.data.social_auth_provider,
-                 social_auth_provider_id:response.data.social_auth_provider_id,
-                 social_auth_provider_access_token:response.data.social_auth_provider_access_token,
-                 grant_type:"social"*/
-
                 $scope.get_token(user);
             }).catch(function (response) {
-            console.log(response);
+            console.log("else",JSON.stringify(response));
         });
-    }
+    };
 
 
     $scope.forget_pwd = function(){
         $state.go('app.forget_password');
-    }
-});// End of Notes List Page  Controller.
+    };
+});

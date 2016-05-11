@@ -4,25 +4,32 @@
             <a ng-click="goto('app/optional_index')"class="button back-button buttons button-clear header-item nav-back-btn">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </a>
-            <div class="h1 title login-t">Login</div>
+            <div class="h1 title login-t">Sign up</div>
             <a ng-click="goto('app/home')"class="button back-button buttons button-clear header-item nav-back-btn">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </a>
         </div>
-        <div class="login-section">
+        <div class="login-section" id="signup-section">
             <div class="card">
                 <div class="item item-text-wrap">
                     <form action="">
                         <md-input-container md-no-float="">
+                            <input  type="text" ng-model="user.name" placeholder="Name" style="border-bottom: 1px solid #ededed;">
+                        </md-input-container>
+                        <md-input-container md-no-float="">
+                            <input  type="number" ng-model="user.mobile" placeholder="Phone Number" style="border-bottom: 1px solid #ededed;">
+                        </md-input-container>
+                        <md-input-container md-no-float="">
                             <input  type="email" ng-model="user.email" placeholder="Email" style="border-bottom: 1px solid #ededed;">
                         </md-input-container>
                         <md-input-container md-no-float="">
-                            <input ng-model="user.password" type="password" placeholder="Password" style="border-bottom: 1px solid #ededed;">
+                            <input  type="password" ng-model="user.password" placeholder="Password" style="border-bottom: 1px solid #ededed;">
                             <span class="password-s">show</span>
                         </md-input-container>
-                        <div class="forgot-p"><a href="" class="text-c" ng-click="forget_pwd()">Forgot Password?</a></div>
-                        <div class="login-btn" ng-click="login()">
-                            <p>Login</p>
+
+
+                        <div class="login-btn" ng-click="signUp()">
+                            <p>Register</p>
                         </div>
                     </form>
                 </div>

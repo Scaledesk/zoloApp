@@ -258,14 +258,16 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 $authProvider.tokenName = 'access_token';
             $authProvider.google({
                 url: serverConfig.address + 'api/auth/google',
-                clientId: '982638547625-ui0lp1pteh6moug1sgct1ag0ub0aen7g.apps.googleusercontent.com',
+                // clientId: '982638547625-ui0lp1pteh6moug1sgct1ag0ub0aen7g.apps.googleusercontent.com',
+                clientId: '936213911318-1mnllojl5hqu2b4o17e47hpbk2e4s66c.apps.googleusercontent.com',
                 clientSecret: '3_FHOlRYTrJffGBhGAMr59b_',
-                redirectUri: 'http://'+location.hostname+'/'
+                // redirectUri: 'http://'+location.hostname+'/'
+                redirectUri: 'http://localhost/'
             });
             $authProvider.facebook({
                 url: serverConfig.address + 'api/auth/facebook',
-                clientId: '635963879879485',
-                clientSecret: 'cf528cf25d134fc76ba1831ab9aaefc9',
+                clientId: '953913041345816',
+                clientSecret: 'e9652fa4cea1dca0a1d6658adaa0ab36',
                 redirectUri: 'http://'+'192.168.1.4:8100/'
             });
             $authProvider.loginUrl = serverConfig.address + 'oauth/access_token';
@@ -1092,6 +1094,15 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     'menuContent': {
                         templateUrl: "templates/login_signUp/html/login.html",
                         controller:"optionalCtrl"
+                    }
+                }
+            })
+            .state('app.signUp_index', {
+                url: "/signUp_index",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp/html/signUp.html",
+                        controller:"signUpCtrl"
                     }
                 }
             })

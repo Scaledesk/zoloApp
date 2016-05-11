@@ -1,45 +1,13 @@
 appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
                                                     serverConfig,$rootScope,$location,$ionicHistory,$ionicViewSwitcher,$ionicModal) {
-    // $scope.navigateTo = function (stateName) {
-    //     if ($ionicHistory.currentStateName() != stateName) {
-    //         $ionicHistory.nextViewOptions({
-    //             disableAnimate: false,
-    //             disableBack: true
-    //         });
-    //
-    //         $ionicViewSwitcher.nextDirection('back');
-    //
-    //         $state.go(stateName, {
-    //             isAnimated: objectData,
-    //         });
-    //     }
-    // };
-    
+
     $scope.user = {};
 
     $scope.back_page = function(){
         $state.go('app.optional_index');
-        $scope.modal.hide();
     };
 
-    //
-    // $ionicModal.fromTemplateUrl('templates/login_signUp/html/login_modal.html', {
-    //     scope: $scope
-    // }).then(function(modal) {
-    //     $scope.modal = modal;
-    // });
-    //
-    // $scope.openPictureModel = function () {
-    //     // $scope.value = dataValue;
-    //     $scope.modal.show();
-    // };
-    // $scope.closePictureModel = function () {
-    //     $scope.modal.hide();
-    // };
-    // $scope.openPictureModel();
-
     $scope.login = function () {
-        console.log($scope.user);
         if ($scope.user.email == undefined || $scope.user.email == '') {
             $mdToast.show({
                 controller: 'toastController',
@@ -132,8 +100,7 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                 });
             });
     };
-
     $scope.forget_pwd = function(){
         $state.go('app.forget_password');
     }
-});// End of Notes List Page  Controller.
+});

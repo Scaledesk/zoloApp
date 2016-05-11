@@ -63,3 +63,132 @@
     overflow-x: hidden;
     text-overflow: ellipsis; }
 
+/*///////Zolo base color/////*/
+
+.zolo-c{
+    color: #765f89;
+}
+
+.text-c{
+    color: #565a5c;
+}
+
+
+
+#z-login-header {
+    background-color: transparent!important;
+    border: none!important;
+    background-image: none;!important;
+}
+
+.login-t{
+    color: #fff;
+    font-size: 1.6em!important;;
+}
+
+
+#z-login-header a i {
+    font-size: 23px;
+}
+
+.login-section{
+    clear: both;
+    padding-top: 150px;
+}
+
+.login-section form{
+    margin-top: 0!important;
+}
+
+.login-section div a{
+    text-decoration:  none;
+}
+
+.login-section .card form md-input-container [input="email"]{
+    border-bottom: 1px solid #aaa;
+}
+
+.login-section .item{
+    padding: 0!important;
+}
+
+.login-section .item md-input-container{
+    padding: 15px;
+}
+
+.login-section .password-s{
+    right: 29px;
+    bottom: 19px;
+    position: absolute;
+    color: #765f89;
+}
+
+.login-section .forgot-p{
+    margin: 20px 0;
+}
+
+.login-section .login-btn p {
+    width: 100%;
+    background-color: #765f89;
+    color: #fff;
+    padding: 15px;
+    font-size: 1.1em;
+
+}
+
+
+
+.login-section div ul li{
+    display: inline-block;
+    margin: 20px 0;
+
+}
+
+
+.login-section div ul  li:nth-child(1){
+    margin-right: 10px;
+
+}
+
+
+
+.login-section div ul  li:nth-child(2){
+    border: 1px solid #adadad;
+    padding: 5px 25px;
+    border-radius: 1px;
+
+}
+
+
+.login-section div ul  li:nth-child(3){
+    border: 1px solid #adadad;
+    padding: 5px 25px;
+    border-radius: 1px;
+
+}
+
+.z-l-active{
+    background-color: #765f89;
+    color: #fff;
+}
+
+
+
+#signup-section{
+    padding-top: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

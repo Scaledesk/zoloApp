@@ -1854,3 +1854,9 @@ drawer.right {
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
   box-shadow: -1px 0px 10px rgba(0, 0, 0, 0.3); }
+
+.baner_size {
+  padding-top: 130px; }
+
+.container_size {
+  height: 50px !important; }

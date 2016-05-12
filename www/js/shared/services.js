@@ -35,6 +35,26 @@ angular.module('starter').factory('AssignmentService', function($http,$q,serverC
     }
 });
 
+
+angular.module('starter').factory('ProfileService', function($http,$q,serverConfig){
+    return {
+        get_profile_info:function(access_token){
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+"api/myProfile?access_token="+access_token
+            }).success(function(data, status, headers, config) {
+                console.log("data in success of user profile",JSON.stringify(data))
+                deffer.resolve(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log("data in error",JSON.stringify(data))
+            });
+            return deffer.promise;
+        }
+    }
+});
+
 angular.module('starter').factory('subCategoryService', function($http,$q,serverConfig){
     return {
         getSubCategory:function(){

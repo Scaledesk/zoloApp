@@ -262,20 +262,18 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 clientId: '936213911318-1mnllojl5hqu2b4o17e47hpbk2e4s66c.apps.googleusercontent.com',
                 clientSecret: '3_FHOlRYTrJffGBhGAMr59b_',
                 // redirectUri: 'http://'+location.hostname+'/'
-                redirectUri: 'http://localhost/'
+                // redirectUri: 'http://localhost/'
             });
             $authProvider.facebook({
                 url: serverConfig.address + 'api/auth/facebook',
                 clientId: '953913041345816',
                 clientSecret: 'e9652fa4cea1dca0a1d6658adaa0ab36',
-                redirectUri: 'http://'+'192.168.1.4:8100/'
+                // redirectUri: 'http://'+'192.168.1.4:8100/'
             });
             $authProvider.loginUrl = serverConfig.address + 'oauth/access_token';
         })
 
     .config(function ($ionicConfigProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider, $mdColorPalette, $mdIconProvider) {
-
-
         // Use for change ionic spinner to android pattern.
         $ionicConfigProvider.spinner.icon("android");
         $ionicConfigProvider.views.swipeBackEnabled(false);
@@ -1093,7 +1091,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 views: {
                     'menuContent': {
                         templateUrl: "templates/login_signUp/html/login.html",
-                        controller:"optionalCtrl"
+                        controller:"optionalLoginCtrl"
                     }
                 }
             })

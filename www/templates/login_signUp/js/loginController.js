@@ -2,11 +2,13 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                                                     serverConfig,$rootScope,$location,$ionicHistory,$ionicViewSwitcher,$ionicModal) {
 
     $scope.user = {};
-    
-    $scope.back_page = function(){
-        $state.go('app.optional_index');
+
+    $scope.goto=function(path){
+        console.log("goto:"+path);
+        $location.path(path);
     };
     $scope.login = function () {
+        console.log("in side login function")
         if ($scope.user.email == undefined || $scope.user.email == '') {
             $mdToast.show({
                 controller: 'toastController',
@@ -76,6 +78,8 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                             }
                         }
                     });
+                    $scope.user.email = '';
+                    $scope.user.password = '';
                     $state.go('app.home');
                 }
             })

@@ -42,33 +42,10 @@ appControllers.controller('ForgetPasswordCtrl', function ($scope, $timeout, $mdU
 
     $scope.submit_forget_pwd = function(){
         forgetPasswordData();
-        console.log("hhhhhhhhhhh",$scope.user.email);
-
         forgetPasswordService.forget_password(data).then(function(data){
             console.log("dddddddddddddddd",JSON.stringify(data));
         })
     };
-
-    // CategoryService.getAll().then(function(data){
-    //     $scope.categories = data.data.data;
-    //     console.log(JSON.stringify($scope.categories));
-    // });
-    //
-    // $scope.allSubcategory = function(id){
-    //     console.log("1wwww",id);
-    //     $state.go('app.subCategory',{'cat_id':id});
-    // }
-
-    //
-    // subCategoryListService.getSubCategoryWithId($stateParams.cat_id).then(function(data){
-    //     $scope.sub_catagery_list = data.data.data;
-    //     console.log(JSON.stringify($scope.sub_catagery_list));
-    // });
-    //
-    // $scope.getPackages = function(id){
-    //     console.log("1wwww",id);
-    //     $state.go('app.package_list',{'sub_cat_id':id});
-    // }
-
-}); // End of menu toggle controller.
+    
+}); 
 

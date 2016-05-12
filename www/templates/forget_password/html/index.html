@@ -1,23 +1,40 @@
-<ion-view title="Forget Password" hide-nav-bar="true" class="bg-sign">
-    <ion-content id="social-login" >
-        <div align="left"><a style="color: black"  ng-click="goto('app/home')" class="button back-button buttons button-clear header-item nav-back-btn">
-            <i class="ion-android-arrow-back"></i>
-        </a></div>
-        <form class="fakeLogin-form">
-            <div>
-                <img class="img-res" src="img/app_icon.png"/>
+<ion-view title="Forget Password" hide-nav-bar="true">
+    <ion-content id="social-login" class="background_img_optional">
+        <div id="z-login-header" class="bar bar-header">
+            <a ng-click="navigateTo('app.login_index')"class="button back-button buttons button-clear header-item nav-back-btn">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <div class="h1 title login-t">Forget Password</div>
+        </div>
+        <!--<form class="fakeLogin-form">-->
+            <!--<div>-->
+                <!--<img class="img-res" src="img/app_icon.png"/>-->
+            <!--</div>-->
+            <!--<div class="sub-header"><p class="custom-fontwhite custom-fontsize">Forget Password<p></div>-->
+            <!--<div id="fakeLogin">-->
+                <!--<md-input-container md-no-float="">-->
+                    <!--<input ng-model="user.email" class="user-name" placeholder="Email">-->
+                <!--</md-input-container>-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<button ng-click="submit_forget_pwd()" class="md-raised social-button md-button md-default-theme material-background">-->
+                    <!--Submit-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</form>-->
+        <div class="login-section">
+            <div class="card">
+                <div class="item item-text-wrap">
+                    <form action="">
+                        <md-input-container md-no-float="">
+                            <input  type="email" ng-model="user.email" placeholder="Email" style="border-bottom: 1px solid #ededed;">
+                        </md-input-container>
+                        <div class="login-btn" ng-click="submit_forget_pwd()">
+                            <p>Submit</p>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="sub-header"><p class="custom-fontwhite custom-fontsize">Forget Password<p></div>
-            <div id="fakeLogin">
-                <md-input-container md-no-float="">
-                    <input ng-model="user.email" class="user-name" placeholder="Email">
-                </md-input-container>
             </div>
-            <div>
-                <button ng-click="submit_forget_pwd()" class="md-raised social-button md-button md-default-theme material-background">
-                    Submit
-                </button>
-            </div>
-        </form>
     </ion-content>
 </ion-view>

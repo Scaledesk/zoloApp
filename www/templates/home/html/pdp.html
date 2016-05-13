@@ -1,0 +1,101 @@
+<ion-view>
+    <ion-nav-title>{{package.slug}}</ion-nav-title>
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content id="product-detail-content">
+        <md-card id="product-detail-tab-detail">
+            <img src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
+            <div style="align:right ;"><a class="md-button md-accent md-fab fab-toolbar-medium"
+                                          aria-label="showListBottomSheet" ng-click="shareProduct2($event)">
+                <i class="ion-android-share-alt"></i>
+            </a></div>
+            <md-card-content>
+                <b><h2 style="text-align: justify;" class="md-title">{{package.name}}</h2></b>RS
+                <span class="pin-footer text-left"><h4 style="color: rgb(103,58,183);display: inline">
+                    {{package.deal_price}}</h4>
+                </span>
+                <div class="row">
+                    <div class="col">
+                        <i class="ion-android-pin">{{package.location[0].text}}</i>
+                    </div>
+                    <div class="col text-right grid-pdp">
+                        <div class="row">
+                    <span ng-if="package.average_rating===1||package.average_rating>1">
+                        <i class="fa fa-star" style="margin-right: 10px"></i>
+                    </span>
+                            <span ng-if="package.average_rating==0">No rating yet!</span>
+                            <span ng-if="package.average_rating>1"><i class="fa fa-star" style="margin-right: 10px"></i></span>
+                            <span ng-if="package.average_rating>2"><i class="fa fa-star" style="margin-right: 10px"></i></span>
+                            <span ng-if="package.average_rating>3"><i class="fa fa-star" style="margin-right: 10px"></i></span>
+                            <span ng-if="package.average_rating>4"><i class="fa fa-star" style="margin-right: 10px"></i></span>
+                        </div>
+                        <div class="row">
+                            <b> Reviews:</b>{{package.reviews.data.length}}
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <hr/>
+                <div class="row">
+                    <div class="col">
+                        <h4>Description</h4>
+                    </div>
+                    <div class="col">
+                        <h4 ng-click="package_summary(package.id)">Terms & Conditions</h4>
+                    </div>
+                    <div class="col">
+                        <h4 ng-click="package_summary(package.id)">Package Summary</h4>
+                    </div>
+                </div>
+
+                <!--<p style="font-size: 15px; text-align: justify;">-->
+                    <!--{{package.description| htmlToPlaintextTruncate:package.description.length}}-->
+                <!--</p>-->
+                <p ng-bind-html="package.description | limitTo: 400">
+
+                </p>
+                <b class="pull-right" ng-click="full_desc(package.id)">More <i class="ion-ios-arrow-forward"></i></b>
+                <br/>
+
+            </md-card-content>
+            <ion-list>
+                <ion-item>
+                    View Seller Profile
+                    <div class="vr">&nbsp;</div>
+                    <i class="ion-heart pull-right"></i>
+                </ion-item>
+            </ion-list>
+            <br/>
+            <div class="row">
+                {{seller_info.length}} Other Packages by {{package.seller_name}}
+            </div>
+            <ion-scroll width="500px; height: 500px" direction="xy">
+                <div class="row">
+                    <div class="col-50 card" ng-repeat="seller_package_info in seller_info">
+                        <img style="width: 150px; height: 130px" ng-src="{{seller_package_info.first_photo}}">
+                        <b style="padding-top: 10px; padding-left: 5px; padding-right: 5px;" class="text-center">{{seller_package_info.name}}</b>
+                        <br>
+                        <div class="row">
+                            <p class="pull-left">
+                                <i class="ion-android-pin">{{seller_package_info.location[0].text}}</i>
+                            </p>
+                            <p class="pull-right" style="padding-left: 80px;">
+                                &#8377; {{seller_package_info.deal_price}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </ion-scroll>
+        </md-card>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-assertive" style="background: none">
+        <div class="button-bar">
+            <a class="button button-royal">Buy Now &#8377; {{package.deal_price}}</a>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+
+

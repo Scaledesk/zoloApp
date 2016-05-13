@@ -38,15 +38,9 @@ appControllers.filter('htmlToPlaintextTruncate', function() {
             length = 10;
 
         if (end === undefined)
-            end = "...";
-
-        /*   if (text.length <= length || text.length - end.length <= length) {
-         return String(text).replace(/<[^>]+>/gm, '');
-         }
-         else {*/
+            end = "";
         htmlToPlaintext = String(text).replace(/<[^>]+>/gm, '');
         return String(htmlToPlaintext).substring(0, length-end.length) + end;
-        /* }*/
 
     }
 })

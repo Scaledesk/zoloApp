@@ -35,6 +35,23 @@ angular.module('starter').factory('AssignmentService', function($http,$q,serverC
     }
 });
 
+angular.module('starter').factory('SellerProfileService', function($http,$q,serverConfig){
+    return {
+        getSellerInfo:function(id){
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+"api/user/"+id+"/packages"
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log("data",JSON.stringify(data))
+            });
+            return deffer.promise;
+        }
+    }
+});
 
 angular.module('starter').factory('ProfileService', function($http,$q,serverConfig){
     return {

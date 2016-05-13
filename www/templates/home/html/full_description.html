@@ -1,0 +1,13 @@
+<ion-view title="Decription">
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content>
+        <div class="card">
+            <!--{{package.term_condition| htmlToPlaintextTruncate:package.description.length}}-->
+            <p style="padding-left: 20px; padding-right: 20px;" ng-bind-html="package.description"></p>
+        </div>
+    </ion-content>
+</ion-view>

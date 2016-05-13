@@ -1117,8 +1117,50 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/product_desc/:product_id",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/home/html/product_desc.html",
+                        templateUrl: "templates/home/html/pdp.html",
                         controller: "productDescriptionCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                        console.log(JSON.stringify($stateParams))
+                    }
+                }
+            })
+            .state('app.package_summary', {
+                url: "/package_summary/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/package_summary.html",
+                        controller:"packageSummaryCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                        console.log(JSON.stringify($stateParams))
+                    }
+                }
+            })
+            .state('app.terms_n_cond', {
+                url: "/terms_n_cond/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/term_condition.html",
+                        controller:"termNconditionCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                        console.log(JSON.stringify($stateParams))
+                    }
+                }
+            })
+            .state('app.full_description', {
+                url: "/full_description/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/full_description.html",
+                        controller:"fullDescriptionCtrl"
                     }
                 },
                 resolve: {

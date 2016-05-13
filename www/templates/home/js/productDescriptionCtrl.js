@@ -6,7 +6,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
     
     productService.getProductDescription($stateParams.product_id).then(function(data){
         $scope.package = data.data.data;
-        console.log("sonama",JSON.stringify($scope.package));
         if($scope.package.seller_profile.user_id){
             SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
                 $scope.seller_info = data.data.data;
@@ -36,7 +35,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
         $scope.term_n_cond = false;
     };
 
-    // $scope.term_n_condition = function(id){
-    //     $state.go('app.term_n_condition',{product_id:id});
-    // };
+    $scope.seller_Profile = function(id){
+        $state.go('app.seller_profile',{product_id:id});
+    };
 });

@@ -1142,6 +1142,20 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.seller_profile', {
+                url: "/seller_profile/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/seller_profile.html",
+                        controller:"sellerProfileCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                        console.log(JSON.stringify($stateParams))
+                    }
+                }
+            })
             .state('app.product_description', {
                 url: "/product_description/:des_product_id",
                 views: {

@@ -42,6 +42,8 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,
             delete break_length;
             console.log("search result",JSON.stringify($scope.packages_list));
         }
-    
+    $scope.productDescription = function(id){
+        $state.go('app.product_desc',{'product_id':id})
+    };
     
 });

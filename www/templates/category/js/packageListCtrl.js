@@ -1,25 +1,6 @@
 appControllers.controller('packagesListCtrl', function ($scope, $timeout, $mdUtil,packagesService,
                                                        $mdSidenav, $log, $ionicHistory, $state,$stateParams) {
-    $scope.toggleLeft = buildToggler('right');
-    function buildToggler(navID) {
-        var debounceFn = $mdUtil.debounce(function () {
-            $mdSidenav(navID).toggle();
-        }, 0);
-        return debounceFn;
-    };
-    $scope.navigateTo = function (stateName,id) {
-        console.log("aaaaaaaaaa",id)
-        $timeout(function () {
-            $mdSidenav('left').close();
-            if ($ionicHistory.currentStateName() != stateName) {
-                $ionicHistory.nextViewOptions({
-                    disableAnimate: true,
-                    disableBack: true
-                });
-                $state.go(stateName,{'category_id':id});
-            }
-        }, ($scope.isAndroid == false ? 300 : 0));
-    };
+    
     packagesService.getPackagesList($stateParams.sub_category_id).then(function(data){
         $scope.packages_list = data.data.data;
         console.log("11111111111",JSON.stringify($scope.packages_list));
@@ -34,6 +15,8 @@ appControllers.controller('packagesListCtrl', function ($scope, $timeout, $mdUti
     });
 
     $scope.productDescription = function(id){
-        $state.go('app.product_description',{'des_product_id':id})
+        // $state.go('app.product_description',{'des_product_id':id})
+        $state.go('app.product_desc',{'product_id':id})
+
     }
 });

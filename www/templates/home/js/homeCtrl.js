@@ -1,7 +1,44 @@
 appControllers.controller('homeCtrl', function ($scope, $timeout, $mdUtil,subCategoryService,
                                                 $mdSidenav, $log, $ionicHistory, $state,$stateParams) {
     $scope.toggleLeft = buildToggler('right');
-    
+    // var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
+
+    $scope.filterText = '';
+
+    // var index = client.initIndex('candybrush_packages');
+
+
+    $scope.search_result = function(){
+if($scope.filterText){
+    $state.go('app.search_info',{'search_text':$scope.filterText});
+
+}
+
+        // searchService.getAllPackage($scope.filterText).then(function(data){
+        //     console.log("sssssssssssss",JSON.stringify(data));
+        // })
+
+// the last optional argument can be used to add search parameters
+//         index.search(
+//             $scope.filterText, {
+//                 hitsPerPage: 5,
+//                 facets: '*',
+//                 maxValuesPerFacet: 10
+//             },
+//             searchCallback
+//         );
+//
+//         function searchCallback(err, content) {
+//             if (err) {
+//                 console.error(err);
+//                 return;
+//             }
+//
+//             console.log("search result",JSON.stringify(content));
+//         }
+
+    };
+
     function buildToggler(navID) {
         var debounceFn = $mdUtil.debounce(function () {
             $mdSidenav(navID).toggle();

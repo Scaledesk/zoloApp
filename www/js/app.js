@@ -41,7 +41,7 @@ window.globalVariable = {
 
 
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
-        'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer'])
+        'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','checklist-model','algoliasearch'])
     .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet) {
 
         //Create database table of contracts by using sqlite database.
@@ -1003,6 +1003,20 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.search_info', {
+                url: "/search_info/:search_text",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/search_result.html",
+                        controller: "searchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                        console.log(JSON.stringify($stateParams))
+                    }
+                }
+            })
             .state('app.subCategoryListing', {
                 url: "/subCategoryListing/:category_id",
                 views: {
@@ -1123,7 +1137,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 },
                 resolve: {
                     product_id: function($stateParams) {
-                        console.log(JSON.stringify($stateParams))
                     }
                 }
             })
@@ -1138,7 +1151,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 },
                 resolve: {
                     product_id: function($stateParams) {
-                        console.log(JSON.stringify($stateParams))
                     }
                 }
             })
@@ -1152,7 +1164,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 },
                 resolve: {
                     product_id: function($stateParams) {
-                        console.log(JSON.stringify($stateParams))
                     }
                 }
             })

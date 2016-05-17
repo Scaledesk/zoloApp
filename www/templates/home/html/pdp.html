@@ -60,9 +60,10 @@
                 </div>
 
                 <div ng-show="des_value">
-                <p ng-bind-html="package.description | limitTo: 400">
-                </p>
-                <b class="pull-right" ng-click="full_desc(package.id)">More <i class="ion-ios-arrow-forward"></i></b>
+                    <p ng-bind-html="package.description | limitTo: 400">
+                    </p>
+                    <b class="pull-right" ng-click="full_desc(package.id)">More <i
+                            class="ion-ios-arrow-forward"></i></b>
                 </div>
                 <br/>
                 <div class="card" ng-show="pec_value">
@@ -75,10 +76,14 @@
                                 <i class="fa fa-star" style="margin-right: 10px"></i>
                             </span>
                                     <span ng-if="package.average_rating==0">No rating yet!</span>
-                                    <span ng-if="package.average_rating>1"><i class="fa fa-star" style="margin-right: 10px"></i></span>
-                                    <span ng-if="package.average_rating>2"><i class="fa fa-star" style="margin-right: 10px"></i></span>
-                                    <span ng-if="package.average_rating>3"><i class="fa fa-star" style="margin-right: 10px"></i></span>
-                                    <span ng-if="package.average_rating>4"><i class="fa fa-star" style="margin-right: 10px"></i></span>
+                                    <span ng-if="package.average_rating>1"><i class="fa fa-star"
+                                                                              style="margin-right: 10px"></i></span>
+                                    <span ng-if="package.average_rating>2"><i class="fa fa-star"
+                                                                              style="margin-right: 10px"></i></span>
+                                    <span ng-if="package.average_rating>3"><i class="fa fa-star"
+                                                                              style="margin-right: 10px"></i></span>
+                                    <span ng-if="package.average_rating>4"><i class="fa fa-star"
+                                                                              style="margin-right: 10px"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +107,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col"> <p class="text-center">Package Id:<b># {{package.id}}</b></p></div>
+                        <div class="col"><p class="text-center">Package Id:<b># {{package.id}}</b></p></div>
                     </div>
                 </div>
 
@@ -110,7 +115,7 @@
             </md-card-content>
             <ion-list>
                 <ion-item>
-                   <p ng-click="seller_Profile(package.id)">View Seller Profile</p>
+                    <p ng-click="seller_Profile(package.id)">View Seller Profile</p>
                     <div class="vr">&nbsp;</div>
                     <i class="ion-heart pull-right"></i>
                 </ion-item>
@@ -136,11 +141,68 @@
                     </div>
                 </div>
             </ion-scroll>
+            <div ng-show="booking_add_ons">
+                <b>YOUR PACKAGE</b>
+                <div class="card">
+                    <ion-checkbox ng-model="booking_add_ons">{{package.name}}</ion-checkbox>
+                    <p>&#8377; {{book.quantity * package.deal_price}}</p>
+                    <!--<select class="item item-select select_box" ng-model="default_quantity">-->
+                    <!--<option ng-repeat="quantity in quantities">{{quantity}}</option>-->
+                    <!--</select>-->
+
+                    <div class="col-md-6" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                        <md-select id="Quantity" ng-model="book.quantity" placeholder="Select Quantity"
+                                   md-on-close="setIndex(-1,true)">
+                            <md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>
+                        </md-select>
+
+                    </div>
+                </div>
+                <br>
+                <b>ADD ONS</b>
+                <div>
+                    <div ng-repeat="addon in package.Addons.data">
+                        <div class="card">
+                            <div class="col-md-6 col-xs-6 checkbox-p p-r-0 col-sm-6">
+                                <div class="checkbox">
+                                    <label class="text-indent">
+                                        <!--<input type="checkbox" class="md-checkbox">-->
+                                        <input checklist-model="selectedaddons[$index].id;" checklist-value="addon.id"
+                                               ng-change="setIndex($index,checked)"
+                                               type="checkbox" class="md-checkbox">
+                                        <span class="checkbox-material"><span class="check"></span></span>
+                                        {{addon.name}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xs-3 p-r-0 col-sm-3"
+                                 ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                                <md-select id="Addon_Quantity" ng-model="selectedaddons[$index].quantity"
+                                           placeholder="Select Quantity" ng-change="setIndex($index)"
+                                           md-on-close="checkAddon($index)">
+                                    <md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>
+                                </md-select>
+                            </div>
+
+                            <div class="col-md-3 col-xs-3 p-r-0 col-sm-3">
+                                <div class="pdp-addon-price w-700">
+                                    &#8377;{{addon.amount}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </md-card>
     </ion-content>
-    <ion-footer-bar align-title="left" class="bar-assertive" style="background: none">
-        <div class="button-bar">
+    <ion-footer-bar ng-hide="booking_add_ons" align-title="left" class="bar-assertive" style="background: none">
+        <div class="button-bar" ng-click="book_now()">
             <a class="button button-royal">Buy Now &#8377; {{package.deal_price}}</a>
+        </div>
+    </ion-footer-bar>
+    <ion-footer-bar ng-show="booking_add_ons" align-title="left" class="bar-assertive" style="background: none">
+        <div class="button-bar" ng-click="book_now_confirm()">
+            <a class="button button-royal">Buy Now &#8377; {{amount_to_show}}</a>
         </div>
     </ion-footer-bar>
 </ion-view>

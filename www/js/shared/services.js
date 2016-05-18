@@ -16,6 +16,24 @@ angular.module('starter').factory('CategoryService', function($http,$q,serverCon
     }
 });
 
+angular.module('starter').factory('MaxPriceService', function($http,$q,serverConfig){
+    return {
+        getMaxPrice : function() {
+            var deffer = $q.defer();
+            return $http({
+                method: 'GET',
+                url: serverConfig.address+'api/maxPrice'
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log("data in error",JSON.stringify(data))
+            });
+            return deffer.promise;
+        }
+    }
+});
+
 
 angular.module('starter').factory('AssignmentService', function($http,$q,serverConfig){
     return {

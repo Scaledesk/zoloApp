@@ -1,24 +1,12 @@
-appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil,packagesService,
+appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil,packagesService,$ionicModal,
                                                        $mdSidenav, $log, $ionicHistory, $state,$stateParams) {
-    $scope.toggleLeft = buildToggler('right');
-    function buildToggler(navID) {
-        var debounceFn = $mdUtil.debounce(function () {
-            $mdSidenav(navID).toggle();
-        }, 0);
-        return debounceFn;
-    };
-    $scope.navigateTo = function (stateName) {
-        $timeout(function () {
-            $mdSidenav('left').close();
-            if ($ionicHistory.currentStateName() != stateName) {
-                $ionicHistory.nextViewOptions({
-                    disableAnimate: true,
-                    disableBack: true
-                });
-                $state.go(stateName);
-            }
-        }, ($scope.isAndroid == false ? 300 : 0));
-    };
+
+    $scope.sub_category = false;
+    $scope.category = false;
+    $scope.package_type = false;
+    $scope.price_list = true;
+    $scope.sorting_value = false;
+
     packagesService.getPackagesList($stateParams.sub_cat_id).then(function(data){
         $scope.packages_list = data.data.data;
         $scope.first_packages_row={};
@@ -41,5 +29,51 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil,pa
 
     $scope.productDescription = function(id){
         $state.go('app.product_desc',{'product_id':id})
-    }
+    };
+    $ionicModal.fromTemplateUrl('templates/home/html/search_package_short_modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+    $scope.openSortAndFilterModal = function() {
+        $scope.modal.show();
+    };
+    $scope.closeSortAndFilterModal = function() {
+        $scope.modal.hide();
+    };
+    $scope.category_list = function(){
+        $scope.category = true;
+        $scope.sub_category = false;
+        $scope.package_type = false;
+        $scope.price_list = false;
+        console.log("1")
+    };
+    $scope.sub_category_list = function(){
+        console.log("2")
+        $scope.category = false;
+        $scope.sub_category = true;
+        $scope.package_type = false;
+        $scope.price_list = false;
+    };
+    $scope.package_type_option = function(){
+        $scope.sub_category = false;
+        $scope.category = false;
+        $scope.package_type = true;
+        $scope.price_list = false;
+        console.log("3")
+    };
+    $scope.price_list_option = function(){
+        $scope.sub_category = false;
+        $scope.category = false;
+        $scope.package_type = false;
+        $scope.price_list = true;
+        $scope.sorting_value = false;
+        console.log("4")
+    };
+    $scope.sorting_option = function(){
+        $scope.price_list = false;
+        $scope.sorting_value = true;
+
+    };
 });

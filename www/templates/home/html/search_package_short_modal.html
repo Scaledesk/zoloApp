@@ -1,0 +1,86 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">
+            <i ng-click="closeSortAndFilterModal()" class="fa fa-times pull-left" aria-hidden="true">FILTER BY</i><p>APPLY</p>
+        </h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="row">
+            <div class="col-20">
+                <ion-list>
+                    <ion-item ng-click="sorting_option()">
+                        Sort
+                    </ion-item>
+                    <!--<ion-item ng-click="category_list()">-->
+                        <!--Category-->
+                    <!--</ion-item>-->
+                    <!--<ion-item ng-click="sub_category_list()">-->
+                        <!--Sub Category-->
+                    <!--</ion-item>-->
+                    <!--<ion-item ng-click="package_type_option()">-->
+                        <!--Package Type-->
+                        <!--</ion-item>-->
+                    <ion-item ng-click="price_list_option()">
+                        Price
+                    </ion-item>
+                </ion-list>
+            </div>
+            <div class="col-80">
+                    <!--<ion-list ng-show="category">-->
+                        <!--<ion-item>-->
+                            <!--1-->
+                        <!--</ion-item>-->
+                        <!--<ion-item>-->
+                            <!--2-->
+                        <!--</ion-item>-->
+                        <!--<ion-item>-->
+                            <!--3-->
+                        <!--</ion-item>-->
+                    <!--</ion-list>-->
+                <!--<ion-list ng-show="sub_category">-->
+                    <!--<ion-item>-->
+                        <!--{{packages_list.name}}-->
+                    <!--</ion-item>-->
+                <!--</ion-list>-->
+                <!--<ion-list ng-show="package_type">-->
+                    <!--<ion-item ng-repeat="package in packages">-->
+                       <!--{{package.name}}-->
+                    <!--</ion-item>-->
+                <!--</ion-list>-->
+                <ion-list ng-show="sorting_value">
+                    <ion-item>
+                        <ion-checkbox ng-model="filter.blue">  &#8377;Price- high to low </ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-checkbox ng-model="filter.blue">   &#8377;Price- low to high</ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-checkbox ng-model="filter.blue"> What's new?</ion-checkbox>
+                    </ion-item>
+                </ion-list>
+                <ion-list ng-show="price_list">
+                    <ion-item>
+                        <ion-checkbox ng-model="filter.blue">  &#8377; 1000 and Below</ion-checkbox>
+
+                    </ion-item>
+                    <ion-item>
+                        <ion-checkbox ng-model="filter.blue"> &#8377; 1001 - &#8377; 10000</ion-checkbox>
+
+                    </ion-item>
+                    <ion-item>
+                        <ion-checkbox ng-model="filter.blue">
+                            &#8377; 10001 - &#8377; 50000</ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-checkbox ng-model="filter.blue">&#8377; 50001 - &#8377; 100000</ion-checkbox>
+
+                    </ion-item>
+                    <ion-item>
+                        <ion-checkbox ng-model="filter.blue"> &#8377; 100001 and Above</ion-checkbox>
+
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

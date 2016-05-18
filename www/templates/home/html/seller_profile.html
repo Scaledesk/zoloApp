@@ -5,25 +5,44 @@
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content>
-        <div class="list card">
-            <div class="item item-avatar">
+        <div>
+            <img ng-src="{{package.seller_profile.banner}}" alt="Mountain View" style="height:228px;">
+            <div class="">
                 <img src="{{package.seller_profile.image}}">
                 <h2>{{package.seller_profile.name}}</h2>
-                <i class="icon ion-iphone"></i> {{package.seller_profile.mobile}}
             </div>
-            <a class="item item-icon-left">
-               <p>Location:</p> {{package.seller_profile.address}}
-                {{package.seller_profile.city}} {{package.seller_profile.state}} {{package.seller_profile.pin}}
-            </a>
         </div>
         <div class="card">
-            <b>About {{package.seller_profile.name}}</b>
+            <b>{{package.seller_profile.name}}</b>
             <p style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
                 {{package.seller_profile.description}}
             </p>
+            <p ng-hide="package.seller_profile.description">
+                No, description found for {{package.seller_profile.name}}
+            </p>
         </div>
         <div class="card">
-            <b>{{package.seller_profile.name}} Gigs</b>
+            <ion-list>
+                <ion-item>
+                    <i class="icon ion-iphone"></i> {{package.seller_profile.mobile}}
+                    <div class="vr">&nbsp;</div>
+                    <i class="icon ion-location pull-right"> {{package.seller_profile.city}} {{package.seller_profile.state}}</i>
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <div class="card">
+            <ion-list>
+                <ion-item>
+                    <p>Total Packages  {{seller_info.length}}</p>
+                    <div class="vr">&nbsp;</div>
+                    <p class="pull-right"> Skills</p>
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <div class="card">
+            <b>Other package by {{package.seller_profile.name}}</b>
             <ion-scroll width="500px; height: 500px" direction="xy">
                 <div class="row">
                     <div class="col-50 card" ng-repeat="seller_package_info in seller_info">
@@ -32,11 +51,11 @@
                         <br>
                         <div class="row">
                             <p class="pull-left">
-                                <i class="ion-android-pin">{{seller_package_info.location[0].text}}</i>
+                                [{{seller_package_info.location[0].text}}]
                             </p>
-                            <p class="pull-right" style="padding-left: 80px;">
-                                &#8377; {{seller_package_info.deal_price}}
-                            </p>
+                            <!--<p class="pull-right" style="padding-left: 80px;">-->
+                                <!--&#8377; {{seller_package_info.deal_price}}-->
+                            <!--</p>-->
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-appControllers.controller('orderReviewCtrl', function ($scope, $timeout, $mdUtil,OrderReviewService) {
+appControllers.controller('orderReviewCtrl', function ($scope, $timeout,$state, $mdUtil,OrderReviewService) {
 
 
   var id =  window.localStorage['id'];
@@ -10,6 +10,10 @@ appControllers.controller('orderReviewCtrl', function ($scope, $timeout, $mdUtil
                 console.log("result",JSON.stringify($scope.orp_result))
 
     });
+
+  $scope.payment = function(){
+    $state.go('app.add_address');
+  }
 
 });
 

@@ -1061,7 +1061,15 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
-
+            .state('app.paymentOption', {
+                url: "/paymentOption",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/payment_option.html",
+                        controller: "paymentCtrl"
+                    }
+                }
+            })
             .state('app.package_list_menu', {
                 url: "/package_list_menu/:sub_category_id",
                 views: {

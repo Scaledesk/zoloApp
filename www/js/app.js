@@ -999,7 +999,15 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 },
                 resolve: {
                     cat_id: function($stateParams) {
-                        console.log(JSON.stringify($stateParams))
+                    }
+                }
+            })
+            .state('app.orp', {
+                url: "/orp",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/orp.html",
+                        controller: "orderReviewCtrl"
                     }
                 }
             })
@@ -1044,6 +1052,16 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.add_address', {
+                url: "/package_list",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/add_address.html",
+                        controller: "addressCtrl"
+                    }
+                }
+            })
+
             .state('app.package_list_menu', {
                 url: "/package_list_menu/:sub_category_id",
                 views: {

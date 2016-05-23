@@ -1,0 +1,56 @@
+<ion-view title="ORDER REVIEW">
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content>
+        <h4>REVIEW YOUR ORDER</h4>
+<div class="card">
+    <div class="row">
+        <div class="col-50">
+            <ion-checkbox ng-model="isChecked"><p  ng-bind-html="orp_result.package_title"></p></ion-checkbox>
+        </div>
+        <div class="col-20">
+            q{{orp_result.quantity}}
+        </div>
+        <div class="col-10">
+            del{{orp_result.package_delivery_time}}
+        </div>
+        <div class="col-20">
+            &#8377; {{orp_result.price}}
+        </div>
+    </div>
+
+</div>
+
+        <h4>ADD ONS</h4>
+        <div class="card">
+            <div class="row" ng-repeat="add_on_list in orp_result.bookingPackagesAddons.data">
+                <div class="col-50">
+                    <ion-checkbox ng-model="isChecked">Name of add ons{{add_on_list.name}}</ion-checkbox>
+                </div>
+                <div class="col-20">
+                    q {{add_on_list.quantity}}
+                </div>
+                <div class="col-10">
+                    del{{add_on_list.days}}
+                </div>
+                <div class="col-20">
+                    &#8377; {{add_on_list.amount}}
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="card">
+            <b class="pull-left">TOTAL Amount</b><b class="pull-right">&#8377; {{orp_result.total_price}}</b>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-assertive" style="background: none">
+        <div class="button-bar" ng-click="payment()">
+            <a class="button button-royal">CONTINUE TO PAYMENT</a>
+        </div>
+    </ion-footer-bar>
+    </ion-view>

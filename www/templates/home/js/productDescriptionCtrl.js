@@ -1,5 +1,6 @@
-appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, $mdUtil,productService,
-                                                    $mdSidenav, $log, $ionicHistory, $state,$stateParams,SellerProfileService) {
+appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, $mdUtil,productService,bookingService,
+                                                    $mdSidenav, $log, $ionicHistory, $state,$stateParams,
+                                                              OrderReviewService,  SellerProfileService) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -12,6 +13,10 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
     $scope.book={
         quantity:1
     };
+
+    var booking_info = {};
+
+
 
     $scope.setIndex=function(index,checked){
         if(checked==true){
@@ -61,20 +66,25 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
         });
         $scope.amount_to_show=amount+$scope.package.deal_price*($scope.book.quantity);
     };
-
     
     productService.getProductDescription($stateParams.product_id).then(function(data){
         $scope.package = data.data.data;
         $scope.paddons =  $scope.package.Addons.data;
         $scope.amount_to_show = $scope.package.deal_price;
-        console.log("pdp",JSON.stringify($scope.package));
+
+         booking_info = {
+            quantity:$scope.book.quantity,
+             package_id:$scope.package.id,
+            addons:[]
+        };
+        console.log("sonam",JSON.stringify(booking_info))
         if($scope.package.seller_profile.user_id){
             SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
                 $scope.seller_info = data.data.data;
             });
         }
     });
-    
+
 
     $scope.description_value = function () {
         $scope.des_value = true;
@@ -102,4 +112,33 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
     $scope.book_now = function () {
         $scope.booking_add_ons = true;
     };
+
+    $scope.book_now_confirm = function(){
+        booking_info.quantity = $scope.book.quantity;
+        angular.forEach($scope.selectedaddons,function(obj){
+            var ff={
+                id:obj.id[0],
+                quantity:obj.quantity
+            }
+            booking_info.addons.push(ff);
+
+        });
+        bookingService.OrpInfo(booking_info).then(function(data){
+            var info = data.data.data;
+            window.localStorage['id']= info.id;
+            window.localStorage['booking_id']= info.booking_id;
+
+            $state.go('app.orp');
+        
+            console.log("orp result",JSON.stringify(info));
+            // if(info){
+            //     OrderReviewService.booking_info(info.booking_id.info.id).then(function(data){
+            //         console.log("result",JSON.stringify(data))
+            //     })
+            //     $state.go('app.orp');
+            // }
+        
+        });
+
+    }
 });

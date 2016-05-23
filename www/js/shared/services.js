@@ -265,6 +265,115 @@ angular.module('starter').factory('forgetPasswordService', function($http,$state
             });
             return deffer.promise;
         }
+    };
+});
+
+angular.module('starter').factory('bookingService', function($http,$state,$q,$mdToast,serverConfig){
+    return {
+        OrpInfo: function (data) {
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"api/booking",
+                data: data
+            }).
+            success(function(data, status, headers, config) {
+                // if(data.status_code == '200'){
+                //     $mdToast.show({
+                //         controller: 'toastController',
+                //         templateUrl: 'toast.html',
+                //         hideDelay: 800,
+                //         position: 'top',
+                //         locals: {
+                //             displayOption: {
+                //                 title: data.message
+                //             }
+                //         }
+                //     });
+                //     $state.go('app.home');
+                // }
+                console.log("data in success",JSON.stringify(data))
+                console.log("status in success",JSON.stringify(status))
+                console.log("headers in success",JSON.stringify(headers))
+                console.log("config in success",JSON.stringify(config))
+                deffer.resolve(data);
+            }).
+            error(function(data, status, headers, config) {
+                // $mdToast.show({
+                //     controller: 'toastController',
+                //     templateUrl: 'toast.html',
+                //     hideDelay: 800,
+                //     position: 'top',
+                //     locals: {
+                //         displayOption: {
+                //             title: data.message[0]
+                //         }
+                //     }
+                // });
+                // alert(data.message[0]);
+                console.log("data",JSON.stringify(data))
+                console.log("status",JSON.stringify(status))
+                console.log("headers",JSON.stringify(headers))
+                console.log("config",JSON.stringify(config))
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+angular.module('starter').factory('OrderReviewService', function($http,$state,$q,$mdToast,serverConfig){
+    return {
+        booking_info_orp: function (booking_id,id) {
+            var deffer = $q.defer();
+            return $http({
+                method: "GET",
+                url: serverConfig.address+"api/booking/"+booking_id
+            }).
+            success(function(data, status, headers, config) {
+                // if(data.status_code == '200'){
+                //     $mdToast.show({
+                //         controller: 'toastController',
+                //         templateUrl: 'toast.html',
+                //         hideDelay: 800,
+                //         position: 'top',
+                //         locals: {
+                //             displayOption: {
+                //                 title: data.message
+                //             }
+                //         }
+                //     });
+                //     $state.go('app.home');
+                // }
+                console.log("data in success",JSON.stringify(data))
+                console.log("status in success",JSON.stringify(status))
+                console.log("headers in success",JSON.stringify(headers))
+                console.log("config in success",JSON.stringify(config))
+                deffer.resolve(data);
+            }).
+            error(function(data, status, headers, config) {
+                // $mdToast.show({
+                //     controller: 'toastController',
+                //     templateUrl: 'toast.html',
+                //     hideDelay: 800,
+                //     position: 'top',
+                //     locals: {
+                //         displayOption: {
+                //             title: data.message[0]
+                //         }
+                //     }
+                // });
+                // alert(data.message[0]);
+                console.log("data",JSON.stringify(data))
+                console.log("status",JSON.stringify(status))
+                console.log("headers",JSON.stringify(headers))
+                console.log("config",JSON.stringify(config))
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+            return deffer.promise;
+        }
     }
 });
 

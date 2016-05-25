@@ -39,6 +39,9 @@ $cordovaOauth, $http,ProfileService) {
     $scope.user = {};
     $scope.goto=function(path){
         console.log("goto:"+path);
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
         $location.path(path);
     };
     

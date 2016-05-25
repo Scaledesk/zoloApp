@@ -1,0 +1,39 @@
+<ion-view title="ADDRESS CONFIRMATION">
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content>
+        <h5>CONFIRM ADDRESS</h5>
+    <div ng-show="user_address.length == '0'">
+       <p>No,Address found please add an address </p>
+    </div>
+
+        <div class="card" ng-repeat="address in user_address" ng-show="user_address.length != '0'">
+            <div class="item item-text-wrap">
+                <b>{{address.name}}</b> <p ng-if="address.is_default == '1'">(Default)</p>
+                <i class="icon ion-trash-b pull-right"></i>
+                <br>
+                {{address.street_address}},{{address.landmark}}
+                <br>
+                {{address.city}} {{address.pincode}}
+                <br>
+                {{address.state}}
+                <br>
+                Mobile: {{address.phone_number}} <i class="icon ion-edit pull-right" ng-click="edit_address(address.id)"></i>
+            </div>
+        </div>
+
+
+        <div style="margin-top: 10px;">
+            <p ng-click="skip()">Skip>></p>
+            <i class="fa fa-pencil pull-right" ng-click="address_info()">add</i>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-assertive" style="background: none">
+        <div class="button-bar" ng-click="payment_option()">
+            <a class="button button-royal">CONTINUE TO PAYMENT</a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

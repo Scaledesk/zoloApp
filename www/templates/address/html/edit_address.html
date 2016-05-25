@@ -1,0 +1,44 @@
+<ion-view title="EDIT ADDRESS">
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content>
+        <div class="list">
+            <form>
+                <label class="item item-input">
+                    <input type="text" placeholder="Name" ng-model="address.name">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Address" ng-model="address.street_address">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Landmark" ng-model="address.landmark">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="City" ng-model="address.city">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="State" ng-model="address.state">
+                </label>
+                <label class="item item-input">
+                    <input type="tel" placeholder="Pincode" ng-model="address.pincode">
+                </label>
+                <label class="item item-input">
+                    <textarea placeholder="Mobile Number" ng-model="address.phone_number"></textarea>
+                </label>
+                <ion-checkbox ng-model="address.is_default">Default</ion-checkbox>
+                <div class="login-btn pull-left" ng-click="edit_address(address.id)">
+                    <p>EDIT</p>
+                </div>
+                <div class="login-btn pull-right" ng-click="skip()">
+                    <p>SKIP>></p>
+                </div>
+            </form>
+
+        </div>
+
+
+    </ion-content>
+</ion-view>

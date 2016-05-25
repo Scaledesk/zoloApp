@@ -5,6 +5,41 @@
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content>
+<h3>PAYMENT OPTIONS</h3>
+        <ion-list>
+            <ion-item>
+                <label class="checkbox">
+                    <input type="checkbox" ng-model="payment.payU" ng-click="pay()">
 
+                </label>
+                (Pay Using Credit/Debit card and Net banking)
+            </ion-item>
+            <ion-item>
+                <label class="checkbox" ng-model="payment.payTm" ng-click="pay_by_payTm()">
+                    <input type="checkbox">
+                </label>
+                (Pay Using Paytm wallet)
+            </ion-item>
+            <ion-item>
+                <label class="checkbox" ng-model="payment.zolo" ng-click="pay_by_zolo()">
+                    <input type="checkbox">
+                </label>
+                (Pay Using ZOLO wallet)
+            </ion-item>
+        </ion-list>
+        <br>
+        <ion-list>
+            <ion-item>
+                <p>100% Secure Payments </p>
+                <!--<div class="vr">&nbsp;</div>-->
+              <p>
+                  100% Buyer Protection
+              </p>
+                <!--<div class="vr">&nbsp;</div>-->
+                <p>
+                    Buyer Friendly Refund Policy
+                </p>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>

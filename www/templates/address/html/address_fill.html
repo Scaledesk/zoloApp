@@ -1,0 +1,44 @@
+<ion-view title="ADD ADDRESS">
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-arrow-left-c"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content>
+        <div class="list">
+            <form>
+                <label class="item item-input">
+                    <input type="text" placeholder="Name" ng-model="user.name">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Address" ng-model="user.address">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Landmark" ng-model="user.landmark">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="City" ng-model="user.city">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="State" ng-model="user.state">
+                </label>
+                <label class="item item-input">
+                    <input type="tel" placeholder="Pincode" ng-model="user.pincode">
+                </label>
+                <label class="item item-input">
+                    <textarea placeholder="Mobile Number" ng-model="user.mobile"></textarea>
+                </label>
+                <ion-checkbox ng-model="user.default">Default</ion-checkbox>
+                <div class="login-btn pull-left" ng-click="save_address()">
+                    <p>SAVE</p>
+                </div>
+                <div class="login-btn pull-right" ng-click="skip()">
+                    <p>SKIP>></p>
+                </div>
+            </form>
+
+        </div>
+
+
+    </ion-content>
+</ion-view>

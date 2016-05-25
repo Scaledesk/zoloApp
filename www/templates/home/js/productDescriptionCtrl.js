@@ -113,6 +113,10 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
         $scope.booking_add_ons = true;
     };
 
+
+   
+    
+    
     $scope.book_now_confirm = function(){
         booking_info.quantity = $scope.book.quantity;
         angular.forEach($scope.selectedaddons,function(obj){
@@ -121,24 +125,46 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
                 quantity:obj.quantity
             }
             booking_info.addons.push(ff);
-
         });
-        bookingService.OrpInfo(booking_info).then(function(data){
-            var info = data.data.data;
-            window.localStorage['id']= info.id;
-            window.localStorage['booking_id']= info.booking_id;
 
-            $state.go('app.orp');
-        
-            console.log("orp result",JSON.stringify(info));
-            // if(info){
-            //     OrderReviewService.booking_info(info.booking_id.info.id).then(function(data){
-            //         console.log("result",JSON.stringify(data))
-            //     })
-            //     $state.go('app.orp');
+        if(window.localStorage['access_token']){
+            bookingService.OrpInfo(booking_info).then(function(data) {
+                var info = data.data.data;
+                console.log("info",JSON.stringify(info))
+                window.localStorage['id'] = info.id;
+                window.localStorage['booking_id'] = info.booking_id;
+                $state.go('app.orp');
+            });
+            console.log("1");
+        }
+        else{
+            $state.go('app.login_index');
+            console.log("2");
+            window.localStorage['orp_page']= 'true';
+            // window.localStorage['id']= $stateParams.product_id;
+        }
+
+
+        // bookingService.OrpInfo(booking_info).then(function(data){
+        //     var info = data.data.data;
+        //     window.localStorage['id']= info.id;
+        //     window.localStorage['booking_id']= info.booking_id;
+
+            console.log("aaaaa",JSON.stringify(window.localStorage['access_token']))
+            // if(window.localStorage['access_token']){
+            //      $state.go('app.orp');
+            //     console.log("1");
             // }
-        
-        });
+            // else{
+            //     $state.go('app.login_index');
+            //     console.log("2");
+            //     window.localStorage['orp_page']= 'true';
+            // }
+
+        //     console.log("orp result",JSON.stringify(info));
+        //
+        //
+        // });
 
     }
 });

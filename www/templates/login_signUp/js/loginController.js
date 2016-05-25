@@ -7,6 +7,9 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
         console.log("goto:"+path);
         $location.path(path);
     };
+    var page_to_be_on = window.localStorage['orp_page'];
+    // var p_id = window.localStorage['id'];
+    // console.log("p_id",p_id)
     $scope.login = function () {
         console.log("in side login function")
         if ($scope.user.email == undefined || $scope.user.email == '') {
@@ -64,7 +67,8 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
     $scope.get_token = function(user){
         $auth.login(user)
             .then(function (response) {
-                console.log("response",JSON.stringify(response))
+                console.log("response",JSON.stringify(response));
+                
                 if(response.status == '200'){
                     window.localStorage['access_token']=response.data.access_token;
                     $mdToast.show({
@@ -80,7 +84,13 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                     });
                     $scope.user.email = '';
                     $scope.user.password = '';
-                    $state.go('app.home');
+                    // if(page_to_be_on == 'true'){
+                    //     $state.go('app.home');
+                    // }
+                    // else{
+                        $state.go('app.home');
+                    // }
+
                 }
             })
             .catch(function (response) {

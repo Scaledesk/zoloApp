@@ -1100,6 +1100,52 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.address', {
+                url: "/address",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/address/html/index.html",
+                        controller:'addressCtrl'
+                    }
+                }
+            })
+
+            .state('app.option_address', {
+                url: "/option_address",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/address/html/add_address.html",
+                        controller:'addressCtrl'
+                    }
+                }
+            })
+
+            .state('app.address_fill', {
+                url: "/address_fill",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/address/html/address_fill.html",
+                        controller:'addAddressCtrl'
+                    }
+                }
+            })
+
+            .state('app.edit_address', {
+                url: "/edit_address/:edit_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/address/html/edit_address.html",
+                        controller:'editAddressCtrl'
+                    },
+
+                    resolve: {
+                        edit_id: function($stateParams) {
+                        }
+                    }
+                }
+            })
+
+
             .state('app.contact_us', {
                 url: "/contactUs",
                 views: {
@@ -1163,6 +1209,33 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 },
                 resolve: {
                     product_id: function($stateParams) {
+                    }
+                }
+            })
+
+            .state('app.payment_success', {
+                url: "/payment_success",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/payment_success.html"
+                    }
+                }
+            })
+
+            .state('app.payment_fail', {
+                url: "/payment_fail",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/payment_fail.html"
+                    }
+                }
+            })
+            .state('app.pay_u', {
+                url: "/pay_u",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/pay_u.html",
+                        controller:'paymentCtrl'
                     }
                 }
             })

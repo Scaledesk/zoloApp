@@ -23,7 +23,6 @@ appControllers.controller('addAddressCtrl', function ($scope, $timeout,$state, $
             "phone_number": $scope.user.mobile,
             "is_default": $scope.user.default,
         }
-        console.log("dataaa",JSON.stringify(data))
     };
 
 

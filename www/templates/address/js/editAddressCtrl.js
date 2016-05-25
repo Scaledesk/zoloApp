@@ -21,6 +21,13 @@ appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, 
         angular.forEach($scope.user_address , function (obj) {
            if(obj.id == $stateParams.edit_id){
                $scope.address = obj;
+               console.log("1",JSON.stringify($scope.address))
+               if($scope.address.is_default == '0'){
+                   $scope.address.is_default = false;
+               }
+               else{
+                   $scope.address.is_default = true;
+               }
            }
 
         });

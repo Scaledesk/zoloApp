@@ -12,6 +12,7 @@ appControllers.controller('addressCtrl', function ($scope, $timeout,$state, $mdU
             var id = data.data.data.user_id;
             GetUserAddressService.user_address(id).then(function(data){
                 $scope.user_address = data.data.data;
+                console.log("aaaaaaaaa",JSON.stringify($scope.user_address))
             });
             $scope.$on('addressListChanged', function (event, args) {
                 $scope.message = args.message;
@@ -21,7 +22,7 @@ appControllers.controller('addressCtrl', function ($scope, $timeout,$state, $mdU
             });
         }
     });
-    
+
     $scope.skip = function(){
         $state.go('app.paymentOption');
     };

@@ -2,9 +2,7 @@ appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, 
                                                       editUserAddressService,$stateParams,$mdToast) {
 
     var access_token = window.localStorage['access_token'];
-
-    console.log("sonam",JSON.stringify($stateParams));
-
+    
     $scope.address = {};
 
     var user_id = window.localStorage['user_id'];
@@ -18,7 +16,6 @@ appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, 
         angular.forEach($scope.user_address , function (obj) {
            if(obj.id == $stateParams.edit_id){
                $scope.address = obj;
-               console.log("1",JSON.stringify($scope.address))
                if($scope.address.is_default == '0'){
                    $scope.address.is_default = false;
                }
@@ -28,7 +25,6 @@ appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, 
            }
 
         });
-        console.log("user address info",JSON.stringify(data));
     });
 
 

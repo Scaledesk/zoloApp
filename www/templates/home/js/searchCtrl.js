@@ -3,45 +3,102 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     
     var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
-    $scope.filterText = '';
+    $scope.filterText = $stateParams.search_text;
 
-    console.log("search_text",$stateParams.search_text)
+    console.log("search_text",$stateParams.search_text);
 
     var index = client.initIndex('candybrush_packages');
-    
-        index.search(
-            $scope.filterText, {
-                hitsPerPage: 5,
-                facets: '*',
-                maxValuesPerFacet: 10
-            },
-            searchCallback
-        );
 
-        function searchCallback(err, content) {
-            if (err) {
-                console.error(err);
-                return;
+    $scope.search_packages = function(filterText,load_option){
+
+        if(load_option == false){
+            index.search(
+                filterText, {
+                    hitsPerPage: 5,
+                    facets: '*',
+                    maxValuesPerFacet: 10
+                },
+                searchCallback
+            );
+
+            function searchCallback(err, content) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                else{
+                    $scope.packages = content.hits;
+                    $scope.total_page=content.nbPages;
+                    $scope.current_page=content.page;
+                }
             }
-            $scope.packages_list = content.hits;
-            $scope.first_packages_row={};
-            $scope.second_packages_row={};
-            // console.log(JSON.stringify($scope.packages_list));
-            $scope.packages = $scope.packages_list;
-            packages_length=$scope.packages.length;
-            // console.log("package length",packages_length);
-            if(packages_length == 1){
-                $scope.first_packages_row.data = $scope.packages;
-                console.log("sonam",JSON.stringify($scope.first_packages_row.data))
-            }
-            else{
-                break_length=packages_length/2;
-                $scope.first_packages_row.data = $scope.packages.slice(0, break_length);
-                $scope.second_packages_row.data = $scope.packages.slice(break_length + 1);
-            }
-            delete break_length;
-            console.log("search result",JSON.stringify($scope.packages_list));
+
         }
+        else{
+            if($scope.current_page <= $scope.total_page){
+                index.search(
+                    filterText, {
+                        hitsPerPage: 5,
+                        facets: '*',
+                        maxValuesPerFacet: 10,
+                        page:++$scope.current_page
+                    },
+                    searchCallback
+                );
+
+                function searchCallback(err, content) {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    else{
+                        angular.forEach(content.hits,function(obj){
+                            $scope.packages.push(obj);
+
+                        });
+                    }
+                }
+            }
+            return;
+
+        }
+
+    };
+    $scope.search_packages($scope.filterText,false);
+
+    $scope.load_more = function(){
+        $scope.search_packages($scope.filterText,true);
+    };
+    
+        // index.search(
+        //     $scope.filterText, {
+        //         hitsPerPage: 5,
+        //         facets: '*',
+        //         maxValuesPerFacet: 10
+        //     },
+        //     searchCallback
+        // );
+        //
+        // function searchCallback(err, content) {
+        //     if (err) {
+        //         console.error(err);
+        //         return;
+        //     }
+        //     $scope.packages_list = content.hits;
+        //     $scope.packages = $scope.packages_list;
+        //     packages_length=$scope.packages.length;
+        //     if(packages_length == 1){
+        //         $scope.first_packages_row.data = $scope.packages;
+        //         console.log("sonam",JSON.stringify($scope.first_packages_row.data))
+        //     }
+        //     else{
+        //         break_length=packages_length/2;
+        //         $scope.first_packages_row.data = $scope.packages.slice(0, break_length);
+        //         $scope.second_packages_row.data = $scope.packages.slice(break_length + 1);
+        //     }
+        //     delete break_length;
+        //     console.log("search result",JSON.stringify($scope.packages_list));
+        // }
     $scope.productDescription = function(id){
         $state.go('app.product_desc',{'product_id':id})
     };
@@ -72,7 +129,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     $scope.price_list_option = function () {
         $scope.price_list = true;
         $scope.sorting_value = false;
-        console.log("4")
     };
     $scope.sorting_option = function () {
         $scope.price_list = false;
@@ -82,7 +138,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
     MaxPriceService.getMaxPrice().then(function (data) {
         $scope.max_price = data.data.data;
-        console.log("max price", $scope.max_price);
         $scope.range = {};
         $scope.range.from = 0;
         $scope.range.to = parseInt($scope.max_price);

@@ -138,33 +138,14 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
             console.log("1");
         }
         else{
+            var p_id = $stateParams.product_id;
             $state.go('app.login_index');
             console.log("2");
             window.localStorage['orp_page']= 'true';
-            // window.localStorage['id']= $stateParams.product_id;
+            window.localStorage['pro_id']= p_id;
+
         }
-
-
-        // bookingService.OrpInfo(booking_info).then(function(data){
-        //     var info = data.data.data;
-        //     window.localStorage['id']= info.id;
-        //     window.localStorage['booking_id']= info.booking_id;
-
             console.log("aaaaa",JSON.stringify(window.localStorage['access_token']))
-            // if(window.localStorage['access_token']){
-            //      $state.go('app.orp');
-            //     console.log("1");
-            // }
-            // else{
-            //     $state.go('app.login_index');
-            //     console.log("2");
-            //     window.localStorage['orp_page']= 'true';
-            // }
-
-        //     console.log("orp result",JSON.stringify(info));
-        //
-        //
-        // });
 
     }
 });

@@ -8,8 +8,8 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
         $location.path(path);
     };
     var page_to_be_on = window.localStorage['orp_page'];
-    // var p_id = window.localStorage['id'];
-    // console.log("p_id",p_id)
+    var product_id = window.localStorage['pro_id'];
+  
     $scope.login = function () {
         console.log("in side login function")
         if ($scope.user.email == undefined || $scope.user.email == '') {
@@ -84,12 +84,12 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                     });
                     $scope.user.email = '';
                     $scope.user.password = '';
-                    // if(page_to_be_on == 'true'){
-                    //     $state.go('app.home');
-                    // }
-                    // else{
+                    if(page_to_be_on == 'true'){
+                        $state.go('app.product_desc',{'product_id':product_id});
+                    }
+                    else{
                         $state.go('app.home');
-                    // }
+                    }
 
                 }
             })

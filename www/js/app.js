@@ -1154,6 +1154,23 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.term_n_con', {
+                url: "/term_n_con",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/tNc/html/index.html"
+                    }
+                }
+            })
+            .state('app.privacy_policy', {
+                url: "/privacy_policy",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/PrivacyPolicy/html/index.html"
+                    }
+                }
+            })
+
             .state('app.login', {
                 url: "/login",
                 views: {

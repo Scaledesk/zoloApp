@@ -24,11 +24,15 @@
 
 </div>
 
-        <h4>ADD ONS</h4>
-        <div class="card">
+        <h4>ADD ONS  {{orp_result.bookingPackagesAddons.data.length}}</h4>
+        <div class="card" ng-show="orp_result.bookingPackagesAddons.data.length =='0'">
+            <p>No, Add ons found for this package!</p>
+        </div>
+        <div class="card" ng-show="orp_result.bookingPackagesAddons.data.length !='0'">
             <div class="row" ng-repeat="add_on_list in orp_result.bookingPackagesAddons.data">
                 <div class="col-50">
-                    <ion-checkbox ng-model="isChecked">Name of add ons{{add_on_list.name}}</ion-checkbox>
+                    <ion-checkbox ng-model="isChecked">Name of add ons{{add_on_list.name}}
+                       </ion-checkbox>
                 </div>
                 <div class="col-20">
                     q {{add_on_list.quantity}}

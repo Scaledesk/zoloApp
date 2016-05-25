@@ -13,7 +13,7 @@
         <div class="card" ng-repeat="address in user_address" ng-show="user_address.length != '0'">
             <div class="item item-text-wrap">
                 <b>{{address.name}}</b> <p ng-if="address.is_default == '1'">(Default)</p>
-                <i class="icon ion-trash-b pull-right"></i>
+                <i class="icon ion-trash-b pull-right" ng-click="delete_add(address.id)"></i>
                 <br>
                 {{address.street_address}},{{address.landmark}}
                 <br>

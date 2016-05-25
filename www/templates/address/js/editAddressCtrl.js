@@ -32,9 +32,11 @@ appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, 
     $scope.edit_address = function(add_id){
         var id = add_id;
         editUserAddressService.edit_user_address($scope.address,id).then(function (data) {
-            console.log("sonam",JSON.stringify(data));
             if(data.data.message == 'success'){
+              alert('Address edited successfully.');
+                $scope.$broadcast('addressListChanged', { message: 'Change in address list' });
                 $state.go('app.address');
+
             }
             else{
                 alert('error');

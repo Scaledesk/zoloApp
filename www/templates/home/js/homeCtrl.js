@@ -1,6 +1,7 @@
 appControllers.controller('homeCtrl', function ($scope, $timeout, $mdUtil,subCategoryService,
                                                 $mdSidenav, $log, $ionicHistory, $state,$stateParams) {
     $scope.toggleLeft = buildToggler('right');
+    // $ionicHistory.clearHistory();
    
     $scope.filterText = '';
     

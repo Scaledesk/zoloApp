@@ -70,35 +70,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         $scope.search_packages($scope.filterText,true);
     };
     
-        // index.search(
-        //     $scope.filterText, {
-        //         hitsPerPage: 5,
-        //         facets: '*',
-        //         maxValuesPerFacet: 10
-        //     },
-        //     searchCallback
-        // );
-        //
-        // function searchCallback(err, content) {
-        //     if (err) {
-        //         console.error(err);
-        //         return;
-        //     }
-        //     $scope.packages_list = content.hits;
-        //     $scope.packages = $scope.packages_list;
-        //     packages_length=$scope.packages.length;
-        //     if(packages_length == 1){
-        //         $scope.first_packages_row.data = $scope.packages;
-        //         console.log("sonam",JSON.stringify($scope.first_packages_row.data))
-        //     }
-        //     else{
-        //         break_length=packages_length/2;
-        //         $scope.first_packages_row.data = $scope.packages.slice(0, break_length);
-        //         $scope.second_packages_row.data = $scope.packages.slice(break_length + 1);
-        //     }
-        //     delete break_length;
-        //     console.log("search result",JSON.stringify($scope.packages_list));
-        // }
     $scope.productDescription = function(id){
         $state.go('app.product_desc',{'product_id':id})
     };

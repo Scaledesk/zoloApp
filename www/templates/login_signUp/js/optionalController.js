@@ -4,6 +4,10 @@ $cordovaOauth, $http,ProfileService) {
 //
 //     var device = $cordovaDevice.getDevice();
 // console.log("device",JSON.stringify(device));
+//
+//     $ionicHistory.nextViewOptions({
+//         disableBack: true
+//     });
 
     $scope.navigateTo = function (stateName) {
         if ($ionicHistory.currentStateName() != stateName) {
@@ -37,45 +41,7 @@ $cordovaOauth, $http,ProfileService) {
         console.log("goto:"+path);
         $location.path(path);
     };
-
-    // $scope.get_token = function(user){
-    //     $auth.login(user)
-    //         .then(function (response) {
-    //             console.log("response",JSON.stringify(response))
-    //             if(response.status == '200'){
-    //                 window.localStorage['access_token']=response.data.access_token;
-    //                 $mdToast.show({
-    //                     controller: 'toastController',
-    //                     templateUrl: 'toast.html',
-    //                     hideDelay: 800,
-    //                     position: 'top',
-    //                     locals: {
-    //                         displayOption: {
-    //                             title: 'Logged in successfully.'
-    //                         }
-    //                     }
-    //                 });
-    //                 $state.go('app.home');
-    //             }
-    //         })
-    //         .catch(function (response) {
-    //             console.log("Inside invalid credentials");
-    //             window.localStorage['access_token']=undefined;
-    //             $auth.logout();
-    //             $mdToast.show({
-    //                 controller: 'toastController',
-    //                 templateUrl: 'toast.html',
-    //                 hideDelay: 800,
-    //                 position: 'top',
-    //                 locals: {
-    //                     displayOption: {
-    //                         title: 'Invalid Credentials'
-    //                     }
-    //                 }
-    //             });
-    //         });
-    // };
-
+    
 
     $scope.get_token = function(user){
         $auth.login(user)
@@ -98,49 +64,11 @@ $cordovaOauth, $http,ProfileService) {
                     }
                     window.localStorage['user_id'] = data.data.data.user_id;
                     console.log($rootScope.user_profile);
-                    // if(window.localStorage['url']!=''){
-                    //     var url = window.localStorage['url'];
-                    //     var n = url.indexOf("?");
-                    //     toaster.pop({
-                    //         type: 'success',
-                    //         title: 'Hi '+$rootScope.user_profile.name,
-                    //         body: 'You are logged in',
-                    //         showCloseButton: true
-                    //     });
-                    //     if(n>-1){
-                    //         console.log('inside');
-                    //         var res = url.substr(0, n);
-                    //         console.log(res);
-                    //         $location.path(res);
-                    //     }
-                    //     else {
-                    //         console.log('else part');
-                    //         $location.path(window.localStorage['url']);
-                    //     }
-                    // }
-                    // else{
-                    //     console.log($rootScope.user_profile.name);
-                    //
-                    //     $mdToast.show({
-                    //         controller: 'toastController',
-                    //         templateUrl: 'toast.html',
-                    //         hideDelay: 800,
-                    //         position: 'top',
-                    //         locals: {
-                    //             displayOption: {
-                    //                 title: 'Logged in successfully.'
-                    //             }
-                    //         }
-                    //     });
-                    //     $state.go('app.home');
-                    // }
+                    
                 });
-                //$scope.$emit('profileUpdated', { message: "u" });
             })
             .catch(function (response) {
                 console.log("response in fail",JSON.stringify(response));
-                // Handle errors here, such as displaying a notification
-                // for invalid email and/or password.
                 $mdToast.show({
                     controller: 'toastController',
                     templateUrl: 'toast.html',
@@ -152,8 +80,6 @@ $cordovaOauth, $http,ProfileService) {
                         }
                     }
                 });
-                //$scope.error = true;
-                //$scope.login_text = 'Sign In';
                 $scope.disabled = false;
             });
     };

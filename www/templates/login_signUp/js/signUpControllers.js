@@ -39,7 +39,6 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
     $scope.signUp = function () {
         signUpData();
         if(($scope.user.name)&&($scope.user.email)&&($scope.user.mobile)&&($scope.user.password)){
-            console.log("all field",($scope.user.mobile.toString().length) ,$scope.user.password.length );
             if(($scope.user.mobile.toString().length == 10) && ($scope.user.password.length == 6)){
                 signUpService.signUp(data).then(function (data) {
                     $scope.credentials = data;

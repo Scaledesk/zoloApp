@@ -101,7 +101,13 @@ $cordovaOauth, $http,ProfileService) {
     {
         $cordovaOauth.facebook("1604761699851791", ["email", "public_profile"],
             {redirect_uri: "http://localhost/callback"}).then(function(result){
-            $scope.displayData($http, result.access_token);
+            console.log(JSON.stringify(result));
+            var dh = 'facebook';
+            $scope.demo(dh);
+            // $scope.displayData($http, result.access_token);
+            // console.log("result",JSON.stringify(result));
+
+
         },  function(error){
             alert("Error: " + error);
         });
@@ -177,4 +183,21 @@ $cordovaOauth, $http,ProfileService) {
     $scope.forget_pwd = function(){
         $state.go('app.forget_password');
     };
+
+    $scope.demo = function(provider){
+        console.log("inside demo");
+        $auth.authenticate(provider).then(function (result) {
+            console.log("sahgsdfs",JSON.stringify(result));
+            // $scope.get_token({
+            //     google_id:result.data.google_id,
+            //     google_access_token:result.data.google_access_token,
+            //     grant_type:"google",
+            //     client_id:"client_id",
+            //     client_secret:"client_secret",
+            // });
+        }).catch(function (e) {
+            console.log(JSON.stringify(e));
+        });
+    };
+
 });

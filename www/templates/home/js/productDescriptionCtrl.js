@@ -1,6 +1,6 @@
 appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, $mdUtil,productService,bookingService,
                                                     $mdSidenav, $log, $ionicHistory, $state,$stateParams,
-                                                              OrderReviewService,  SellerProfileService) {
+                                                              OrderReviewService,$mdBottomSheet,  SellerProfileService) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -15,6 +15,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
     };
 
     var booking_info = {};
+    
 
 
 
@@ -147,5 +148,16 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
         }
             console.log("aaaaa",JSON.stringify(window.localStorage['access_token']))
 
-    }
+    };
+
+    $scope.shareProduct = function ($event) {
+        $mdBottomSheet.show({
+            templateUrl: 'bottom-sheet-shared.html',
+            controller: 'sharedSocialBottomSheetCtrl',
+            targetEvent: $event
+            // locals: {
+            //     product: product
+            // }
+        });
+    };
 });

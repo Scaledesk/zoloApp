@@ -1,6 +1,6 @@
 appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, $mdUtil,productService,bookingService,
-                                                    $mdSidenav, $log, $ionicHistory, $state,$stateParams,
-                                                              OrderReviewService,$mdBottomSheet,  SellerProfileService) {
+                                                    $mdSidenav, $log, $ionicHistory, $state,$stateParams,addWishList,
+                                                              $mdToast,  OrderReviewService,$mdBottomSheet,  SellerProfileService) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -23,9 +23,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
         if(checked==true){
             $timeout(function(){
                 $scope.currentIndex=index;
-                //this boolean passed in the calcAmount is opposite to the checked got above because
-                //we have to exclude the addon when uncheck event is encountered in thet case chaecked returned is false
-                //otherwise in normal it returned true.
                 calcAmount($scope.currentIndex,false);
             },1000);
         }else{
@@ -67,6 +64,30 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
         });
         $scope.amount_to_show=amount+$scope.package.deal_price*($scope.book.quantity);
     };
+
+    $scope.add_wish_list = function(id_user,p_id){
+        var data ={
+            user_id:id_user,
+            package_id:p_id
+        }
+        addWishList.add_to_wish_list(data).then(function(data){
+            if(data.data.message == 'success'){
+                $mdToast.show({
+                    controller: 'toastController',
+                    templateUrl: 'toast.html',
+                    hideDelay: 800,
+                    position: 'top',
+                    locals: {
+                        displayOption: {
+                            title: 'Package added to wishlist successfully!'
+                        }
+                    }
+                });
+            }
+            console.log("data",JSON.stringify(data));
+        });
+        console.log("1",id_user,p_id);
+    };
     
     productService.getProductDescription($stateParams.product_id).then(function(data){
         $scope.package = data.data.data;
@@ -78,7 +99,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
              package_id:$scope.package.id,
             addons:[]
         };
-        console.log("sonam",JSON.stringify(booking_info))
+        console.log("sonam",JSON.stringify($scope.package))
         if($scope.package.seller_profile.user_id){
             SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
                 $scope.seller_info = data.data.data;
@@ -146,8 +167,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
             window.localStorage['pro_id']= p_id;
 
         }
-            console.log("aaaaa",JSON.stringify(window.localStorage['access_token']))
-
     };
 
     $scope.shareProduct = function ($event) {

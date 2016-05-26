@@ -123,7 +123,7 @@
                 <ion-item>
                     <p ng-click="seller_Profile(package.id)">View Seller Profile</p>
                     <div class="vr">&nbsp;</div>
-                    <i class="ion-heart pull-right"></i>
+                    <i class="ion-heart pull-right" ng-click="add_wish_list(package.seller_profile.user_id,package.id)"></i>
                 </ion-item>
             </ion-list>
             <br/>
@@ -224,13 +224,7 @@
                         <div class="md-grid-text"> WhatsApp</div>
                     </a>
                 </md-list-item>
-                <!--<md-list-item>-->
-                    <!--<a class="md-grid-item-content" ng-click="sharedMore()">-->
-                        <!--<md-icon md-svg-src="share-arrow"></md-icon>-->
-                        <!--<div class="md-grid-text"> More</div>-->
-                    <!--</a>-->
-                <!--</md-list-item>-->
-            </md-list> <!--end list section-->
+            </md-list>
         </md-bottom-sheet>
     </script>
 

@@ -418,3 +418,38 @@ angular.module('starter').factory('deleteUserAddressService', function($http,$st
         }
     }
 });
+
+
+angular.module('starter').factory('addWishList', function($http,$state,$q,$mdToast,serverConfig){
+    return {
+        add_to_wish_list: function (data) {
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"api/wishPackage",
+                data: data
+            }).
+            success(function(data, status, headers, config) {
+                console.log("status",status)
+                deffer.resolve(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log("status",status)
+            if(status == 500){
+                $mdToast.show({
+                    controller: 'toastController',
+                    templateUrl: 'toast.html',
+                    hideDelay: 800,
+                    position: 'top',
+                    locals: {
+                        displayOption: {
+                            title: 'Please Login'
+                        }
+                    }
+                });
+                }
+            });
+            return deffer.promise;
+        }
+    }
+});

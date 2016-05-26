@@ -38,7 +38,7 @@
                             <span ng-if="package.average_rating>3"><i class="fa fa-star" style="margin-right: 10px"></i></span>
                             <span ng-if="package.average_rating>4"><i class="fa fa-star" style="margin-right: 10px"></i></span>
                         </div>
-                        <div class="row">
+                        <div class="row" ng-click="openReviewModel()">
                             <b> Reviews:</b>{{package.reviews.data.length}}
                         </div>
                     </div>

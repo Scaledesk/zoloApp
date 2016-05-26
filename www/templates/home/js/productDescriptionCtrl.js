@@ -1,6 +1,6 @@
 appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, $mdUtil,productService,bookingService,
                                                     $mdSidenav, $log, $ionicHistory, $state,$stateParams,addWishList,
-                                                              $mdToast,  OrderReviewService,$mdBottomSheet,  SellerProfileService) {
+                                                              $mdToast, $ionicModal, OrderReviewService,$mdBottomSheet,  SellerProfileService) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -15,9 +15,20 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
     };
 
     var booking_info = {};
-    
 
 
+    $ionicModal.fromTemplateUrl('templates/home/html/review.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.modal = modal;
+    });
+    $scope.openReviewModel = function () {
+        $scope.modal.show();
+    };
+    $scope.closeReviewModel = function () {
+        $scope.modal.hide();
+    };
 
     $scope.setIndex=function(index,checked){
         if(checked==true){

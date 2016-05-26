@@ -1,6 +1,8 @@
 appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, $mdUtil,productService,bookingService,
                                                     $mdSidenav, $log, $ionicHistory, $state,$stateParams,addWishList,
-                                                              $mdToast, $ionicModal, OrderReviewService,$mdBottomSheet,  SellerProfileService) {
+                                                              $mdToast,
+                                                              $ionicModal, OrderReviewService,$mdBottomSheet,
+                                                              SellerProfileService) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -42,9 +44,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
                 calcAmount($scope.currentIndex,true);
             },1000);
         }
-
-
-
     };
     var calcAmount=function(index,deleteit){
         var flag=0;

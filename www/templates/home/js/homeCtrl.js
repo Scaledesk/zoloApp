@@ -36,6 +36,7 @@ appControllers.controller('homeCtrl', function ($scope, $timeout, $mdUtil,subCat
 
     subCategoryService.getSubCategory().then(function(data){
         $scope.category_n_sub_catagery_list = data.data.data;
+        console.log("sonam",JSON.stringify($scope.category_n_sub_catagery_list))
     });
     
     $scope.allSubcategory = function(id){

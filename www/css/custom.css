@@ -101,7 +101,7 @@
 }
 
 .text-c{
-    color: #565a5c;
+    color: #565a5c!important;
 }
 
 
@@ -211,17 +211,47 @@
 
 
 /*/////25may/////*/
+.f-14{
+    font-size: 14px!important;
+}
+
 
 .f-18{
     font-size: 18px!important;
+}
+
+.f-16{
+    font-size: 16px!important;
+}
+
+.m-t-0{
+    margin-top: 0!important;
 }
 
 .m-t-10{
     margin-top: 10px!important;
 }
 
+.m-t-20{
+    margin-top: 20px!important;
+}
+
+.m-l-20{
+    margin-left: 20px!important;
+}
+.m-l-10{
+    margin-left: 10px!important;
+}
+
+.p-20{
+    padding: 20px!important;
+}
+
 .m-b-5{
     margin-bottom: 5px!important;
+}
+.m-b-0{
+    margin-bottom: 0!important;
 }
 
 .w-400{
@@ -246,6 +276,15 @@
 .f-13{
     font-size: 13px !important;
 }
+
+.f-12{
+    font-size: 12px !important;
+}
+
+.f-20{
+    font-size: 20px !important;
+}
+
 
 .m-0{
     margin: 0!important;
@@ -313,4 +352,63 @@
     overflow: hidden;
     margin-bottom: 5px !important;
 }
+/*////May 26/////*/
 
+.profile-img{
+    margin-top: -60px;
+    width: 130px;
+
+}
+
+.review-c{
+   color: #E5E500;
+}
+
+
+.text-success{
+    color: #4cd964;
+}
+
+.text-danger{
+    color: #ff1322;
+}
+
+.pkg-img{
+    position: relative;
+}
+
+.pkg-like{
+    position: absolute;
+    left: 106px;
+    top: 70px;
+}
+
+.pkg-filter{
+    background-color: #765f89!important;
+}
+
+.filter-btn{
+    background-color: #26A69A;
+    width: 70px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    height: 35px;
+    line-height: 35px;
+    margin-left: 15px;
+    margin-top: 2px;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+.w-200{
+    font-weight: 200!important;
+}
+
+.m-l-negative{
+    margin-left: -10px!important;
+}

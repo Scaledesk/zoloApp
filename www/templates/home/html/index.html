@@ -1,24 +1,38 @@
 <ion-view title="" back-button-hide="false">
-    <md-toolbar class="bar-subheader md-tall md-primary toolbar-medium">
+    <div class="title title-center">ABC</div>
+
     <div class="container_size">
-        <md-input-container md-no-float="">
-            <input ng-model="filterText" id="name_2" placeholder="Type something..." ng-click="search_result()">
-        </md-input-container>
-    </div>
-    </md-toolbar>
+            <md-input-container md-no-float="">
+                <input ng-model="filterText" id="name_2" placeholder="Type something..." ng-click="search_result()">
+            </md-input-container>
+        </div>
+    <!--<md-toolbar class="bar-subheader md-tall md-primary toolbar-medium">-->
+    <!--&lt;!&ndash;<div class="container_size">&ndash;&gt;-->
+        <!--&lt;!&ndash;<md-input-container md-no-float="">&ndash;&gt;-->
+            <!--&lt;!&ndash;<input ng-model="filterText" id="name_2" placeholder="Type something..." ng-click="search_result()">&ndash;&gt;-->
+        <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</md-toolbar>-->
+
+
+
+
+
+
+
+
+
     <ion-nav-buttons side="right">
     </ion-nav-buttons>
-    <ion-content id="restaurant" class="baner_size">
+    <ion-content id="restaurant">
         <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
             <ion-slide class="slide-01">
                 <div class="content">
-                    <h1>
-                        Bakery Day
-                    </h1>
+                    <h4>SUMMER SALE</h4>
 
-                    <p>
-                        40% Off Now!!
-                    </p>
+                    <h1 class="off">40%</h1>
+                    <p>OFF</p>
+
                 </div>
             </ion-slide>
             <ion-slide class="slide-02">
@@ -47,14 +61,14 @@
         <div class="col" ng-repeat="category in category_n_sub_catagery_list"
              ng-if="((category.id == 10) || (category.id == 13) || (category.id == 14) || (category.id == 15) || (category.id == 32) || (category.id == 44) || (category.id == 63) || (category.id == 77))">
             <div class="row">
-                <div class="col-75 content">
-                        <h3>
+                <div class="col-80 content">
+                        <p class="w-100 m-t-10 f-18 " style="text-transform: uppercase;">
                             {{category.name}}
-                        </h3>
+                        </p>
                 </div>
 
-                <div class="col-25 content">
-                    <p  ng-click="allSubcategory(category.id)">
+                <div class="col-20 content">
+                    <p  ng-click="allSubcategory(category.id)" class="m-t-10 zolo-c">
                         VIEW ALL
                         <i class="ion-chevron-right"></i>
                     </p>
@@ -63,7 +77,9 @@
             <ion-scroll width="500px; height: 500px" direction="xy">
                 <div class="row">
                     <div class="col-50" ng-repeat="subCategory_detail in category.subCategory.data">
-                        <img style="width: 150px; height: 130px" ng-src="{{subCategory_detail.image}}" ng-click="getPackages(subCategory_detail.id)">
+                        <img style="width: 150px; height: 130px"  src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo_category_images/cat-business-BUSINESS-CONSULTING.jpg" ng-click="getPackages(subCategory_detail.id)">
+                        <!--ng-src="{{subCategory_detail.image}}"-->
+
                         <b style="padding-top: 10px" class="text-center">{{subCategory_detail.name}}</b>
                     </div>
                 </div>

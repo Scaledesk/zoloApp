@@ -1,75 +1,35 @@
-<!--<ion-side-menus enable-menu-with-back-views="true">-->
-    <!--<ion-side-menu-content>-->
-        <!--<ion-nav-bar class="bar-balanced  material-background-nav-bar">-->
-            <!--<ion-nav-buttons side="left">-->
-                <!--<a class="button button-icon button-clear ion-navicon" menu-toggle="right" ng-click="toggleLeft()"></a>-->
-            <!--</ion-nav-buttons>-->
 
-        <!--</ion-nav-bar>-->
-        <!--<ion-nav-view name="menuContent"></ion-nav-view>-->
-    <!--</ion-side-menu-content>-->
-    <!--<md-sidenav md-component-id="right">-->
-        <!--<div class="material-background" id="toggle-menu-right-header">-->
-            <!--<div class="menu-left-header">-->
-                <!--<img ng-if="user_profile!=undefined" style="height: 62px;width: 62px;" class="user-img"-->
-                     <!--ng-src="{{user_profile.image}}">-->
-                <!--<img ng-if="user_profile===undefined" class="user-img" ng-src="{{'/img/profileAvatar.jpg'}}">-->
-                <!--<p>-->
-                    <!--<span ng-if="user_profile!=undefined" class="title">{{user_profile.name}}</span>-->
-                    <!--<br/>-->
-                    <!--<span ng-if="user_profile!=undefined" class="title">{{user_profile.description}}</span>-->
-                    <!--<span ng-if="user_profile===undefined" class="title">Zolo Right</span>-->
-                    <!--<br/>-->
-                    <!--<span ng-if="user_profile===undefined" class="sub-title">Get anything done!</span>-->
-                <!--</p>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<ion-content id="toggle-menu-right-content">-->
-            <!--<md-list>-->
-                <!--<md-list-item class="menu-list-item" ng-click="navigateTo('app.allCategory')">-->
-                    <!--<i class="fa fa-cube"></i>-->
-                    <!--<span>Category</span>-->
-                <!--</md-list-item>-->
-                <!--<md-list-item class="menu-list-item" ng-click="navigateTo('app.signUp')">-->
-                    <!--<i class="fa fa-cube"></i>-->
-                    <!--<span>Sign Up</span>-->
-                <!--</md-list-item>-->
-                <!--<md-list-item class="menu-list-item" ng-click="navigateTo('app.login')">-->
-                    <!--<i class="fa fa-cube"></i>-->
-                    <!--<span> Login</span>-->
-                <!--</md-list-item>-->
-                <!--<md-list-item class="menu-list-item" ng-click="navigateTo('app.contact_us')">-->
-                    <!--<i class="fa fa-cube"></i>-->
-                    <!--<span>Contact Us</span>-->
-                <!--</md-list-item>-->
-                <!--<md-list-item class="menu-list-item" ng-click="navigateTo('app.about_us')">-->
-                    <!--<i class="fa fa-cube"></i>-->
-                    <!--<span>About Us</span>-->
-                <!--</md-list-item>-->
-                <!--<md-list-item class="menu-list-item" ng-click="navigateTo('app.optional_index')">-->
-                    <!--<i class="fa fa-cube"></i>-->
-                    <!--<span>Login/Sign Up</span>-->
-                <!--</md-list-item>-->
-            <!--</md-list>-->
-        <!--</ion-content>-->
-    <!--</md-sidenav>-->
-<!--</ion-side-menus>-->
 
 <ion-side-menus>
+
     <ion-side-menu-content>
+
         <ion-nav-bar class="header_color">
+
+
             <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
+
             <ion-nav-buttons side="left">
-                <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()">
-                </button>
+
+                <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+
             </ion-nav-buttons>
+
         </ion-nav-bar>
-        <ion-nav-view animation="no-animation" name="menuContent"></ion-nav-view>
+
+        <ion-nav-view animation="no-animation" name="menuContent">name="menuConten
+
     </ion-side-menu-content>
+
+
+
+
     <ion-side-menu side="left">
         <ion-header-bar class="header_color">
             <h1 class="title">Left Menu</h1>
         </ion-header-bar>
+
+
         <ion-content>
             <ion-list>
                 <ion-item menu-close href="#/app/allCategory">
@@ -86,6 +46,7 @@
                 </ion-item>
             </ion-list>
         </ion-content>
+
     </ion-side-menu>
 </ion-side-menus>
 

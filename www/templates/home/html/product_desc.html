@@ -7,23 +7,26 @@
     </ion-nav-bar>
 
     <!--<ion-nav-buttons side="left">-->
-        <!--<a ng-click="navigateTo('app.package_list',package.category.data.id)"-->
-           <!--class="button back-button buttons button-clear header-item nav-back-btn">-->
-            <!--<i class="ion-android-arrow-back"></i>-->
-        <!--</a>-->
+    <!--<a ng-click="navigateTo('app.package_list',package.category.data.id)"-->
+    <!--class="button back-button buttons button-clear header-item nav-back-btn">-->
+    <!--<i class="ion-android-arrow-back"></i>-->
+    <!--</a>-->
     <!--</ion-nav-buttons>-->
     <ion-content id="product-detail-content">
         <!--header section-->
         <md-card id="product-detail-tab-detail">
             <img src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
-            <div style="align:right ;"><a  class="md-button md-accent md-fab fab-toolbar-medium"
-                                           aria-label="showListBottomSheet" ng-click="shareProduct2($event)">
+            <div style="align:right ;">
+                <a  class="md-button md-accent md-fab fab-toolbar-medium" aria-label="showListBottomSheet" ng-click="shareProduct2($event)">
                 <i class="ion-android-share-alt"></i>
             </a></div>
             <md-card-content>
-                <b><h2 style="text-align: justify;" class="md-title">{{package.name}}</h2></b>
+
+
+                <p style="text-align: justify;" class="md-title">{{package.name}}</p>
                 &#8377;<span class="pin-footer text-left" ><h4 style="color: green;display: inline">{{package.deal_price}}</h4>&nbsp;&nbsp;<span class="font-sale"><h4 style="display: inline">{{package.price}}</h4> </span></span>
                 <br/>
+
                 <hr/>
                 <div class="row">
                     <div class="col text-left grid-pdp">
@@ -70,7 +73,7 @@
                     <strong>{{package.seller_name}}</strong>
                 </div>
             </div>
-            </md-card>
+        </md-card>
     </ion-content><!--end pricing section-->
 
     <ion-footer-bar align-title="left" class="bar-assertive" style="background: none">

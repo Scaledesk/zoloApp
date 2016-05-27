@@ -32,6 +32,22 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
         $scope.modal.hide();
     };
 
+
+    $ionicModal.fromTemplateUrl('templates/home/html/add_ons.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.add_on_modal = modal;
+    });
+    $scope.openAddOnsModel = function () {
+        $scope.add_on_modal.show();
+        $scope.booking_add_ons = true;
+
+    };
+    $scope.closeAddOnsModel = function () {
+        $scope.add_on_modal.hide();
+    };
+    
     $scope.setIndex=function(index,checked){
         if(checked==true){
             $timeout(function(){
@@ -116,14 +132,15 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
             });
         }
     });
-
-
+    $scope.active_tab = 'description';
     $scope.description_value = function () {
+        $scope.active_tab = 'description';
         $scope.des_value = true;
         $scope.pec_value = false;
         $scope.term_n_cond = false;
     };
     $scope.term_n_condition = function () {
+        $scope.active_tab = 'term';
         $scope.des_value = false;
         $scope.pec_value = false;
         $scope.term_n_cond = true;
@@ -132,6 +149,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
         $state.go('app.full_description',{product_id:id});
     };
     $scope.package_summary = function(){
+        $scope.active_tab = 'description';
         $scope.des_value = false;
         $scope.pec_value = true;
         $scope.term_n_cond = false;

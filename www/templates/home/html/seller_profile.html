@@ -5,56 +5,117 @@
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content>
-        <div>
-            <img ng-src="{{package.seller_profile.banner}}" alt="Mountain View" style="height:228px;">
-            <div class="">
-                <img src="{{package.seller_profile.image}}">
-                <h2>{{package.seller_profile.name}}</h2>
-            </div>
+
+        <!--<div class="row">-->
+            <div class="cover-img" style="background: url('{{package.seller_profile.banner}}') center no-repeat; background-size:cover; height: 200px;">
+        <!--</div>-->
+
+
+            <!--<img ng-src="{{package.seller_profile.banner}}" alt="Mountain View">-->
+
+
         </div>
-        <div class="card">
-            <b>{{package.seller_profile.name}}</b>
-            <p style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
-                {{package.seller_profile.description}}
-            </p>
+
+
+        <!--<div class="card">-->
+
+            <div class="row">
+
+                <div class="col-50 text-center">
+                    <img src="{{package.seller_profile.image}}" class="profile-img">
+                </div>
+
+                <div class="col-50 m-t-20">
+                    <p class="f-18">{{package.seller_profile.name}}</p>
+                    <p><i class="fa fa-star review-c"></i>&nbsp;3.5/5 <span class="text-c">(46 Reviews)</span></p>
+                </div>
+
+            </div>
+
+
+        <div class="card m-t-0 ">
+            <p class="p-20 text-c p-b-0">{{package.seller_profile.description}}</p>
+
             <p ng-hide="package.seller_profile.description">
                 No, description found for {{package.seller_profile.name}}
             </p>
+
         </div>
+
+
+
+
+            <!--<b>{{package.seller_profile.name}}</b>-->
+
+
+        <!--</div>-->
         <div class="card">
-            <ion-list>
-                <ion-item>
-                    <i class="icon ion-iphone"></i> {{package.seller_profile.mobile}}
-                    <div class="vr">&nbsp;</div>
-                    <i class="icon ion-location pull-right"> {{package.seller_profile.city}} {{package.seller_profile.state}}</i>
-                </ion-item>
-            </ion-list>
+            <div class="row">
+
+                <div class="col-50 border-right text-center">
+                    <p class="m-t-10"><i class="fa fa-phone text-success "></i>&nbsp;{{package.seller_profile.mobile}} </p>
+                </div>
+
+                <div class="col-50 text-center">
+                    <p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp;{{package.seller_profile.city}} {{package.seller_profile.state}} </p>
+                </div>
+
+
+            </div>
+            <!--<ion-list>-->
+                <!--<ion-item>-->
+                    <!--<i class="fa fa-phone"></i> {{package.seller_profile.mobile}}-->
+                    <!--<div class="vr">&nbsp;</div>-->
+                    <!--<i class="icon ion-location pull-right"> {{package.seller_profile.city}} {{package.seller_profile.state}}</i>-->
+                <!--</ion-item>-->
+            <!--</ion-list>-->
         </div>
 
         <div class="card">
-            <ion-list>
-                <ion-item>
-                    <p>Total Packages  {{seller_info.length}}</p>
-                    <div class="vr">&nbsp;</div>
-                    <p class="pull-right"> Skills</p>
-                </ion-item>
-            </ion-list>
+            <div class="row">
+                <div class="col-50 border-right text-center">
+                    <p class="m-t-10">Total Packages&nbsp;  <span class="text-success">{{seller_info.length}}</span> </p>
+
+                </div>
+
+                <div class="col-50 text-center">
+                    <p class="m-t-10"> Skills</p>
+
+                </div>
+
+
+            </div>
         </div>
 
-        <div class="card">
-            <b>Other package by {{package.seller_profile.name}}</b>
+        <!--<div class="card">-->
+            <!--<ion-list>-->
+                <!--<ion-item>-->
+                    <!--<p>Total Packages  {{seller_info.length}}</p>-->
+                    <!--<div class="vr">&nbsp;</div>-->
+                    <!--<p class="pull-right"> Skills</p>-->
+                <!--</ion-item>-->
+            <!--</ion-list>-->
+        <!--</div>-->
+
+
+
+
+
+
+        <div class="card p-5">
+            <p class="w-500">Other package by {{package.seller_profile.name}}</p>
             <ion-scroll width="500px; height: 500px" direction="xy">
                 <div class="row">
                     <div class="col-50 card" ng-repeat="seller_package_info in seller_info">
-                        <img style="width: 150px; height: 130px" ng-src="{{seller_package_info.first_photo}}">
-                        <b style="padding-top: 10px; padding-left: 5px; padding-right: 5px;" class="text-center">{{seller_package_info.name}}</b>
-                        <br>
+                        <img style="width: 100%; height: 130px" ng-src="{{seller_package_info.first_photo}}">
+                        <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
+
                         <div class="row">
                             <p class="pull-left">
                                 [{{seller_package_info.location[0].text}}]
                             </p>
                             <!--<p class="pull-right" style="padding-left: 80px;">-->
-                                <!--&#8377; {{seller_package_info.deal_price}}-->
+                            <!--&#8377; {{seller_package_info.deal_price}}-->
                             <!--</p>-->
                         </div>
                     </div>

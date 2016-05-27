@@ -278,6 +278,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
         $ionicConfigProvider.spinner.icon("android");
         $ionicConfigProvider.views.swipeBackEnabled(false);
 
+        $ionicConfigProvider.backButton.previousTitleText(false).text('');
+
         // mdIconProvider is function of Angular Material.
         // It use for reference .SVG file and improve performance loading.
         $mdIconProvider
@@ -343,19 +345,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 templateUrl: "templates/menu/html/index.html",
                 controller: 'MenuCtrl'
             })
-           
-            .state('app.signUp', {
-                url: "/signUp",
-                params:{
-                    isAnimated:false
-                },
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/sign-up/html/sign-up.html",
-                        controller: 'signUpController'
-                    }
-                }
-            })
+
             .state('app.packages', {
                 url: "/packages",
                 params:{

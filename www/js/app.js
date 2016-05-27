@@ -41,7 +41,7 @@ window.globalVariable = {
 
 
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
-        'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','checklist-model','algoliasearch'])
+        'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','algoliasearch'])
     .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet) {
 
         //Create database table of contracts by using sqlite database.

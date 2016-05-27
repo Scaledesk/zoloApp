@@ -8,6 +8,7 @@
     <ion-content>
         <div class="card" ng-show="package.reviews.data.length == '0'">
             Sorry, No reviews found for this package.
+
         </div>
         <div class="card" ng-show="package.reviews.data.length" ng-repeat="review in package.reviews.data">
             <img ng-src="{{review.user_image}}"/><p class="pull-right">{{review.average_rating}}/5</p>

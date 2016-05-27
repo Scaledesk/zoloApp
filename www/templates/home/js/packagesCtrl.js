@@ -4,6 +4,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     
     $scope.price_list = true;
     $scope.sorting_value = false;
+    $scope.sort_by = false;
     $scope.price_range = [];
     $scope.choice={
         val:-1
@@ -20,7 +21,6 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     };
 
     $scope.filter_clear = function(){
-        console.log("inside filter clear")
         $scope.filter.price1 = '';
         $scope.filter.price2 = '';
         $scope.filter.price3 = '';
@@ -43,11 +43,13 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     };
 
     $scope.price_list_option = function () {
+        $scope.sort_by = false;
         $scope.price_list = true;
         $scope.sorting_value = false;
         console.log("4")
     };
     $scope.sorting_option = function () {
+        $scope.sort_by = true;
         $scope.price_list = false;
         $scope.sorting_value = true;
 

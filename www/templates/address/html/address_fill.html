@@ -1,11 +1,12 @@
 <ion-view title="ADD ADDRESS">
     <ion-nav-bar class="header_color">
         <ion-nav-back-button class="button-clear">
-            <i class="icon ion-ios-arrow-back"></i>
+            <i class="icon ion-ios-arrow-back white-c"></i>
         </ion-nav-back-button>
     </ion-nav-bar>
+
     <ion-content>
-        <div class="list">
+        <div class="list card">
             <form>
                 <label class="item item-input">
                     <input type="text" placeholder="Name" ng-model="user.name">
@@ -28,16 +29,18 @@
                 <label class="item item-input">
                     <textarea placeholder="Mobile Number" ng-model="user.mobile"></textarea>
                 </label>
-                <ion-checkbox ng-model="user.default">Default</ion-checkbox>
-                <div class="login-btn pull-left" ng-click="save_address()">
-                    <p>SAVE</p>
-                </div>
-                <div class="login-btn pull-right" ng-click="skip()">
-                    <p>SKIP>></p>
-                </div>
-            </form>
+                <ion-checkbox ng-model="user.default">Make this Default Address</ion-checkbox>
 
+            </form>
         </div>
+            <div class="login-btn pull-left" ng-click="save_address()">
+                <p class="button button-balanced m-l-10">SAVE</p>
+            </div>
+            <div class="login-btn pull-right" ng-click="skip()">
+                <p class="button button-energized m-r-10">SKIP>></p>
+            </div>
+
+
 
 
     </ion-content>

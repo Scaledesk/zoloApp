@@ -2,46 +2,33 @@
     <ion-nav-title>{{packages_list.name}}</ion-nav-title>
     <ion-nav-bar class="header_color">
         <ion-nav-back-button class="button-clear">
-            <i class="ion-arrow-left-c"></i> Back
+            <i class="icon ion-ios-arrow-back"></i>
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content>
-
         <div class="card" ng-repeat="package in packages">
             <div class="row" ng-click="productDescription(package.id)">
                 <div class="col-33">
                     <img width="100%" height="85"  src="{{package.first_photo}}" class="pkg-img">
                     <i class="fa fa-heart pkg-like" style="color: #f0f0f0;"></i>
                 </div>
-
-
                 <div class="col-67">
                     <p class="w-500 p-r-10 p-l-10 m-b-0">{{package.name}}</p>
 
                     <p class="text-c p-r-10 p-l-10 f-12">{{package.seller_name}}</p>
-
-
                     <div class="row">
                         <div class="col-75">
                             <p class="text-c p-l-10 m-b-0"><i class="fa fa-star review-c"></i>&nbsp;{{package.average_rating}}/5 <span class="text-c f-12">(46 Reviews)</span></p>
 
                             <p class="p-l-10 m-b-0">&nbsp;<i class="fa fa-map-marker">&nbsp;{{package.location[0].text}}, {{package.location[1].text}} </i>
                             </p>
-
-
                         </div>
 
                         <div class="col-25">
                             <p class="zolo-c f-14  "><i class="fa fa-inr"></i>&nbsp;{{package.price}}</p>
 
                         </div>
-
-
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>

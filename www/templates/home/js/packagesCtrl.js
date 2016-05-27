@@ -46,7 +46,6 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         $scope.sort_by = false;
         $scope.price_list = true;
         $scope.sorting_value = false;
-        console.log("4")
     };
     $scope.sorting_option = function () {
         $scope.sort_by = true;
@@ -57,7 +56,6 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
 
     MaxPriceService.getMaxPrice().then(function (data) {
         $scope.max_price = data.data.data;
-        console.log("max price", $scope.max_price);
         $scope.range = {};
         $scope.range.from = 0;
         $scope.range.to = parseInt($scope.max_price);

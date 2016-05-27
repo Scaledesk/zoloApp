@@ -343,18 +343,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 templateUrl: "templates/menu/html/index.html",
                 controller: 'MenuCtrl'
             })
-            .state('app.categoryPage', {
-                url: "/categoryPage?id",
-                params:{
-                    isAnimated:false,
-                },
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/category-page/html/category-page.html",
-                        controller: 'categoryPageCtrl'
-                    }
-                }
-            })
+           
             .state('app.signUp', {
                 url: "/signUp",
                 params:{
@@ -425,19 +414,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
-            .state('app.subCategoryListing', {
-                url: "/subCategoryListing/:category_id",
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/category/html/subCategoryForMenu.html",
-                        controller: "subCategoryListCtrl"
-                    }
-                },
-                resolve: {
-                    category_id: function($stateParams) {
-                    }
-                }
-            })
+           
 
             .state('app.package_list', {
                 url: "/package_list/:sub_cat_id",
@@ -470,19 +447,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
-            .state('app.package_list_menu', {
-                url: "/package_list_menu/:sub_category_id",
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/category/html/packageList.html",
-                        controller: "packagesListCtrl"
-                    }
-                },
-                resolve: {
-                    sub_category_id: function($stateParams) {
-                    }
-                }
-            })
+           
            .state('app.allCategory', {
                 url: "/allCategory",
                 views: {
@@ -673,21 +638,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
-            .state('app.product_description', {
-                url: "/product_description/:des_product_id",
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/category/html/product_description.html",
-                        controller: "productDesCtrl"
-                    }
-                },
-                resolve: {
-                    des_product_id: function($stateParams) {
-                        console.log(JSON.stringify($stateParams))
-                    }
-                }
-            });
-
+           
 
         if(window.localStorage['SkipIntro']== 'true'){
             console.log("if");

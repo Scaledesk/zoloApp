@@ -27,6 +27,6 @@ appControllers.controller('CategoryCtrl', function ($scope, $timeout, $mdUtil,Ca
 
     $scope.allSubcategory = function(id){
         console.log("1wwww",id);
-        $state.go('app.subCategoryListing',{'category_id':id});
+        $state.go('app.subCategory',{'cat_id':id});
     }
 });

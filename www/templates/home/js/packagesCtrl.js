@@ -1,7 +1,7 @@
 appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, packagesService, $ionicModal,
                                                     MaxPriceService, $mdSidenav, $log, $ionicHistory, $state,
                                                     $stateParams, algolia) {
-
+    
     $scope.price_list = true;
     $scope.sorting_value = false;
     $scope.price_range = [];
@@ -18,6 +18,17 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     $scope.productDescription = function (id) {
         $state.go('app.product_desc', {'product_id': id})
     };
+
+    $scope.filter_clear = function(){
+        console.log("inside filter clear")
+        $scope.filter.price1 = '';
+        $scope.filter.price2 = '';
+        $scope.filter.price3 = '';
+        $scope.filter.price4 = '';
+        $scope.filter.price5 = '';
+
+    };
+
     $ionicModal.fromTemplateUrl('templates/home/html/search_package_short_modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -62,7 +73,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         console.log('max ' + my_maximum);
         stringFilter = "deal_price : " + my_minimum + " TO " + my_maximum;
 
-    }
+    };
     $scope.filter_apply = function (filter) {
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 

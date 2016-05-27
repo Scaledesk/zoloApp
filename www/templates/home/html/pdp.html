@@ -182,52 +182,52 @@
 
 
 
-            <!--<div ng-show="booking_add_ons">-->
-                <!--<b>YOUR PACKAGE</b>-->
-                <!--<div class="card">-->
-                    <!--<ion-checkbox ng-model="booking_add_ons">{{package.name}}</ion-checkbox>-->
-                    <!--<p>&#8377; {{book.quantity * package.deal_price}}</p>-->
-                    <!--<div class="col-md-6" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">-->
-                        <!--<md-select id="Quantity" ng-model="book.quantity" placeholder="Select Quantity"-->
-                                   <!--md-on-close="setIndex(-1,true)">-->
-                            <!--<md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>-->
-                        <!--</md-select>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<br>-->
-                <!--<b>ADD ONS</b>-->
-                <!--<div>-->
-                    <!--<div ng-repeat="addon in package.Addons.data">-->
-                        <!--<div class="card">-->
-                            <!--<div class="col-md-6 col-xs-6 checkbox-p p-r-0 col-sm-6">-->
-                                <!--<div class="checkbox">-->
-                                    <!--<label class="text-indent">-->
-                                        <!--<input checklist-model="selectedaddons[$index].id;" checklist-value="addon.id"-->
-                                               <!--ng-change="setIndex($index,checked)"-->
-                                               <!--type="checkbox" class="md-checkbox">-->
-                                        <!--<span class="checkbox-material"><span class="check"></span></span>-->
-                                        <!--{{addon.name}}-->
-                                    <!--</label>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="col-md-3 col-xs-3 p-r-0 col-sm-3"-->
-                                 <!--ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">-->
-                                <!--<md-select id="Addon_Quantity" ng-model="selectedaddons[$index].quantity"-->
-                                           <!--placeholder="Select Quantity" ng-change="setIndex($index)"-->
-                                           <!--md-on-close="checkAddon($index)">-->
-                                    <!--<md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>-->
-                                <!--</md-select>-->
-                            <!--</div>-->
+            <div ng-show="booking_add_ons">
+                <b>YOUR PACKAGE</b>
+                <div class="card">
+                    <ion-checkbox ng-model="booking_add_ons">{{package.name}}</ion-checkbox>
+                    <p>&#8377; {{book.quantity * package.deal_price}}</p>
+                    <div class="col-md-6" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                        <md-select id="Quantity" ng-model="book.quantity" placeholder="Select Quantity"
+                                   md-on-close="setIndex(-1,true)">
+                            <md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>
+                        </md-select>
+                    </div>
+                </div>
+                <br>
+                <b>ADD ONS</b>
+                <div>
+                    <div ng-repeat="addon in package.Addons.data">
+                        <div class="card">
+                            <div class="col-md-6 col-xs-6 checkbox-p p-r-0 col-sm-6">
+                                <div class="checkbox">
+                                    <label class="text-indent">
+                                        <input checklist-model="selectedaddons[$index].id;" checklist-value="addon.id"
+                                               ng-change="setIndex($index,checked)"
+                                               type="checkbox" class="md-checkbox">
+                                        <span class="checkbox-material"><span class="check"></span></span>
+                                        {{addon.name}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-xs-3 p-r-0 col-sm-3"
+                                 ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                                <md-select id="Addon_Quantity" ng-model="selectedaddons[$index].quantity"
+                                           placeholder="Select Quantity" ng-change="setIndex($index)"
+                                           md-on-close="checkAddon($index)">
+                                    <md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>
+                                </md-select>
+                            </div>
 
-                            <!--<div class="col-md-3 col-xs-3 p-r-0 col-sm-3">-->
-                                <!--<div class="pdp-addon-price w-700">-->
-                                    <!--&#8377;{{addon.amount}}-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+                            <div class="col-md-3 col-xs-3 p-r-0 col-sm-3">
+                                <div class="pdp-addon-price w-700">
+                                    &#8377;{{addon.amount}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -259,7 +259,7 @@
                     <a class="md-grid-item-content" ng-click="sharedWhatsApp()">
                         <i class="ion-android-image"></i>
 
-                        <div class="md-grid-text">WhatsApp</div>
+                        <div class="md-grid-text"> WhatsApp</div>
                     </a>
                 </md-list-item>
             </md-list>
@@ -267,7 +267,7 @@
     </script>
 
     <ion-footer-bar ng-hide="booking_add_ons" align-title="left" class="bar-assertive p-0 " style="background: none">
-        <div class="button-bar" ng-click="openAddOnsModel()">
+        <div class="button-bar" ng-click="book_now()">
             <a class="button button-royal f-18 line-height pdp-buy">Buy Now &#8377; {{package.deal_price}}</a>
         </div>
     </ion-footer-bar>

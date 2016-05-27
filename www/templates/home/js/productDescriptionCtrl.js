@@ -163,9 +163,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
         $scope.booking_add_ons = true;
     };
 
-
-   
-    
     
     $scope.book_now_confirm = function(){
         booking_info.quantity = $scope.book.quantity;
@@ -176,8 +173,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, 
             }
             booking_info.addons.push(ff);
         });
-
-        if(window.localStorage['access_token']){
+        if((window.localStorage['access_token']) && (window.localStorage['access_token'] != 'undefined')){
             bookingService.OrpInfo(booking_info).then(function(data) {
                 var info = data.data.data;
                 console.log("info",JSON.stringify(info))

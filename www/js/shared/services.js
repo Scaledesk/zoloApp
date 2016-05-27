@@ -292,7 +292,19 @@ angular.module('starter').factory('bookingService', function($http,$state,$q,$md
                 deffer.resolve(data);
             }).
             error(function(data, status, headers, config) {
-          
+                if(status == 500){
+                    $mdToast.show({
+                        controller: 'toastController',
+                        templateUrl: 'toast.html',
+                        hideDelay: 800,
+                        position: 'top',
+                        locals: {
+                            displayOption: {
+                                title: 'Please Login'
+                            }
+                        }
+                    });
+                }
             });
             return deffer.promise;
         }
@@ -447,7 +459,7 @@ angular.module('starter').factory('addWishList', function($http,$state,$q,$mdToa
                         }
                     }
                 });
-                }
+            }
             });
             return deffer.promise;
         }

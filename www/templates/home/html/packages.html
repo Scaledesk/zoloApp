@@ -8,8 +8,8 @@
     <ion-content>
 
         <div class="card" ng-repeat="package in packages">
-            <div class="row">
-                <div class="col-33" ng-click="productDescription(package.id)">
+            <div class="row" ng-click="productDescription(package.id)">
+                <div class="col-33">
                     <img width="100%" height="85"  src="{{package.first_photo}}" class="pkg-img">
                     <i class="fa fa-heart pkg-like" style="color: #f0f0f0;"></i>
                 </div>
@@ -41,9 +41,7 @@
 
 
 
-                        <!--<p class="pull-right">&#8377;<span class="font-hot-sale">{{package.price}}</span></p>-->
 
-                    <!--<i class="icon ion-location">{{package.location[0].text}}, {{package.location[1].text}} </i>-->
                 </div>
             </div>
         </div>

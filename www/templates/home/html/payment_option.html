@@ -1,45 +1,68 @@
 <ion-view title="MAKE PAYMENT">
+
     <ion-nav-bar class="header_color">
         <ion-nav-back-button class="button-clear">
             <i class="ion-arrow-left-c"></i> Back
         </ion-nav-back-button>
     </ion-nav-bar>
-    <ion-content>
-<h3>PAYMENT OPTIONS</h3>
-        <ion-list>
-            <ion-item>
-                <label class="checkbox">
-                    <input type="checkbox" ng-model="payment.payU" ng-click="pay()">
 
-                </label>
-                (Pay Using Credit/Debit card and Net banking)
-            </ion-item>
-            <ion-item>
-                <label class="checkbox" ng-model="payment.payTm" ng-click="pay_by_payTm()">
-                    <input type="checkbox">
-                </label>
-                (Pay Using Paytm wallet)
-            </ion-item>
-            <ion-item>
-                <label class="checkbox" ng-model="payment.zolo" ng-click="pay_by_zolo()">
-                    <input type="checkbox">
-                </label>
-                (Pay Using ZOLO wallet)
-            </ion-item>
-        </ion-list>
-        <br>
-        <ion-list>
-            <ion-item>
-                <p>100% Secure Payments </p>
-                <!--<div class="vr">&nbsp;</div>-->
-              <p>
-                  100% Buyer Protection
-              </p>
-                <!--<div class="vr">&nbsp;</div>-->
-                <p>
-                    Buyer Friendly Refund Policy
-                </p>
-            </ion-item>
-        </ion-list>
+    <ion-content>
+
+        <p class="w-100 f-18 m-t-20 p-l-10">PAYMENT OPTIONS</p>
+        <ion-list class="m-t-10">
+            <ion-item class="p-0">
+
+                <ion-radio><img src="../img/payumoney.png" width="100" alt=""><br>(Pay Using Credit/Debit card and Net banking)</ion-radio>
+                <ion-radio><img src="../img/paytm.png" width="70" alt=""><br>(Pay Using Paytm wallet)</ion-radio>
+                <ion-radio><img src="../img/zolo-wallet.png" width="50" alt=""><br>(Pay Using ZOLO wallet)</ion-radio>
+
+                <!--<label class="checkbox">-->
+                    <!--<input type="checkbox" ng-model="payment.payU" ng-click="pay()">-->
+
+                <!--</label>-->
+                <!--(Pay Using Credit/Debit card and Net banking)-->
+            <!--</ion-item>-->
+            <!--<ion-item>-->
+                <!--&lt;!&ndash;<label class="checkbox" ng-model="payment.payTm" ng-click="pay_by_payTm()">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="checkbox">&ndash;&gt;-->
+                <!--&lt;!&ndash;</label>&ndash;&gt;-->
+                <!--&lt;!&ndash;(Pay Using Paytm wallet)&ndash;&gt;-->
+            <!--</ion-item>-->
+            <!--<ion-item>-->
+                <!--&lt;!&ndash;<label class="checkbox" ng-model="payment.zolo" ng-click="pay_by_zolo()">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="checkbox">&ndash;&gt;-->
+                <!--&lt;!&ndash;</label>&ndash;&gt;-->
+                <!--&lt;!&ndash;(Pay Using ZOLO wallet)&ndash;&gt;-->
+            <!--</ion-item>-->
+        <!--</ion-list>-->
+                </ion-item>
+
+
+
+        <div class="row m-t-10 p-0">
+            <div class="col-33 item p-5 text-center">
+                <p class="f-12"><i class="fa fa-lock "></i>&nbsp;100%<br> Secure Payments </p>
+            </div>
+
+            <div class="col-33 item text-center p-5">
+                <p class="f-12"><i class="fa fa-shield"></i>&nbsp;100%<br> Buyer Protection</p>
+            </div>
+
+            <div class="col-33 item text-center p-5">
+                <p class="f-12"><i class="fa fa-refresh"></i>&nbsp;Buyer<br> Friendly Refund Policy</p>
+
+            </div>
+        </div>
+
+        <!--<ion-list>-->
+            <!--<ion-item>-->
+                <!--<p>100% Secure Payments </p>-->
+                <!--<p>100% Buyer Protection</p>-->
+                <!--<p>Buyer Friendly Refund Policy</p>-->
+
+            <!--</ion-item>-->
+        <!--</ion-list>-->
+
+
     </ion-content>
 </ion-view>

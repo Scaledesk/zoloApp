@@ -1,39 +1,76 @@
 <ion-view title="ADDRESS CONFIRMATION">
+
     <ion-nav-bar class="header_color">
         <ion-nav-back-button class="button-clear">
             <i class="ion-arrow-left-c"></i> Back
         </ion-nav-back-button>
     </ion-nav-bar>
+
+
     <ion-content>
-        <h5>CONFIRM ADDRESS</h5>
-    <div ng-show="user_address.length == '0'">
-       <p>No,Address found please add an address </p>
-    </div>
+        <p class="w-100 f-18 m-t-20 p-l-10 m-b-0">CONFIRM ADDRESS</p>
+        <div ng-show="user_address.length == '0'">
+            <p>No,Address found please add an address </p>
+        </div>
 
-        <div class="card" ng-repeat="address in user_address" ng-show="user_address.length != '0'">
+        <div class="card m-t-5" ng-repeat="address in user_address" ng-show="user_address.length != '0'">
             <div class="item item-text-wrap">
-                <b>{{address.name}}</b> <p ng-if="address.is_default == '1'">(Default)</p>
+                <b>{{address.name}}</b> <span class="text-c" ng-if="address.is_default == '1'">(Default)</span>
                 <i class="icon ion-trash-b pull-right" ng-click="delete_add(address.id)"></i>
-                <br>
-                {{address.street_address}},{{address.landmark}}
-                <br>
-                {{address.city}} {{address.pincode}}
-                <br>
-                {{address.state}}
-                <br>
-                Mobile: {{address.phone_number}} <i class="icon ion-edit pull-right" ng-click="edit_address(address.id)"></i>
+
+                <p>{{address.street_address}},{{address.landmark}}</p>
+                <p>{{address.city}} {{address.pincode}}</p>
+                <p>{{address.state}}</p>
+                <p>Mobile: {{address.phone_number}} </p>
             </div>
-        </div>
+
+            <div class="row item p-10" ng-click="address_info()">
+                <div class="col-80">
+                    <p>Edit/Change Address</p>
+                </div>
 
 
-        <div style="margin-top: 10px;">
-            <p ng-click="skip()">Skip>></p>
-            <i class="fa fa-pencil pull-right" ng-click="address_info()">add</i>
+                <div class="col-20 text-right">
+                    <i class="fa fa-angle-right"></i>
+
+                </div>
+
+                <!--<p ng-click="skip()">Skip>></p>-->
+
+            </div>
+
+
+            <div class="row item p-10">
+                <div class="col-80">
+                    <p>Add New Address</p>
+                </div>
+
+                <div class="col-20 text-right">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+
+
+            </div>
+
+
+
         </div>
+
+        <p class="text-right p-r-10" ng-click="skip()">Skip>></p>
+
+
+
+
+
+
     </ion-content>
-    <ion-footer-bar align-title="left" class="bar-assertive" style="background: none">
+
+
+    <ion-footer-bar align-title="left" class="bar-assertive">
         <div class="button-bar" ng-click="payment_option()">
             <a class="button button-royal">CONTINUE TO PAYMENT</a>
         </div>
     </ion-footer-bar>
+
+
 </ion-view>

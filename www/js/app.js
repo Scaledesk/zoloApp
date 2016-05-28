@@ -272,7 +272,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
         $ionicConfigProvider.backButton.previousTitleText(false).text('');
 
-        console.log("host name",location.hostname,location.port);
 
         // mdIconProvider is function of Angular Material.
         // It use for reference .SVG file and improve performance loading.

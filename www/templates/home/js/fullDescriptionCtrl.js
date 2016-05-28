@@ -3,7 +3,6 @@ appControllers.controller('fullDescriptionCtrl', function ($scope, $timeout, $md
 
     productService.getProductDescription($stateParams.product_id).then(function(data){
         $scope.package = data.data.data;
-        console.log("sonama",JSON.stringify($scope.package));
     });
 });
 

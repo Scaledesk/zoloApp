@@ -11,10 +11,15 @@
     </ion-side-menu-content>
     <ion-side-menu side="left">
         <ion-header-bar class="header_color">
-            <h1 class="title">Left Menu</h1>
+            <!--<h2 class="white-c text-center">Zolo</h2>-->
+            <img src="img/zolo-logo.png" width="100" alt="">
         </ion-header-bar>
+
         <ion-content>
             <ion-list>
+                <ion-item menu-close href="#/app/home">
+                    <i class="fa fa-home"></i>&nbsp; Home
+                </ion-item>
                 <ion-item menu-close href="#/app/allCategory">
                     <i class="fa fa-tags" aria-hidden="true"></i>
                     &nbsp;Category
@@ -39,9 +44,7 @@
                     <i class="fa fa-lock" aria-hidden="true"></i>
                     &nbsp;  Privacy Policy
                 </ion-item>
-                <ion-item menu-close href="#/app/home">
-                   <i class="fa fa-search"></i>&nbsp; Search
-                </ion-item>
+
             </ion-list>
         </ion-content>
     </ion-side-menu>

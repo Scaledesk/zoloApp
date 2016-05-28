@@ -250,8 +250,14 @@
 .m-b-5{
     margin-bottom: 5px!important;
 }
+.m-t-5{
+    margin-top: 5px!important;
+}
 .m-b-0{
     margin-bottom: 0!important;
+}
+.m-b-10{
+    margin-bottom: 10px!important;
 }
 
 .m-r-10{
@@ -398,10 +404,11 @@
     color: #fff;
     border: none;
     border-radius: 2px;
-    height: 35px;
-    line-height: 35px;
+    height: 30px;
+    line-height: 30px;
     margin-left: 15px;
     margin-top: 2px;
+
 }
 
 a{
@@ -417,7 +424,7 @@ a{
 }
 
 hr{
-    border: 1px solid #e0e0e0;
+    border-top: 1px solid #eee;
 }
 
 .white-c{
@@ -436,4 +443,18 @@ hr{
 .login, .signup{
     background-color: #765f89!important;
     width: 90%!important;
+}
+
+.p-0-10{
+    padding: 0 10px!important;
+}
+
+.contact-btn p{
+    width: 100%;
+    background-color: #765f89;
+    color: #fff;
+    padding: 15px;
+    font-size: 1.4em;
+    text-align: center;
+
 }

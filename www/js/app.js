@@ -280,6 +280,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
         $ionicConfigProvider.backButton.previousTitleText(false).text('');
 
+        console.log("host name",location.hostname,location.port);
+
         // mdIconProvider is function of Angular Material.
         // It use for reference .SVG file and improve performance loading.
         $mdIconProvider
@@ -346,19 +348,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 controller: 'MenuCtrl'
             })
 
-            .state('app.packages', {
-                url: "/packages",
-                params:{
-                    isAnimated:false
-                },
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/packages/html/packageList.html",
-                        controller: 'packageController'
-                    }
-                }
-            })
-
               .state('app.home', {
                 url: "/home",
                 views: {
@@ -419,15 +408,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
-            .state('app.add_address', {
-                url: "/package_list",
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/home/html/add_address.html",
-                        controller: "addressCtrl"
-                    }
-                }
-            })
             .state('app.paymentOption', {
                 url: "/paymentOption",
                 views: {
@@ -460,16 +440,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 views: {
                     'menuContent': {
                         templateUrl: "templates/address/html/index.html",
-                        controller:'addressCtrl'
-                    }
-                }
-            })
-
-            .state('app.option_address', {
-                url: "/option_address",
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/address/html/add_address.html",
                         controller:'addressCtrl'
                     }
                 }

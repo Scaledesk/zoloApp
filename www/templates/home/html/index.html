@@ -1,20 +1,11 @@
-<!--<<<<<<< HEAD-->
-<!--<ion-view title="" enable-menu-with-back-views="false">-->
-    <!--<md-toolbar class="bar-subheader md-tall md-primary toolbar-medium">-->
-<!--=======-->
+
 <ion-view title="" back-button-hide="false">
     <div class="container_size">
             <md-input-container md-no-float="">
                 <input ng-model="filterText" id="name_2" placeholder="Type something..." ng-click="search_result()">
             </md-input-container>
         </div>
-    <!--<md-toolbar class="bar-subheader md-tall md-primary toolbar-medium">-->
-    <!--&lt;!&ndash;<div class="container_size">&ndash;&gt;-->
-        <!--&lt;!&ndash;<md-input-container md-no-float="">&ndash;&gt;-->
-            <!--&lt;!&ndash;<input ng-model="filterText" id="name_2" placeholder="Type something..." ng-click="search_result()">&ndash;&gt;-->
-        <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--</md-toolbar>-->
+
 
 
 
@@ -57,13 +48,13 @@
         <div class="col" ng-repeat="category in category_n_sub_catagery_list"
              ng-if="((category.id == 10) || (category.id == 13) || (category.id == 14) || (category.id == 15) || (category.id == 32) || (category.id == 44) || (category.id == 63) || (category.id == 77))">
             <div class="row">
-                <div class="col-80 content">
+                <div class="col-75 content">
                         <p class="w-100 m-t-10 f-18 " style="text-transform: uppercase;">
                             {{category.name}}
                         </p>
                 </div>
 
-                <div class="col-20 content">
+                <div class="col-25 content">
                     <p  ng-click="allSubcategory(category.id)" class="m-t-10 zolo-c">
                         VIEW ALL
                         <i class="ion-chevron-right"></i>

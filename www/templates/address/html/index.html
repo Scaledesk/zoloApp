@@ -2,16 +2,22 @@
 
     <ion-nav-bar class="header_color">
         <ion-nav-back-button class="button-clear">
-            <i class="icon ion-ios-arrow-back"></i>
+            <i class="icon ion-ios-arrow-back white-c"></i>
         </ion-nav-back-button>
     </ion-nav-bar>
 
 
     <ion-content>
         <p class="w-100 f-18 m-t-20 p-l-10 m-b-0">CONFIRM ADDRESS</p>
-        <div ng-show="user_address.length == '0'">
-            <p>No,Address found please add an address </p>
+
+
+        <div class="card p-20 text-center" ng-show="user_address.length == '0'">
+                <p class="text-center">No, Address found please add an address </p>
+                <p class="button button-balanced" ng-click="address_info()">Add New Address</p>
+
         </div>
+
+
 
         <div class="card m-t-5" ng-repeat="address in user_address" ng-show="user_address.length != '0'">
             <div class="item item-text-wrap">
@@ -35,14 +41,13 @@
 
                 </div>
 
-                <!--<p ng-click="skip()">Skip>></p>-->
 
             </div>
 
 
             <div class="row item p-10">
                 <div class="col-80">
-                    <p>Add New Address</p>
+                    <p ng-click="address_info()">Add New Address</p>
                 </div>
 
                 <div class="col-20 text-right">
@@ -53,10 +58,9 @@
             </div>
 
 
-
         </div>
 
-        <p class="text-right p-r-10" ng-click="skip()">Skip>></p>
+        <p class="text-right p-r-10" ng-click="skip()" >Skip>></p>
 
 
 

@@ -42,11 +42,13 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
             if(($scope.user.mobile.toString().length == 10) && ($scope.user.password.length == 6)){
                 signUpService.signUp(data).then(function (data) {
                     $scope.credentials = data;
-                    console.log("sign up",JSON.stringify($scope.credentials));
+                    $ionicHistory.nextViewOptions({
+                        disableBack: true
+                    });
+                    $state.go('app.home');
                 });
             }
             else{
-                console.log("bed password n mobile")
                 $mdToast.show({
                     controller: 'toastController',
                     templateUrl: 'toast.html',
@@ -72,7 +74,6 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
                     }
                 }
             });
-            console.log("name required");
         }
 
     };

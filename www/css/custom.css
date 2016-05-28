@@ -254,6 +254,10 @@
     margin-bottom: 0!important;
 }
 
+.m-r-10{
+    margin-right: 10px!important;
+}
+
 .w-400{
     font-weight: 400!important;
 }
@@ -410,4 +414,26 @@ a{
 
 .m-l-negative{
     margin-left: -10px!important;
+}
+
+hr{
+    border: 1px solid #e0e0e0;
+}
+
+.white-c{
+    color: #fff!important;
+}
+
+
+.fb{
+    background-color: #3b5998!important;
+}
+
+.g-plus{
+    background-color: #d34836!important;
+}
+
+.login, .signup{
+    background-color: #765f89!important;
+    width: 90%!important;
 }

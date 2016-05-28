@@ -44,18 +44,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
         'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','algoliasearch'])
     .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet) {
 
-        //Create database table of contracts by using sqlite database.
-        //Table schema :
-        //Column	   Type	     Primary key
-        //  id	        Integer	    Yes
-        //  firstName	Text	    No
-        //  lastName	Text	    No
-        //  telephone	Text	    No
-        //  email	    Text	    No
-        //  note	    Text	    No
-        //  createDate	DateTime	No
-        //  age	        Integer	    No
-        //  isEnable	Boolean	    No
 
         function initialSQLite() {
             db = window.cordova ? $cordovaSQLite.openDB("contract.db") : window.openDatabase("contract.db", "1.0", "IonicMaterialDesignDB", -1);
@@ -239,6 +227,10 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
+                // setTimeout(function() {
+                //     navigator.splashscreen.hide();
+                // }, 100);
+
 
             initialSQLite();
             initialRootScope();
@@ -292,29 +284,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             .icon('share-arrow', 'img/icons/share-arrow.svg')
             .icon('more', 'img/icons/more_vert.svg');
 
-        //mdThemingProvider use for change theme color of Ionic Material Design Application.
-        /* You can select color from Material Color List configuration :
-         * red
-         * pink
-         * purple
-         * purple
-         * deep-purple
-         * indigo
-         * blue
-         * light-blue
-         * cyan
-         * teal
-         * green
-         * light-green
-         * lime
-         * yellow
-         * amber
-         * orange
-         * deep-orange
-         * brown
-         * grey
-         * blue-grey
-         */
+
         //Learn more about_us material color patten: https://www.materialpalette.com/
         //Learn more about_us material theme: https://material.angularjs.org/latest/#/Theming/01_introduction
         $mdThemingProvider
@@ -598,14 +568,10 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
-           
-
         if(window.localStorage['SkipIntro']== 'true'){
-            console.log("if");
             $urlRouterProvider.otherwise("app/home");
         }else{
             console.log(window.localStorage['SkipIntro']);
-            console.log('else');
             $urlRouterProvider.otherwise("/mainWalkthrough");
 
         }
@@ -636,14 +602,15 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
     })
 .run(function($rootScope, $ionicLoading) {
     $rootScope.$on('loading:show', function() {
-        $ionicLoading.show({template: '<div class="ui-progress-circular"><ion-spinner ng-if="!isAndroid" class="progress-circular"></ion-spinner><md-progress-circular ng-if="isAndroid" md-mode="indeterminate"></md-progress-circular></div>'})
+        $ionicLoading.show({template: '<div class="ui-progress-circular"><ion-spinner ng-if="!isAndroid" class="progress-circular">' +
+        '</ion-spinner><md-progress-circular ng-if="isAndroid" md-mode="indeterminate"></md-progress-circular>' +
+        '</div>'})
     });
 
     $rootScope.$on('loading:hide', function() {
         $ionicLoading.hide()
     })
-})
-;
+});
 
 
 

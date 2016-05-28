@@ -188,13 +188,13 @@ $cordovaOauth, $http,ProfileService) {
         console.log("inside demo");
         $auth.authenticate(provider).then(function (result) {
             console.log("sahgsdfs",JSON.stringify(result));
-            // $scope.get_token({
-            //     google_id:result.data.google_id,
-            //     google_access_token:result.data.google_access_token,
-            //     grant_type:"google",
-            //     client_id:"client_id",
-            //     client_secret:"client_secret",
-            // });
+            $scope.get_token({
+                google_id:result.data.google_id,
+                google_access_token:result.data.google_access_token,
+                grant_type:"google",
+                client_id:"client_id",
+                client_secret:"client_secret",
+            });
         }).catch(function (e) {
             console.log(JSON.stringify(e));
         });

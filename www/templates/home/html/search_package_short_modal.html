@@ -3,7 +3,7 @@
         <h1 class="title f-16">
             <div class="row" ng-hide="sort_by">
                 <div class="col-50">
-                    <p class="w-500"><i ng-click="closeSortAndFilterModal()" class="fa fa-times f-20" aria-hidden="true"></i><span class="text-c m-l-20">FILTER BY</span></p>
+                    <p class="w-500 m-b-0"><i ng-click="closeSortAndFilterModal()" class="fa fa-times f-20" aria-hidden="true"></i><span class="text-c m-l-20">FILTER BY</span></p>
 
                 </div>
 
@@ -19,10 +19,10 @@
 
                 </div>
 
-                <!--<div class="col-50 text-right">-->
-                    <!--<a href="" class="text-c" ng-click="filter_clear()">CLEAR</a>  <p class="filter-btn pull-right f-14" ng-click="filter_apply()">APPLY</p>-->
+                <div class="col-50 text-right">
+                    <a href="" class="text-c" ng-click="filter_clear()">CLEAR</a>  <p class="filter-btn pull-right f-14" ng-click="filter_apply()">APPLY</p>
 
-                <!--</div>-->
+                </div>
             </div>
 
         </h1>
@@ -42,10 +42,10 @@
             <div class="col-80">
                 <ion-list ng-show="sorting_value">
                     <ion-item class="p-0">
-                        <ion-radio ng-model="choice.val" ng-value="1" ng-change="makeSort(1)">  &#8377;Price- high to low </ion-radio>
+                        <ion-radio ng-model="choice.val" ng-value="1" ng-change="makeSort(1)">  &#8377; Price- high to low </ion-radio>
                     </ion-item>
                     <ion-item class="p-0">
-                        <ion-radio ng-model="choice.val" ng-value="2" ng-change="makeSort(2)">   &#8377;Price- low to high</ion-radio>
+                        <ion-radio ng-model="choice.val" ng-value="2" ng-change="makeSort(2)">   &#8377; Price- low to high</ion-radio>
                     </ion-item>
 
                     <ion-item class="p-0">

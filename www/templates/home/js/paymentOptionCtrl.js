@@ -6,11 +6,11 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
     var booking_id = window.localStorage['booking_id'];
     $scope.token = window.localStorage['access_token'];
     $scope.payment = {};
-    // $scope.url = function () {
-    //     return $sce.trustAsResourceUrl('http://54.169.76.224/mpayBookingAmount/'+$scope.id);
-    // };
-// $scope.myurl=$scope.url();
-
+    
+    var host = location.hostname;
+     var port = location.port;
+    $scope.choice = {};
+    
 
     var options = {
         // location: 'yes',
@@ -20,7 +20,12 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
     };
 
     $scope.pay = function () {
-        $cordovaInAppBrowser.open('http://54.169.76.224/mpayBookingAmount/'+$scope.id, '_self',options)
+        
+        var hi = 'http://54.169.76.224/payBookingAmount/'+$scope.id+'?ipadr='+host+'&port='+port+'&access_token='+$scope.token;
+            
+            console.log("hi",hi);
+
+        $cordovaInAppBrowser.open('http://54.169.76.224/payBookingAmount/'+$scope.id+'?ipadr='+host+'&port='+port+'&access_token='+$scope.token, '_self',options)
             .then(function(event) {
                 // success
                 console.log("111",JSON.stringify(event));
@@ -28,11 +33,10 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
             .catch(function(event) {
                 console.log("222",JSON.stringify(event));
 
-                // error
             });
 
 
-        $cordovaInAppBrowser.close();
+        // $cordovaInAppBrowser.close();
 
     };
 

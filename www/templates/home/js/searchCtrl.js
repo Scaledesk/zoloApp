@@ -132,6 +132,12 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
         var index = client.initIndex('candybrush_packages');
 
+        if(stringFilter==''){
+            stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+        }else {
+            stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+        }
+
         index.search(
             "", {
                 hitsPerPage: 5,
@@ -159,6 +165,12 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('deal_price_desc');
+
+        if(stringFilter==''){
+            stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+        }else {
+            stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+        }
 
         index.search(
             "", {
@@ -188,6 +200,12 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
         var index = client.initIndex('deal_price_asc');
 
+        if(stringFilter==''){
+            stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+        }else {
+            stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+        }
+
         index.search(
             "", {
                 hitsPerPage: 5,
@@ -215,6 +233,12 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('new_packages_first');
+
+        if(stringFilter==''){
+            stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+        }else {
+            stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+        }
 
         index.search(
             "", {

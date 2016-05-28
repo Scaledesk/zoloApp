@@ -1,14 +1,9 @@
-
 <ion-view title="" back-button-hide="false">
     <div class="container_size">
             <md-input-container md-no-float="">
                 <input ng-model="filterText" id="name_2" placeholder="Type something..." ng-click="search_result()">
             </md-input-container>
-        </div>
-
-
-
-
+    </div>
     <ion-nav-buttons side="right">
     </ion-nav-buttons>
     <ion-content id="restaurant">
@@ -47,8 +42,9 @@
         </ion-slide-box>
 
 
+
         <div class="card" style="margin:10px 0; border-bottom: 1px solid #eee;" ng-repeat="category in category_n_sub_catagery_list"
-             ng-if="((category.id == 10) || (category.id == 13) || (category.id == 14) || (category.id == 15) || (category.id == 32) || (category.id == 44) || (category.id == 63) || (category.id == 77))">
+             ng-if="((category.id == 10) || (category.id == 14) || (category.id == 15) || (category.id == 32) || (category.id == 44) || (category.id == 63) || (category.id == 77))">
             <div class="row" style="border-bottom: 1px solid #eee;">
                 <div class="col-75 content p-0-10">
                         <p class="w-100 m-t-10 f-18 " style="text-transform: uppercase;">

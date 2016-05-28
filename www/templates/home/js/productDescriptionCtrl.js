@@ -1,6 +1,5 @@
-appControllers.controller('productDescriptionCtrl', function ($scope, $timeout, $mdUtil,productService,bookingService,
-                                                    $mdSidenav, $log, $ionicHistory, $state,$stateParams,addWishList,
-                                                              $mdToast,
+appControllers.controller('productDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory, 
+                                                              $state,$stateParams,addWishList, $mdToast,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,
                                                               SellerProfileService) {
     $scope.des_value = true;

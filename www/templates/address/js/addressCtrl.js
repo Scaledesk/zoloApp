@@ -12,7 +12,6 @@ appControllers.controller('addressCtrl', function ($scope, $timeout,$state, $mdU
             var id = data.data.data.user_id;
             GetUserAddressService.user_address(id).then(function(data){
                 $scope.user_address = data.data.data;
-                console.log("aaaaaaaaa",JSON.stringify($scope.user_address))
             });
             $scope.$on('addressListChanged', function (event, args) {
                 $scope.message = args.message;
@@ -46,9 +45,7 @@ appControllers.controller('addressCtrl', function ($scope, $timeout,$state, $mdU
         });
         confirmPopup.then(function(res) {
             if(res) {
-                console.log("del_id",delete_id);
                 deleteUserAddressService.delete_user_address(delete_id).then(function(data){
-                    console.log("deletee",JSON.stringify(data));
                     if(data.data.message == 'success'){
                         alert("Address deleted successfully")
                         $scope.$broadcast('addressListChanged', { message: 'Change in address list' });

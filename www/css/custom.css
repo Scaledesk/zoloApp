@@ -448,3 +448,13 @@ hr{
 .p-0-10{
     padding: 0 10px!important;
 }
+
+.contact-btn p{
+    width: 100%;
+    background-color: #765f89;
+    color: #fff;
+    padding: 15px;
+    font-size: 1.4em;
+    text-align: center;
+
+}

@@ -88,6 +88,9 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                         $state.go('app.product_desc',{'product_id':product_id});
                     }
                     else{
+                        $ionicHistory.nextViewOptions({
+                            disableBack: true
+                        });
                         $state.go('app.home');
                     }
 

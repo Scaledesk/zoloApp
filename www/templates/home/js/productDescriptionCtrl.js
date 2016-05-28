@@ -124,7 +124,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
              package_id:$scope.package.id,
             addons:[]
         };
-
         if($scope.package.seller_profile.user_id){
             SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
                 $scope.seller_info = data.data.data;

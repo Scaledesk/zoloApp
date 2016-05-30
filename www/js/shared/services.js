@@ -503,12 +503,10 @@ angular.module('starter').factory('addWishList', function($http,$rootScope,$stat
                 data: data
             }).
             success(function(data, status, headers, config) {
-                console.log("status",status)
                 deffer.resolve(data);
                 $rootScope.$broadcast('loading:hide');
             }).
             error(function(data, status, headers, config) {
-                console.log("status",status)
             if(status == 500){
                 $mdToast.show({
                     controller: 'toastController',
@@ -523,6 +521,76 @@ angular.module('starter').factory('addWishList', function($http,$rootScope,$stat
                 });
             }
                 $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+angular.module('starter').factory('googleLogin', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
+    return {
+        google_login: function (data) {
+            // $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"api/auth/m_google",
+                data: data
+            }).
+            success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                // $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("status",status)
+                // $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+angular.module('starter').factory('facebookLogin', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
+    return {
+        facebook_login: function (data) {
+            // $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"api/auth/m_facebook",
+                data: data
+            }).
+            success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                // $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("status",status)
+                // $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+
+angular.module('starter').factory('googleToken', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
+    return {
+        google_token: function (data) {
+            // $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"oauth/access_token",
+                data: data
+            }).
+            success(function(data, status, headers, config) {
+                console.log("data in google token success",JSON.stringify(data))
+                deffer.resolve(data);
+                // $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("status",status)
+               
             });
             return deffer.promise;
         }

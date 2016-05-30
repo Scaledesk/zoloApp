@@ -1,13 +1,8 @@
 appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
-                                                 serverConfig,$rootScope,$location,$ionicHistory,$ionicViewSwitcher,$ionicModal,
+                                                 serverConfig,$rootScope,$location,$ionicHistory,googleToken,
+                                                    $ionicViewSwitcher,$ionicModal,googleLogin,facebookLogin,
 $cordovaOauth, $http,ProfileService) {
-//
-//     var device = $cordovaDevice.getDevice();
-// console.log("device",JSON.stringify(device));
-//
-//     $ionicHistory.nextViewOptions({
-//         disableBack: true
-//     });
+
 
     $scope.navigateTo = function (stateName) {
         if ($ionicHistory.currentStateName() != stateName) {
@@ -49,15 +44,12 @@ $cordovaOauth, $http,ProfileService) {
     $scope.get_token = function(user){
         $auth.login(user)
             .then(function (response) {
-                console.log("resopnse",JSON.stringify(response));
                 return;
                 $scope.login_text = 'Sign In';
                 $scope.disabled = false;
 
 
                 ProfileService.get_profile_info(response.access_token).then(function (data) {
-
-                    console.log("dataaaaa",JSON.stringify(data))
                     $rootScope.user_profile = data.data.data;
                     console.log(data.data.data.is_seller==="1");
                     if(data.data.data.is_seller==="1"){
@@ -101,14 +93,61 @@ $cordovaOauth, $http,ProfileService) {
     {
         $cordovaOauth.facebook("1604761699851791", ["email", "public_profile"],
             {redirect_uri: "http://localhost/callback"}).then(function(result){
-            console.log(JSON.stringify(result));
-            var dh = 'facebook';
-            $scope.demo(dh);
-            // $scope.displayData($http, result.access_token);
-            // console.log("result",JSON.stringify(result));
-
+            $scope.displayData($http,result.access_token);
 
         },  function(error){
+            alert("Error: " + error);
+        });
+    };
+
+
+    $scope.displayData = function($http, access_token)
+    {
+        $http.get("https://graph.facebook.com/v2.2/me", {
+            params: {
+                access_token: access_token,
+                fields: "email,id,name,age_range,gender,picture,location,verified",
+                format: "json"
+            }
+        }).then(function(result) {
+            var user = {
+                id: result.data.id,
+                email:result.data.email,
+                access_token: access_token,
+                name:result.data.name
+            };
+            facebookLogin.facebook_login(user).then(function(data){
+                var user_2 = {
+                    client_id: "client_1",
+                    client_secret: "client_secret",
+                    google_access_token: data.data.google_access_token,
+                    google_id: data.data.google_id,
+                    grant_type: "google"
+                }
+                if(data){
+                    googleToken.google_token(user_2).then(function(data){
+                        if(data.status == '200'){
+                            $mdToast.show({
+                                controller: 'toastController',
+                                templateUrl: 'toast.html',
+                                hideDelay: 800,
+                                position: 'top',
+                                locals: {
+                                    displayOption: {
+                                        title: 'Logged in successfully.'
+                                    }
+                                }
+                            });
+                            window.localStorage['access_token']=data.data.access_token;
+                            $ionicHistory.nextViewOptions({
+                                disableBack: true
+                            });
+                            $state.go('app.home');
+                        }
+                    })
+                }
+            })
+        }, function(error) {
             alert("Error: " + error);
         });
     };
@@ -124,20 +163,43 @@ $cordovaOauth, $http,ProfileService) {
                 url: url,
                 async: false,
                 success: function(userInfo) {
-                    //info about user
-                    console.log("result",JSON.stringify(userInfo));
-                    console.log('test',JSON.stringify(userInfo.emails[0].value));
                     var user = {
-                        google_id: userInfo.id,
-                        google_access_token: result.access_token,
-                        grant_type: "google",
-                        client_id: "client_1",
-                        client_secret: "client_secret"
+                        id: userInfo.id,
+                        email:userInfo.emails[0].value,
+                        access_token: result.access_token,
+                        name:userInfo.displayName
                     };
-                    $auth.authenticate('google',device.uuid,device.manufacturer).then(function(response){
-                        console.log("authhhh res",JSON.stringify(response));
-                    });
-                    // $scope.get_token(user);
+                    googleLogin.google_login(user).then(function(data){
+                        var user_1 = {
+                            client_id: "client_1",
+                            client_secret: "client_secret",
+                            google_access_token: data.data.google_access_token,
+                            google_id: data.data.google_id,
+                            grant_type: "google"
+                        }
+                        if(data){
+                            googleToken.google_token(user_1).then(function(data){
+                                if(data.status == '200'){
+                                    $mdToast.show({
+                                        controller: 'toastController',
+                                        templateUrl: 'toast.html',
+                                        hideDelay: 800,
+                                        position: 'top',
+                                        locals: {
+                                            displayOption: {
+                                                title: 'Logged in successfully.'
+                                            }
+                                        }
+                                    });
+                                    window.localStorage['access_token']=data.data.access_token;
+                                    $ionicHistory.nextViewOptions({
+                                        disableBack: true
+                                    });
+                                    $state.go('app.home');
+                                }
+                            })
+                        }
+                    })
                 },
                 error: function(e) {
                     console.log('error');
@@ -150,18 +212,7 @@ $cordovaOauth, $http,ProfileService) {
             console.log(error);
         });
     };
-    
-  $scope.displayData = function($http, access_token)
-    {
-        $http.get("https://graph.facebook.com/v2.2/me", {params: {access_token: access_token, fields: "name,gender,location,picture", format: "json" }}).then(function(result) {
-            var name = result.data.name;
-            var gender = result.data.gender;
-            var picture = result.data.picture;
-            console.log("suussssssssssssssssss",JSON.stringify(name),JSON.stringify(gender),JSON.stringify(picture))
-        }, function(error) {
-            alert("Error: " + error);
-        });
-    };
+
 
     $scope.authenticate = function (provider) {
         $auth.authenticate(provider)

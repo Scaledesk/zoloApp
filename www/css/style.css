@@ -1647,6 +1647,7 @@ md-sidenav {
 
 #restaurant {
   background-color: #e5e4e4; }
+
   #restaurant #restaurant-slide-box {
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.14), 0px 2px 2px 0px rgba(0, 0, 0, 0.098), 0px 1px 5px 0px rgba(0, 0, 0, 0.084);
     height: 180px; }
@@ -1668,7 +1669,7 @@ md-sidenav {
       #restaurant #restaurant-slide-box span i {
         color: white !important; }
     #restaurant #restaurant-slide-box ion-slide {
-      /*padding-top: 50px !important;*/
+      padding-top: 50px !important;
       color: white;
       font-size: 15px; }
       #restaurant #restaurant-slide-box ion-slide .content {
@@ -1681,18 +1682,11 @@ md-sidenav {
           font-weight: 500;
           padding-bottom: 10px; }
     #restaurant #restaurant-slide-box .slide-01 {
-      background: url(https://s3-ap-southeast-1.amazonaws.com/zolo/zolo_category_images/web-cover-mtest.jpg);
-        background-position-x: 39%;
-        background-position-y: 35%;
-    }
+      background: url(../img/food_cover_01.png); }
     #restaurant #restaurant-slide-box .slide-02 {
-        background: url(https://s3-ap-southeast-1.amazonaws.com/zolo/zolo_category_images/web-cover-mtest.jpg);
-        background-position-x: 39%;
-        background-position-y: 35%;    }
+      background: url(../img/food_cover_02.png); }
     #restaurant #restaurant-slide-box .slide-03 {
-        background: url(https://s3-ap-southeast-1.amazonaws.com/zolo/zolo_category_images/web-cover-mtest.jpg);
-        background-position-x: 39%;
-        background-position-y: 35%;    }
+      background: url(../img/food_cover_03.png); }
   #restaurant #restaurant-content {
     margin-top: 30px; }
     #restaurant #restaurant-content .promotions-header {
@@ -1833,8 +1827,6 @@ md-sidenav {
   -moz-background-size: cover;
   background-size: cover; }
 
-.header_color {
-  background-color: #765f89; }
 
 drawer {
   display: block;

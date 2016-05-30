@@ -5,19 +5,8 @@
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content>
-
-        <!--<div class="row">-->
             <div class="cover-img" style="background: url('{{package.seller_profile.banner}}') center no-repeat; background-size:cover; height: 200px;">
-        <!--</div>-->
-
-
-            <!--<img ng-src="{{package.seller_profile.banner}}" alt="Mountain View">-->
-
-
-        </div>
-
-
-        <!--<div class="card">-->
+            </div>
 
             <div class="row">
 
@@ -27,7 +16,7 @@
 
                 <div class="col-50 m-t-20">
                     <p class="f-18">{{package.seller_profile.name}}</p>
-                    <p><i class="fa fa-star review-c"></i>&nbsp;3.5/5 <span class="text-c">(46 Reviews)</span></p>
+                    <p><i class="fa fa-star review-c"></i>&nbsp;{{package.average_rating}}/5 <span class="text-c">({{package.reviews.data.length}} Reviews)</span></p>
                 </div>
 
             </div>
@@ -42,13 +31,6 @@
 
         </div>
 
-
-
-
-            <!--<b>{{package.seller_profile.name}}</b>-->
-
-
-        <!--</div>-->
         <div class="card">
             <div class="row">
 

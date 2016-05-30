@@ -10,11 +10,15 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         val:-1
     };
     var stringFilter = '';
+    var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
+
+    var index = client.initIndex('candybrush_packages');
+
     $scope.filter = {price: false};
-    packagesService.getPackagesList($stateParams.sub_cat_id).then(function (data) {
-        $scope.packages_list = data.data.data;
-        $scope.packages = $scope.packages_list.Packages.data;
-    });
+    // packagesService.getPackagesList($stateParams.sub_cat_id).then(function (data) {
+    //     $scope.packages_list = data.data.data;
+    //     $scope.packages = $scope.packages_list.Packages.data;
+    // });
 
     $scope.productDescription = function (id) {
         $state.go('app.product_desc', {'product_id': id})
@@ -74,6 +78,84 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         stringFilter = "deal_price : " + my_minimum + " TO " + my_maximum;
 
     };
+
+
+
+
+
+    $scope.search_packages = function(stringFilter,load_option){
+        console.log("2")
+
+        if(load_option == false){
+            if(stringFilter==''){
+                stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+            }else {
+                stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+            }
+
+            index.search(
+                "", {
+                    hitsPerPage: 5,
+                    facets: '*',
+                    filters: stringFilter,
+                    maxValuesPerFacet: 10
+                },
+                searchCallback
+            );
+           
+
+
+            function searchCallback(err, content) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                else{
+                    $scope.packages = content.hits;
+                    $scope.total_page=content.nbPages;
+                    $scope.current_page=content.page;
+                }
+            }
+
+        }
+        else{
+            if($scope.current_page <= $scope.total_page){
+                if(stringFilter==''){
+                    stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+                }else {
+                    stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+                }
+                index.search(
+                    "", {
+                        hitsPerPage: 5,
+                        facets: '*',
+                        filters: stringFilter,
+                        maxValuesPerFacet: 10,
+                        page:++$scope.current_page
+                    },
+                    searchCallback
+                );
+                
+                function searchCallback(err, content) {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    else{
+                        angular.forEach(content.hits,function(obj){
+                            $scope.packages.push(obj);
+
+                        });
+                    }
+                }
+            }
+            return;
+
+        }
+
+    };
+    $scope.search_packages(stringFilter,false);
+    
     $scope.filter_apply = function (filter) {
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
@@ -109,6 +191,13 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         }
 
     };
+
+    $scope.load_more = function(){
+        console.log("1");
+        $scope.search_packages(stringFilter,true);
+    };
+
+
     $scope.pricehtol = function (filter) {
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 

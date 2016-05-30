@@ -584,7 +584,6 @@ angular.module('starter').factory('googleToken', function($http,$rootScope,$stat
                 data: data
             }).
             success(function(data, status, headers, config) {
-                console.log("data in google token success",JSON.stringify(data))
                 deffer.resolve(data);
                 // $rootScope.$broadcast('loading:hide');
             }).

@@ -5,10 +5,10 @@ appControllers.controller('sellerProfileCtrl', function ($scope, $timeout, $mdUt
         $scope.package = data.data.data;
         console.log("aaaaaaaaaaaaa",JSON.stringify($scope.package))
         if($scope.package.seller_profile.user_id){
-            
+
             SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
                 $scope.seller_info = data.data.data;
-                console.log("aaaaaaaaa",JSON.stringify($scope.seller_info));
+                console.log("aa",JSON.stringify($scope.seller_info));
             });
         }
     });

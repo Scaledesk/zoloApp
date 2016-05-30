@@ -1,7 +1,7 @@
 appControllers.controller('productDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory, 
                                                               $state,$stateParams,addWishList, $mdToast,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,
-                                                              SellerProfileService) {
+                                                              SellerProfileService,$timeout) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -9,12 +9,37 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.booking_add_ons_list = false;
     $scope.default_quantity_add_ons = 1;
     $scope.default_quantity = 1;
-    $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
     $scope.selectedaddons=[];
     $scope.book={
         quantity:1
     };
-
+    $scope.book_new={
+        quantity_new:1
+    };
+   $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+   $scope.new_quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+   // $scope.new_quantities = [
+   //     {id:'1',value:'1'},
+   //     {id:'2',value:'2'},
+   //     {id:'3',value:'3'},
+   //     {id:'4',value:'4'},
+   //     {id:'5',value:'5'},
+   //     {id:'6',value:'6'},
+   //     {id:'7',value:'7'},
+   //     {id:'8',value:'8'},
+   //     {id:'9',value:'9'},
+   //     {id:'10',value:'10'},
+   //     {id:'11',value:'11'},
+   //     {id:'12',value:'12'},
+   //     {id:'13',value:'13'},
+   //     {id:'14',value:'14'},
+   //     {id:'15',value:'15'},
+   //     {id:'16',value:'16'},
+   //     {id:'17',value:'17'},
+   //     {id:'18',value:'18'},
+   //     {id:'19',value:'19'},
+   //     {id:'20',value:'20'}
+   // ];
     var booking_info = {};
 
 
@@ -46,8 +71,23 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.closeAddOnsModel = function () {
         $scope.add_on_modal.hide();
     };
-    
+
+
+
+    $scope.package_quantity = function(quant,price,p_id){
+            var quantity = quant;
+            var price = price;
+            var p_id = p_id;
+         console.log("sonamamama",price,quantity,p_id);
+    };
+     $scope.addon_quantity = function(quant,price,add_id){
+            var quantity = quant;
+            var price = price;
+            console.log("sonamamama 222",price,quantity,add_id);
+    };
+
     $scope.setIndex=function(index,checked){
+        console.log("checked",checked)
         if(checked==true){
             $timeout(function(){
                 $scope.currentIndex=index;
@@ -118,6 +158,8 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         $scope.package = data.data.data;
         $scope.paddons =  $scope.package.Addons.data;
         $scope.amount_to_show = $scope.package.deal_price;
+        
+        console.log('paddons',JSON.stringify($scope.paddons))
 
          booking_info = {
             quantity:$scope.book.quantity,
@@ -171,6 +213,8 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
             }
             booking_info.addons.push(ff);
         });
+
+        console.log("xassaxsxs",JSON.stringify(booking_info))
         if((window.localStorage['access_token']) && (window.localStorage['access_token'] != 'undefined')){
             bookingService.OrpInfo(booking_info).then(function(data) {
                 var info = data.data.data;

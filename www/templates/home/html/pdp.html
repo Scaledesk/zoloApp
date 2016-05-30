@@ -40,9 +40,7 @@
 
                         </div>
                         <p class="pull-right text-c" ng-click="openReviewModel()"> Reviews: {{package.reviews.data.length}}</p>
-
                     </div>
-
                 </div>
 
 
@@ -50,7 +48,7 @@
 
                 <div class="row">
                     <div class="col-33">
-                        <p class="f-13 text-c" ng-click="description_value()" ng-class="{'z-active':}">Description</p>
+                        <p class="f-13 text-c" ng-click="description_value()">Description</p>
                     </div>
 
                     <div class="col-33 text-center">
@@ -60,11 +58,7 @@
                     <div class="col-33 text-center">
                         <p class="f-13 text-c" ng-click="term_n_condition()">T&C</p>
                     </div>
-
-
                 </div>
-
-
                 <div ng-show="term_n_cond">
                     <div class="card">
                         <p data-ng-bind-html="package.term_condition"></p>
@@ -185,7 +179,14 @@
                 <div class="card">
                     <ion-checkbox ng-model="booking_add_ons">{{package.name}}</ion-checkbox>
                     <p>&#8377; {{book.quantity * package.deal_price}}</p>
-                    <div class="col-md-6" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+
+                    <!--<select ng-model="book.quantity" name="Quantity" ng-change="setIndex(-1,true)">-->
+                        <!--<option  ng-repeat="quantity in quantities">{{quantity}}</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+
+
+                <div class="col-md-6" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
                         <md-select id="Quantity" ng-model="book.quantity" placeholder="Select Quantity"
                                    md-on-close="setIndex(-1,true)">
                             <md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>
@@ -197,15 +198,32 @@
                 <div>
                     <div ng-repeat="addon in package.Addons.data">
                         <div class="card">
+                            <!--<ion-checkbox ng-model="selectedaddons[$index].id;" value="{{addon.id}}" ng-change="setIndex($index,checked)">{{addon.name}}</ion-checkbox>-->
+                            <!--<p ng-if="!selectedaddons[$index].quantity">&#8377; {{addon.amount}}</p>-->
+                            <!--<p ng-if="selectedaddons[$index].quantity">&#8377; {{selectedaddons[$index].quantity * addon.amount}}</p>-->
+
+                            <!--<select ng-model="selectedaddons[$index].quantity" name="Quantity" ng-change="setIndex($index) ; checkAddon($index)">-->
+                                <!--<option  ng-repeat="quantity in new_quantities">{{quantity}}</option>-->
+                            <!--</select>-->
+
                             <div class="col-md-6 col-xs-6 checkbox-p p-r-0 col-sm-6">
-                                <div class="checkbox">
-                                    <label class="text-indent">
-                                        <input checklist-model="selectedaddons[$index].id;" checklist-value="addon.id"
-                                               ng-change="setIndex($index,checked)"
-                                               type="checkbox" class="md-checkbox">
-                                        <span class="checkbox-material"><span class="check"></span></span>
-                                        {{addon.name}}
-                                    </label>
+                                    <div class="checkbox">
+                                    <div class="row">
+                                        <div class="col-50">
+                                            <input type="checkbox" checklist-model="selectedaddons[$index].id;" checklist-value="addon.id" ng-change="setIndex($index,checked)">
+                                        </div>
+
+                                      <div class="col-50">
+                                      <p>{{addon.name}}</p>
+                                      </div>
+                                    </div>
+                                    <!--<label class="text-indent">-->
+                                        <!--<input checklist-model="selectedaddons[$index].id;" checklist-value="addon.id"-->
+                                               <!--ng-change="setIndex($index,checked)"-->
+                                               <!--type="checkbox" class="md-checkbox">-->
+                                        <!--<span class="checkbox-material"><span class="check"></span></span>-->
+                                        <!--{{addon.name}}-->
+                                    <!--</label>-->
                                 </div>
                             </div>
                             <div class="col-md-3 col-xs-3 p-r-0 col-sm-3"

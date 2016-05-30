@@ -1,4 +1,4 @@
-appControllers.controller('addressCtrl', function ($scope, $timeout,$state, $mdUtil,GetUserAddressService,
+appControllers.controller('addressCtrl', function ($scope, $timeout,$state,$mdToast, $mdUtil,GetUserAddressService,
                                                    ProfileService,$stateParams,$ionicPopup,deleteUserAddressService) {
     
     var access_token = window.localStorage['access_token'];
@@ -47,7 +47,17 @@ appControllers.controller('addressCtrl', function ($scope, $timeout,$state, $mdU
             if(res) {
                 deleteUserAddressService.delete_user_address(delete_id).then(function(data){
                     if(data.data.message == 'success'){
-                        alert("Address deleted successfully")
+                        $mdToast.show({
+                            controller: 'toastController',
+                            templateUrl: 'toast.html',
+                            hideDelay: 800,
+                            position: 'top',
+                            locals: {
+                                displayOption: {
+                                    title: 'Address deleted successfully.'
+                                }
+                            }
+                        });
                         $scope.$broadcast('addressListChanged', { message: 'Change in address list' });
 
                     }

@@ -97,7 +97,6 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                 }
             })
             .catch(function (response) {
-                console.log("Inside invalid credentials");
                 window.localStorage['access_token']=undefined;
                 $auth.logout();
                 $mdToast.show({

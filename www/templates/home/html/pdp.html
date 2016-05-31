@@ -7,172 +7,208 @@
     </ion-nav-bar>
 
     <ion-content id="product-detail-content">
-        <md-card id="product-detail-tab-detail" class="m-0">
+        <md-card id="product-detail-tab-detail" class="m-0 bg-c">
             <img src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
 
             <div>
                 <a class="md-button md-accent md-fab fab-toolbar-medium pdp-share" aria-label="showListBottomSheet"
                    ng-click="shareProduct($event)">
-                <i class="ion-android-share-alt"></i>
-            </a>
+                    <i class="ion-android-share-alt"></i>
+                </a>
 
             </div>
 
-            <md-card-content class="p-10">
-                <div class="row">
-                    <p class="pdp-pkg-title">{{package.name}}</p>
-                </div>
-                <div class="row">
-                    <div class="col-50">
-                        <p class="zolo-c f-18 w-400"><i class="fa fa-inr"></i>&nbsp; {{package.deal_price}}</p>
-                        <p class="text-c"><i class="fa fa-map-marker"></i>&nbsp;{{package.location[0].text}}</p>
+            <md-card-content class="p-0">
+                <div class="card m-10-0 p-10 m-t-n-30">
+                    <div class="row">
+                        <p class="pdp-pkg-title">{{package.name}}</p>
                     </div>
 
-                    <div class="col-50">
-                        <div class=" pdp-pkg-rating text-c">
-                            <p  ng-if="package.average_rating===1||package.average_rating>1"><i class="fa fa-star"></i></p>
+                    <div class="row">
+                        <div class="col-50">
+                            <p class="zolo-c f-18 w-400"><i class="fa fa-inr"></i>&nbsp;{{package.deal_price}}</p>
+                        </div>
 
-                            <p  ng-if="package.average_rating==0">No rating yet!</p>
-                            <p  ng-if="package.average_rating>1"><i class="fa fa-star"></i></p>
-                            <p  ng-if="package.average_rating>2"><i class="fa fa-star"></i></p>
-                            <p  ng-if="package.average_rating>3"><i class="fa fa-star"></i></p>
-                            <p  ng-if="package.average_rating>4"><i class="fa fa-star"></i></p>
+                        <div class="col-50">
+                            <div class=" pdp-pkg-rating text-c">
+
+                                <p  ng-if="package.average_rating===1||package.average_rating>1"><i class="fa fa-star"></i></p>
+                                <p  ng-if="package.average_rating==0">No rating yet!</p>
+                                <p  ng-if="package.average_rating>1"><i class="fa fa-star"></i></p>
+                                <p  ng-if="package.average_rating>2"><i class="fa fa-star"></i></p>
+                                <p  ng-if="package.average_rating>3"><i class="fa fa-star"></i></p>
+                                <p  ng-if="package.average_rating>4"><i class="fa fa-star"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-50">
+                            <p class="text-c"><i class="fa fa-map-marker"></i>&nbsp;{{package.location[0].text}}</p>
+                        </div>
+
+                        <div class="col-50">
+                            <p class="pull-right text-c" ng-click="openReviewModel()"> Reviews: {{package.reviews.data.length}}</p>
 
                         </div>
-                        <p class="pull-right text-c" ng-click="openReviewModel()"> Reviews: {{package.reviews.data.length}}</p>
                     </div>
                 </div>
 
+                <div class="card p-10 m-10-0" style="padding-bottom: 0!important;">
+                    <div class="row border-bottom p-0">
+                        <div class="col-33">
+                            <p class="f-13 text-c" ng-click="description_value()" ng-class="{'z-active':active_tab=='description'}">Description</p>
+                        </div>
 
-                <hr/>
+                        <div class="col-33">
+                            <p class="f-13 text-c" ng-click="package_summary()" ng-class="{'z-active':active_tab == 'p_summery'}">Package Summary</p>
+                        </div>
 
-                <div class="row">
-                    <div class="col-33">
-                        <p class="f-13 text-c" ng-click="description_value()">Description</p>
+                        <div class="col-33 text-center">
+                            <p class="f-13 text-c" ng-click="term_n_condition()" ng-class="{'z-active':active_tab=='term'}">T&C</p>
+                        </div>
+
+
                     </div>
 
-                    <div class="col-33 text-center">
-                        <p class="f-13 text-c" ng-click="package_summary()">Package Summary</p>
-                    </div>
-
-                    <div class="col-33 text-center">
-                        <p class="f-13 text-c" ng-click="term_n_condition()">T&C</p>
-                    </div>
-                </div>
-                <div ng-show="term_n_cond">
-                    <div class="card">
+                    <div ng-show="term_n_cond">
                         <p data-ng-bind-html="package.term_condition"></p>
-                    </div>
-                    <div class="card" ng-hide="package.term_condition.length">
-                        <p class="text-center">No term and condition found!</p>
-                    </div>
-                </div>
 
-                <div ng-show="des_value">
-                    <p class="text-c" ng-bind-html="package.description | limitTo: 400"></p>
+                        <div ng-hide="package.term_condition.length">
+                            <p class="text-center">No term and condition found!</p>
+                        </div>
 
-                    <p class="pull-left f-18 zolo-c" ng-click="full_desc(package.id)">More <i class="fa fa-plus-square-o"></i></p>
-                </div>
-                <br/>
-                <div class="card m-0" ng-show="pec_value">
-                    <div class="row">
-                        <div class="col">
-                            <i class="fa fa-star"></i> Ratings:
-                            <div class="col text-right grid-pdp">
-                                <div class="row">
-                            <span ng-if="package.average_rating===1||package.average_rating>1">
-                                <i class="fa fa-star"></i>
-                            </span>
-                                    <span ng-if="package.average_rating==0">No rating yet!</span>
-                                    <span ng-if="package.average_rating>1"><i class="fa fa-star"></i></span>
-                                    <span ng-if="package.average_rating>2"><i class="fa fa-star"></i></span>
-                                    <span ng-if="package.average_rating>3"><i class="fa fa-star"></i></span>
-                                    <span ng-if="package.average_rating>4"><i class="fa fa-star"></i></span>
+                    </div>
+                    <div ng-show="des_value">
+                        <p class="text-c m-t-5" ng-bind-html="package.description | limitTo: 400"></p>
+
+                        <p class="pull-left f-18 zolo-c" ng-click="full_desc(package.id)">More <i class="fa fa-plus-square-o"></i></p>
+                    </div>
+                    <br/>
+
+                    <div class="m-0" ng-show="pec_value">
+                        <div class="row">
+                            <div class="col-50 text-center">
+                                <div class="text-c"><i class="fa fa-star"></i>&nbsp;Ratings:
+
+                                    <span ng-if="package.average_rating===1||package.average_rating>1">
+                                <i class="fa fa-star"></i></span>
+                                    <div>
+                                        <span class="w-500" ng-if="package.average_rating==0">No rating yet!</span>
+                                        <span ng-if="package.average_rating>1"><i class="fa fa-star"></i></span>
+                                        <span ng-if="package.average_rating>2"><i class="fa fa-star"></i></span>
+                                        <span ng-if="package.average_rating>3"><i class="fa fa-star"></i></span>
+                                        <span ng-if="package.average_rating>4"><i class="fa fa-star"></i></span>
+                                    </div>
+                                </div>
+                                <!--<div class="col text-right grid-pdp">-->
+                                <!--<div class="row">-->
+
+                                <!--</div>-->
+                                <!--</div>-->
+                            </div>
+
+                            <div class="col-50 text-center">
+                                <div class="text-c"><i class="ion-navicon"></i>&nbsp;No. of Sales: </div>
+                                <div class="w-500">
+                                    {{package.seller_profile.sales.count}}
                                 </div>
                             </div>
+
                         </div>
-                        <div class="col">
-                            <i class="ion-navicon"></i> No. of Sales:
-                            <div class="row">
-                                {{package.seller_profile.sales.count}}
+
+
+                        <div class="row m-t-10 border-bottom">
+
+                            <div class="col-50 text-center">
+                                <div class="text-c"> <i class="ion-android-car"></i>&nbsp;Delivery:</div>
+                                <div class="w-500">{{package.delivery_time}}</div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <i class="ion-android-car"></i> Delivery:
-                            <div class="row">{{package.delivery_time}}</div>
-                        </div>
-                        <div class="col">
-                            <i class="ion-document"></i> Package Type:
-                            <div class="row">
-                                <b>{{package.PackagesTypes.data.name}}</b>
+
+                            <div class="col-50 text-center">
+                                <div class="text-c"> <i class="ion-document"></i>&nbsp;Package Type:</div>
+                                <div class="w-500">
+                                    {{package.PackagesTypes.data.name}}
+                                </div>
                             </div>
+
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><p class="text-center">Package Id:<b># {{package.id}}</b></p></div>
+
+
+                        <!--<div class="row">-->
+                        <p class="text-center p-10 m-0 text-c">Package Id:<b># {{package.id}}</b></p>
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--</div>-->
+
                     </div>
                 </div>
 
 
             </md-card-content>
 
-            <ion-list>
-                <ion-item class="p-10">
-                    <div class="row">
+            <!--<div class="card p-10 m-10-0">-->
+                <!--<div class="row border-bottom">-->
+                    <!--<div class="f-16">ADD ONS</div>-->
 
-                        <div class="col-50 border-right">
-                            <p ng-click="seller_Profile(package.id)">View Seller Profile</p>
-                        </div>
+                <!--</div>-->
 
-                        <div class="col-50">
-                            <i class="ion-heart pull-right" ng-click="add_wish_list(package.seller_profile.user_id,package.id)"></i>
-                        </div>
+            <!--</div>-->
 
+
+            <div class="card p-5 m-0">
+                <div class="row">
+
+                    <div class="col-50 border-right">
+                        <div class="text-c " ng-click="seller_Profile(package.id)">View Seller Profile</div>
                     </div>
-                </ion-item>
-            </ion-list>
 
-
-            <div class="row m-t-10 p-r-10 p-l-10">
-                <div class="col-75">
-                    <p>{{seller_info.length}} Other Packages by {{package.seller_name}}</p>
+                    <div class="col-50">
+                        <div class="pull-right text-c" ng-click="add_wish_list(package.seller_profile.user_id,package.id)">Wishlist&nbsp;<i class="fa fa-heart f-16" ></i></div>
+                    </div>
 
                 </div>
-
-                <div class="col-25">
-                    <p class="pull-right"><a href="">View All &nbsp;<i class="fa fa-angle-right"></i></a></p>
-                </div>
-
-
             </div>
 
+            <div class="card m-10-0">
+                <div class="row m-t-10 p-r-10 p-l-10 border-bottom">
+                    <div class="col-75">
+                        <p class="text-c">{{seller_info.length}} Other Packages by {{package.seller_name}}</p>
+
+                    </div>
+
+                    <div class="col-25">
+                        <p class="pull-right"><a href="">View All &nbsp;<i class="fa fa-angle-right"></i></a></p>
+                    </div>
 
 
-            <ion-scroll width="500px; height: 500px" direction="xy">
-                <div class="row" style="margin-top: -20px;">
-                    <div class="col-50 card" ng-repeat="seller_package_info in seller_info">
-                        <img style="width: 100%; height: 130px" ng-src="{{seller_package_info.first_photo}}">
-                        <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
+                </div>
 
-                        <div class="row">
-                            <div class="col-50 pull-left">
-                                <p class="text-c"><i class="ion-android-pin">&nbsp;{{seller_package_info.location[0].text}}</i></p>
+
+
+                <ion-scroll width="500px; height: 500px" direction="xy">
+                    <div class="row">
+                        <div class="col-50 card" ng-repeat="seller_package_info in seller_info">
+                            <img style="width: 100%; height: 130px" ng-src="{{seller_package_info.first_photo}}">
+                            <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
+
+                            <div class="row">
+                                <div class="col-50 pull-left">
+                                    <p class="text-c"><i class="ion-android-pin">&nbsp;{{seller_package_info.location[0].text}}</i></p>
+
+                                </div>
+
+                                <div class="col-50">
+                                    <p class="pull-right text-c">&#8377; {{seller_package_info.deal_price}}</p>
+
+                                </div>
 
                             </div>
-
-                            <div class="col-50">
-                                <p class="pull-right text-c">&#8377; {{seller_package_info.deal_price}}</p>
-
-                            </div>
-
                         </div>
                     </div>
-                </div>
-            </ion-scroll>
+                </ion-scroll>
 
-
+            </div>
 
             <div ng-show="booking_add_ons">
                 <b>YOUR PACKAGE</b>
@@ -226,7 +262,7 @@
                                     <!--</label>-->
                                 </div>
                             </div>
-                            <div class="col-md-3 col-xs-3 p-r-0 col-sm-3"
+                            <div class="col-75"
                                  ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
                                 <md-select id="Addon_Quantity" ng-model="selectedaddons[$index].quantity"
                                            placeholder="Select Quantity" ng-change="setIndex($index)"
@@ -287,9 +323,10 @@
             <a class="button button-royal f-18 line-height pdp-buy">Buy Now &#8377; {{package.deal_price}}</a>
         </div>
     </ion-footer-bar>
-    <ion-footer-bar ng-show="booking_add_ons" align-title="left" class="bar-assertive" style="background: none">
+
+    <ion-footer-bar ng-show="booking_add_ons" align-title="left" class="bar-assertive p-0" style="background: none">
         <div class="button-bar" ng-click="book_now_confirm()">
-            <a class="button button-royal f-18 line-height">Buy Now &#8377; {{amount_to_show}}</a>
+            <a class="button button-royal f-18 line-height pdp-buy">Buy Now &#8377; {{amount_to_show}}</a>
         </div>
     </ion-footer-bar>
 </ion-view>

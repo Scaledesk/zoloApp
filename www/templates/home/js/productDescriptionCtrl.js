@@ -173,12 +173,14 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         }
     });
     $scope.active_tab = 'description';
+
     $scope.description_value = function () {
         $scope.active_tab = 'description';
         $scope.des_value = true;
         $scope.pec_value = false;
         $scope.term_n_cond = false;
     };
+
     $scope.term_n_condition = function () {
         $scope.active_tab = 'term';
         $scope.des_value = false;
@@ -188,8 +190,9 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.full_desc = function(id){
         $state.go('app.full_description',{product_id:id});
     };
+
     $scope.package_summary = function(){
-        $scope.active_tab = 'description';
+        $scope.active_tab = 'p_summery';
         $scope.des_value = false;
         $scope.pec_value = true;
         $scope.term_n_cond = false;

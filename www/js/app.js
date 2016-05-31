@@ -444,7 +444,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/contactUs",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/contact_us/html/index.html"
+                        templateUrl: "templates/contact_us/html/index.html",
+                        controller:'contactCtrl'
                     }
                 }
             })

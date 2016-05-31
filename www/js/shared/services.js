@@ -595,3 +595,28 @@ angular.module('starter').factory('googleToken', function($http,$rootScope,$stat
         }
     }
 });
+
+angular.module('starter').factory('ContactService', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
+    return {
+        contact: function (data) {
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"api/contact",
+                data: data
+            }).
+            success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("status",status);
+                $rootScope.$broadcast('loading:hide');
+
+
+            });
+            return deffer.promise;
+        }
+    }
+});

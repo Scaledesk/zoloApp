@@ -5,6 +5,7 @@ appControllers.controller('homeCtrl', function ($scope, $timeout, $mdUtil,subCat
     $scope.filterText = '';
     
     $scope.search_result = function(){
+        console.log("111")
     if($scope.filterText){
     $state.go('app.search_info',{'search_text':$scope.filterText});
 

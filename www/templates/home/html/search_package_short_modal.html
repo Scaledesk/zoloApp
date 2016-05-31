@@ -33,11 +33,12 @@
         <div class="row p-0">
             <div class="col-20">
                 <ion-list>
-                    <ion-item class="p-17" ng-click="sorting_option()">
-                        Sort
+                    <ion-item class="p-7 text-center" ng-click="sorting_option()" ng-class="{'zolo-c':sorting_type=='sort'}">
+                      <i class="fa fa-long-arrow-up"></i> <i class="fa fa-long-arrow-down"></i><br> Sort
                     </ion-item>
-                    <ion-item class="p-17" ng-click="price_list_option()">
-                        Price
+                    <ion-item class="p-7 text-center" ng-click="price_list_option()" ng-class="{'zolo-c':sorting_type=='price'}">
+                        <i class="fa fa-inr"></i>
+                        <br>Price
                     </ion-item>
                 </ion-list>
             </div>

@@ -485,6 +485,9 @@ hr{
 .p-17{
     padding: 17px!important;
 }
+.p-7{
+    padding: 7px!important;
+}
 
 .m-10-0{
     margin: 10px 0!important;
@@ -514,3 +517,21 @@ hr{
     font-weight: 600!important;
 }
 
+
+.h-search{
+    width: 100%;
+    padding: 5px;
+    position: absolute;
+    left: 5px;
+}
+.p-l-30{
+    padding-left: 30px!important;
+}
+
+.border-c{
+    border-color: #765f89!important;
+}
+
+.align-img{
+    vertical-align: bottom;
+}

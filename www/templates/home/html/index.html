@@ -1,44 +1,56 @@
 <ion-view title="" back-button-hide="false">
-    <div class="container_size">
-            <md-input-container md-no-float="">
-                <input ng-model="filterText" id="name_2" placeholder="Type something..." ng-click="search_result()">
-            </md-input-container>
-    </div>
+    <ion-nav-title>
+        <!--<div class="text-center"><input type="search" placeholder="Search here.." class="h-search"><i class="fa fa-search"></i></div>-->
+        <md-input-container md-no-float="" class="md-list-item-full-width m-t-5">
+            <i class="fa fa-search h-search"></i>
+            <input ng-model="filterText" class="white-c p-l-30 f-14" placeholder="Search for Packages." ng-click="search_result()" style="border-color: #fff; position: relative;">
+        </md-input-container>
+    </ion-nav-title>
+    <!--<div class="container_size">-->
+        <!--<md-input-container md-no-float="">-->
+            <!--<input type="text" ng-model="filterText" id="name_2" placeholder="Type something..." ng-click="search_result()">-->
+        <!--</md-input-container>-->
+    <!--</div>-->
+
     <ion-nav-buttons side="right">
     </ion-nav-buttons>
     <ion-content id="restaurant" overflow-scroll="true">
         <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
+
             <ion-slide class="slide-01">
                 <!--<div class="content">-->
-                    <!--<h4>SUMMER SALE</h4>-->
+                <!--<h4>SUMMER SALE</h4>-->
 
-                    <!--<h1 class="off">40%</h1>-->
-                    <!--<p>OFF</p>-->
+                <!--<h1 class="off">40%</h1>-->
+                <!--<p>OFF</p>-->
 
                 <!--</div>-->
             </ion-slide>
+
             <ion-slide class="slide-02">
                 <!--<div class="content">-->
-                    <!--<h1>-->
-                        <!--Bread Hour-->
-                    <!--</h1>-->
+                <!--<h1>-->
+                <!--Bread Hour-->
+                <!--</h1>-->
 
-                    <!--<p>-->
-                        <!--90% Off Now!!-->
-                    <!--</p>-->
+                <!--<p>-->
+                <!--90% Off Now!!-->
+                <!--</p>-->
                 <!--</div>-->
             </ion-slide>
+
             <ion-slide class="slide-03">
                 <!--<div class="content">-->
-                    <!--<h1>-->
-                        <!--CupCake Festival-->
-                    <!--</h1>-->
+                <!--<h1>-->
+                <!--CupCake Festival-->
+                <!--</h1>-->
 
-                    <!--<p>-->
-                        <!--50% Off Friday-->
-                    <!--</p>-->
+                <!--<p>-->
+                <!--50% Off Friday-->
+                <!--</p>-->
                 <!--</div>-->
             </ion-slide>
+
         </ion-slide-box>
 
 
@@ -47,9 +59,9 @@
              ng-if="((category.id == 10) || (category.id == 14) || (category.id == 15) || (category.id == 32) || (category.id == 44) || (category.id == 63) || (category.id == 77))">
             <div class="row" style="border-bottom: 1px solid #eee;">
                 <div class="col-75 content p-0-10">
-                        <p class="w-100 m-t-10 f-18 " style="text-transform: uppercase;">
-                            {{category.name}}
-                        </p>
+                    <p class="w-100 m-t-10 f-18 " style="text-transform: uppercase;">
+                        {{category.name}}
+                    </p>
                 </div>
 
                 <div class="col-25 content">
@@ -60,14 +72,15 @@
                 </div>
             </div>
 
-            <ion-scroll  width="500px; height: 500px" direction="xy" scroll="false" class="m-t-10" >
+            <ion-scroll  width="500px; height: 500px" direction="xy" scroll="true" class="m-t-10" >
+
                 <div class="row">
                     <div class="col-50" ng-repeat="subCategory_detail in category.subCategory.data">
                         <figure class="text-center">
-                        <img style="width: 150px; height: 130px" ng-src="{{subCategory_detail.image}}"  ng-click="getPackages(subCategory_detail.id)">
+                            <img style="width: 150px; height: 130px" ng-src="{{subCategory_detail.image}}"  ng-click="getPackages(subCategory_detail.id)">
 
 
-                        <figcaption>{{subCategory_detail.name}}</figcaption>
+                            <figcaption>{{subCategory_detail.name}}</figcaption>
                         </figure>
                     </div>
                 </div>

@@ -23,7 +23,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     $scope.productDescription = function (id) {
         $state.go('app.product_desc', {'product_id': id})
     };
-
+    $scope.sorting_type = 'sort';
     $scope.filter_clear = function(){
         $scope.filter.price1 = '';
         $scope.filter.price2 = '';
@@ -47,11 +47,13 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     };
 
     $scope.price_list_option = function () {
+        $scope.sorting_type = 'price';
         $scope.sort_by = false;
         $scope.price_list = true;
         $scope.sorting_value = false;
     };
     $scope.sorting_option = function () {
+        $scope.sorting_type = 'sort';
         $scope.sort_by = true;
         $scope.price_list = false;
         $scope.sorting_value = true;

@@ -24,6 +24,8 @@ appControllers.controller('subCategoryCtrl', function ($scope, $timeout,subCateg
     // $ionicSideMenuDelegate.canDragContent(true);
     subCategoryListService.getSubCategoryWithId($stateParams.cat_id).then(function(data){
         $scope.sub_catagery_list = data.data.data;
+
+        console.log("sub category",JSON.stringify($scope.sub_catagery_list));
     });
 
     $scope.getPackages = function(id){

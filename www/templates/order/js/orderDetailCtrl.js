@@ -1,11 +1,8 @@
-appControllers.controller('paymentSuccessCtrl', function ($scope, $timeout, $mdUtil,$location,orderDetailService,
+appControllers.controller('oderDetailCtrl', function ($scope, $timeout, $mdUtil,orderDetailService,
                                                        $mdSidenav,$stateParams, $log, $ionicHistory, $state,$stateParams) {
 
-    var booking_id = $location.search().booking_id;
 
-    console.log("gvsgv",booking_id);
-
-    orderDetailService.get_order_detail(booking_id).then(function(data){
+    orderDetailService.get_order_detail($stateParams.order_id).then(function(data){
         console.log("detail",JSON.stringify(data));
         $scope.order_detail = data.data.data;
 
@@ -16,6 +13,5 @@ appControllers.controller('paymentSuccessCtrl', function ($scope, $timeout, $mdU
     })
 
 });
-
 
 

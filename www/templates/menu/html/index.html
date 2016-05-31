@@ -24,6 +24,10 @@
                     <i class="fa fa-tags" aria-hidden="true"></i>
                     &nbsp;Category
                 </ion-item>
+                <ion-item menu-close href="#/app/order_list" ng-show="!login_value">
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                    &nbsp;Your orders
+                </ion-item>
 
                 <ion-item menu-close ng-show="login_value" ng-click="login_options()">
                     <i class="fa fa-user" aria-hidden="true"></i>

@@ -546,6 +546,28 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.order_list', {
+                url: "/order_list",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/order/html/index.html",
+                        controller:'oderListCtrl'
+                    }
+                }
+            })
+            .state('app.order_detail', {
+                url: "/order_detail/:order_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/order/html/detail.html",
+                        controller:'oderDetailCtrl'
+                    },
+                    resolve: {
+                        order_id: function($stateParams) {
+                        }
+                    }
+                }
+            })
             
             .state('app.full_description', {
                 url: "/full_description/:product_id",

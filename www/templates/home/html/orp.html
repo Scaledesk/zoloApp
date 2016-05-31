@@ -12,7 +12,6 @@
                     <!--<ion-checkbox ng-model="isChecked" class="m-l-negative"><p class="m-l-negative" ng-bind-html="orp_result.package_title"></p></ion-checkbox>-->
 
                     <p>{{orp_result.package_title}}</p>
-                    <p>QTY&nbsp;:{{orp_result.quantity}}</p>
 
 
 <!--<<<<<<< HEAD-->
@@ -32,6 +31,17 @@
 
                 <div class="col-25">
                    <p class="zolo-c f-18"><i class="fa fa-inr"></i>&nbsp; {{orp_result.price}}</p>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-75">
+                    <p>QTY&nbsp;:{{orp_result.quantity}}</p>
+
+                </div>
+
+                <div class="col-25">
                     <p class="text-c">Del: {{orp_result.package_delivery_time}} Days</p>
 
                 </div>
@@ -67,7 +77,7 @@
                 </div>
 
                 <div class="col-50">
-                    <p class="text-right f-18 w-500">&#8377; {{orp_result.total_price}}</p>
+                    <p class="text-right f-18 w-500 zolo-c">&#8377; {{orp_result.total_price}}</p>
 
                 </div>
 
@@ -78,7 +88,7 @@
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-assertive p-0">
         <div class="button-bar" ng-click="add_address()">
-            <a class="button button-royal f-18 line-height pdp-buy">CONTINUE TO PAYMENT</a>
+            <a class="button button-royal f-18 line-height pdp-buy border-c">CONTINUE TO PAYMENT</a>
         </div>
     </ion-footer-bar>
 </ion-view>

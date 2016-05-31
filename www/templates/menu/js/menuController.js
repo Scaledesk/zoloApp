@@ -1,6 +1,6 @@
 appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,
                                                $ionicSideMenuDelegate,$window,subCategoryService) {
-    console.log("ggg");
+   
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
@@ -10,7 +10,6 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     $scope.$on('logged_in', function (event, args) {
         $scope.message = args.message;
         $scope.login_value = false;
-        console.log("on");
     });
 
 
@@ -19,7 +18,6 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     };
     $scope.access_token = window.localStorage['access_token'];
 
-    console.log("dddd",$scope.access_token);
 
     $scope.logOut = function(){
         var confirmPopup = $ionicPopup.confirm({

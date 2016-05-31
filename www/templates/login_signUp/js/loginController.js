@@ -90,7 +90,8 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                         $ionicHistory.nextViewOptions({
                             disableBack: true
                         });
-                        $state.go('app.home');
+                        // $state.reload('app.home');
+                        $state.go('app.home', null, {reload:true});
                     }
 
                 }

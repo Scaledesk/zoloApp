@@ -319,6 +319,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
               .state('app.home', {
                 url: "/home",
+                  cache:false,
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/index.html",
@@ -406,6 +407,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             })
             .state('app.address', {
                 url: "/address",
+                cache:false,
                 views: {
                     'menuContent': {
                         templateUrl: "templates/address/html/index.html",

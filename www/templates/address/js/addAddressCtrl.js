@@ -44,7 +44,7 @@ appControllers.controller('addAddressCtrl', function ($scope, $timeout,$state, $
                                 }
                             }
                         });
-                        $state.go('app.address');
+                        $state.go('app.address', null, {reload:true});
                     }
                     else{
                         $mdToast.show({

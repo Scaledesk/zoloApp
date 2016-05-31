@@ -1,5 +1,5 @@
 appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, $mdUtil,GetUserAddressService,
-                                                      editUserAddressService,$stateParams,$mdToast) {
+                                                      editUserAddressService,$rootScope,$stateParams,$mdToast) {
 
     var access_token = window.localStorage['access_token'];
     
@@ -47,8 +47,8 @@ appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, 
                                 }
                             }
                         });
-                        $scope.$broadcast('addressListChanged', { message: 'Change in address list' });
-                        $state.go('app.address');
+                        $rootScope.$broadcast('addressListChanged', { message: 'Change in address list' });
+                        $state.go('app.address', null, {reload:true});
 
                     }
                     else{

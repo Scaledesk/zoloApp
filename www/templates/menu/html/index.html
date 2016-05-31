@@ -24,10 +24,17 @@
                     <i class="fa fa-tags" aria-hidden="true"></i>
                     &nbsp;Category
                 </ion-item>
-                <ion-item menu-close href="#/app/optional_index" ng-hide="access_token">
+                <!--<ion-item menu-close href="#/app/optional_index" ng-hide="access_token">-->
+                    <!--<i class="fa fa-user" aria-hidden="true"></i>-->
+                    <!--&nbsp;  Login/SignUp{{access_token}}-->
+                <!--</ion-item>-->
+
+                <ion-item menu-close ng-hide="access_token" ng-click="login_options()">
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    &nbsp;  Login/SignUp
+                    &nbsp;  Login/SignUp{{login.val}}
                 </ion-item>
+
+
                 <ion-item menu-close href="#/app/aboutUs">
                     <i class="icon ion-about"></i>
                     <i class="fa fa-user" aria-hidden="true"></i>

@@ -1,5 +1,6 @@
 appControllers.controller('addressCtrl', function ($scope, $timeout,$state,$mdToast, $mdUtil,GetUserAddressService,
-                                                   ProfileService,$stateParams,$ionicPopup,deleteUserAddressService) {
+                                                   ProfileService,$stateParams,$ionicPopup,
+                                                   deleteUserAddressService,$rootScope) {
     
     var access_token = window.localStorage['access_token'];
 
@@ -58,7 +59,8 @@ appControllers.controller('addressCtrl', function ($scope, $timeout,$state,$mdTo
                                 }
                             }
                         });
-                        $scope.$broadcast('addressListChanged', { message: 'Change in address list' });
+                        $rootScope.$broadcast('addressListChanged', { message: 'Change in address list' });
+                        $state.go('app.address', null, {reload:true});
 
                     }
                 });

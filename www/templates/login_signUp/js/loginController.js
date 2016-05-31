@@ -91,6 +91,7 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                             disableBack: true
                         });
                         // $state.reload('app.home');
+                        $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                         $state.go('app.home', null, {reload:true});
                     }
 

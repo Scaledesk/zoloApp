@@ -4,22 +4,21 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
-    // $scope.$on('logout', function (event, args) {
-    //  $state.go('app.home');
-    // });
-    $scope.login={
-        val:true
-    };
+
+    $scope.login_value = true;
+
+    $scope.$on('logged_in', function (event, args) {
+        $scope.message = args.message;
+        $scope.login_value = false;
+        console.log("on");
+    });
 
 
     $scope.login_options = function(){
         $state.go('app.optional_index');
     };
     $scope.access_token = window.localStorage['access_token'];
-    
-    if($scope.access_token!=''){
-        $scope.login.val = false;
-    }
+
     console.log("dddd",$scope.access_token);
 
     $scope.logOut = function(){

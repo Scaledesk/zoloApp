@@ -24,14 +24,10 @@
                     <i class="fa fa-tags" aria-hidden="true"></i>
                     &nbsp;Category
                 </ion-item>
-                <!--<ion-item menu-close href="#/app/optional_index" ng-hide="access_token">-->
-                    <!--<i class="fa fa-user" aria-hidden="true"></i>-->
-                    <!--&nbsp;  Login/SignUp{{access_token}}-->
-                <!--</ion-item>-->
 
-                <ion-item menu-close ng-hide="access_token" ng-click="login_options()">
+                <ion-item menu-close ng-show="login_value" ng-click="login_options()">
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    &nbsp;  Login/SignUp{{login.val}}
+                    &nbsp;  Login/SignUp{{login_value}}
                 </ion-item>
 
 
@@ -51,7 +47,7 @@
                     <i class="fa fa-lock" aria-hidden="true"></i>
                     &nbsp;  Privacy Policy
                 </ion-item>
-                <ion-item menu-close ng-if="access_token" ng-click="logOut()">
+                <ion-item menu-close ng-show="!login_value" ng-click="logOut()">
                     <i class="fa fa-lock" aria-hidden="true"></i>
                     &nbsp; LogOut
                 </ion-item>

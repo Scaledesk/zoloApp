@@ -15,10 +15,10 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     var index = client.initIndex('candybrush_packages');
 
     $scope.filter = {price: false};
-    packagesService.getPackagesList($stateParams.sub_cat_id).then(function (data) {
-        $scope.packages_list = data.data.data;
-        $scope.packages = $scope.packages_list.Packages.data;
-    });
+    // packagesService.getPackagesList($stateParams.sub_cat_id).then(function (data) {
+    //     $scope.packages_list = data.data.data;
+    //     $scope.packages = $scope.packages_list.Packages.data;
+    // });
 
     $scope.productDescription = function (id) {
         $state.go('app.product_desc', {'product_id': id})
@@ -92,7 +92,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
             }else {
                 stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
             }
-
+            stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
             index.search(
                 "", {
                     hitsPerPage: 5,
@@ -125,6 +125,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                 }else {
                     stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
                 }
+                stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
                 index.search(
                     "", {
                         hitsPerPage: 5,
@@ -154,7 +155,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         }
 
     };
-    // $scope.search_packages(stringFilter,false);
+     $scope.search_packages(stringFilter,false);
     
     $scope.filter_apply = function (filter) {
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
@@ -167,7 +168,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         }else {
             stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
         }
-
+        stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
                 hitsPerPage: 5,
@@ -208,7 +209,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         }else {
             stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
         }
-
+        stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
                 hitsPerPage: 5,
@@ -242,7 +243,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         }else {
             stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
         }
-
+        stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
                 hitsPerPage: 5,
@@ -276,7 +277,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         }else {
             stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
         }
-
+        stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
                 hitsPerPage: 5,

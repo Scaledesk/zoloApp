@@ -1,3 +1,9 @@
-/**
- * Created by sonam on 23/5/16.
- */
+appControllers.controller('paymentSuccessCtrl', function ($scope, $timeout, $mdUtil,$location,
+                                                       $mdSidenav,$stateParams, $log, $ionicHistory, $state,$stateParams) {
+
+ 
+
+});
+
+
+

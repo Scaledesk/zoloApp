@@ -224,7 +224,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                 console.log("info",JSON.stringify(info))
                 window.localStorage['id'] = info.id;
                 window.localStorage['booking_id'] = info.booking_id;
-                $state.go('app.orp');
+                $state.go('app.orp',{booking_id:info.booking_id,t_id:info.id});
             });
             console.log("1");
         }

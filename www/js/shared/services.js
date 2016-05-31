@@ -620,3 +620,27 @@ angular.module('starter').factory('ContactService', function($http,$rootScope,$s
         }
     }
 });
+
+angular.module('starter').factory('generateNewTransactionService', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
+    return {
+        transaction_generate: function (trans_id) {
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"api/createNewTransaction/"+trans_id
+            }).
+            success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("status",status);
+                $rootScope.$broadcast('loading:hide');
+
+
+            });
+            return deffer.promise;
+        }
+    }
+});

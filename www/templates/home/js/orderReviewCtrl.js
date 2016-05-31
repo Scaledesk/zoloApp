@@ -1,5 +1,8 @@
 appControllers.controller('orderReviewCtrl', function ($scope, $timeout,$state, $mdUtil,OrderReviewService) {
   
+
+
+
   var id =  window.localStorage['id'];
   var booking_id = window.localStorage['booking_id'];
   $scope.isChecked = true;

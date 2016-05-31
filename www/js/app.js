@@ -521,7 +521,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/payment_success",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/home/html/payment_success.html"
+                        templateUrl: "templates/home/html/payment_success.html",
+                        controller:'paymentSuccessCtrl'
                     }
                 }
             })
@@ -530,7 +531,9 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/payment_fail",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/home/html/payment_fail.html"
+                        templateUrl: "templates/home/html/payment_fail.html",
+                        controller:'paymentFailCtrl'
+                        
                     }
                 }
             })

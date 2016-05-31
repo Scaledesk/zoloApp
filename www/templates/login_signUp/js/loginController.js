@@ -11,7 +11,6 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
     var product_id = window.localStorage['pro_id'];
   
     $scope.login = function () {
-        console.log("in side login function")
         if ($scope.user.email == undefined || $scope.user.email == '') {
             $mdToast.show({
                 controller: 'toastController',
@@ -67,9 +66,9 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
     $scope.get_token = function(user){
         $auth.login(user)
             .then(function (response) {
-                console.log("response",JSON.stringify(response));
-                
                 if(response.status == '200'){
+                    // $scope.$broadcast('logout', {message: 'log out'});
+
                     window.localStorage['access_token']=response.data.access_token;
                     $mdToast.show({
                         controller: 'toastController',

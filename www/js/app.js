@@ -322,7 +322,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/index.html",
-                        controller: "homeCtrl"
+                        controller: "MenuCtrl"
                     }
                 }
             })

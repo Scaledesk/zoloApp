@@ -1,5 +1,5 @@
-appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,
-                                               $ionicSideMenuDelegate,$window) {
+appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,
+                                               $ionicSideMenuDelegate,$window,subCategoryService) {
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
@@ -17,8 +17,10 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         confirmPopup.then(function(res) {
             if(res) {
                 window.localStorage['access_token'] ='';
-                // $window.location.reload();
-                $state.reload('app.home');
+                window.localStorage['pro_id'] ='';
+                window.localStorage['orp_page'] = '';
+                $window.location.reload();
+                // $state.reload('app.home');
                 // $scope.$broadcast('logout', {message: 'log out'});
                 $mdToast.show({
                     controller: 'toastController',
@@ -36,6 +38,28 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                 console.log('You are not sure');
             }
         });
+    };
+
+
+    $scope.filterText = '';
+
+    $scope.search_result = function(){
+        if($scope.filterText){
+            $state.go('app.search_info',{'search_text':$scope.filterText});
+
+        }
+    };
+
+
+    subCategoryService.getSubCategory().then(function(data){
+        $scope.category_n_sub_catagery_list = data.data.data;
+    });
+
+    $scope.allSubcategory = function(id){
+        $state.go('app.subCategory',{'cat_id':id});
+    };
+    $scope.getPackages = function(id){
+        $state.go('app.package_list',{'sub_cat_id':id});
     }
 });
 

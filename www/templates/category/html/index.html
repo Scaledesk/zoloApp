@@ -7,7 +7,7 @@
             </ion-slide>
         </ion-slide-box>
         <ion-list>
-            <ion-item class="p-0" ng-repeat="category in categories"  ng-click="allSubcategory(category.id)" ng-if="((category.id == 10) || (category.id == 14) || (category.id == 15) || (category.id == 32) || (category.id == 44) || (category.id == 63) || (category.id == 77))">
+            <ion-item class="p-0" ng-repeat="category in categories"  ng-click="allSubcategory(category.id)" ng-if="category.id != 13 && category.parent_id == null">
                 <a class="item">
                     <i ng-if="category.name =='Business'"  class="fa fa-briefcase"></i>
                     <i ng-if="category.name =='Digital'" class="fa laptop"></i>

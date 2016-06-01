@@ -8,14 +8,20 @@
 
     <ion-content id="product-detail-content">
         <md-card id="product-detail-tab-detail" class="m-0 bg-c">
-            <img src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
-
+            <img ng-if="package.photos.data.length=='1'" src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
+            <img ng-if="package.photos.data.length=='0'" src="http://www.imzolo.com/global/images/dummy.png" class="md-card-image" alt="Card image">
+            <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0" ng-if="package.photos.data.length >'1'" >
+                <ion-slide ng-repeat="image_list in package.photos.data">
+                    <img ng-src="{{image_list.url}}">
+                    <button ng-click="nextSlide()">Next slide!</button>
+                    <button ng-click="prevSlide()">Previous slide!</button>
+                </ion-slide>
+            </ion-slide-box>
             <div>
                 <a class="md-button md-accent md-fab fab-toolbar-medium pdp-share" aria-label="showListBottomSheet"
                    ng-click="shareProduct($event)">
                     <i class="ion-android-share-alt"></i>
                 </a>
-
             </div>
 
             <md-card-content class="p-0">

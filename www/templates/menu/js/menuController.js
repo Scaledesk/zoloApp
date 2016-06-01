@@ -1,23 +1,29 @@
-appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,
+appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,profileService,
                                                $ionicSideMenuDelegate,$window,subCategoryService) {
    
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
 
+    $scope.access_token = window.localStorage['access_token'];
+
+    // get_profile
+
     $scope.login_value = true;
 
     $scope.$on('logged_in', function (event, args) {
         $scope.message = args.message;
         $scope.login_value = false;
+        profileService.get_profile($scope.access_token).then(function(data){
+            $scope.profile = data.data.data;
+            console.log("my profile, data",JSON.stringify(data));
+        })
     });
 
 
     $scope.login_options = function(){
         $state.go('app.optional_index');
     };
-    $scope.access_token = window.localStorage['access_token'];
-
 
     $scope.logOut = function(){
         var confirmPopup = $ionicPopup.confirm({

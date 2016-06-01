@@ -35,7 +35,10 @@
                     <i class="fa fa-tags" aria-hidden="true"></i>
                     &nbsp;Your orders
                 </ion-item>
-
+                <ion-item menu-close href="#/app/profile" ng-show="!login_value">
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                    &nbsp;Hi,{{profile.name}}
+                </ion-item>
 
                 <ion-item menu-close ng-show="login_value" ng-click="login_options()">
                     <div>

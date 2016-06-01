@@ -663,6 +663,10 @@ angular.module('starter').factory('orderListService', function($http,$q,$rootSco
     }
 });
 
+
+
+
+
 angular.module('starter').factory('orderDetailService', function($http,$q,$rootScope,serverConfig){
     return {
         get_order_detail:function(id){
@@ -671,6 +675,27 @@ angular.module('starter').factory('orderDetailService', function($http,$q,$rootS
             return $http({
                 method:"get",
                 url:serverConfig.address+"api/booking/"+id
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("data",JSON.stringify(data))
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+angular.module('starter').factory('profileService', function($http,$q,$rootScope,serverConfig){
+    return {
+        get_profile:function(access_token){
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+'api/myProfile?access_token='+access_token
             }).success(function(data, status, headers, config) {
                 deffer.resolve(data);
                 $rootScope.$broadcast('loading:hide');

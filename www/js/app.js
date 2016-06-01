@@ -555,6 +555,15 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.profile', {
+                url: "/profile",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/profile/html/index.html",
+                        controller:'profileCtrl'
+                    }
+                }
+            })
             .state('app.order_detail', {
                 url: "/order_detail/:order_id",
                 views: {

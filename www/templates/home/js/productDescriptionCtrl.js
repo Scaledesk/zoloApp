@@ -1,7 +1,7 @@
 appControllers.controller('productDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory, 
                                                               $state,$stateParams,addWishList, $mdToast,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,
-                                                              SellerProfileService,$timeout) {
+                                                              SellerProfileService,$timeout,$ionicSlideBoxDelegate) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -18,6 +18,14 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     };
    $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
    $scope.new_quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+
+    $scope.nextSlide = function() {
+        $ionicSlideBoxDelegate.next();
+    };
+    $scope.prevSlide = function() {
+        $ionicSlideBoxDelegate.previous();
+    };
+    
    // $scope.new_quantities = [
    //     {id:'1',value:'1'},
    //     {id:'2',value:'2'},
@@ -149,9 +157,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                     }
                 });
             }
-            console.log("data",JSON.stringify(data));
         });
-        console.log("1",id_user,p_id);
     };
     
     productService.getProductDescription($stateParams.product_id).then(function(data){
@@ -159,8 +165,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         $scope.paddons =  $scope.package.Addons.data;
         $scope.amount_to_show = $scope.package.deal_price;
         
-        console.log('paddons',JSON.stringify($scope.paddons))
-
          booking_info = {
             quantity:$scope.book.quantity,
              package_id:$scope.package.id,

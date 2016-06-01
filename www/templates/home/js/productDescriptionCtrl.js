@@ -25,7 +25,10 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.prevSlide = function() {
         $ionicSlideBoxDelegate.previous();
     };
-    
+$scope.slideIndex = 0;
+    $scope.slideChanged = function(index) {
+        $scope.slideIndex = index;
+    };
    // $scope.new_quantities = [
    //     {id:'1',value:'1'},
    //     {id:'2',value:'2'},
@@ -242,14 +245,16 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         }
     };
 
-    $scope.shareProduct = function ($event) {
+    $scope.shareProduct = function ($event,name,image,slug_url) {
         $mdBottomSheet.show({
             templateUrl: 'bottom-sheet-shared.html',
             controller: 'sharedSocialBottomSheetCtrl',
-            targetEvent: $event
-            // locals: {
-            //     product: product
-            // }
+            targetEvent: $event,
+            locals: {
+                slug_url: slug_url,
+                image:image,
+                name:name
+            }
         });
     };
 });

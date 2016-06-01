@@ -1,9 +1,9 @@
-appControllers.controller('sharedSocialBottomSheetCtrl', function ($scope, $mdBottomSheet, $timeout,
-                                                                   $mdToast, $cordovaSocialSharing) {
+appControllers.controller('sharedSocialBottomSheetCtrl', function ($scope, $mdBottomSheet, $timeout,slug_url,image,
+                                                                   $mdToast, $cordovaSocialSharing,name) {
 
-    $scope.name = 'sonam';
+    $scope.url = 'www.imzolo.com/package/'+slug_url;
     $scope.sharedFacebook = function () {
-        $cordovaSocialSharing.shareViaFacebook('hi sonam this side',null, 'https://www.thepolyglotdeveloper.com').then(function(result) {
+        $cordovaSocialSharing.shareViaFacebook(name,null,$scope.url).then(function(result) {
             console.log("result",JSON.stringify(result))
         }, function(err) {
             console.log("err",JSON.stringify(err))
@@ -15,11 +15,11 @@ appControllers.controller('sharedSocialBottomSheetCtrl', function ($scope, $mdBo
 
 
     $scope.sharedTwitter = function () {
-        $cordovaSocialSharing.shareViaTwitter("hi sonam this side");
+        $cordovaSocialSharing.shareViaTwitter(name+' @Zolo_Official',image, $scope.url);
         $mdBottomSheet.hide();
     };
     $scope.sharedMail = function () {
-        $cordovaSocialSharing.shareViaEmail(" ", "Shopping with ionic meterial", "ionicmaterialdesign@gmail.com", "cc@IonicMeterial.com", "bcc@IonicMeterial.com");
+        $cordovaSocialSharing.shareViaEmail(name, "Find this package on zolo "+ $scope.url, null,null,null,image);
         $mdBottomSheet.hide();
     };
     $scope.sharedMore = function () {
@@ -29,7 +29,7 @@ appControllers.controller('sharedSocialBottomSheetCtrl', function ($scope, $mdBo
     
     $scope.sharedWhatsApp = function(){
         $cordovaSocialSharing
-            .shareViaWhatsApp("hi sonam this side")
+            .shareViaWhatsApp(name,image, $scope.url)
             .then(function(result) {
                 // Success!
             }, function(err) {

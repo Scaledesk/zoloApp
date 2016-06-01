@@ -637,8 +637,6 @@ angular.module('starter').factory('generateNewTransactionService', function($htt
             error(function(data, status, headers, config) {
                 console.log("status",status);
                 $rootScope.$broadcast('loading:hide');
-
-
             });
             return deffer.promise;
         }
@@ -658,7 +656,6 @@ angular.module('starter').factory('orderListService', function($http,$q,$rootSco
                 $rootScope.$broadcast('loading:hide');
             }).
             error(function(data, status, headers, config) {
-                console.log("data",JSON.stringify(data))
                 $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;

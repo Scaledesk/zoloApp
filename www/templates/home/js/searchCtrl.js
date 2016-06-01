@@ -9,29 +9,26 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
     var index = client.initIndex('candybrush_packages');
 
-    $scope.search_packages = function(filterText,load_option){
 
+
+    $scope.search_packages = function(filterText,load_option){
+    console.log("filterText",filterText,load_option)
         if(load_option == false){
+            console.log("inside if")
             index.search(
                 filterText, {
                     hitsPerPage: 5,
                     facets: '*',
                     maxValuesPerFacet: 10
-                },
-                searchCallback
-            );
-
-            function searchCallback(err, content) {
-                if (err) {
-                    console.error(err);
-                    return;
+                }).then(
+                function(content){
+                            $scope.packages = content.hits;
+                            $scope.total_page=content.nbPages;
+                            $scope.current_page=content.page;
                 }
-                else{
-                    $scope.packages = content.hits;
-                    $scope.total_page=content.nbPages;
-                    $scope.current_page=content.page;
-                }
-            }
+            ).catch(function (error) {
+                console.log("error",error);
+            });
 
         }
         else{
@@ -42,29 +39,23 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                         facets: '*',
                         maxValuesPerFacet: 10,
                         page:++$scope.current_page
-                    },
-                    searchCallback
-                );
-
-                function searchCallback(err, content) {
-                    if (err) {
-                        console.error(err);
-                        return;
-                    }
-                    else{
+                    }).then(
+                    function(content){
                         angular.forEach(content.hits,function(obj){
                             $scope.packages.push(obj);
 
                         });
                     }
-                }
+                ).catch(function (error) {
+                    console.log("error",error);
+                });
             }
             return;
-
         }
-
     };
+
     $scope.search_packages($scope.filterText,false);
+
 
     $scope.load_more = function(){
         $scope.search_packages($scope.filterText,true);
@@ -144,21 +135,31 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
-            },
-            searchCallback
-        );
+            }).then(
+            function(content){
+                $scope.packages = content.hits;
+                $scope.closeSortAndFilterModal();
 
-        function searchCallback(err, content) {
-            if (err) {
-                console.error(err);
-                return;
+                console.log(JSON.stringify($scope.packages));
             }
-            $scope.packages = content.hits;
-            $scope.closeSortAndFilterModal();
-
-            console.log(JSON.stringify($scope.packages));
-
-        }
+        ).catch(function (error) {
+            console.log("error",error);
+        });
+        // ,
+        //     searchCallback
+        // );
+        //
+        // function searchCallback(err, content) {
+        //     if (err) {
+        //         console.error(err);
+        //         return;
+        //     }
+        //     $scope.packages = content.hits;
+        //     $scope.closeSortAndFilterModal();
+        //
+        //     console.log(JSON.stringify($scope.packages));
+        //
+        // }
 
     };
     $scope.pricehtol = function (filter) {
@@ -178,21 +179,16 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
-            },
-            searchCallback
-        );
+            }).then(
+            function(content){
+                $scope.packages = content.hits;
+                $scope.closeSortAndFilterModal();
 
-        function searchCallback(err, content) {
-            if (err) {
-                console.error(err);
-                return;
+                console.log(JSON.stringify($scope.packages));
             }
-            $scope.packages = content.hits;
-            $scope.closeSortAndFilterModal();
-
-            console.log(JSON.stringify($scope.packages));
-
-        }
+        ).catch(function (error) {
+            console.log("error",error);
+        });
 
     };
     $scope.priceltoh = function (filter) {
@@ -212,21 +208,17 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
-            },
-            searchCallback
-        );
+            }).then(
+            function(content){
+                $scope.packages = content.hits;
+                $scope.closeSortAndFilterModal();
 
-        function searchCallback(err, content) {
-            if (err) {
-                console.error(err);
-                return;
+                console.log(JSON.stringify($scope.packages));
             }
-            $scope.packages = content.hits;
-            $scope.closeSortAndFilterModal();
-
-            console.log(JSON.stringify($scope.packages));
-
-        }
+        ).catch(function (error) {
+            console.log("error",error);
+        });
+           
 
     };
     $scope.newfirst = function (filter) {
@@ -246,21 +238,16 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
-            },
-            searchCallback
-        );
+            }).then(
+            function(content){
+                $scope.packages = content.hits;
+                $scope.closeSortAndFilterModal();
 
-        function searchCallback(err, content) {
-            if (err) {
-                console.error(err);
-                return;
+                console.log(JSON.stringify($scope.packages));
             }
-            $scope.packages = content.hits;
-            $scope.closeSortAndFilterModal();
-            console.log(JSON.stringify($scope.packages));
-
-        }
-
+        ).catch(function (error) {
+            console.log("error",error);
+        });
     };
 
     $scope.addPrice = function (initial, final) {

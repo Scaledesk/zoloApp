@@ -15,10 +15,9 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     var index = client.initIndex('candybrush_packages');
 
     $scope.filter = {price: false};
-    // packagesService.getPackagesList($stateParams.sub_cat_id).then(function (data) {
-    //     $scope.packages_list = data.data.data;
-    //     $scope.packages = $scope.packages_list.Packages.data;
-    // });
+    packagesService.getPackagesList($stateParams.sub_cat_id).then(function (data) {
+        $scope.packages_list = data.data.data;
+    });
 
     $scope.productDescription = function (id) {
         $state.go('app.product_desc', {'product_id': id})
@@ -101,23 +100,15 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                     facets: '*',
                     filters: stringFilter,
                     maxValuesPerFacet: 10
-                },
-                searchCallback
-            );
-           
-
-
-            function searchCallback(err, content) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                else{
+                }).then(
+                function(content){
                     $scope.packages = content.hits;
                     $scope.total_page=content.nbPages;
                     $scope.current_page=content.page;
                 }
-            }
+            ).catch(function (error) {
+                console.log("error",error);
+            });
 
         }
         else{
@@ -135,22 +126,16 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                         filters: stringFilter,
                         maxValuesPerFacet: 10,
                         page:++$scope.current_page
-                    },
-                    searchCallback
-                );
-                
-                function searchCallback(err, content) {
-                    if (err) {
-                        console.error(err);
-                        return;
-                    }
-                    else{
+                    }).then(
+                    function(content){
                         angular.forEach(content.hits,function(obj){
                             $scope.packages.push(obj);
 
                         });
                     }
-                }
+                ).catch(function (error) {
+                    console.log("error",error);
+                });
             }
             return;
 
@@ -177,22 +162,14 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
-            },
-            searchCallback
-        );
-
-        function searchCallback(err, content) {
-            if (err) {
-                console.error(err);
-                return;
+            }).then(
+            function(content){
+                $scope.packages = content.hits;
+                $scope.closeSortAndFilterModal();
             }
-            $scope.packages = content.hits;
-            $scope.closeSortAndFilterModal();
-
-            console.log(JSON.stringify($scope.packages));
-
-        }
-
+        ).catch(function (error) {
+            console.log("error",error);
+        });
     };
 
     $scope.load_more = function(){
@@ -218,21 +195,14 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
-            },
-            searchCallback
-        );
-
-        function searchCallback(err, content) {
-            if (err) {
-                console.error(err);
-                return;
+            }).then(
+            function(content){
+                $scope.packages = content.hits;
+                $scope.closeSortAndFilterModal();
             }
-            $scope.packages = content.hits;
-            $scope.closeSortAndFilterModal();
-
-            console.log(JSON.stringify($scope.packages));
-
-        }
+        ).catch(function (error) {
+            console.log("error",error);
+        });
 
     };
     $scope.priceltoh = function (filter) {
@@ -252,21 +222,14 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
-            },
-            searchCallback
-        );
-
-        function searchCallback(err, content) {
-            if (err) {
-                console.error(err);
-                return;
+            }).then(
+            function(content){
+                $scope.packages = content.hits;
+                $scope.closeSortAndFilterModal();
             }
-            $scope.packages = content.hits;
-            $scope.closeSortAndFilterModal();
-
-            console.log(JSON.stringify($scope.packages));
-
-        }
+        ).catch(function (error) {
+            console.log("error",error);
+        });
 
     };
     $scope.newfirst = function (filter) {
@@ -286,20 +249,14 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
-            },
-            searchCallback
-        );
-
-        function searchCallback(err, content) {
-            if (err) {
-                console.error(err);
-                return;
+            }).then(
+            function(content){
+                $scope.packages = content.hits;
+                $scope.closeSortAndFilterModal();
             }
-            $scope.packages = content.hits;
-            $scope.closeSortAndFilterModal();
-            console.log(JSON.stringify($scope.packages));
-
-        }
+        ).catch(function (error) {
+            console.log("error",error);
+        });
 
     };
 

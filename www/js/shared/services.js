@@ -708,3 +708,24 @@ angular.module('starter').factory('profileService', function($http,$q,$rootScope
         }
     }
 });
+
+angular.module('starter').factory('bannerService', function($http,$q,$rootScope,serverConfig){
+    return {
+        get_banner:function(){
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+'api/banner'
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("data",JSON.stringify(data))
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});

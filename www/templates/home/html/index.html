@@ -10,44 +10,16 @@
     </ion-nav-buttons>
     <ion-content id="restaurant" overflow-scroll="true">
         <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
-
-            <ion-slide class="slide-01">
-                <!--<div class="content">-->
-                <!--<h4>SUMMER SALE</h4>-->
-
-                <!--<h1 class="off">40%</h1>-->
-                <!--<p>OFF</p>-->
-
-                <!--</div>-->
+            <a ng-href="{{banner[0].url}}">
+                <img ng-if="banner.length=='1'" src="{{banner[0].image_url}}">
+            </a>
+            <img ng-if="banner.length=='0'" src="http://www.imzolo.com/global/images/dummy.png">
+            <ion-slide ng-if="banner.length > 1" ng-repeat="banner_url in banner">
+                <a ng-href="{{banner_url.url}}">
+                    <img ng-src="{{banner_url.image_url}}">
+                </a>
             </ion-slide>
-
-            <ion-slide class="slide-02">
-                <!--<div class="content">-->
-                <!--<h1>-->
-                <!--Bread Hour-->
-                <!--</h1>-->
-
-                <!--<p>-->
-                <!--90% Off Now!!-->
-                <!--</p>-->
-                <!--</div>-->
-            </ion-slide>
-
-            <ion-slide class="slide-03">
-                <!--<div class="content">-->
-                <!--<h1>-->
-                <!--CupCake Festival-->
-                <!--</h1>-->
-
-                <!--<p>-->
-                <!--50% Off Friday-->
-                <!--</p>-->
-                <!--</div>-->
-            </ion-slide>
-
         </ion-slide-box>
-
-
 
         <div class="card" style="margin:10px 0; border-bottom: 1px solid #eee;" ng-repeat="category in category_n_sub_catagery_list"
              ng-if="category.id != 13 && category.parent_id == null">

@@ -618,24 +618,24 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
     "address": "http://54.169.76.224/"
 })
 
-    .config(function($httpProvider) {
-        $httpProvider.interceptors.push(function($rootScope,$q) {
-            return {
-                request: function(config) {
-                    $rootScope.$broadcast('loading:show');
-                    return config
-                },
-                response: function(response) {
-                    $rootScope.$broadcast('loading:hide');
-                    return response
-                },
-                responseError:function(rejection) {
-                    $rootScope.$broadcast('loading:hide');
-                    return $q.reject(rejection);
-                }
-            }
-        })
-    })
+    // .config(function($httpProvider) {
+    //     $httpProvider.interceptors.push(function($rootScope,$q) {
+    //         return {
+    //             request: function(config) {
+    //                 $rootScope.$broadcast('loading:show');
+    //                 return config
+    //             },
+    //             response: function(response) {
+    //                 $rootScope.$broadcast('loading:hide');
+    //                 return response
+    //             },
+    //             responseError:function(rejection) {
+    //                 $rootScope.$broadcast('loading:hide');
+    //                 return $q.reject(rejection);
+    //             }
+    //         }
+    //     })
+    // })
 .run(function($rootScope, $ionicLoading) {
     $rootScope.$on('loading:show', function() {
         $ionicLoading.show({template: '<div class="ui-progress-circular"><ion-spinner ng-if="!isAndroid" class="progress-circular">' +

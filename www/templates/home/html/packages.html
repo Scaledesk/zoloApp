@@ -7,7 +7,10 @@
     </ion-nav-bar>
     <ion-content class="bg-c">
         <div class="card m-10-5" ng-show="packages.length =='0'" style="max-height: 110px;">
-            No, package found
+           <p>No, package found</p>
+
+            <button class="button button-positive" ng-click="go_home()">Back to home</button>
+
         </div>
         <div class="card m-10-5" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
             <div class="row" ng-click="productDescription(package.id)">

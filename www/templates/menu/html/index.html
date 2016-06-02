@@ -19,13 +19,15 @@
         <ion-content>
             <ion-list>
 
-                <ion-item menu-close href="#/app/profile">
+
+                <ion-item menu-close href="#/app/profile" ng-show="!login_value">
                     <!--<i class="fa fa-tags" aria-hidden="true"></i>-->
-                    <img src="img/dummy.png" alt="" class="img-circle">
+                    <img ng-show=!"profile.image" src="img/dummy.png" alt="" class="img-circle">
+                    <img ng-show="profile.image" ng-src="{{profile.image}}" alt="" class="img-circle">
                     &nbsp;Hi,{{profile.name}}
                 </ion-item>
 
-                <ion-item menu-close href="#/app/order_list">
+                <ion-item menu-close href="#/app/order_list" ng-show="!login_value">
                     <i class="fa fa-file-photo-o zolo-c" aria-hidden="true"></i>
                     &nbsp;Your orders
                 </ion-item>

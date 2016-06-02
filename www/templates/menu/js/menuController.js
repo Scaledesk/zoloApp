@@ -20,9 +20,17 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         if($scope.access_token && $scope.access_token != 'undefined'){
             profileService.get_profile($scope.access_token).then(function(data){
                 $scope.profile = data.data.data;
+                console.log("sonam",JSON.stringify($scope.profile))
             })
         }
     });
+
+    if($scope.access_token && $scope.access_token != 'undefined'){
+        profileService.get_profile($scope.access_token).then(function(data){
+            $scope.profile = data.data.data;
+            console.log("sonam",JSON.stringify($scope.profile))
+        })
+    }
 
     $scope.$on('logout', function (event, args) {
         console.log("inside logout")
@@ -30,10 +38,12 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         $scope.login_value = true;
 
     });
-
-
+    
 
     $scope.login_options = function(){
+        window.localStorage['orp_page']= false;
+        window.localStorage['pro_id']= '';
+        window.localStorage['cat_id'] = '';
         $state.go('app.optional_index');
     };
 

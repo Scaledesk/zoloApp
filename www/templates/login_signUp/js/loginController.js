@@ -9,8 +9,15 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
         });
         $location.path(path);
     };
-    var page_to_be_on = window.localStorage['orp_page'];
-    var product_id = window.localStorage['pro_id'];
+
+    $scope.page_to_be_on = window.localStorage['orp_page'];
+    $scope.product_id = window.localStorage['pro_id'];
+    var c_id = window.localStorage['cat_id'];
+    
+    $scope.redirection = function (){
+        $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+    };
+    
   
     $scope.login = function () {
         if ($scope.user.email == undefined || $scope.user.email == '') {
@@ -85,8 +92,8 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                     });
                     $scope.user.email = '';
                     $scope.user.password = '';
-                    if(page_to_be_on == 'true'){
-                        $state.go('app.product_desc',{'product_id':product_id});
+                    if($scope.page_to_be_on == 'true'){
+                        $state.go('app.product_desc',{'product_id':$scope.product_id});
                     }
                     else{
                         $ionicHistory.nextViewOptions({

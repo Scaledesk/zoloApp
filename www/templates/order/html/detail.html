@@ -1,4 +1,9 @@
 <ion-view title="Order Detail">
+    <ion-nav-bar class="header_color">
+        <ion-nav-back-button class="button-clear">
+            <i class="icon ion-ios-arrow-back"></i>
+        </ion-nav-back-button>
+    </ion-nav-bar>
     <ion-content>
         <div class="card p-5">
             <div class="row">
@@ -12,9 +17,10 @@
                 </div>
 
             </div>
+            <hr>
 
             <div class="row">
-                <p><!--package name--></p>
+                <p class="w-500 f-18">{{order_detail.package_title}}</p>
             </div>
 
             <div class="row">

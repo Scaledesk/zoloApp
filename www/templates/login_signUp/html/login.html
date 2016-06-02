@@ -1,11 +1,17 @@
 <ion-view title="Login" hide-nav-bar="true">
     <ion-content id="social-login" style="background-color: #f5f5f5;">
         <div id="z-login-header" class="bar bar-header">
-            <a ng-click="goto('app/optional_index')"class="button back-button buttons button-clear header-item nav-back-btn">
+            <a ng-if="page_to_be_on =='false'"  ng-click="goto('app/optional_index')"class="button back-button buttons button-clear header-item nav-back-btn">
+                <i class="icon ion-ios-arrow-back"></i>
+            </a>
+            <a ng-if="page_to_be_on =='true'" ng-click="redirection()" class="button back-button buttons button-clear header-item nav-back-btn">
                 <i class="icon ion-ios-arrow-back"></i>
             </a>
             <div class="h1 title login-t black-c">Login</div>
-            <a ng-click="goto('app/home')"class="button back-button buttons button-clear header-item nav-back-btn">
+            <a ng-if="page_to_be_on =='false'"  ng-click="goto('app/home')"class="button back-button buttons button-clear header-item nav-back-btn">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+            <a ng-if="page_to_be_on == 'true'" ng-click="redirection()" class="button back-button buttons button-clear header-item nav-back-btn">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </a>
         </div>

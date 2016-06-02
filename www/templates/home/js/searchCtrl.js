@@ -12,7 +12,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     $scope.search_packages = function(filterText,load_option){
         $rootScope.$broadcast('loading:show');
         if(load_option == false){
-            console.log("inside if")
             index.search(
                 filterText, {
                     hitsPerPage: 5,
@@ -123,6 +122,8 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
     }
     $scope.filter_apply = function (filter) {
+        $rootScope.$broadcast('loading:show');
+
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('candybrush_packages');
@@ -143,11 +144,12 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             function(content){
                 $scope.packages = content.hits;
                 $scope.closeSortAndFilterModal();
-
-                console.log(JSON.stringify($scope.packages));
+                $rootScope.$broadcast('loading:hide');
             }
         ).catch(function (error) {
             console.log("error",error);
+            $rootScope.$broadcast('loading:hide');
+
         });
         // ,
         //     searchCallback
@@ -167,6 +169,8 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
     };
     $scope.pricehtol = function (filter) {
+        $rootScope.$broadcast('loading:show');
+
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('deal_price_desc');
@@ -187,15 +191,18 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             function(content){
                 $scope.packages = content.hits;
                 $scope.closeSortAndFilterModal();
-
-                console.log(JSON.stringify($scope.packages));
+                $rootScope.$broadcast('loading:hide');
             }
         ).catch(function (error) {
             console.log("error",error);
+            $rootScope.$broadcast('loading:hide');
+
         });
 
     };
     $scope.priceltoh = function (filter) {
+        $rootScope.$broadcast('loading:show');
+
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('deal_price_asc');
@@ -216,16 +223,20 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             function(content){
                 $scope.packages = content.hits;
                 $scope.closeSortAndFilterModal();
+                $rootScope.$broadcast('loading:hide');
 
-                console.log(JSON.stringify($scope.packages));
             }
         ).catch(function (error) {
             console.log("error",error);
+            $rootScope.$broadcast('loading:hide');
+
         });
            
 
     };
     $scope.newfirst = function (filter) {
+        $rootScope.$broadcast('loading:show');
+
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('new_packages_first');
@@ -246,11 +257,12 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             function(content){
                 $scope.packages = content.hits;
                 $scope.closeSortAndFilterModal();
-
-                console.log(JSON.stringify($scope.packages));
+                $rootScope.$broadcast('loading:hide');
             }
         ).catch(function (error) {
             console.log("error",error);
+            $rootScope.$broadcast('loading:hide');
+
         });
     };
 

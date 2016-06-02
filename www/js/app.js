@@ -504,7 +504,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             })
             .state('app.product_desc', {
-                url: "/product_desc/:product_id",
+                url: "/product_desc/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/pdp.html",

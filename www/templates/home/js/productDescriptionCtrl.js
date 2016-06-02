@@ -29,6 +29,13 @@ $scope.slideIndex = 0;
     $scope.slideChanged = function(index) {
         $scope.slideIndex = index;
     };
+
+    $scope.back_to_package = function(){
+        $state.go('app.package_list',{'sub_cat_id':$stateParams.cat_id});
+
+    };
+
+    console.log("jdjhd",$stateParams.cat_id)
    // $scope.new_quantities = [
    //     {id:'1',value:'1'},
    //     {id:'2',value:'2'},
@@ -82,8 +89,6 @@ $scope.slideIndex = 0;
     $scope.closeAddOnsModel = function () {
         $scope.add_on_modal.hide();
     };
-
-
 
     $scope.package_quantity = function(quant,price,p_id){
             var quantity = quant;
@@ -211,7 +216,6 @@ $scope.slideIndex = 0;
     $scope.book_now = function () {
         $scope.booking_add_ons = true;
     };
-
     
     $scope.book_now_confirm = function(){
         booking_info.quantity = $scope.book.quantity;
@@ -232,15 +236,13 @@ $scope.slideIndex = 0;
                 window.localStorage['booking_id'] = info.booking_id;
                 $state.go('app.orp',{booking_id:info.booking_id,t_id:info.id});
             });
-            console.log("1");
         }
         else{
             var p_id = $stateParams.product_id;
             $state.go('app.login_index');
-            console.log("2");
-            window.localStorage['orp_page']= 'true';
+            window.localStorage['orp_page']= true;
             window.localStorage['pro_id']= p_id;
-
+            window.localStorage['cat_id']= $stateParams.cat_id;
         }
     };
 

@@ -2,7 +2,7 @@
     <ion-content id="restaurant">
         <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
 
-            <ion-slide ng-repeat="category in categories" ng-if="category.parent_id == null">
+            <ion-slide style="padding-top: 0px !important;" ng-repeat="category in categories" ng-if="category.parent_id == null">
                 <img ng-src="{{category.image}}">
             </ion-slide>
         </ion-slide-box>

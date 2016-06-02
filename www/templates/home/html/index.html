@@ -18,7 +18,7 @@
             </ion-slide>
 
             <!--<img ng-if="banner.length=='0'" src="http://www.imzolo.com/global/images/dummy.png">-->
-            <ion-slide ng-if="banner.length > 1 || banner.length == '1'" ng-repeat="banner_url in banner">
+            <ion-slide style="padding-top: 0px !important;"  ng-if="banner.length > 1 || banner.length == '1'" ng-repeat="banner_url in banner">
                 <a ng-href="{{banner_url.url}}">
                     <img ng-src="{{banner_url.image_url}}" width="100%;">
                 </a>

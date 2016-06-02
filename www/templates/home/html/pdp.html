@@ -10,11 +10,11 @@
         <md-card id="product-detail-tab-detail" class="m-0 bg-c">
             <img ng-if="package.photos.data.length=='1'" src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
             <img ng-if="package.photos.data.length=='0'" src="http://www.imzolo.com/global/images/dummy.png" class="md-card-image" alt="Card image">
-            <ion-slide-box id="restaurant-slide-box" on-slide-changed="slideChanged($index)" show-pager="false" active-slide="0" ng-if="package.photos.data.length >'1'" >
+            <ion-slide-box id="restaurant-slide-box" on-slide-changed="slideChanged($index)" show-pager="true" active-slide="0" ng-if="package.photos.data.length >'1'" >
                 <ion-slide ng-repeat="image_list in package.photos.data">
                     <img ng-src="{{image_list.url}}">
-                    <button ng-click="nextSlide()" ng-show="slideIndex<package.photos.data.length-1">Next slide!</button>
-                    <button ng-show="slideIndex > 0" ng-click="prevSlide()">Previous slide!</button>
+                    <!--<button ng-click="nextSlide()" ng-show="slideIndex<package.photos.data.length-1">Next slide!</button>-->
+                    <!--<button ng-show="slideIndex > 0" ng-click="prevSlide()">Previous slide!</button>-->
                 </ion-slide>
             </ion-slide-box>
             <div>

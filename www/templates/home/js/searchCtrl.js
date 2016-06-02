@@ -1,18 +1,16 @@
-appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxPriceService,$ionicModal,
+appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxPriceService,$ionicModal,$rootScope,
                                                 $mdSidenav, $log, $ionicHistory, $state,$stateParams,algolia) {
     
     var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
     $scope.filterText = $stateParams.search_text;
-
-    console.log("search_text",$stateParams.search_text);
-
+    
     var index = client.initIndex('candybrush_packages');
 
 
 
     $scope.search_packages = function(filterText,load_option){
-    console.log("filterText",filterText,load_option)
+        $rootScope.$broadcast('loading:show');
         if(load_option == false){
             console.log("inside if")
             index.search(
@@ -25,9 +23,13 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                             $scope.packages = content.hits;
                             $scope.total_page=content.nbPages;
                             $scope.current_page=content.page;
+                            $rootScope.$broadcast('loading:hide');
+
                 }
             ).catch(function (error) {
                 console.log("error",error);
+                $rootScope.$broadcast('loading:hide');
+
             });
 
         }
@@ -43,11 +45,13 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                     function(content){
                         angular.forEach(content.hits,function(obj){
                             $scope.packages.push(obj);
-
                         });
+                        $rootScope.$broadcast('loading:hide');
                     }
                 ).catch(function (error) {
                     console.log("error",error);
+                    $rootScope.$broadcast('loading:hide');
+
                 });
             }
             return;

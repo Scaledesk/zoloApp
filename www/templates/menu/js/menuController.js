@@ -1,5 +1,5 @@
-appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,profileService,
-                                               $ionicSideMenuDelegate,$window,subCategoryService,bannerService) {
+appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,profileService,$ionicHistory,
+                                               $ionicSideMenuDelegate,subCategoryService,bannerService,$rootScope) {
    
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
@@ -8,23 +8,29 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
 
     bannerService.get_banner().then(function(response){
         $scope.banner = response.data.data;
-        console.log("response",JSON.stringify($scope.banner));
     });
 
     $scope.access_token = window.localStorage['access_token'];
-
-    // get_profile
 
     $scope.login_value = true;
 
     $scope.$on('logged_in', function (event, args) {
         $scope.message = args.message;
         $scope.login_value = false;
-        profileService.get_profile($scope.access_token).then(function(data){
-            $scope.profile = data.data.data;
-            console.log("my profile, data",JSON.stringify(data));
-        })
+        if($scope.access_token && $scope.access_token != 'undefined'){
+            profileService.get_profile($scope.access_token).then(function(data){
+                $scope.profile = data.data.data;
+            })
+        }
     });
+
+    $rootScope.$on('logout', function (event, args) {
+        console.log("inside logout")
+        $scope.message = args.message;
+        $scope.login_value = true;
+
+    });
+
 
 
     $scope.login_options = function(){
@@ -41,9 +47,12 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                 window.localStorage['access_token'] ='';
                 window.localStorage['pro_id'] ='';
                 window.localStorage['orp_page'] = '';
-                $window.location.reload();
-                // $state.reload('app.home');
-                // $scope.$broadcast('logout', {message: 'log out'});
+                // $window.location.reload();
+                $scope.$broadcast('logout', {message: 'log out'});
+                $ionicHistory.nextViewOptions({
+                    disableBack: true
+                });
+                $state.go('app.home');
                 $mdToast.show({
                     controller: 'toastController',
                     templateUrl: 'toast.html',
@@ -71,8 +80,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
 
         }
     };
-
-
+    
     subCategoryService.getSubCategory().then(function(data){
         $scope.category_n_sub_catagery_list = data.data.data;
     });

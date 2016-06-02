@@ -155,7 +155,7 @@ $scope.slideIndex = 0;
                     position: 'top',
                     locals: {
                         displayOption: {
-                            title: 'Package added to wishlist successfully!'
+                            title: 'Package added to wish list successfully!'
                         }
                     }
                 });
@@ -167,7 +167,6 @@ $scope.slideIndex = 0;
         $scope.package = data.data.data;
         $scope.paddons =  $scope.package.Addons.data;
         $scope.amount_to_show = $scope.package.deal_price;
-        
          booking_info = {
             quantity:$scope.book.quantity,
              package_id:$scope.package.id,

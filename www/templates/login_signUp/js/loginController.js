@@ -4,7 +4,9 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
     $scope.user = {};
 
     $scope.goto=function(path){
-        console.log("goto:"+path);
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
         $location.path(path);
     };
     var page_to_be_on = window.localStorage['orp_page'];

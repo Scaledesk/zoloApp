@@ -535,3 +535,7 @@ hr{
 .align-img{
     vertical-align: bottom;
 }
+
+.bg{
+    background-color: #765f89!important;
+}

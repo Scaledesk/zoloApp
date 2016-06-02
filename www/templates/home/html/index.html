@@ -10,11 +10,15 @@
     </ion-nav-buttons>
     <ion-content id="restaurant" overflow-scroll="true">
         <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
-            <a ng-href="{{banner[0].url}}">
-                <img ng-if="banner.length=='1'" src="{{banner[0].image_url}}">
-            </a>
-            <img ng-if="banner.length=='0'" src="http://www.imzolo.com/global/images/dummy.png">
-            <ion-slide ng-if="banner.length > 1" ng-repeat="banner_url in banner">
+            <!--<a ng-href="{{banner[0].url}}">-->
+                <!--<img ng-if="banner.length=='1'" src="{{banner[0].image_url}}">-->
+            <!--</a>-->
+            <ion-slide ng-if="banner.length=='0'">
+                    <img src="http://www.imzolo.com/global/images/dummy.png">
+            </ion-slide>
+
+            <!--<img ng-if="banner.length=='0'" src="http://www.imzolo.com/global/images/dummy.png">-->
+            <ion-slide ng-if="banner.length > 1 || banner.length == '1'" ng-repeat="banner_url in banner">
                 <a ng-href="{{banner_url.url}}">
                     <img ng-src="{{banner_url.image_url}}">
                 </a>

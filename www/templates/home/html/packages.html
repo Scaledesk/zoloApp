@@ -6,7 +6,10 @@
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content class="bg-c">
-        <div class="card m-10-5" ng-repeat="package in packages" style="max-height: 110px;">
+        <div class="card m-10-5" ng-show="packages.length =='0'" style="max-height: 110px;">
+            No, package found
+        </div>
+        <div class="card m-10-5" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
             <div class="row" ng-click="productDescription(package.id)">
                 <div class="col-33">
                     <img width="100%" height="100"  src="{{package.first_photo}}" class="pkg-img">
@@ -34,7 +37,7 @@
             </div>
         </div>
 
-        <button class="button button-positive" ng-click="load_more()">Load more</button>
+        <button class="button button-positive" ng-show="packages.length !='0'" ng-click="load_more()">Load more</button>
 
     </ion-content>
     <div class="footer-fab-bar">

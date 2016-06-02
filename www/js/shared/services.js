@@ -126,11 +126,9 @@ angular.module('starter').factory('subCategoryService', function($http,$rootScop
             }).success(function(data, status, headers, config) {
                 deffer.resolve(data);
                 $rootScope.$broadcast('loading:hide');
-
             }).
             error(function(data, status, headers, config) {
                 $rootScope.$broadcast('loading:hide');
-                console.log("data",JSON.stringify(data))
             });
             return deffer.promise;
         }

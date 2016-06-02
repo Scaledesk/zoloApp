@@ -1,6 +1,6 @@
 appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, packagesService, $ionicModal,
                                                     MaxPriceService, $mdSidenav, $log, $ionicHistory, $state,
-                                                    $stateParams, algolia) {
+                                                    $stateParams, algolia,$rootScope) {
     
     $scope.price_list = true;
     $scope.sorting_value = false;
@@ -74,10 +74,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
 
         var my_maximum = Math.max.apply(null, $scope.price_range);
         var my_minimum = Math.min.apply(null, $scope.price_range);
-        console.log('min ' + my_minimum);
-        console.log('max ' + my_maximum);
         stringFilter = "deal_price : " + my_minimum + " TO " + my_maximum;
-
     };
 
 
@@ -85,9 +82,8 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
 
 
     $scope.search_packages = function(stringFilter,load_option){
-        console.log("2")
-
         if(load_option == false){
+            $rootScope.$broadcast('loading:show');
             if(stringFilter==''){
                 stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
             }else {
@@ -105,13 +101,18 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                     $scope.packages = content.hits;
                     $scope.total_page=content.nbPages;
                     $scope.current_page=content.page;
+                    $rootScope.$broadcast('loading:hide');
+
                 }
             ).catch(function (error) {
                 console.log("error",error);
+                $rootScope.$broadcast('loading:hide');
+
             });
 
         }
         else{
+            $rootScope.$broadcast('loading:show');
             if($scope.current_page <= $scope.total_page){
                 if(stringFilter==''){
                     stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
@@ -130,11 +131,13 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                     function(content){
                         angular.forEach(content.hits,function(obj){
                             $scope.packages.push(obj);
-
                         });
+                        $rootScope.$broadcast('loading:hide');
                     }
                 ).catch(function (error) {
                     console.log("error",error);
+                    $rootScope.$broadcast('loading:hide');
+
                 });
             }
             return;
@@ -145,6 +148,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
      $scope.search_packages(stringFilter,false);
     
     $scope.filter_apply = function (filter) {
+        $rootScope.$broadcast('loading:show');
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('candybrush_packages');
@@ -166,19 +170,24 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
             function(content){
                 $scope.packages = content.hits;
                 $scope.closeSortAndFilterModal();
+                $rootScope.$broadcast('loading:hide');
+
             }
         ).catch(function (error) {
             console.log("error",error);
+            $rootScope.$broadcast('loading:hide');
+
         });
     };
 
     $scope.load_more = function(){
-        console.log("1");
         $scope.search_packages(stringFilter,true);
     };
 
 
     $scope.pricehtol = function (filter) {
+        $rootScope.$broadcast('loading:show');
+
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('deal_price_desc');
@@ -199,13 +208,18 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
             function(content){
                 $scope.packages = content.hits;
                 $scope.closeSortAndFilterModal();
+                $rootScope.$broadcast('loading:hide');
             }
         ).catch(function (error) {
             console.log("error",error);
+            $rootScope.$broadcast('loading:hide');
+
         });
 
     };
     $scope.priceltoh = function (filter) {
+        $rootScope.$broadcast('loading:show');
+
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('deal_price_asc');
@@ -226,15 +240,18 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
             function(content){
                 $scope.packages = content.hits;
                 $scope.closeSortAndFilterModal();
+                $rootScope.$broadcast('loading:hide');
             }
         ).catch(function (error) {
             console.log("error",error);
+            $rootScope.$broadcast('loading:hide');
+
         });
 
     };
     $scope.newfirst = function (filter) {
+        $rootScope.$broadcast('loading:show');
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
-
         var index = client.initIndex('new_packages_first');
 
         if(stringFilter==''){
@@ -253,9 +270,12 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
             function(content){
                 $scope.packages = content.hits;
                 $scope.closeSortAndFilterModal();
+                $rootScope.$broadcast('loading:hide');
             }
         ).catch(function (error) {
             console.log("error",error);
+            $rootScope.$broadcast('loading:show');
+
         });
 
     };

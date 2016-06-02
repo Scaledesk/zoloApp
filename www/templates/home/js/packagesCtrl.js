@@ -20,7 +20,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     });
 
     $scope.productDescription = function (id) {
-        $state.go('app.product_desc', {'product_id': id})
+        $state.go('app.product_desc', {'cat_id':$stateParams.sub_cat_id,'product_id': id})
     };
     $scope.sorting_type = 'sort';
     $scope.filter_clear = function(){

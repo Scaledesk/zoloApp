@@ -19,6 +19,13 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         $scope.packages_list = data.data.data;
     });
 
+    $scope.go_home = function(){
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+        $state.go('app.home');
+    };
+
     $scope.productDescription = function (id) {
         $state.go('app.product_desc', {'cat_id':$stateParams.sub_cat_id,'product_id': id})
     };

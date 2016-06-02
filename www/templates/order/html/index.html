@@ -1,14 +1,42 @@
 <ion-view title="Your Orders">
     <ion-content>
         <ion-list>
-            <ion-item class="p-0" ng-show="order_list.length!= '0'" ng-repeat="order in order_list"  ng-click="order_detail(order.id)">
-                    <span><b>Package Name:</b>{{order.package_title}}</span>
-                <br>
-                <span><b>Order Date:</b>{{order.order_date}}</span>
+            <ion-item class="p-5" ng-show="order_list.length!= '0'" ng-repeat="order in order_list"  ng-click="order_detail(order.id)">
+                <div class="row ">
+                    <div class="col-33">
+                        <p class="text-c">Package Name:</p>
+
+                    </div>
+
+                    <div class="col-67">
+                        <p class="w-500">{{order.package_title}}</p>
+
+                    </div>
+
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-33">
+                        <p class="text-c">Order Date:</p>
+
+                    </div>
+
+                    <div class="col-67">
+                        <p class="w-500">{{order.order_date}}</p>
+
+                    </div>
+
+                </div>
+
+
+
+
 
             </ion-item>
+
             <ion-item class="p-0" ng-show="order_list.length == '0'">
-                <span><p class="text-center"> No,order till now.</p></span>
+                <p class="text-c"> No,order till now.</p>
 
             </ion-item>
         </ion-list>

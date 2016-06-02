@@ -539,3 +539,10 @@ hr{
 .bg{
     background-color: #765f89!important;
 }
+
+.img-circle{
+    border-radius: 50%!important;
+    vertical-align: middle;
+    width: 70px;
+
+}

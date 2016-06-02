@@ -1668,6 +1668,7 @@ md-sidenav {
       #restaurant #restaurant-slide-box span i {
         color: white !important; }
     #restaurant #restaurant-slide-box ion-slide {
+      padding-top: 50px !important;
       color: white;
       font-size: 15px; }
       #restaurant #restaurant-slide-box ion-slide .content {

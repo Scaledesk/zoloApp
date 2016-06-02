@@ -19,9 +19,10 @@
         <ion-content>
             <ion-list>
 
+
                 <ion-item menu-close href="#/app/profile" ng-show="!login_value">
                     <!--<i class="fa fa-tags" aria-hidden="true"></i>-->
-                    <img ng-show="profile.image == ''" src="img/dummy.png" alt="" class="img-circle">
+                    <img ng-show=!"profile.image" src="img/dummy.png" alt="" class="img-circle">
                     <img ng-show="profile.image" ng-src="{{profile.image}}" alt="" class="img-circle">
                     &nbsp;Hi,{{profile.name}}
                 </ion-item>

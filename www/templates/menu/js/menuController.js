@@ -24,7 +24,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         }
     });
 
-    $rootScope.$on('logout', function (event, args) {
+    $scope.$on('logout', function (event, args) {
         console.log("inside logout")
         $scope.message = args.message;
         $scope.login_value = true;
@@ -48,7 +48,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                 window.localStorage['pro_id'] ='';
                 window.localStorage['orp_page'] = '';
                 // $window.location.reload();
-                $scope.$broadcast('logout', {message: 'log out'});
+                $rootScope.$broadcast('logout', {message: 'log out'});
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });

@@ -459,6 +459,22 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.refund_policy', {
+                url: "/refund_policy",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/refundsPolicy/html/index.html"
+                    }
+                }
+            })
+            .state('app.cancellationPolicy', {
+                url: "/cancellationPolicy",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/cancellationPolicy/html/index.html"
+                    }
+                }
+            })
             .state('app.privacy_policy', {
                 url: "/privacy_policy",
                 views: {

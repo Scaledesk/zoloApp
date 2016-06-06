@@ -12,6 +12,8 @@
             <button class="button button-positive" ng-click="go_home()">Back to home</button>
 
         </div>
+        <div>
+        </div>
         <div class="card m-10-5" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
             <div class="row" ng-click="productDescription(package.id)">
                 <div class="col-33">
@@ -40,7 +42,7 @@
             </div>
         </div>
 
-        <button class="button f-18 w-500" ng-show="packages.length !='0'"  ng-click="load_more()" style="width: 100%; color: #565a5c; border: 1px solid #aaa;">Load more</button>
+        <button class="button f-18 w-500" ng-show="packages.length !='0'" ng-if="packages.length > 5 || packages.length ==5" ng-click="load_more()" style="width: 100%; color: #565a5c; border: 1px solid #aaa;">Load more</button>
 
 
 

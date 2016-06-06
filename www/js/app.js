@@ -243,6 +243,9 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 $rootScope.customStyle = createCustomStyle($ionicHistory.currentStateName());
             });
 
+            
+            
+            
             var access_token = window.localStorage['access_token'];
 
             $rootScope.$on('logged_in', function (event, args) {

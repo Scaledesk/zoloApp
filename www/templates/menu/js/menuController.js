@@ -15,7 +15,6 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     $scope.login_value = true;
 
     $scope.$on('logged_in', function (event, args) {
-        $scope.message = args.message;
         $scope.login_value = false;
         if($scope.access_token && $scope.access_token != 'undefined'){
             profileService.get_profile($scope.access_token).then(function(data){
@@ -23,6 +22,20 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
             })
         }
     });
+
+    if($scope.access_token){
+        $scope.login_value = false;
+        if($scope.access_token && $scope.access_token != 'undefined'){
+            profileService.get_profile($scope.access_token).then(function(data){
+                $scope.profile = data.data.data;
+            })
+        }
+    }
+
+
+
+
+
     //
     // if($scope.access_token && $scope.access_token != 'undefined'){
     //     profileService.get_profile($scope.access_token).then(function(data){

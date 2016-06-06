@@ -20,6 +20,8 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
     
   
     $scope.login = function () {
+        $rootScope.$broadcast('loading:show');
+
         if ($scope.user.email == undefined || $scope.user.email == '') {
             $mdToast.show({
                 controller: 'toastController',
@@ -32,6 +34,7 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                     }
                 }
             });
+            $rootScope.$broadcast('loading:hide');
             return;
         }
         if ($scope.user.password == undefined || $scope.user.password == '') {
@@ -46,6 +49,7 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                     }
                 }
             });
+            $rootScope.$broadcast('loading:hide');
             return;
         }
         if ($scope.user.email != undefined) {
@@ -77,6 +81,7 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
             .then(function (response) {
                 if(response.status == '200'){
                     // $scope.$broadcast('logout', {message: 'log out'});
+                    $rootScope.$broadcast('loading:hide');
 
                     window.localStorage['access_token']=response.data.access_token;
                     $mdToast.show({

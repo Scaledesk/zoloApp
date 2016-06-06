@@ -93,6 +93,7 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                     $scope.user.email = '';
                     $scope.user.password = '';
                     if($scope.page_to_be_on == 'true'){
+                        $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                         $state.go('app.product_desc',{'product_id':$scope.product_id});
                     }
                     else{

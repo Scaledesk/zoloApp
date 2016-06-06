@@ -1,21 +1,18 @@
-appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
+appControllers.controller('LoginPdpCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
                                                     serverConfig,$rootScope,$location,$ionicHistory,$ionicViewSwitcher,$ionicModal) {
 
     $scope.user = {};
 
-    $scope.goto=function(path){
-        $ionicHistory.nextViewOptions({
-            disableBack: true
-        });
-        $location.path(path);
-    };
     $scope.product_id = window.localStorage['pro_id'];
     var c_id = window.localStorage['cat_id'];
-    
-    $scope.redirection = function (){
+
+    $scope.redirection_to = function (){
         $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
     };
-    
+     $scope.redirection_to_option = function (){
+        $state.go('app.optional_index_pdp');
+     };
+
   
     $scope.login = function () {
         $rootScope.$broadcast('loading:show');
@@ -95,12 +92,9 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                     });
                     $scope.user.email = '';
                     $scope.user.password = '';
-                        $ionicHistory.nextViewOptions({
-                            disableBack: true
-                        });
                         $rootScope.$broadcast('logged_in', { message: 'login successfully' });
-                        $state.go('app.home', null, {reload:true});
-                    
+                        $state.go('app.product_desc',{'product_id':$scope.product_id});
+
                 }
             })
             .catch(function (response) {

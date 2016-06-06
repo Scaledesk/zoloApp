@@ -524,6 +524,33 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.optional_index_pdp', {
+                url: "/optional_index_pdp",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_pdp/html/optional.html",
+                        controller:"optionalPdpCtrl"
+                    }
+                }
+            })
+            .state('app.login_pdp', {
+                url: "/login_pdp",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_pdp/html/login.html",
+                        controller:"LoginPdpCtrl"
+                    }
+                }
+            })
+            .state('app.signUpPdp', {
+                url: "/signUpPdp",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_pdp/html/signUp.html",
+                        controller:"signUpPdpCtrl"
+                    }
+                }
+            })
             .state('app.forget_password', {
                 url: "/forget_password",
                 views: {

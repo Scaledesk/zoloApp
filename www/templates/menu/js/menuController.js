@@ -53,7 +53,6 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     
 
     $scope.login_options = function(){
-        window.localStorage['orp_page']= false;
         window.localStorage['pro_id']= '';
         window.localStorage['cat_id'] = '';
         $state.go('app.optional_index');

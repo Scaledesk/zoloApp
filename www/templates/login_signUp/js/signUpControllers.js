@@ -33,7 +33,6 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
             "password": $scope.user.password,
             "password_confirmation": $scope.user.password,
         }
-        console.log("dataaa",JSON.stringify(data))
     };
 
 
@@ -43,6 +42,7 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
         if(($scope.user.name)&&($scope.user.email)&&($scope.user.mobile)&&($scope.user.password)){
             if(($scope.user.mobile.toString().length == 10) && ($scope.user.password.length == 6)){
                 signUpService.signUp(data).then(function (data) {
+                    console.log("data",JSON.stringify(data))
                     $scope.credentials = data;
                     $ionicHistory.nextViewOptions({
                         disableBack: true

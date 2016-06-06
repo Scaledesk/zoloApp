@@ -42,7 +42,7 @@ window.globalVariable = {
 
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
         'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','algoliasearch'])
-    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet) {
+    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService, $mdDialog, $mdBottomSheet) {
 
 
         function initialSQLite() {
@@ -241,6 +241,17 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 hideActionControl();
                 // Add custom style ti view.
                 $rootScope.customStyle = createCustomStyle($ionicHistory.currentStateName());
+            });
+
+            var access_token = window.localStorage['access_token'];
+
+            $rootScope.$on('logged_in', function (event, args) {
+                if(access_token && access_token != 'undefined'){
+                    profileService.get_profile(access_token).then(function(data){
+                        $rootScope.profile = data.data.data;
+                        console.log("sonam",JSON.stringify($rootScope.profile))
+                    })
+                }
             });
         });
     })
@@ -459,6 +470,22 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.refund_policy', {
+                url: "/refund_policy",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/refundsPolicy/html/index.html"
+                    }
+                }
+            })
+            .state('app.cancellationPolicy', {
+                url: "/cancellationPolicy",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/cancellationPolicy/html/index.html"
+                    }
+                }
+            })
             .state('app.privacy_policy', {
                 url: "/privacy_policy",
                 views: {
@@ -607,7 +634,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
         if(window.localStorage['SkipIntro']== 'true'){
             $urlRouterProvider.otherwise("app/home");
         }else{
-            console.log(window.localStorage['SkipIntro']);
             $urlRouterProvider.otherwise("/mainWalkthrough");
 
         }

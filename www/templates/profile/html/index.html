@@ -4,14 +4,14 @@
         <div class="cover-img" ng-show="profile.banner" style="background: url('{{profile.banner}}') center no-repeat; background-size:cover; height: 200px;">
         </div>
 
-        <div class="cover-img" ng-hide="profile.banner" style="background: url('http://www.imzolo.com/global/images/m-cover.jpg') center no-repeat; background-size:cover; height: 200px;">
+        <div class="cover-img" ng-hide="profile.banner" style="background: url('../img/profile_cover.jpg') center no-repeat; background-size:cover; height: 200px;">
         </div>
 
         <div class="row">
 
             <div class="col-50 text-center">
                 <img ng-show="profile.image" src="{{profile.image}}" class="profile-img">
-                <img ng-hide="profile.image" src="http://www.imzolo.com/global/images/dummy.png" class="profile-img">
+                <img ng-hide="profile.image" src="../img/dummy.png" class="profile-img">
             </div>
 
             <div class="col-50 m-t-20">
@@ -55,24 +55,24 @@
                 </div>
             </div>
         </div>
-        <div class="card p-5 m-10-0" ng-if="profile.is_seller != '0'">
-            <div class="row border-bottom">
-                <p class=" text-c">Other package by {{package.seller_profile.name}}</p>
-            </div>
-            <ion-scroll width="500px; height: 500px" direction="xy">
-                <div class="row">
-                    <div class="col-50 card" ng-repeat="seller_package_info in seller_info">
-                        <img style="width: 100%; height: 130px" ng-src="{{seller_package_info.first_photo}}">
-                        <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
+        <!--<div class="card p-5 m-10-0" ng-if="profile.is_seller != '0'">-->
+            <!--<div class="row border-bottom">-->
+                <!--<p class=" text-c">Other package by {{package.seller_profile.name}}</p>-->
+            <!--</div>-->
+            <!--<ion-scroll width="500px; height: 500px" direction="xy">-->
+                <!--<div class="row">-->
+                    <!--<div class="col-50 card" ng-repeat="seller_package_info in seller_info">-->
+                        <!--<img style="width: 100%; height: 130px" ng-src="{{seller_package_info.first_photo}}">-->
+                        <!--<p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>-->
 
-                        <div class="row">
-                            <p class="pull-left">
-                                [{{seller_package_info.location[0].text}}]
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </ion-scroll>
-        </div>
+                        <!--<div class="row">-->
+                            <!--<p class="pull-left">-->
+                                <!--[{{seller_package_info.location[0].text}}]-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</ion-scroll>-->
+        <!--</div>-->
     </ion-content>
 </ion-view>

@@ -243,6 +243,9 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 $rootScope.customStyle = createCustomStyle($ionicHistory.currentStateName());
             });
 
+            
+            
+            
             var access_token = window.localStorage['access_token'];
 
             $rootScope.$on('logged_in', function (event, args) {
@@ -521,6 +524,33 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.optional_index_pdp', {
+                url: "/optional_index_pdp",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_pdp/html/optional.html",
+                        controller:"optionalPdpCtrl"
+                    }
+                }
+            })
+            .state('app.login_pdp', {
+                url: "/login_pdp",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_pdp/html/login.html",
+                        controller:"LoginPdpCtrl"
+                    }
+                }
+            })
+            .state('app.signUpPdp', {
+                url: "/signUpPdp",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_pdp/html/signUp.html",
+                        controller:"signUpPdpCtrl"
+                    }
+                }
+            })
             .state('app.forget_password', {
                 url: "/forget_password",
                 views: {
@@ -588,6 +618,15 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     'menuContent': {
                         templateUrl: "templates/profile/html/index.html",
                         controller:'profileCtrl'
+                    }
+                }
+            })
+            .state('app.more', {
+                url: "/more",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/more/html/index.html",
+                        controller:'moreCtrl'
                     }
                 }
             })

@@ -1,5 +1,5 @@
 appControllers.controller('productDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory, 
-                                                              $state,$stateParams,addWishList, $mdToast,
+                                                              $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate) {
     $scope.des_value = true;
@@ -16,6 +16,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.book_new={
         quantity_new:1
     };
+
    $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
    $scope.new_quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 
@@ -25,39 +26,15 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.prevSlide = function() {
         $ionicSlideBoxDelegate.previous();
     };
-$scope.slideIndex = 0;
+    $scope.slideIndex = 0;
     $scope.slideChanged = function(index) {
         $scope.slideIndex = index;
     };
 
-    $scope.back_to_package = function(){
-        $state.go('app.package_list',{'sub_cat_id':$stateParams.cat_id});
-
+    $scope.back_to_package = function() {
+        console.log("sonam")
+        $state.go('app.package_list', {'sub_cat_id': $stateParams.cat_id});
     };
-
-    console.log("jdjhd",$stateParams.cat_id)
-   // $scope.new_quantities = [
-   //     {id:'1',value:'1'},
-   //     {id:'2',value:'2'},
-   //     {id:'3',value:'3'},
-   //     {id:'4',value:'4'},
-   //     {id:'5',value:'5'},
-   //     {id:'6',value:'6'},
-   //     {id:'7',value:'7'},
-   //     {id:'8',value:'8'},
-   //     {id:'9',value:'9'},
-   //     {id:'10',value:'10'},
-   //     {id:'11',value:'11'},
-   //     {id:'12',value:'12'},
-   //     {id:'13',value:'13'},
-   //     {id:'14',value:'14'},
-   //     {id:'15',value:'15'},
-   //     {id:'16',value:'16'},
-   //     {id:'17',value:'17'},
-   //     {id:'18',value:'18'},
-   //     {id:'19',value:'19'},
-   //     {id:'20',value:'20'}
-   // ];
     var booking_info = {};
 
 
@@ -215,6 +192,11 @@ $scope.slideIndex = 0;
     
     $scope.book_now = function () {
         $scope.booking_add_ons = true;
+        // $timeout(function(){
+        //     $ionicScrollDelegate.scrollBottom(true);
+        // },2000)
+        $ionicScrollDelegate.scrollBottom(true);
+
     };
     
     $scope.book_now_confirm = function(){
@@ -226,12 +208,9 @@ $scope.slideIndex = 0;
             }
             booking_info.addons.push(ff);
         });
-
-        console.log("xassaxsxs",JSON.stringify(booking_info))
         if((window.localStorage['access_token']) && (window.localStorage['access_token'] != 'undefined')){
             bookingService.OrpInfo(booking_info).then(function(data) {
                 var info = data.data.data;
-                console.log("info",JSON.stringify(info))
                 window.localStorage['id'] = info.id;
                 window.localStorage['booking_id'] = info.booking_id;
                 $state.go('app.orp',{booking_id:info.booking_id,t_id:info.id});
@@ -239,8 +218,7 @@ $scope.slideIndex = 0;
         }
         else{
             var p_id = $stateParams.product_id;
-            $state.go('app.login_index');
-            window.localStorage['orp_page']= true;
+            $state.go('app.optional_index_pdp');
             window.localStorage['pro_id']= p_id;
             window.localStorage['cat_id']= $stateParams.cat_id;
         }

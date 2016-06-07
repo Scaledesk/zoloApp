@@ -1,22 +1,16 @@
 
-appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,
+appControllers.controller('signUpPdpCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,
                                                         $mdToast,$http, serverConfig,$rootScope,$location,$ionicHistory,
                                                         $ionicViewSwitcher) {
-    $scope.navigateTo = function (stateName,objectData) {
-        if ($ionicHistory.currentStateName() != stateName) {
-            $ionicHistory.nextViewOptions({
-                disableAnimate: false,
-                disableBack: true
-            });
 
-            //Next view animate will display in back direction
-            $ionicViewSwitcher.nextDirection('back');
-
-            $state.go(stateName, {
-                isAnimated: objectData,
-            });
-        }
+    $scope.product_id = window.localStorage['pro_id'];
+    var c_id = window.localStorage['cat_id'];
+    
+    
+    $scope.redirection = function (){
+        $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
     };
+    
     $scope.user = {};
     $scope.goto=function(path){
         $ionicHistory.nextViewOptions({
@@ -46,7 +40,7 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
                     $ionicHistory.nextViewOptions({
                         disableBack: true
                     });
-                    $state.go('app.home');
+                    $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
                 });
             }
             else{

@@ -8,7 +8,7 @@
 
     <ion-nav-buttons side="right">
     </ion-nav-buttons>
-    <ion-content id="restaurant" overflow-scroll="true">
+    <ion-content id="restaurant">
         <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
             <!--<a ng-href="{{banner[0].url}}">-->
                 <!--<img ng-if="banner.length=='1'" src="{{banner[0].image_url}}">-->
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <ion-scroll  width="500px; height: 500px" direction="xy" scroll="true" class="m-t-10" >
+            <!--<ion-scroll  width="500px; height: 500px" direction="xy" scroll="true" class="m-t-10" >-->
 
                 <div class="row">
                     <div class="col-50" ng-repeat="subCategory_detail in category.subCategory.data">
@@ -53,7 +53,7 @@
                         </figure>
                     </div>
                 </div>
-            </ion-scroll>
+            <!--</ion-scroll>-->
         </div>
 
     </ion-content>

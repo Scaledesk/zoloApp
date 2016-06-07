@@ -45,7 +45,6 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     // }
 
     $scope.$on('logout', function (event, args) {
-        console.log("inside logout")
         $scope.message = args.message;
         $scope.login_value = true;
 
@@ -111,6 +110,6 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     };
     $scope.getPackages = function(id){
         $state.go('app.package_list',{'sub_cat_id':id});
-    }
+    };
 });
 

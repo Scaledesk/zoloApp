@@ -546,3 +546,11 @@ hr{
     width: 70px;
 
 }
+
+.text-justify{
+    text-align: justify!important;
+}
+
+.border-0{
+    border: none!important;
+}

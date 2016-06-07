@@ -9,13 +9,13 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
         });
         $location.path(path);
     };
-    $scope.product_id = window.localStorage['pro_id'];
-    var c_id = window.localStorage['cat_id'];
-    
-    $scope.redirection = function (){
-        $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
-    };
-    
+    // $scope.product_id = window.localStorage['pro_id'];
+    // var c_id = window.localStorage['cat_id'];
+    //
+    // $scope.redirection = function (){
+    //     $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+    // };
+    //
   
     $scope.login = function () {
         $rootScope.$broadcast('loading:show');

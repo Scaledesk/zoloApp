@@ -1,10 +1,22 @@
-<ion-view title="{{package.name}}">
-<!--<ion-view>-->
-    <!--<ion-nav-title>{{package.name}}</ion-nav-title>-->
+<style>
+
+    .nav-bar-title{
+        margin-left: 30px;
+    }
+    </style><!--<ion-view title="{{package.name}}">-->
+<ion-view>
+    <ion-nav-title>{{package.name}}</ion-nav-title>
     <ion-nav-bar class="header_color">
-        <ion-nav-back-button class="button-clear">
-            <i class="icon ion-ios-arrow-back" ng-click="back_to_package()"></i>
-        </ion-nav-back-button>
+
+        <!--<a ng-click="back_to_package()"class="button back-button buttons button-clear header-item nav-back-btn">-->
+        <!--<i class="icon ion-ios-arrow-back"></i>-->
+        <!--</a>-->
+        <!--<ion-nav-back-button class="button-clear">-->
+            <!--<i class="icon ion-ios-arrow-back" ng-click="back_to_package()"></i>-->
+        <!--</ion-nav-back-button>-->
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_package()"  tabindex="0">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
     </ion-nav-bar>
 
     <!--<div id="z-login-header" class="bar bar-header">-->

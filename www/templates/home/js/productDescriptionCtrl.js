@@ -32,6 +32,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     };
 
     $scope.back_to_package = function() {
+        console.log("sonam")
         $state.go('app.package_list', {'sub_cat_id': $stateParams.cat_id});
     };
     var booking_info = {};
@@ -191,9 +192,11 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     
     $scope.book_now = function () {
         $scope.booking_add_ons = true;
-        $timeout(function(){
-            $ionicScrollDelegate.scrollBottom(true);
-        },2000)
+        // $timeout(function(){
+        //     $ionicScrollDelegate.scrollBottom(true);
+        // },2000)
+        $ionicScrollDelegate.scrollBottom(true);
+
     };
     
     $scope.book_now_confirm = function(){

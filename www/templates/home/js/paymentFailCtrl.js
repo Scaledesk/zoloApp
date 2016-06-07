@@ -8,7 +8,6 @@ appControllers.controller('paymentFailCtrl', function ($scope, $timeout, $mdUtil
     console.log(transaction_id);
 
     $scope.try_again = function(){
-        console.log('shdghsv');
         generateNewTransactionService.transaction_generate(transaction_id).then(function(data){
             console.log("transaction data:",JSON.stringify(data));
             var t_id = data.data.data;

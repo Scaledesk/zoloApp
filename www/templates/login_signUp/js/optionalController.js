@@ -3,21 +3,7 @@ appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeou
                                                     $ionicViewSwitcher,$ionicModal,googleLogin,facebookLogin,
 $cordovaOauth, $http,ProfileService) {
 
-
-    $scope.navigateTo = function (stateName) {
-        if ($ionicHistory.currentStateName() != stateName) {
-            $ionicHistory.nextViewOptions({
-                disableAnimate: false,
-                disableBack: true
-            });
-
-            $ionicViewSwitcher.nextDirection('back');
-
-            $state.go(stateName, {
-                isAnimated: objectData,
-            });
-        }
-    };
+    
     $scope.login_page = function(){
     $state.go('app.login_index');
     };
@@ -139,6 +125,7 @@ $cordovaOauth, $http,ProfileService) {
                                 }
                             });
                             window.localStorage['access_token']=data.data.access_token;
+                            $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                             $ionicHistory.nextViewOptions({
                                 disableBack: true
                             });
@@ -192,6 +179,7 @@ $cordovaOauth, $http,ProfileService) {
                                         }
                                     });
                                     window.localStorage['access_token']=data.data.access_token;
+                                    $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                                     $ionicHistory.nextViewOptions({
                                         disableBack: true
                                     });
@@ -236,9 +224,7 @@ $cordovaOauth, $http,ProfileService) {
     };
 
     $scope.demo = function(provider){
-        console.log("inside demo");
         $auth.authenticate(provider).then(function (result) {
-            console.log("sahgsdfs",JSON.stringify(result));
             $scope.get_token({
                 google_id:result.data.google_id,
                 google_access_token:result.data.google_access_token,

@@ -1,3 +1,4 @@
+<!--<ion-view hide-nav-bar="true">-->
 <ion-view>
     <ion-nav-title>{{package.name}}</ion-nav-title>
     <ion-nav-bar class="header_color">
@@ -6,7 +7,14 @@
         </ion-nav-back-button>
     </ion-nav-bar>
 
+    <!--<div id="z-login-header" class="bar bar-header">-->
+        <!--<a ng-click="back_to_package()"class="button back-button buttons button-clear header-item nav-back-btn">-->
+            <!--<i class="icon ion-ios-arrow-back"></i>-->
+        <!--</a>-->
+    <!--</div>-->
+
     <ion-content id="product-detail-content">
+
         <md-card id="product-detail-tab-detail" class="m-0 bg-c">
             <img ng-if="package.photos.data.length=='1'" src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
             <img ng-if="package.photos.data.length=='0'" src="http://www.imzolo.com/global/images/dummy.png" class="md-card-image" alt="Card image">

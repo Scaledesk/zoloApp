@@ -1,5 +1,5 @@
 appControllers.controller('productDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory, 
-                                                              $state,$stateParams,addWishList, $mdToast,
+                                                              $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate) {
     $scope.des_value = true;
@@ -16,8 +16,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.book_new={
         quantity_new:1
     };
-    
-    
 
    $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
    $scope.new_quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
@@ -28,14 +26,13 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.prevSlide = function() {
         $ionicSlideBoxDelegate.previous();
     };
-$scope.slideIndex = 0;
+    $scope.slideIndex = 0;
     $scope.slideChanged = function(index) {
         $scope.slideIndex = index;
     };
 
     $scope.back_to_package = function() {
         $state.go('app.package_list', {'sub_cat_id': $stateParams.cat_id});
-
     };
     var booking_info = {};
 
@@ -194,6 +191,9 @@ $scope.slideIndex = 0;
     
     $scope.book_now = function () {
         $scope.booking_add_ons = true;
+        $timeout(function(){
+            $ionicScrollDelegate.scrollBottom(true);
+        },50)
     };
     
     $scope.book_now_confirm = function(){

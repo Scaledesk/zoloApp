@@ -621,6 +621,15 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.more', {
+                url: "/more",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/more/html/index.html",
+                        controller:'moreCtrl'
+                    }
+                }
+            })
             .state('app.order_detail', {
                 url: "/order_detail/:order_id",
                 views: {

@@ -1,35 +1,50 @@
 <ion-view title="Your Orders">
     <ion-content>
         <ion-list>
-            <ion-item class="p-5" ng-show="order_list.length!= '0'" ng-repeat="order in order_list"  ng-click="order_detail(order.id)">
-                <div class="row ">
-                    <div class="col-33">
-                        <p class="text-c">Package Name:</p>
+            <ion-item class="p-5 border-0" ng-show="order_list.length!= '0'" ng-repeat="order in order_list"  ng-click="order_detail(order.id)">
+                <div class="card p-5">
+
+                <div class="row">
+                    <div class="col-50">
+                        <p>Order # <b>{{order.id}}</b></p>
 
                     </div>
-
-                    <div class="col-67">
-                        <p class="w-500">{{order.package_title}}</p>
+                    <div class="col-50">
+                        <!--<p class="pull-right">By:<b> {{order_detail.seller_profile.name}} </b></p>-->
 
                     </div>
 
                 </div>
                 <hr>
-
-                <div class="row">
+                <div class="row ">
                     <div class="col-33">
-                        <p class="text-c">Order Date:</p>
+                        <p class="text-c">Package Name</p>
 
                     </div>
 
                     <div class="col-67">
-                        <p class="w-500">{{order.order_date}}</p>
+                        <p class="w-500">:&nbsp;{{order.package_title}}</p>
+
+                    </div>
+
+                </div>
+                <!--<hr>-->
+
+                <div class="row">
+                    <div class="col-33">
+                        <p class="text-c">Order Date</p>
+
+                    </div>
+
+                    <div class="col-67">
+                        <p class="w-500">:&nbsp;{{order.order_date}}</p>
 
                     </div>
 
                 </div>
 
 
+                </div>
 
 
 

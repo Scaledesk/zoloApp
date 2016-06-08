@@ -12,7 +12,7 @@
         <div class="login-section" id="signup-section">
             <div class="card">
                 <div class="item item-text-wrap">
-                    <form action="">
+                    <form  ng-submit="signUp()">
                         <md-input-container md-no-float="">
                             <input  type="text" ng-model="user.name" placeholder="Name" style="border-bottom: 1px solid #ededed;">
                         </md-input-container>
@@ -27,9 +27,9 @@
                             <span class="password-s" ng-click="show_password =!show_password">show</span>
                         </md-input-container>
 
-                        <div class="login-btn" ng-click="signUp()">
+                        <button type="submit" class="login-btn">
                             <p>Register</p>
-                        </div>
+                        </button>
                     </form>
                 </div>
             </div>

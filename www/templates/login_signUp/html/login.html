@@ -13,7 +13,7 @@
         <div class="login-section">
             <div class="card">
                 <div class="item item-text-wrap">
-                    <form action="">
+                    <form ng-submit="login()">
                         <md-input-container md-no-float="">
                             <input  type="email" ng-model="user.email" placeholder="Email" style="border-bottom: 1px solid #ededed;">
                         </md-input-container>
@@ -22,9 +22,9 @@
                             <span class="password-s" ng-click="show_password =!show_password">show</span>
                         </md-input-container>
                         <div class="forgot-p"><a href="" class="text-c" ng-click="forget_pwd()">Forgot Password?</a></div>
-                        <div class="login-btn" ng-click="login()">
+                        <button type="submit" class="login-btn">
                             <p>Login</p>
-                        </div>
+                        </button>
                     </form>
                 </div>
             </div>

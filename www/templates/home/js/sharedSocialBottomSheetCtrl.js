@@ -6,16 +6,23 @@ appControllers.controller('sharedSocialBottomSheetCtrl', function ($scope, $mdBo
         $cordovaSocialSharing.shareViaFacebook(name,null,$scope.url).then(function(result) {
             console.log("result",JSON.stringify(result))
         }, function(err) {
+            window.open("https://www.facebook.com/", "_blank", "location=yes");
             console.log("err",JSON.stringify(err))
 
-            // An error occurred. Show a message to the user
-        });;
+        });
         $mdBottomSheet.hide();
     };
 
 
     $scope.sharedTwitter = function () {
-        $cordovaSocialSharing.shareViaTwitter(name+' @Zolo_Official',image, $scope.url);
+        $cordovaSocialSharing.shareViaTwitter(name+' @Zolo_Official',image, $scope.url).then(function(result) {
+            console.log("result",JSON.stringify(result))
+        }, function(err) {
+            window.open("https://twitter.com/", "_blank", "location=yes");
+            console.log("err",JSON.stringify(err))
+
+            // An error occurred. Show a message to the user
+        });
         $mdBottomSheet.hide();
     };
     $scope.sharedMail = function () {

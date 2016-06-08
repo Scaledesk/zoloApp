@@ -645,7 +645,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             })
             
             .state('app.full_description', {
-                url: "/full_description/:product_id",
+                url: "/full_description/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/full_description.html",
@@ -658,7 +658,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             })
             .state('app.seller_profile', {
-                url: "/seller_profile/:product_id",
+                url: "/seller_profile/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/seller_profile.html",

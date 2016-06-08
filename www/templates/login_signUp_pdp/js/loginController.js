@@ -94,7 +94,8 @@ appControllers.controller('LoginPdpCtrl', function ($scope,$stateParams, $timeou
                     $scope.user.email = '';
                     $scope.user.password = '';
                         $rootScope.$broadcast('logged_in', { message: 'login successfully' });
-                        $state.go('app.product_desc',{'product_id':$scope.product_id});
+                        $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+
 
                 }
             })

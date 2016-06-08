@@ -262,21 +262,24 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     };
 
     $scope.addPrice = function (initial, final) {
-        console.log($scope.filter);
-        $scope.price_range = [];
         if ($scope.filter.price1) {
+            $scope.price_range = [];
             $scope.price_range.push(0, 1000);
         }
         if ($scope.filter.price2) {
+            $scope.price_range = [];
             $scope.price_range.push(1001, 10000);
         }
         if ($scope.filter.price3) {
+            $scope.price_range = [];
             $scope.price_range.push(10001, 50000);
         }
         if ($scope.filter.price4) {
+            $scope.price_range = [];
             $scope.price_range.push(50001, 100000);
         }
         if ($scope.filter.price5) {
+            $scope.price_range = [];
             $scope.price_range.push(100001, $scope.max_price);
         }
         $scope.makefilters();

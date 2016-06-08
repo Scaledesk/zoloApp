@@ -81,6 +81,9 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
 
         var my_maximum = Math.max.apply(null, $scope.price_range);
         var my_minimum = Math.min.apply(null, $scope.price_range);
+
+        console.log("filter value:",my_maximum,my_minimum);
+
         stringFilter = "deal_price : " + my_minimum + " TO " + my_maximum;
     };
 
@@ -288,7 +291,6 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     };
 
     $scope.addPrice = function (initial, final) {
-        console.log($scope.filter);
         $scope.price_range = [];
         if ($scope.filter.price1) {
             $scope.price_range.push(0, 1000);
@@ -309,8 +311,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     };
     $scope.makeSort=function(val){
         switch($scope.choice.val){
-            case 1:{$scope.pricehtol();
-                break;}
+            case 1:{$scope.pricehtol();break;}
             case 2:{$scope.priceltoh();break;}
             case 3:{$scope.newfirst();break;}
         }

@@ -49,8 +49,8 @@
 
         </div>
 
-        <p ng-hide="orp_result.bookingPackagesAddons.data.length == '0'" class="f-18 m-t-20 w-200 m-l-10">ADD ONS</p>
-        <div class="card" ng-hide="orp_result.bookingPackagesAddons.data.length == '0'">
+        <p ng-if="orp_result.bookingPackagesAddons.data.length > 0" class="f-18 m-t-20 w-200 m-l-10">ADD ONS</p>
+        <div class="card" ng-if="orp_result.bookingPackagesAddons.data.length > 0">
             <div class="row" ng-repeat="add_on_list in orp_result.bookingPackagesAddons.data">
                 <div class="col-50">
                     <ion-checkbox ng-model="isChecked">Name of add ons{{add_on_list.name}}

@@ -53,8 +53,10 @@
         <div class="card" ng-if="orp_result.bookingPackagesAddons.data.length > 0">
             <div class="row" ng-repeat="add_on_list in orp_result.bookingPackagesAddons.data">
                 <div class="col-50">
-                    <ion-checkbox ng-model="isChecked">Name of add ons{{add_on_list.name}}
-                       </ion-checkbox>
+                    Name of add ons{{add_on_list.name}}
+                    <!--<ion-checkbox ng-model="isChecked">
+                    Name of add ons{{add_on_list.name}}
+                       <!--</ion-checkbox>-->
                 </div>
                 <div class="col-20">
                     q {{add_on_list.quantity}}

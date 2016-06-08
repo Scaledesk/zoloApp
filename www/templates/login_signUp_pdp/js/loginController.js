@@ -60,6 +60,7 @@ appControllers.controller('LoginPdpCtrl', function ($scope,$stateParams, $timeou
                         }
                     }
                 });
+                $rootScope.$broadcast('loading:hide');
                 return;
             }
         }
@@ -100,6 +101,7 @@ appControllers.controller('LoginPdpCtrl', function ($scope,$stateParams, $timeou
             .catch(function (response) {
                 window.localStorage['access_token']=undefined;
                 $auth.logout();
+                $rootScope.$broadcast('loading:hide');
                 $mdToast.show({
                     controller: 'toastController',
                     templateUrl: 'toast.html',

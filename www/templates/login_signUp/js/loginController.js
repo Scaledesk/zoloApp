@@ -63,6 +63,7 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                         }
                     }
                 });
+                $rootScope.$broadcast('loading:hide');
                 return;
             }
         }
@@ -106,6 +107,7 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
             .catch(function (response) {
                 window.localStorage['access_token']=undefined;
                 $auth.logout();
+                $rootScope.$broadcast('loading:hide');
                 $mdToast.show({
                     controller: 'toastController',
                     templateUrl: 'toast.html',

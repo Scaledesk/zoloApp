@@ -78,7 +78,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         };
     });
     $scope.makefilters = function () {
-
+        console.log("hhhhhhhhhhhh",JSON.stringify($scope.price_range));
         var my_maximum = Math.max.apply(null, $scope.price_range);
         var my_minimum = Math.min.apply(null, $scope.price_range);
 

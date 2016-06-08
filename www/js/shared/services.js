@@ -75,7 +75,7 @@ angular.module('starter').factory('SellerProfileService', function($http,$rootSc
             var deffer = $q.defer();
             return $http({
                 method:"get",
-                url:serverConfig.address+"api/user/"+id+"/packages"
+                url:serverConfig.address+"api/user/"+id+"/packages?include=category"
             }).success(function(data, status, headers, config) {
                 deffer.resolve(data);
                 $rootScope.$broadcast('loading:hide');

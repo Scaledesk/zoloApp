@@ -157,6 +157,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         if($scope.package.seller_profile.user_id){
             SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
                 $scope.seller_info = data.data.data;
+                console.log("ddd",JSON.stringify( $scope.seller_info))
             });
         }
     });
@@ -235,5 +236,8 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                 name:name
             }
         });
+    };
+    $scope.pdp_seller_package = function(category_id,p_id){
+        $state.go('app.product_desc', {'cat_id':category_id,'product_id': p_id})
     };
 });

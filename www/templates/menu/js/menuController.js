@@ -1,5 +1,5 @@
 appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,profileService,$ionicHistory,
-                                               $ionicSideMenuDelegate,subCategoryService,bannerService,$rootScope) {
+                                               $ionicSideMenuDelegate,subCategoryService,bannerService,$rootScope,$ionicSlideBoxDelegate) {
    
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
@@ -8,6 +8,8 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
 
     bannerService.get_banner().then(function(response){
         $scope.banner = response.data.data;
+
+        $ionicSlideBoxDelegate.update();
     });
 
     $scope.access_token = window.localStorage['access_token'];
@@ -32,9 +34,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         }
     }
 
-
-
-
+    
 
     //
     // if($scope.access_token && $scope.access_token != 'undefined'){

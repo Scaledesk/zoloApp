@@ -249,7 +249,6 @@ angular.module('starter').factory('signUpService', function($http,$state,$rootSc
                         }
                     }
                 });
-                $state.go('app.home');
             }
             deffer.resolve(data);
             $rootScope.$broadcast('loading:hide');

@@ -6,9 +6,10 @@
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content class="bg-c">
-        <div class="card m-10-5" ng-show="packages.length =='0'" style="max-height: 110px;">
-           <p>No, package found</p>
-            <button class="button button-positive" ng-click="go_home()">Back to home</button>
+        <div class="card m-10-5 p-10 text-center" ng-show="packages.length =='0'" style="max-height: 110px;">
+           <p class="text-center f-18">No Packages found</p>
+
+            <a class="" ng-click="go_home()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to home</a>
         </div>
         <div>
         </div>

@@ -14,13 +14,13 @@
                     <p>{{orp_result.package_title}}</p>
 
 
-<!--<<<<<<< HEAD-->
-        <!--<h4>ADD ONS  {{orp_result.bookingPackagesAddons.data.length}}</h4>-->
-        <!--<div class="card" ng-show="orp_result.bookingPackagesAddons.data.length =='0'">-->
-            <!--<p>No, Add ons found for this package!</p>-->
-        <!--</div>-->
-        <!--<div class="card" ng-show="orp_result.bookingPackagesAddons.data.length !='0'">-->
-<!--=======-->
+                    <!--<<<<<<< HEAD-->
+                    <!--<h4>ADD ONS  {{orp_result.bookingPackagesAddons.data.length}}</h4>-->
+                    <!--<div class="card" ng-show="orp_result.bookingPackagesAddons.data.length =='0'">-->
+                    <!--<p>No, Add ons found for this package!</p>-->
+                    <!--</div>-->
+                    <!--<div class="card" ng-show="orp_result.bookingPackagesAddons.data.length !='0'">-->
+                    <!--=======-->
                 </div>
                 <!--<div class="col-20">-->
                 <!--q{{orp_result.quantity}}-->
@@ -30,7 +30,7 @@
                 <!--</div>-->
 
                 <div class="col-25">
-                   <p class="zolo-c f-18"><i class="fa fa-inr"></i>&nbsp; {{orp_result.price}}</p>
+                    <p class="zolo-c f-18"><i class="fa fa-inr"></i>&nbsp; {{orp_result.price}}</p>
 
                 </div>
             </div>
@@ -52,22 +52,52 @@
         <p ng-if="orp_result.bookingPackagesAddons.data.length > 0" class="f-18 m-t-20 w-200 m-l-10">ADD ONS</p>
         <div class="card" ng-if="orp_result.bookingPackagesAddons.data.length > 0">
             <div class="row" ng-repeat="add_on_list in orp_result.bookingPackagesAddons.data">
-                <div class="col-50">
-                    Name of add ons{{add_on_list.name}}
+
+                <div class="col-67">
+                    <ion-list>
+                        <ion-item>Name of add ons{{add_on_list.name}}</ion-item>
+                    </ion-list>
+
+
                     <!--<ion-checkbox ng-model="isChecked">
                     Name of add ons{{add_on_list.name}}
                        <!--</ion-checkbox>-->
+                    <div style="padding: 5px 16px;"> Del : {{add_on_list.days}}</div>
+
                 </div>
-                <div class="col-20">
-                    q {{add_on_list.quantity}}
+
+                <div class="col-33 text-center">
+                    <div class="f-16 zolo-c" style="padding: 16px;">&#8377; {{add_on_list.amount}}</div>
+                    <div style="padding: 5px 16px;">QTY : {{add_on_list.quantity}}</div>
+
+
                 </div>
-                <div class="col-10">
-                    del{{add_on_list.days}}
-                </div>
-                <div class="col-20">
-                    &#8377; {{add_on_list.amount}}
-                </div>
+
             </div>
+
+            <!--<div class="row">-->
+            <!--<div class="col-80">-->
+            <!--del{{add_on_list.days}}-->
+
+            <!--</div>-->
+
+            <!--<div class="col-20">-->
+            <!--q {{add_on_list.quantity}}-->
+
+            <!--</div>-->
+
+            <!--</div>-->
+
+
+            <!--<div class="col-10">-->
+            <!--del{{add_on_list.days}}-->
+            <!--</div>-->
+
+            <!--<div class="col-20">-->
+            <!--q {{add_on_list.quantity}}-->
+
+            <!--</div>-->
+            <!--</div>-->
         </div>
 
         <div class="card">

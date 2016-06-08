@@ -98,7 +98,7 @@
 /*///////Zolo base color/////*/
 
 .zolo-c{
-    color: #765f89;
+    color: #673ab7;
 }
 
 .text-c{
@@ -157,6 +157,11 @@
 
 .login-section .forgot-p{
     margin: 20px 0;
+}
+
+.login-btn{
+    width: 100%;
+    padding: 0;
 }
 
 .login-section .login-btn p {
@@ -322,7 +327,7 @@
 
 .z-active{
     text-decoration: underline !important;
-    color: #765f89!important;
+    color: #673ab7!important;
     font-weight: bolder;
 }
 
@@ -331,11 +336,11 @@
 }
 
 .pdp-buy{
-    background-color: #765f89!important;
+    background-color: #4caf50!important;
 }
 
 .pdp-share{
-    background-color: #765f89!important;
+    background-color: #673ab7!important;
 }
 
 .p-10{
@@ -403,11 +408,11 @@
 }
 
 .pkg-filter{
-    background-color: #765f89!important;
+    background-color: #4caf50!important;
 }
 
 .filter-btn{
-    background-color: #26A69A;
+    background-color: #4caf50;
     width: 70px;
     text-align: center;
     color: #fff;
@@ -470,7 +475,7 @@ hr{
 }
 
 .header_color {
-    background-color: #765f89;
+    background-color: #673ab7;
 }
 
 .black-c{
@@ -498,6 +503,9 @@ hr{
 
 .m-t-n-30{
     margin-top: -30px!important;
+}
+.m-t-30{
+    margin-top: 30px!important;
 }
 
 .bg-c{
@@ -529,7 +537,7 @@ hr{
 }
 
 .border-c{
-    border-color: #765f89!important;
+    border-color: #4caf50!important;
 }
 
 .align-img{
@@ -537,7 +545,7 @@ hr{
 }
 
 .bg{
-    background-color: #765f89!important;
+    background-color: #673ab7!important;
 }
 
 .img-circle{

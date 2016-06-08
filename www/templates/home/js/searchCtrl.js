@@ -23,14 +23,11 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                             $scope.total_page=content.nbPages;
                             $scope.current_page=content.page;
                             $rootScope.$broadcast('loading:hide');
-
                 }
             ).catch(function (error) {
                 console.log("error",error);
                 $rootScope.$broadcast('loading:hide');
-
             });
-
         }
         else{
             if($scope.current_page <= $scope.total_page){
@@ -64,11 +61,9 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         $scope.search_packages($scope.filterText,true);
     };
     
-    $scope.productDescription = function(id){
-        $state.go('app.product_desc',{'product_id':id})
+    $scope.productDescription = function(category_id,id){
+        $state.go('app.product_desc',{'cat_id':category_id,'product_id':id})
     };
-
-
     $scope.price_list = true;
     $scope.sorting_value = false;
     $scope.price_range = [];

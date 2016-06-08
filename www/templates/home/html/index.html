@@ -2,7 +2,7 @@
     <ion-header-bar class="bar bar-subheader item-input-inset">
         <label class="item-input-wrapper search">
             <i class="icon ion-search placeholder-icon"></i>
-            <input placeholder="Search..." ng-model="filterText" ng-blur="search_result()" type="text">
+            <input placeholder="Search..." ng-model="filterText" ng-keypress="search_result()" type="text">
         </label>
     </ion-header-bar>
 

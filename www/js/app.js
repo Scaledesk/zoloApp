@@ -355,7 +355,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             })
             .state('app.orp', {
-                url: "/orp",
+                url: "/orp/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/orp.html",

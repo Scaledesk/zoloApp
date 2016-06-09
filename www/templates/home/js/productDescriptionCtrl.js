@@ -237,4 +237,8 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.pdp_seller_package = function(category_id,p_id){
         $state.go('app.product_desc', {'cat_id':category_id,'product_id': p_id})
     };
+
+    $scope.getPdp = function(category_id,p_id){
+        $state.go('app.product_desc', {'cat_id':category_id,'product_id': p_id})
+    };
 });

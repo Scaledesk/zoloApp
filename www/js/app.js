@@ -390,6 +390,21 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             })
 
+            .state('app.orp_search', {
+                url: "/orp_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/search/html/orp_search.html",
+                        controller: "orderReviewSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+
+
             .state('app.seller_profile_search', {
                 url: "/seller_profile_search/:search_text/:cat_id/:product_id",
                 views: {
@@ -417,6 +432,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            
+            
 
             .state('app.optional_login_search', {
                 url: "/optional_login_search/:search_text/:cat_id/:product_id",
@@ -457,6 +474,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            
 
             .state('app.forget_pwd_search', {
                 url: "/forget_pwd_search/:search_text/:cat_id/:product_id",

@@ -1,37 +1,19 @@
+<style>
+    .nav-bar-title{
+        margin-left: 30px;
+    }
+</style>
 <ion-view>
     <ion-nav-bar class="header_color">
-        <ion-nav-back-button class="button-clear">
-            <i class="icon ion-ios-arrow-back"></i>
-        </ion-nav-back-button>
-
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_home()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
     </ion-nav-bar>
     <ion-content>
-        <!--<div class="card" ng-repeat="package in packages">-->
-            <!--<div class="row">-->
-                <!--<div class="col-20" ng-click="productDescription(package.id)">-->
-                    <!--<img style="width: 200px; height: 100px;" src="{{package.first_photo}}">-->
-                <!--</div>-->
-                <!--<div class="col-80">-->
-                    <!--<b>{{package.name}}</b>-->
-
-                    <!--<p>-->
-                        <!--By :{{package.seller_name}}-->
-                    <!--</p>-->
-                    <!--<i class="icon ion-star">{{package.average_rating}}/5-->
-                        <!--<p class="pull-right">&#8377;<span class="font-hot-sale">{{package.price}}</span></p></i>-->
-                    <!--<br>-->
-                    <!--<i class="icon ion-location">{{package.location[0].text}}, {{package.location[1].text}} </i>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
         <div class="card m-10-5" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
             <div class="row" ng-click="productDescription(package.category_id,package.id)">
                 <div class="col-33">
                     <img width="100%" height="100"  src="{{package.first_photo}}" class="pkg-img">
-                    <!--<i class="fa fa-heart pkg-like" style="color: #f0f0f0;"></i>-->
-                    <!--<div class="text-c f-12 p-l-5">By:{{package.seller_name}}</div>-->
-
                 </div>
                 <div class="col-67">
                     <div class="w-500 p-r-10 p-l-10 m-b-0" style="height: 30px; line-height: 18px;">{{package.name | limitTo: 40}}..</div>
@@ -52,13 +34,10 @@
                 </div>
             </div>
         </div>
-
-
-        <button class="button f-18" ng-click="load_more()" style="width: 100%; color: #565a5c; border: 1px solid #aaa;">
+        <button class="button f-18" ng-if="packages.length > 5 || packages.length ==5" ng-click="load_more()" style="width: 100%; color: #565a5c; border: 1px solid #aaa;">
             Load more
         </button>
     </ion-content>
-
     <div class="footer-fab-bar">
         <a class="md-button md-accent md-fab fab-footer pkg-filter" ng-click="openSortAndFilterModal()" aria-label="Add" tabindex="0">
             <i class="fa fa-filter"></i>

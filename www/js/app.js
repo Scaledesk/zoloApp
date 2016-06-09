@@ -367,17 +367,96 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/search_info/:search_text",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/home/html/search_result.html",
+                        templateUrl: "templates/search/html/index.html",
                         controller: "searchCtrl"
                     }
                 },
                 resolve: {
                     search_text: function($stateParams) {
-                        console.log(JSON.stringify($stateParams))
                     }
                 }
             })
-           
+            .state('app.search_pdp', {
+                url: "/search_pdp/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/search/html/search_pdp.html",
+                        controller: "searchPdpCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+
+            .state('app.seller_profile_search', {
+                url: "/seller_profile_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/search/html/seller_profile_search.html",
+                        controller: "sellerProfileSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+
+            .state('app.full_description_search', {
+                url: "/full_description_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/search/html/full_description_search.html",
+                        controller: "fullDescriptionSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+
+            .state('app.optional_login_search', {
+                url: "/optional_login_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_search/html/optional.html",
+                        controller: "optionalSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.login_search', {
+                url: "/login_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_search/html/login.html",
+                        controller: "LoginSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.signUp_search', {
+                url: "/signUp_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_search/html/signUp.html",
+                        controller: "signUpSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
 
             .state('app.package_list', {
                 url: "/package_list/:sub_cat_id",

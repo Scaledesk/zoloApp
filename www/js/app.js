@@ -563,6 +563,19 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.orp_cat', {
+                url: "/orp_cat/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/orp_cat.html",
+                        controller: "orderReviewCatCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
             .state('app.cat_seller_profile', {
                 url: "/cat_seller_profile/:cat_id/:sub_cat_id/:product_id",
                 views: {

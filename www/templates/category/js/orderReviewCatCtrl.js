@@ -1,4 +1,4 @@
-appControllers.controller('orderReviewCtrl', function ($scope, $timeout,$state, $stateParams,OrderReviewService) {
+appControllers.controller('orderReviewCatCtrl', function ($scope, $timeout,$state, $stateParams,OrderReviewService) {
   
   var id =  window.localStorage['id'];
   var booking_id = window.localStorage['booking_id'];
@@ -6,7 +6,7 @@ appControllers.controller('orderReviewCtrl', function ($scope, $timeout,$state, 
   var access_token = window.localStorage['access_token'];
   window.localStorage['cat_id'] = $stateParams.cat_id;
   window.localStorage['product_id'] = $stateParams.product_id;
-  window.localStorage['home_id'] = 'home';
+  window.localStorage['sub_cat_id'] = $stateParams.sub_cat_id;
 
   OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
       $scope.orp_result = data.data.data;
@@ -24,8 +24,9 @@ appControllers.controller('orderReviewCtrl', function ($scope, $timeout,$state, 
     $state.go('app.paymentOption');
   };
   
-  $scope.back_to_pdp = function(){
-    $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
+  $scope.back_to_cat_pdp = function(){
+    $state.go('app.cat_product_desc',{'cat_id':$stateParams.cat_id,'sub_cat_id': $stateParams.sub_cat_id,'product_id':$stateParams.product_id});
+
   };
 });
 

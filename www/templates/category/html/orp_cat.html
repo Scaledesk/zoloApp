@@ -1,0 +1,79 @@
+<style>
+    .nav-bar-title{
+        margin-left: 30px;
+    }
+</style>
+<ion-view title="ORDER REVIEW">
+    <ion-nav-bar class="header_color">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_cat_pdp()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
+    </ion-nav-bar>
+    <ion-content>
+        <p class="f-18 m-t-20 w-200 m-l-10">REVIEW YOUR ORDER</p>
+        <div class="card">
+            <div class="row">
+                <div class="col-75">
+                    <p>{{orp_result.package_title}}</p>
+                </div>
+                <div class="col-25">
+                    <p class="zolo-c f-18"><i class="fa fa-inr"></i>&nbsp; {{orp_result.price}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-75">
+                    <p>QTY&nbsp;:{{orp_result.quantity}}</p>
+                </div>
+                <div class="col-25">
+                    <p class="text-c">Del: {{orp_result.package_delivery_time}} Days</p>
+                </div>
+            </div>
+        </div>
+
+        <p ng-if="orp_result.bookingPackagesAddons.data.length > 0" class="f-18 m-t-20 w-200 m-l-10">ADD ONS</p>
+        <div class="card" ng-if="orp_result.bookingPackagesAddons.data.length > 0">
+            <div class="row" ng-repeat="add_on_list in orp_result.bookingPackagesAddons.data">
+
+                <div class="col-67">
+                    <ion-list>
+                        <ion-item>Name of add ons{{add_on_list.name}}</ion-item>
+                    </ion-list>
+
+                    <div style="padding: 5px 16px;"> Del : {{add_on_list.days}}</div>
+
+                </div>
+
+                <div class="col-33 text-center">
+                    <div class="f-16 zolo-c" style="padding: 16px;">&#8377; {{add_on_list.amount}}</div>
+                    <div style="padding: 5px 16px;">QTY : {{add_on_list.quantity}}</div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+            <div class="row p-10">
+                <div class="col-50">
+                    <p class="w-500 f-14 text-c">TOTAL Amount</p>
+
+                </div>
+
+                <div class="col-50">
+                    <p class="text-right f-18 w-500 zolo-c">&#8377; {{orp_result.total_price}}</p>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-assertive p-0">
+        <div class="button-bar" ng-click="add_address()">
+            <a class="button button-royal f-18 line-height pdp-buy border-c">CONTINUE TO PAYMENT</a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

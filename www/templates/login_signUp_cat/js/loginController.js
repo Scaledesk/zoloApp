@@ -116,6 +116,7 @@ appControllers.controller('LoginCatCtrl', function ($scope,$stateParams, $timeou
             });
     };
     $scope.forget_pwd = function(){
-        $state.go('app.forget_password');
-    }
+        $state.go('app.forget_pwd_cat',{'cat_id':$stateParams.cat_id,'sub_cat_id': $stateParams.sub_cat_id,'product_id':$stateParams.product_id});
+
+    };
 });

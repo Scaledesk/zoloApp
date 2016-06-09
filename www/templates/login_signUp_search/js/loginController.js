@@ -112,6 +112,6 @@ appControllers.controller('LoginSearchCtrl', function ($scope,$stateParams, $tim
             });
     };
     $scope.forget_pwd = function(){
-        $state.go('app.forget_password');
-    }
+        $state.go('app.forget_pwd_search',{'search_text': $stateParams.search_text,'cat_id': $stateParams.cat_id,'product_id':$stateParams.product_id});
+    };
 });

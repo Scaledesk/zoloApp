@@ -458,6 +458,20 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             })
 
+            .state('app.forget_pwd_search', {
+                url: "/forget_pwd_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_search/html/forget_pwd_search.html",
+                        controller: "ForgetPwdSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+
             .state('app.package_list', {
                 url: "/package_list/:sub_cat_id",
                 views: {
@@ -597,6 +611,19 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.forget_pwd_cat', {
+                url: "/forget_pwd_cat/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_cat/html/forget_pwd_cat.html",
+                        controller: "ForgetPwdCatCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
 
             .state('app.about_us', {
                 url: "/aboutUs",
@@ -712,29 +739,54 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             })
             .state('app.optional_index_pdp', {
-                url: "/optional_index_pdp",
+                url: "/optional_index_pdp/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/login_signUp_pdp/html/optional.html",
                         controller:"optionalPdpCtrl"
                     }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
                 }
             })
             .state('app.login_pdp', {
-                url: "/login_pdp",
+                url: "/login_pdp/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/login_signUp_pdp/html/login.html",
                         controller:"LoginPdpCtrl"
                     }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
                 }
             })
             .state('app.signUpPdp', {
-                url: "/signUpPdp",
+                url: "/signUpPdp/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/login_signUp_pdp/html/signUp.html",
                         controller:"signUpPdpCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.forgetPwdPdp', {
+                url: "/forgetPwdPdp/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_pdp/html/forgetPwdPdp.html",
+                        controller:"ForgetPwdPdpCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
                     }
                 }
             })

@@ -202,12 +202,7 @@ $cordovaOauth, $http,ProfileService) {
             console.log("else",JSON.stringify(response));
         });
     };
-
-
-    $scope.forget_pwd = function(){
-        $state.go('app.forget_password');
-    };
-
+    
     $scope.demo = function(provider){
         $auth.authenticate(provider).then(function (result) {
             $scope.get_token({

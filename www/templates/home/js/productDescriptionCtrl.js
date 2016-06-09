@@ -218,10 +218,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
             });
         }
         else{
-            var p_id = $stateParams.product_id;
-            $state.go('app.optional_index_pdp');
-            window.localStorage['pro_id']= p_id;
-            window.localStorage['cat_id']= $stateParams.cat_id;
+            $state.go('app.optional_index_pdp', {'cat_id':$stateParams.cat_id,'product_id': $stateParams.product_id});
         }
     };
 

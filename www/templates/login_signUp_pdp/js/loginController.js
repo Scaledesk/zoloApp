@@ -3,14 +3,11 @@ appControllers.controller('LoginPdpCtrl', function ($scope,$stateParams, $timeou
 
     $scope.user = {};
 
-    $scope.product_id = window.localStorage['pro_id'];
-    var c_id = window.localStorage['cat_id'];
-
     $scope.redirection_to = function (){
-        $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+        $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
     };
      $scope.redirection_to_option = function (){
-        $state.go('app.optional_index_pdp');
+        $state.go('app.optional_index_pdp',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
      };
 
   
@@ -94,7 +91,7 @@ appControllers.controller('LoginPdpCtrl', function ($scope,$stateParams, $timeou
                     $scope.user.email = '';
                     $scope.user.password = '';
                         $rootScope.$broadcast('logged_in', { message: 'login successfully' });
-                        $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+                        $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
 
 
                 }
@@ -117,6 +114,6 @@ appControllers.controller('LoginPdpCtrl', function ($scope,$stateParams, $timeou
             });
     };
     $scope.forget_pwd = function(){
-        $state.go('app.forget_password');
+        $state.go('app.forgetPwdPdp',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
     }
 });

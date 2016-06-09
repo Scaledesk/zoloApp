@@ -1,13 +1,10 @@
-appControllers.controller('CategoryCtrl', function ($scope, $timeout, $mdUtil,CategoryService,
-                                                       $mdSidenav, $log, $ionicHistory, $state,$stateParams) {
+appControllers.controller('CategoryCtrl', function ($scope,CategoryService, $ionicHistory, $state,$stateParams) {
    
     CategoryService.getAll().then(function(data){
         $scope.categories = data.data.data;
-        console.log(JSON.stringify($scope.categories));
     });
 
     $scope.allSubcategory = function(id){
-        console.log("1wwww",id);
-        $state.go('app.subCategory',{'cat_id':id});
-    }
+        $state.go('app.cat_sub_cat_list',{'cat_id':id});
+    };
 });

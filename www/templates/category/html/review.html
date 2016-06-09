@@ -1,0 +1,23 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">
+            <i ng-click="closeReviewModel()" class="fa fa-times pull-right" aria-hidden="true"></i>
+            <p>REVIEWS:{{package.reviews.data.length}}</p>
+        </h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="card" ng-show="package.reviews.data.length == '0'">
+            Sorry, No reviews found for this package.
+
+        </div>
+        <div class="card" ng-show="package.reviews.data.length" ng-repeat="review in package.reviews.data">
+            <img ng-src="{{review.user_image}}"/><p class="pull-right">{{review.average_rating}}/5</p>
+            <br>
+            {{review.user_name}}
+            <div>
+                Date:{{review.review_date}}
+                comment:{{review.comment}}
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

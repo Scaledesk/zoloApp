@@ -411,6 +411,74 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.cat_sub_cat_list', {
+                url: "/cat_sub_cat_list/:cat_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/cat_sub_cat.html",
+                        controller: "catSubCategoryCtrl"
+                    }
+                },
+                resolve: {
+                    cat_id: function($stateParams) {
+                    }
+                }
+            })
+
+
+            .state('app.cat_package_list', {
+                url: "/cat_package_list/:cat_id/:sub_cat_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/cat_packages_list.html",
+                        controller: "catPackagesCtrl"
+                    }
+                },
+                resolve: {
+                    sub_cat_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.cat_product_desc', {
+                url: "/cat_product_desc/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/cat_product_description.html",
+                        controller: "catProductDescriptionCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.cat_seller_profile', {
+                url: "/cat_seller_profile/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/cat_seller_profile.html",
+                        controller: "catSellerProfileCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.cat_full_description', {
+                url: "/cat_full_description/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/cat_full_description.html",
+                        controller: "catFullDescriptionCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+
             .state('app.about_us', {
                 url: "/aboutUs",
                 views: {

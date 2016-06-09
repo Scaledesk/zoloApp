@@ -479,6 +479,46 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             })
 
+            .state('app.optional_cat', {
+                url: "/optional_cat/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_cat/html/optional.html",
+                        controller: "optionalCatCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.login_cat', {
+                url: "/login_cat/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_cat/html/login.html",
+                        controller: "LoginCatCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.signUp_cat', {
+                url: "/signUp_cat/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_cat/html/signUp.html",
+                        controller: "signUpCatCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+
             .state('app.about_us', {
                 url: "/aboutUs",
                 views: {

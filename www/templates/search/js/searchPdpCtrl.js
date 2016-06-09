@@ -201,5 +201,10 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
     $scope.seller_Profile = function(id){
         $state.go('app.seller_profile_search',{'search_text': $stateParams.search_text,'cat_id': $stateParams.cat_id,product_id:id});
     };
+    
+    $scope.getPdpForSearch = function(cat_id,product_id){
+        $state.go('app.search_pdp',{'search_text': $stateParams.search_text,'cat_id':cat_id,'product_id':product_id})
+
+    };
 
 });

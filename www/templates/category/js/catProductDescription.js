@@ -130,6 +130,8 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
         if($scope.package.seller_profile.user_id){
             SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
                 $scope.seller_info = data.data.data;
+                console.log("ddd",JSON.stringify( $scope.seller_info))
+
             });
         }
     });
@@ -201,6 +203,11 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
 
     $scope.full_desc = function(id){
         $state.go('app.cat_full_description',{'cat_id':$stateParams.cat_id,'sub_cat_id': $stateParams.sub_cat_id,product_id:id});
+    };
+
+    $scope.getPdpForCat = function(parent_id,sub_cat_id,p_id){
+        $state.go('app.cat_product_desc',{'cat_id':parent_id,'sub_cat_id':sub_cat_id,'product_id':p_id});
+
     };
     
 });

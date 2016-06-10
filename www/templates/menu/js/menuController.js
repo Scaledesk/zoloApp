@@ -67,6 +67,9 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                 window.localStorage['access_token'] ='';
                 window.localStorage['pro_id'] ='';
                 window.localStorage['orp_page'] = '';
+                window.localStorage['search_text'] = '';
+                window.localStorage['sub_cat_id'] = '';
+                window.localStorage['home_id'] = '';
                 // $window.location.reload();
                 $rootScope.$broadcast('logout', {message: 'log out'});
                 $ionicHistory.nextViewOptions({

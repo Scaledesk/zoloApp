@@ -52,32 +52,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     };
 
 
-    $ionicModal.fromTemplateUrl('templates/home/html/add_ons.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function (modal) {
-        $scope.add_on_modal = modal;
-    });
-    $scope.openAddOnsModel = function () {
-        $scope.add_on_modal.show();
-        $scope.booking_add_ons = true;
-
-    };
-    $scope.closeAddOnsModel = function () {
-        $scope.add_on_modal.hide();
-    };
-
-    $scope.package_quantity = function(quant,price,p_id){
-            var quantity = quant;
-            var price = price;
-            var p_id = p_id;
-         console.log("sonamamama",price,quantity,p_id);
-    };
-     $scope.addon_quantity = function(quant,price,add_id){
-            var quantity = quant;
-            var price = price;
-            console.log("sonamamama 222",price,quantity,add_id);
-    };
+   
 
     $scope.setIndex=function(index,checked){
         console.log("checked",checked)
@@ -157,7 +132,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         if($scope.package.seller_profile.user_id){
             SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
                 $scope.seller_info = data.data.data;
-                console.log("ddd",JSON.stringify( $scope.seller_info))
             });
         }
     });
@@ -176,10 +150,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         $scope.pec_value = false;
         $scope.term_n_cond = true;
     };
-    $scope.full_desc = function(id){
-        $state.go('app.full_description',{'cat_id': $stateParams.cat_id,product_id:id});
-    };
-
+    
     $scope.package_summary = function(){
         $scope.active_tab = 'p_summery';
         $scope.des_value = false;
@@ -214,14 +185,11 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                 var info = data.data.data;
                 window.localStorage['id'] = info.id;
                 window.localStorage['booking_id'] = info.booking_id;
-                $state.go('app.orp',{booking_id:info.booking_id,t_id:info.id});
+                $state.go('app.orp',{'cat_id':$stateParams.cat_id,'product_id': $stateParams.product_id,'booking_id':info.booking_id,'t_id':info.id});
             });
         }
         else{
-            var p_id = $stateParams.product_id;
-            $state.go('app.optional_index_pdp');
-            window.localStorage['pro_id']= p_id;
-            window.localStorage['cat_id']= $stateParams.cat_id;
+            $state.go('app.optional_index_pdp', {'cat_id':$stateParams.cat_id,'product_id': $stateParams.product_id});
         }
     };
 
@@ -237,7 +205,15 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
             }
         });
     };
-    $scope.pdp_seller_package = function(category_id,p_id){
+    $scope.seller_Profile = function(category_id,p_id){
+        $state.go('app.seller_profile', {'cat_id':category_id,'product_id': p_id})
+    };
+
+    $scope.getPdp = function(category_id,p_id){
         $state.go('app.product_desc', {'cat_id':category_id,'product_id': p_id})
     };
+    $scope.full_desc = function(id){
+        $state.go('app.full_description',{'cat_id': $stateParams.cat_id,product_id:id});
+    };
+
 });

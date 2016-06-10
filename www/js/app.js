@@ -355,7 +355,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             })
             .state('app.orp', {
-                url: "/orp",
+                url: "/orp/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/orp.html",
@@ -367,17 +367,128 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/search_info/:search_text",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/home/html/search_result.html",
+                        templateUrl: "templates/search/html/index.html",
                         controller: "searchCtrl"
                     }
                 },
                 resolve: {
                     search_text: function($stateParams) {
-                        console.log(JSON.stringify($stateParams))
                     }
                 }
             })
-           
+            .state('app.search_pdp', {
+                url: "/search_pdp/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/search/html/search_pdp.html",
+                        controller: "searchPdpCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+
+            .state('app.orp_search', {
+                url: "/orp_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/search/html/orp_search.html",
+                        controller: "orderReviewSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+
+
+            .state('app.seller_profile_search', {
+                url: "/seller_profile_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/search/html/seller_profile_search.html",
+                        controller: "sellerProfileSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+
+            .state('app.full_description_search', {
+                url: "/full_description_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/search/html/full_description_search.html",
+                        controller: "fullDescriptionSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+            
+            
+
+            .state('app.optional_login_search', {
+                url: "/optional_login_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_search/html/optional.html",
+                        controller: "optionalSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.login_search', {
+                url: "/login_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_search/html/login.html",
+                        controller: "LoginSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.signUp_search', {
+                url: "/signUp_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_search/html/signUp.html",
+                        controller: "signUpSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
+            
+
+            .state('app.forget_pwd_search', {
+                url: "/forget_pwd_search/:search_text/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_search/html/forget_pwd_search.html",
+                        controller: "ForgetPwdSearchCtrl"
+                    }
+                },
+                resolve: {
+                    search_text: function($stateParams) {
+                    }
+                }
+            })
 
             .state('app.package_list', {
                 url: "/package_list/:sub_cat_id",
@@ -411,6 +522,140 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.cat_sub_cat_list', {
+                url: "/cat_sub_cat_list/:cat_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/cat_sub_cat.html",
+                        controller: "catSubCategoryCtrl"
+                    }
+                },
+                resolve: {
+                    cat_id: function($stateParams) {
+                    }
+                }
+            })
+
+
+            .state('app.cat_package_list', {
+                url: "/cat_package_list/:cat_id/:sub_cat_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/cat_packages_list.html",
+                        controller: "catPackagesCtrl"
+                    }
+                },
+                resolve: {
+                    sub_cat_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.cat_product_desc', {
+                url: "/cat_product_desc/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/cat_product_description.html",
+                        controller: "catProductDescriptionCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.orp_cat', {
+                url: "/orp_cat/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/orp_cat.html",
+                        controller: "orderReviewCatCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.cat_seller_profile', {
+                url: "/cat_seller_profile/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/cat_seller_profile.html",
+                        controller: "catSellerProfileCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.cat_full_description', {
+                url: "/cat_full_description/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/category/html/cat_full_description.html",
+                        controller: "catFullDescriptionCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+
+            .state('app.optional_cat', {
+                url: "/optional_cat/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_cat/html/optional.html",
+                        controller: "optionalCatCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.login_cat', {
+                url: "/login_cat/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_cat/html/login.html",
+                        controller: "LoginCatCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.signUp_cat', {
+                url: "/signUp_cat/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_cat/html/signUp.html",
+                        controller: "signUpCatCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.forget_pwd_cat', {
+                url: "/forget_pwd_cat/:cat_id/:sub_cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_cat/html/forget_pwd_cat.html",
+                        controller: "ForgetPwdCatCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+
             .state('app.about_us', {
                 url: "/aboutUs",
                 views: {
@@ -525,29 +770,54 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }
             })
             .state('app.optional_index_pdp', {
-                url: "/optional_index_pdp",
+                url: "/optional_index_pdp/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/login_signUp_pdp/html/optional.html",
                         controller:"optionalPdpCtrl"
                     }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
                 }
             })
             .state('app.login_pdp', {
-                url: "/login_pdp",
+                url: "/login_pdp/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/login_signUp_pdp/html/login.html",
                         controller:"LoginPdpCtrl"
                     }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
                 }
             })
             .state('app.signUpPdp', {
-                url: "/signUpPdp",
+                url: "/signUpPdp/:cat_id/:product_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/login_signUp_pdp/html/signUp.html",
                         controller:"signUpPdpCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
+                    }
+                }
+            })
+            .state('app.forgetPwdPdp', {
+                url: "/forgetPwdPdp/:cat_id/:product_id",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/login_signUp_pdp/html/forgetPwdPdp.html",
+                        controller:"ForgetPwdPdpCtrl"
+                    }
+                },
+                resolve: {
+                    product_id: function($stateParams) {
                     }
                 }
             })

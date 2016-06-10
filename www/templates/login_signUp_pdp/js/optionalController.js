@@ -1,25 +1,21 @@
 appControllers.controller('optionalPdpCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
                                                  serverConfig,$rootScope,$location,$ionicHistory,googleToken,
                                                     $ionicViewSwitcher,$ionicModal,googleLogin,facebookLogin,
-$cordovaOauth, $http,ProfileService) { 
-    
-    
-    $scope.product_id = window.localStorage['pro_id'];
-    var c_id = window.localStorage['cat_id'];
+$cordovaOauth, $http,ProfileService) {
     
     $scope.redirection_to = function (){
-        $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+        $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
     };
     $scope.login_page = function(){
-    $state.go('app.login_pdp');
+    $state.go('app.login_pdp',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
     };
     
     $scope.sign_up_page = function(){
-        $state.go('app.signUpPdp');
+        $state.go('app.signUpPdp',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
     };
 
     $scope.back_page = function(){
-        $state.go('app.optional_index_pdp');
+        $state.go('app.optional_index_pdp',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
     };
     
     $scope.user = {};
@@ -123,7 +119,7 @@ $cordovaOauth, $http,ProfileService) {
                             });
                             $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                             window.localStorage['access_token']=data.data.access_token;
-                            $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+                            $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
 
                         }
                     })
@@ -175,7 +171,7 @@ $cordovaOauth, $http,ProfileService) {
                                     });
                                     $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                                     window.localStorage['access_token']=data.data.access_token;
-                                    $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+                                    $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
                                 }
                             })
                         }
@@ -210,10 +206,6 @@ $cordovaOauth, $http,ProfileService) {
         });
     };
 
-
-    $scope.forget_pwd = function(){
-        $state.go('app.forget_password');
-    };
 
     $scope.demo = function(provider){
         $auth.authenticate(provider).then(function (result) {

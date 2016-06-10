@@ -7,7 +7,22 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     
     var index = client.initIndex('candybrush_packages');
 
+    $scope.price_list = true;
+    $scope.sorting_value = false;
+    $scope.price_range = [];
+    $scope.choice={
+        val:-1
+    };
+    var stringFilter = '';
+    $scope.filter = {price: false};
 
+
+    $scope.back_to_home = function(){
+       $ionicHistory.nextViewOptions({
+           disableBack: true
+       });
+       $state.go('app.home');
+   };
 
     $scope.search_packages = function(filterText,load_option){
         $rootScope.$broadcast('loading:show');
@@ -60,20 +75,8 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     $scope.load_more = function(){
         $scope.search_packages($scope.filterText,true);
     };
-    
-    $scope.productDescription = function(category_id,id){
-        $state.go('app.product_desc',{'cat_id':category_id,'product_id':id})
-    };
-    $scope.price_list = true;
-    $scope.sorting_value = false;
-    $scope.price_range = [];
-    $scope.choice={
-        val:-1
-    };
-    var stringFilter = '';
-    $scope.filter = {price: false};
-
-    $ionicModal.fromTemplateUrl('templates/home/html/search_sort_modal.html', {
+   
+    $ionicModal.fromTemplateUrl('templates/search/html/search_sort_modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
     }).then(function (modal) {
@@ -93,7 +96,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     $scope.sorting_option = function () {
         $scope.price_list = false;
         $scope.sorting_value = true;
-
     };
 
     MaxPriceService.getMaxPrice().then(function (data) {
@@ -111,11 +113,9 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
         var my_maximum = Math.max.apply(null, $scope.price_range);
         var my_minimum = Math.min.apply(null, $scope.price_range);
-        console.log('min ' + my_minimum);
-        console.log('max ' + my_maximum);
         stringFilter = "deal_price : " + my_minimum + " TO " + my_maximum;
-
-    }
+    };
+    
     $scope.filter_apply = function (filter) {
         $rootScope.$broadcast('loading:show');
 
@@ -146,21 +146,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             $rootScope.$broadcast('loading:hide');
 
         });
-        // ,
-        //     searchCallback
-        // );
-        //
-        // function searchCallback(err, content) {
-        //     if (err) {
-        //         console.error(err);
-        //         return;
-        //     }
-        //     $scope.packages = content.hits;
-        //     $scope.closeSortAndFilterModal();
-        //
-        //     console.log(JSON.stringify($scope.packages));
-        //
-        // }
 
     };
     $scope.pricehtol = function (filter) {
@@ -291,6 +276,10 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             case 2:{$scope.priceltoh();break;}
             case 3:{$scope.newfirst();break;}
         }
-    }
-    
+    };
+
+
+    $scope.productDescription = function(category_id,id){
+        $state.go('app.search_pdp',{'search_text':$stateParams.search_text,'cat_id':category_id,'product_id':id})
+    };
 });

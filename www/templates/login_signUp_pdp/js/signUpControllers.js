@@ -2,13 +2,10 @@
 appControllers.controller('signUpPdpCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,
                                                         $mdToast,$http, serverConfig,$rootScope,$location,$ionicHistory,
                                                         $ionicViewSwitcher) {
-
-    $scope.product_id = window.localStorage['pro_id'];
-    var c_id = window.localStorage['cat_id'];
     
     
     $scope.redirection = function (){
-        $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+        $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
     };
     
     $scope.user = {};
@@ -88,14 +85,14 @@ appControllers.controller('signUpPdpCtrl', function ($scope,$stateParams, $timeo
                 if(response.status == '200'){
                     window.localStorage['access_token']=response.data.access_token;
                     $rootScope.$broadcast('logged_in', { message: 'login successfully' });
-                    $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+                    $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
 
                 }
             })
             .catch(function (response) {
                 window.localStorage['access_token']=undefined;
                 $auth.logout();
-                $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
+                $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
             });
     };
 });

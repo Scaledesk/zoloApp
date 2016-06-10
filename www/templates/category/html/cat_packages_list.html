@@ -1,0 +1,55 @@
+<style>
+    .nav-bar-title{
+        margin-left: 30px;
+    }
+</style>
+<ion-view>
+    <ion-nav-title>{{packages_list.name}}</ion-nav-title>
+    <ion-nav-bar class="header_color">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_sub_cat_side()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
+    </ion-nav-bar>
+
+    <ion-content class="bg-c">
+        <div class="card m-10-5 p-10 text-center" ng-show="packages.length =='0'" style="max-height: 110px;">
+            <p class="text-center f-18">No Packages found</p>
+
+            <a class="" ng-click="go_home()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to home</a>
+        </div>
+        <div>
+        </div>
+        <div class="card m-10-5" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
+            <div class="row" ng-click="catProductDescription(packages_list.parent_id,packages_list.id,package.id)">
+                <div class="col-33">
+                    <img width="100%" height="100"  src="{{package.first_photo}}" class="pkg-img">
+                    <!--<i class="fa fa-heart pkg-like" style="color: #f0f0f0;"></i>-->
+                    <!--<div class="text-c f-12 p-l-5">By:{{package.seller_name}}</div>-->
+                </div>
+                <div class="col-67">
+                    <div class="w-500 p-r-10 p-l-10 m-b-0" style="height: 30px; line-height: 18px;">{{package.name | limitTo: 40}}..</div>
+                    <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{package.seller_name}}</div>
+                    <div class="row">
+                        <div class="col-75">
+                            <div class="text-c  m-b-0"><i class="fa fa-star review-c"></i>&nbsp;{{package.average_rating}}/5 <span class="text-c f-12">(0 Reviews)</span></div>
+
+                            <div class=" m-b-0">&nbsp;<i class="fa fa-map-marker text-c">&nbsp;{{package.location[0].text}}, {{package.location[1].text}} </i>
+                            </div>
+                        </div>
+
+                        <div class="col-25">
+                            <div class="zolo-c f-14  w-500"><i class="fa fa-inr"></i>&nbsp;{{package.price}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="button f-18 w-500" ng-if="packages.length > 5 || packages.length ==5" ng-click="load_more()" style="width: 100%; color: #565a5c; border: 1px solid #aaa;">Load more</button>
+    </ion-content>
+    <div class="footer-fab-bar">
+        <a class="md-button md-accent md-fab fab-footer pkg-filter" ng-click="openSortAndFilterModal()" aria-label="Add" tabindex="0">
+            <i class="fa fa-filter"></i>
+        </a>
+    </div>
+</ion-view>

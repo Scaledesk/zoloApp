@@ -14,15 +14,11 @@ appControllers.controller('paymentFailCtrl', function ($scope,$location,generate
         $scope.flag=1;
         window.localStorage['search_text'] = '';
         window.localStorage['sub_cat_id'] ='';
-
-
     }
     else if($scope.search_text){
         $scope.flag=2;
         window.localStorage['home_id'] = '';
         window.localStorage['sub_cat_id'] ='';
-
-
     }
     else if($scope.sub_cat_id){
         $scope.flag=3;

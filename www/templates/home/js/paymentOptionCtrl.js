@@ -10,13 +10,15 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
     var host = location.hostname;
      var port = location.port;
 
+    // alert(host);
+    // alert(port);
     $scope.choice={
         val:-1
     };
     
 
     var options = {
-        // location: 'yes',
+        location: 'yes',
         // clearcache: 'yes',
         // toolbar: 'no',
         hardwareback:'yes'

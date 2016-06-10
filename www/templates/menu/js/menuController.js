@@ -5,7 +5,6 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         $ionicSideMenuDelegate.toggleLeft();
     };
 
-
     bannerService.get_banner().then(function(response){
         $scope.banner = response.data.data;
 

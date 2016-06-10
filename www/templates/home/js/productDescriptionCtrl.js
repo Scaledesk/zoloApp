@@ -32,7 +32,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     };
 
     $scope.back_to_package = function() {
-        console.log("sonam")
         $state.go('app.package_list', {'sub_cat_id': $stateParams.cat_id});
     };
     var booking_info = {};

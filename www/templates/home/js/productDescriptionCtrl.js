@@ -185,6 +185,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                 var info = data.data.data;
                 window.localStorage['id'] = info.id;
                 window.localStorage['booking_id'] = info.booking_id;
+                window.localStorage['home_id'] = 'home';
                 $state.go('app.orp',{'cat_id':$stateParams.cat_id,'product_id': $stateParams.product_id,'booking_id':info.booking_id,'t_id':info.id});
             });
         }

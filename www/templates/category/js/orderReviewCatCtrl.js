@@ -6,7 +6,6 @@ appControllers.controller('orderReviewCatCtrl', function ($scope, $timeout,$stat
   var access_token = window.localStorage['access_token'];
   window.localStorage['cat_id'] = $stateParams.cat_id;
   window.localStorage['product_id'] = $stateParams.product_id;
-  window.localStorage['sub_cat_id'] = $stateParams.sub_cat_id;
 
   OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
       $scope.orp_result = data.data.data;

@@ -1,6 +1,14 @@
+<style>
+    .nav-bar-title{
+        margin-left: 30px!important;
+    }
+</style>
+
 <ion-side-menus>
     <ion-side-menu-content>
         <ion-nav-bar class="header_color">
+            <div class="title title-left header-item">Zolo</div>
+
             <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
             <ion-nav-buttons side="left">
                 <!--<button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()" style="color: #fff;"></button>-->
@@ -20,26 +28,26 @@
             <ion-list>
 
 
-                <ion-item menu-close href="#/app/profile" ng-show="!login_value">
+                <ion-item class="border-0 " menu-close href="#/app/profile" ng-show="!login_value">
                     <!--<i class="fa fa-tags" aria-hidden="true"></i>-->
                     <img ng-hide="profile.image" src="img/dummy.png" alt="" class="img-circle">
                     <img ng-show="profile.image" ng-src="{{profile.image}}" alt="" class="img-circle">
                     &nbsp;Hi,{{profile.name}}
                 </ion-item>
 
-                <ion-item menu-close href="#/app/order_list" ng-show="!login_value">
+                <ion-item class="border-0 border-bottom2" menu-close href="#/app/order_list" ng-show="!login_value">
                     <i class="fa fa-file-photo-o zolo-c" aria-hidden="true"></i>
                     &nbsp;Your orders
                 </ion-item>
 
-                <ion-item menu-close href="#/app/home">
+                <ion-item class="border-0" menu-close href="#/app/home">
                     <div>
                         <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/home.png" width="20" alt="">&nbsp; Home
                     </div>
                 </ion-item>
 
 
-                <ion-item menu-close href="#/app/allCategory">
+                <ion-item class="border-0" menu-close href="#/app/allCategory">
                     <div>
                         <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/category.png" width="20" alt="">                    &nbsp;Category
                     </div>
@@ -47,26 +55,26 @@
 
 
 
-                <ion-item menu-close ng-show="login_value" ng-click="login_options()">
+                <ion-item class="border-0" menu-close ng-show="login_value" ng-click="login_options()">
                     <div>
                         <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/signup.png" width="20" alt="">                    &nbsp;  Login/SignUp
                     </div>
                 </ion-item>
 
-                <ion-item menu-close href="#/app/aboutUs">
+                <ion-item class="border-0 border-top" menu-close href="#/app/aboutUs">
                     <div>
                         <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/about.png" width="20" alt=""> &nbsp;               About Us
                     </div>
                 </ion-item>
 
-                <ion-item menu-close href="#/app/contactUs">
+                <ion-item class="border-0" menu-close href="#/app/contactUs">
                     <div>
                         <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/contactus.png" width="20" alt=""> &nbsp;  Contact Us
                     </div>
                 </ion-item>
 
 
-                <ion-item menu-close href="#/app/more">
+                <ion-item class="border-0 border-top" menu-close href="#/app/more">
                     <div>
                         <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/terms.png" width="20" alt=""> &nbsp;More
                     </div>
@@ -75,7 +83,7 @@
 
 
 
-                <ion-item menu-close ng-show="!login_value" ng-click="logOut()">
+                <ion-item class="border-0" menu-close ng-show="!login_value" ng-click="logOut()">
                     <div>
                         <img class="align-img" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/logout.jpg" width="20" alt="">
                         &nbsp; Logout

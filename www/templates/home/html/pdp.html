@@ -80,11 +80,11 @@
 
                 <div class="card p-10 m-10-0" style="padding-bottom: 0!important;">
                     <div class="row border-bottom p-0">
-                        <div class="col-33">
+                        <div class="col-33 text-center">
                             <p class="f-13 text-c" ng-click="description_value()" ng-class="{'z-active':active_tab=='description'}">Description</p>
                         </div>
 
-                        <div class="col-33">
+                        <div class="col-33 text-center">
                             <p class="f-13 text-c" ng-click="package_summary()" ng-class="{'z-active':active_tab == 'p_summery'}">Package Summary</p>
                         </div>
 
@@ -104,7 +104,7 @@
 
                     </div>
                     <div ng-show="des_value">
-                        <p class="text-c m-t-5" ng-bind-html="package.description | limitTo: 400"></p>
+                        <p class="text-c m-t-5 " ng-bind-html="package.description | limitTo: 400"></p>
 
                         <p class="pull-left f-18 zolo-c" ng-click="full_desc(package.id)">More <i class="fa fa-plus-square-o"></i></p>
                     </div>
@@ -112,8 +112,8 @@
 
                     <div class="m-0" ng-show="pec_value">
                         <div class="row">
-                            <div class="col-50 text-center">
-                                <div class="text-c"><i class="fa fa-star"></i>&nbsp;Ratings:
+                            <div class="col-50 ">
+                                <div class="text-c"><i class="fa fa-star zolo-c"></i>&nbsp;Ratings:
 
                                     <span ng-if="package.average_rating===1||package.average_rating>1">
                                 <i class="fa fa-star"></i></span>
@@ -132,8 +132,8 @@
                                 <!--</div>-->
                             </div>
 
-                            <div class="col-50 text-center">
-                                <div class="text-c"><i class="ion-navicon"></i>&nbsp;No. of Sales: </div>
+                            <div class="col-50 ">
+                                <div class="text-c"><i class="ion-navicon zolo-c"></i>&nbsp;No. of Sales: </div>
                                 <div class="w-500">
                                     {{package.seller_profile.sales.count}}
                                 </div>
@@ -144,13 +144,13 @@
 
                         <div class="row m-t-10 border-bottom">
 
-                            <div class="col-50 text-center">
-                                <div class="text-c"> <i class="ion-android-car"></i>&nbsp;Delivery:</div>
+                            <div class="col-50 ">
+                                <div class="text-c"> <i class="ion-android-car zolo-c"></i>&nbsp;Delivery:</div>
                                 <div class="w-500">{{package.delivery_time}}</div>
                             </div>
 
-                            <div class="col-50 text-center">
-                                <div class="text-c"> <i class="ion-document"></i>&nbsp;Package Type:</div>
+                            <div class="col-50 ">
+                                <div class="text-c"> <i class="ion-document zolo-c"></i>&nbsp;Package Type:</div>
                                 <div class="w-500">
                                     {{package.PackagesTypes.data.name}}
                                 </div>
@@ -189,7 +189,7 @@
                     </div>
 
                     <div class="col-50">
-                        <div class="pull-right text-c f-16" ng-click="add_wish_list(package.seller_profile.user_id,package.id)">Wishlist&nbsp;<i class="fa fa-heart f-16" ></i></div>
+                        <div class="pull-right text-c f-16" ng-click="add_wish_list(package.seller_profile.user_id,package.id)"><i class="fa fa-heart f-16" ></i>&nbsp;Wishlist</div>
                     </div>
 
                 </div>
@@ -236,7 +236,7 @@
 
             </div>
 
-            <div ng-show="booking_add_ons">
+            <div ng-show="booking_add_ons" class="m-b-20">
                 <b style="margin-left: 10px;">YOUR PACKAGE</b>
                 <div class="card">
                     <ion-checkbox ng-model="booking_add_ons">{{package.name}}</ion-checkbox>
@@ -384,13 +384,13 @@
 
     <ion-footer-bar ng-hide="booking_add_ons" align-title="left" class="bar-assertive p-0 " style="background: none">
         <div class="button-bar" ng-click="book_now()">
-            <a class="button button-royal f-18 line-height pdp-buy border-c">BUY NOW &#8377; {{package.deal_price}}</a>
+            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">BUY NOW &#8377; {{package.deal_price}}</a>
         </div>
     </ion-footer-bar>
 
     <ion-footer-bar ng-show="booking_add_ons" align-title="left" class="bar-assertive p-0" style="background: none">
         <div class="button-bar" ng-click="book_now_confirm()">
-            <a class="button button-royal f-18 line-height pdp-buy border-c">BUY NOW &#8377; {{amount_to_show}}</a>
+            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">BUY NOW &#8377; {{amount_to_show}}</a>
         </div>
     </ion-footer-bar>
 </ion-view>

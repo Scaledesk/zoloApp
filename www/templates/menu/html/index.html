@@ -13,13 +13,14 @@
     <ion-side-menu side="left">
         <ion-header-bar class="header_color">
             <!--<h2 class="white-c text-center">Zolo</h2>-->
-            <img src="img/zolo-logo.png" width="100" alt="" >
+
+            <a href="#/app/home" menu-close>
+                <img src="img/zolo-logo.png" width="100" alt="">
+            </a>
         </ion-header-bar>
 
         <ion-content>
             <ion-list>
-
-
                 <ion-item menu-close href="#/app/profile" ng-show="!login_value">
                     <!--<i class="fa fa-tags" aria-hidden="true"></i>-->
                     <img ng-hide="profile.image" src="img/dummy.png" alt="" class="img-circle">

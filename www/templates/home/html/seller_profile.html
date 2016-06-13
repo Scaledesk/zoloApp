@@ -5,13 +5,16 @@
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content>
-            <div class="cover-img" style="background: url('{{package.seller_profile.banner}}') center no-repeat; background-size:cover; height: 200px;">
+            <div class="cover-img" ng-show="package.seller_profile.banner" style="background: url('{{package.seller_profile.banner}}') center no-repeat; background-size:cover; height: 200px;">
+            </div>
+            <div class="cover-img" ng-hide="package.seller_profile.banner" style="background: url('../img/profile_cover.jpg') center no-repeat; background-size:cover; height: 200px;">
             </div>
 
             <div class="row">
 
                 <div class="col-50 text-center">
-                    <img src="{{package.seller_profile.image}}" class="profile-img">
+                    <img ng-show="package.seller_profile.image" src="{{package.seller_profile.image}}" class="profile-img">
+                    <img ng-hide="package.seller_profile.image" src="./img/dummy.png" class="profile-img">
                 </div>
 
                 <div class="col-50 m-t-20">

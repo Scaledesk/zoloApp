@@ -163,7 +163,8 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     };
 
     $scope.seller_Profile = function(id){
-        $state.go('app.seller_profile',{'cat_id': $stateParams.cat_id,product_id:id});
+        console.log("ssss",$stateParams.cat_id,id);
+        $state.go('app.seller_profile',{'cat_id': $stateParams.cat_id,'product_id':id});
     };
     
     $scope.book_now = function () {
@@ -210,9 +211,9 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
             }
         });
     };
-    $scope.seller_Profile = function(category_id,p_id){
-        $state.go('app.seller_profile', {'cat_id':category_id,'product_id': p_id})
-    };
+    // $scope.seller_Profile = function(category_id,p_id){
+    //     $state.go('app.seller_profile', {'cat_id':category_id,'product_id': p_id})
+    // };
 
     $scope.getPdp = function(category_id,p_id){
         $state.go('app.product_desc', {'cat_id':category_id,'product_id': p_id})

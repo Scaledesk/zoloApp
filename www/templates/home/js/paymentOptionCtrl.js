@@ -1,4 +1,4 @@
-appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaInAppBrowser,$rootScope,
+appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaInAppBrowser,$rootScope,$ionicModal,
                                                    $timeout, $mdUtil,payByPayU) {
 
 
@@ -29,6 +29,21 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
         // toolbar: 'no',
         hardwareback:'yes'
     };
+
+    $ionicModal.fromTemplateUrl('templates/home/html/refundPolicyModal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.modal = modal;
+    });
+    $scope.refund_Policy_open = function () {
+        $scope.modal.show();
+    };
+    $scope.refund_Policy_close = function () {
+        $scope.modal.hide();
+    };
+
+
 
     $scope.pay = function (host) {
 

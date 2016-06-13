@@ -1,4 +1,4 @@
-appControllers.controller('searchPdpCtrl', function ($scope,productService,bookingService, $ionicHistory,
+appControllers.controller('searchPdpCtrl', function ($scope,productService,bookingService, $ionicHistory,$sce,$filter,
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate) {
@@ -120,6 +120,13 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
         $scope.package = data.data.data;
         $scope.paddons =  $scope.package.Addons.data;
         $scope.amount_to_show = $scope.package.deal_price;
+
+        var content = $filter('limitTo')($scope.package.description, 250)
+
+        $scope.description = $sce.trustAsHtml(content);
+
+        console.log("description",$scope.description)
+
         booking_info = {
             quantity:$scope.book.quantity,
             package_id:$scope.package.id,

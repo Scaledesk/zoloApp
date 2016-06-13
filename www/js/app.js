@@ -41,7 +41,7 @@ window.globalVariable = {
 
 
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
-        'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','algoliasearch'])
+        'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','algoliasearch','ngSanitize'])
     .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService, $mdDialog, $mdBottomSheet) {
 
 
@@ -243,8 +243,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 $rootScope.customStyle = createCustomStyle($ionicHistory.currentStateName());
             });
 
-            
-            
+
             
             var access_token = window.localStorage['access_token'];
 
@@ -944,9 +943,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             $urlRouterProvider.otherwise("app/home");
         }else{
             $urlRouterProvider.otherwise("/mainWalkthrough");
-
         }
-
     })
 
 .constant("serverConfig", {
@@ -981,6 +978,23 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
     $rootScope.$on('loading:hide', function() {
         $ionicLoading.hide()
     })
+})
+
+
+.run(function($ionicPlatform, $ionicPopup) {
+    // Disable BACK button on home
+    $ionicPlatform.registerBackButtonAction(function(event) {
+        if (true) { // your check here
+            $ionicPopup.confirm({
+                title: 'Zolo',
+                template: 'Are you sure, you want to exit?'
+            }).then(function(res) {
+                if (res) {
+                    ionic.Platform.exitApp();
+                }
+            })
+        }
+    }, 100);
 });
 
 

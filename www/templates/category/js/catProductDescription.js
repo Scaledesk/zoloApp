@@ -1,6 +1,6 @@
 appControllers.controller('catProductDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory,
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
-                                                              $ionicModal, OrderReviewService,$mdBottomSheet,
+                                                              $ionicModal, OrderReviewService,$mdBottomSheet,$sce,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate) {
     $scope.des_value = true;
     $scope.pec_value = false;
@@ -122,6 +122,10 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
         $scope.package = data.data.data;
         $scope.paddons =  $scope.package.Addons.data;
         $scope.amount_to_show = $scope.package.deal_price;
+        var content = $filter('limitTo')($scope.package.description, 250);
+        $scope.description = $sce.trustAsHtml(content);
+
+
         booking_info = {
             quantity:$scope.book.quantity,
             package_id:$scope.package.id,

@@ -4,6 +4,9 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
+$scope.demo = function(){
+    window.open('templates/home/html/payment_fail.html', '_blank', 'location=yes')
+};
 
     bannerService.get_banner().then(function(response){
         $scope.banner = response.data.data;

@@ -1,6 +1,6 @@
-appControllers.controller('productDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory, 
+appControllers.controller('productDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory,$filter, 
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
-                                                              $ionicModal, OrderReviewService,$mdBottomSheet,
+                                                              $ionicModal, OrderReviewService,$mdBottomSheet,$sce,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate) {
     $scope.des_value = true;
     $scope.pec_value = false;
@@ -121,6 +121,11 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     
     productService.getProductDescription($stateParams.product_id).then(function(data){
         $scope.package = data.data.data;
+
+        var content = $filter('limitTo')($scope.package.description, 250)
+
+        $scope.description = $sce.trustAsHtml(content);
+
         $scope.paddons =  $scope.package.Addons.data;
         $scope.amount_to_show = $scope.package.deal_price;
          booking_info = {

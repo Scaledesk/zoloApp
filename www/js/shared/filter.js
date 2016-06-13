@@ -44,3 +44,4 @@ appControllers.filter('htmlToPlaintextTruncate', function() {
 
     }
 })
+

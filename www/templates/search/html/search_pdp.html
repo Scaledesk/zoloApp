@@ -87,7 +87,7 @@
 
                     </div>
                     <div ng-show="des_value">
-                        <p class="text-c m-t-5" ng-bind-html="package.description | limitTo: 400"></p>
+                        <p class="text-c m-t-5" ng-bind-html="description"></p>
 
                         <p class="pull-left f-18 zolo-c" ng-click="full_desc(package.id)">More <i class="fa fa-plus-square-o"></i></p>
                     </div>
@@ -164,9 +164,9 @@
 
                     </div>
 
-                    <div class="col-25">
-                        <p class="pull-right"><a href="" ng-click="seller_Profile(package.id)">View All &nbsp;<i class="fa fa-angle-right"></i></a></p>
-                    </div>
+                    <!--<div class="col-25">-->
+                        <!--<p class="pull-right"><a href="" ng-click="seller_Profile(package.id)">View All &nbsp;<i class="fa fa-angle-right"></i></a></p>-->
+                    <!--</div>-->
                 </div>
                 <ion-scroll width="500px; height: 500px" direction="xy">
                     <div class="row">

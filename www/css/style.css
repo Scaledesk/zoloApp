@@ -331,6 +331,7 @@ md-sidenav {
     vertical-align: text-top;
     font-size: x-large;
     color: white; }
+
 .md-button.md-accent.md-fab.fab-footer {
   float: right;
   right: 25px;
@@ -411,11 +412,13 @@ md-sidenav {
   margin-left: 22px;
   font-size: 22px;
   color: gray; }
+
 .md-list-item-default p {
   font-size: 15px;
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis; }
+
 .md-list-item-default span {
   font-size: 15px;
   margin-right: 20px; }
@@ -1344,6 +1347,7 @@ md-sidenav {
     width: 100px;
     height: 100px;
     margin-top: 0; }
+
 #expense-dashboard #expense-dashboard-content {
   margin-top: 256px; }
   #expense-dashboard #expense-dashboard-content md-list-item {
@@ -1445,6 +1449,7 @@ md-sidenav {
   margin-top: 8px; }
   #cloth-shop-content md-toolbar h2 i {
     color: #e3cf7a !important; }
+
 #cloth-shop-content #product-list .col {
   padding: 3px; }
   #cloth-shop-content #product-list .col .cube-item {
@@ -1778,7 +1783,7 @@ md-sidenav {
     margin-top: 24px; }
 
 .bg-sign {
-  background: url('..img/bg-signin.png') !important;
+  background: url("..img/bg-signin.png") !important;
   /*background-size: cover;*/
   -webkit-background-size: cover; }
 
@@ -1807,7 +1812,7 @@ md-sidenav {
   height: auto; }
 
 .bg-static {
-  background: url('../img/walk1.png') !important;
+  background: url("../img/walk1.png") !important;
   background-repeat: no-repeat;
   background-size: 100%;
   /*background-image: linear-gradient(0deg, #e42012, #e42012 50%, transparent 50%);*/ }
@@ -1816,10 +1821,12 @@ md-sidenav {
   display: none; }
 
 .background_img_optional {
-  background: url(../img/bg-signin.png) no-repeat center center fixed;
+  background: url('https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/login-bg.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  filter: blur(2px);
+}
 
 .header_color {
   background-color: #673ab7; }

@@ -939,6 +939,16 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+
+            .state('app.wishlist', {
+                url: "/wishlist",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/wishlist/html/index.html",
+                        controller:'wishListCtrl'
+                    }
+                }
+            })
         if(window.localStorage['SkipIntro']== 'true'){
             $urlRouterProvider.otherwise("app/home");
         }else{

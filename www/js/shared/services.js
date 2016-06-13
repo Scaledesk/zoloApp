@@ -726,3 +726,48 @@ angular.module('starter').factory('bannerService', function($http,$q,$rootScope,
         }
     }
 });
+
+angular.module('starter').factory('wishListService', function($http,$q,$rootScope,serverConfig){
+    return {
+        get_wish_list:function(access_token){
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+"api/getWishlist?access_token="+access_token
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+angular.module('starter').factory('removeWishListService', function($http,$q,$rootScope,serverConfig){
+    return {
+        remove_wish_list:function(p_id,access_token){
+            var package = {
+                "package_id":p_id
+            }
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"PUT",
+                url:serverConfig.address+"api/removeWishPackage?access_token="+access_token,
+                data: package,
+
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});

@@ -1,9 +1,13 @@
 <style>
     .nav-bar-title{
+        margin-left: 30px!important;
+    }
+    .platform-android .bar .title{
         margin-left: 30px;
     }
 </style>
-<ion-view title="Seller Profile">
+
+<ion-view title="Seller Profile" id="restaurant">
     <ion-nav-bar class="header_color">
         <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_search_pdp()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
             <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
@@ -18,8 +22,8 @@
         <div class="row">
 
             <div class="col-50 text-center">
-                <img ng-show="package.seller_profile.image" src="{{package.seller_profile.image}}" class="profile-img">
-                <img ng-hide="package.seller_profile.image" src="./img/dummy.png" class="profile-img">
+                <img ng-show="package.seller_profile.image" src="{{package.seller_profile.image}}" class="profile-img border">
+                <img ng-hide="package.seller_profile.image" src="./img/dummy.png" class="profile-img border">
             </div>
 
                 <div class="col-50 m-t-20">
@@ -28,20 +32,20 @@
                 </div>
 
             </div>
-        <div class="card m-t-0  m-10-0">
+        <div class="card m-t-0  m-5">
             <p class="p-20 text-c p-b-0">{{package.seller_profile.description}}</p>
 
-            <p class="p-10" ng-hide="package.seller_profile.description">
+            <p class="p-10 text-center" ng-hide="package.seller_profile.description">
                 No, description found for {{package.seller_profile.name}}
             </p>
 
         </div>
 
 
-        <div class="card m-10-0">
+        <div class="card m-5">
             <div class="row border-bottom">
                 <div class="col-50 text-center">
-                    Contact Us
+                    <!--Contact Us-->
                     <p class="m-t-10 text-c"><i class="fa fa-phone text-success "></i>&nbsp;<a ng-href="tel:  08882091091">08882091091</a> </p>
                 </div>
                 <!--<div class="col-50 text-center">-->
@@ -64,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <div class="card p-5 m-10-0">
+        <div class="card p-5 m-5">
             <div class="row border-bottom">
                 <p class=" text-c">Other package by {{package.seller_profile.name}}</p>
             </div>

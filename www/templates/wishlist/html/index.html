@@ -1,6 +1,6 @@
-<ion-view title="Your wish List">
+<ion-view title="Your wish List" id="restaurant">
     <ion-content>
-        <div class="card m-10-5" ng-show="wishList.length !='0'" ng-repeat="wishListInfo in wishList" style="max-height: 110px;">
+        <div class="card m-5" ng-show="wishList.length !='0'" ng-repeat="wishListInfo in wishList" style="max-height: 110px;">
             <div class="row">
                 <div class="col-33" ng-click="productDescription(wishListInfo.subcategory_id,wishListInfo.id)">
                     <img width="100%" height="100"  src="{{wishListInfo.first_photo}}" class="pkg-img">
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="card m-10-5" ng-if="wishList.length =='0'" style="max-height: 110px;">
+        <div class="card m-5 text-center" ng-if="wishList.length =='0'" style="max-height: 110px;">
            Sorry, no item in your wishlist!
         </div>
 

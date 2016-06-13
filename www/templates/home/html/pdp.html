@@ -2,7 +2,7 @@
     .nav-bar-title{
         margin-left: 30px;
     }
-    </style><!--<ion-view title="{{package.name}}">-->
+</style><!--<ion-view title="{{package.name}}">-->
 <ion-view>
     <ion-nav-title>{{package.name}}</ion-nav-title>
     <ion-nav-bar class="header_color">
@@ -10,6 +10,7 @@
             <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
             <span class="back-text"></span></button>
     </ion-nav-bar>
+
     <ion-content id="product-detail-content">
 
         <md-card id="product-detail-tab-detail" class="m-0 bg-c">
@@ -84,8 +85,8 @@
                     <div ng-show="term_n_cond">
                         <p data-ng-bind-html="package.term_condition"></p>
 
-                        <div ng-hide="package.term_condition.length">
-                            <p class="text-center">No term and condition found!</p>
+                        <div class="text-center" ng-hide="package.term_condition.length">
+                            <div>No term and condition found!</div>
                         </div>
 
                     </div>
@@ -98,52 +99,78 @@
                     <br/>
 
                     <div class="m-0" ng-show="pec_value">
-                        <div class="row">
+                        <div class="row border-bottom p-10">
                             <div class="col-50 ">
-                                <div class="text-c"><i class="fa fa-star zolo-c"></i>&nbsp;Ratings:
+                                <div class="text-c"><i class="fa fa-star zolo-c"></i>&nbsp;Ratings
+                                </div>
+                            </div>
 
+                            <div class="col-50">
                                     <span ng-if="package.average_rating===1||package.average_rating>1">
                                 <i class="fa fa-star"></i></span>
-                                    <div>
-                                        <span class="w-500" ng-if="package.average_rating==0">No rating yet!</span>
-                                        <span ng-if="package.average_rating>1"><i class="fa fa-star"></i></span>
-                                        <span ng-if="package.average_rating>2"><i class="fa fa-star"></i></span>
-                                        <span ng-if="package.average_rating>3"><i class="fa fa-star"></i></span>
-                                        <span ng-if="package.average_rating>4"><i class="fa fa-star"></i></span>
-                                    </div>
+                                <div>
+                                    <span class="w-500" ng-if="package.average_rating==0">: No rating yet!</span>
+                                    <span ng-if="package.average_rating>1"><i class="fa fa-star"></i></span>
+                                    <span ng-if="package.average_rating>2"><i class="fa fa-star"></i></span>
+                                    <span ng-if="package.average_rating>3"><i class="fa fa-star"></i></span>
+                                    <span ng-if="package.average_rating>4"><i class="fa fa-star"></i></span>
                                 </div>
-                                <!--<div class="col text-right grid-pdp">-->
-                                <!--<div class="row">-->
+                            </div>
+                            <!--</div>-->
+                            <!--<div class="col text-right grid-pdp">-->
+                            <!--<div class="row">-->
 
-                                <!--</div>-->
-                                <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+
+                        <div class="row border-bottom p-10">
+                            <div class="col-50">
+                                <div class="text-c"><i class="ion-navicon zolo-c"></i>&nbsp;No. of Sales </div>
+
                             </div>
 
-                            <div class="col-50 ">
-                                <div class="text-c"><i class="ion-navicon zolo-c"></i>&nbsp;No. of Sales: </div>
+                            <div class="col-50">
                                 <div class="w-500">
-                                    {{package.seller_profile.sales.count}}
+                                    : {{package.seller_profile.sales.count}}
                                 </div>
                             </div>
 
                         </div>
 
+                        <!--</div>-->
 
-                        <div class="row m-t-10 border-bottom">
+
+                        <div class="row border-bottom p-10">
 
                             <div class="col-50 ">
-                                <div class="text-c"> <i class="ion-android-car zolo-c"></i>&nbsp;Delivery:</div>
-                                <div class="w-500">{{package.delivery_time}}</div>
+                                <div class="text-c"> <i class="ion-android-car zolo-c"></i>&nbsp;Delivery</div>
                             </div>
 
-                            <div class="col-50 ">
-                                <div class="text-c"> <i class="ion-document zolo-c"></i>&nbsp;Package Type:</div>
+                            <div class="col-50">
+                                <div class="w-500">: {{package.delivery_time}}</div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row border-bottom p-10">
+                            <div class="col-50">
+                                <div class="text-c"> <i class="ion-document zolo-c"></i>&nbsp;Package Type</div>
+
+                            </div>
+
+                            <div class="col-50">
                                 <div class="w-500">
-                                    {{package.PackagesTypes.data.name}}
+                                    : {{package.PackagesTypes.data.name}}
                                 </div>
                             </div>
 
+
+
                         </div>
+
+                        <!--</div>-->
 
 
                         <!--<div class="row">-->
@@ -154,16 +181,17 @@
                         <!--</div>-->
 
                     </div>
-                </div>
+                    </div>
+                    <!--</div>-->
 
 
             </md-card-content>
 
             <!--<div class="card p-10 m-10-0">-->
-                <!--<div class="row border-bottom">-->
-                    <!--<div class="f-16">ADD ONS</div>-->
+            <!--<div class="row border-bottom">-->
+            <!--<div class="f-16">ADD ONS</div>-->
 
-                <!--</div>-->
+            <!--</div>-->
 
             <!--</div>-->
 
@@ -234,10 +262,10 @@
                         <div class="col-20" style="margin-left: 10px;" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
 
 
-                                <md-select style="padding-top: 0px; padding-bottom: 10px;" id="Quantity" ng-model="book.quantity" placeholder="Select Quantity"
-                                           md-on-close="setIndex(-1,true)">
-                                    <md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>
-                                </md-select>
+                            <md-select style="padding-top: 0px; padding-bottom: 10px;" id="Quantity" ng-model="book.quantity" placeholder="Select Quantity"
+                                       md-on-close="setIndex(-1,true)">
+                                <md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>
+                            </md-select>
 
                         </div>
 
@@ -249,9 +277,9 @@
 
 
                     <!--<select ng-model="book.quantity" name="Quantity" ng-change="setIndex(-1,true)">-->
-                        <!--<option  ng-repeat="quantity in quantities">{{quantity}}</option>-->
+                    <!--<option  ng-repeat="quantity in quantities">{{quantity}}</option>-->
                     <!--</select>-->
-                <!--</div>-->
+                    <!--</div>-->
 
 
 
@@ -266,47 +294,47 @@
                             <!--<p ng-if="selectedaddons[$index].quantity">&#8377; {{selectedaddons[$index].quantity * addon.amount}}</p>-->
 
                             <!--<select ng-model="selectedaddons[$index].quantity" name="Quantity" ng-change="setIndex($index) ; checkAddon($index)">-->
-                                <!--<option  ng-repeat="quantity in new_quantities">{{quantity}}</option>-->
+                            <!--<option  ng-repeat="quantity in new_quantities">{{quantity}}</option>-->
                             <!--</select>-->
 
                             <div class="col-md-6 col-xs-6 checkbox-p p-r-0 col-sm-6">
 
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <div class="checkbox">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="checkbox">
                                             <input type="checkbox" checklist-model="selectedaddons[$index].id;" checklist-value="addon.id" ng-change="setIndex($index,checked)">
-                                            </div>
                                         </div>
-                                      <div class="col-90">
-                                      <p style="margin-bottom: 0px; padding-top: 10px; padding-left: 10px;">{{addon.name}}</p>
-                                      </div>
                                     </div>
-                                    <!--<label class="text-indent">-->
-                                        <!--<input checklist-model="selectedaddons[$index].id;" checklist-value="addon.id"-->
-                                               <!--ng-change="setIndex($index,checked)"-->
-                                               <!--type="checkbox" class="md-checkbox">-->
-                                        <!--<span class="checkbox-material"><span class="check"></span></span>-->
-                                        <!--{{addon.name}}-->
-                                    <!--</label>-->
+                                    <div class="col-90">
+                                        <p style="margin-bottom: 0px; padding-top: 10px; padding-left: 10px;">{{addon.name}}</p>
+                                    </div>
+                                </div>
+                                <!--<label class="text-indent">-->
+                                <!--<input checklist-model="selectedaddons[$index].id;" checklist-value="addon.id"-->
+                                <!--ng-change="setIndex($index,checked)"-->
+                                <!--type="checkbox" class="md-checkbox">-->
+                                <!--<span class="checkbox-material"><span class="check"></span></span>-->
+                                <!--{{addon.name}}-->
+                                <!--</label>-->
 
                             </div>
 
                             <div class="row">
 
-                            <div class="col-75"
-                                 ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
-                                <md-select style="padding-top:0px; padding-bottom: 10px;" id="Addon_Quantity" ng-model="selectedaddons[$index].quantity"
-                                           placeholder="Select Quantity" ng-change="setIndex($index)"
-                                           md-on-close="checkAddon($index)">
-                                    <md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>
-                                </md-select>
-                            </div>
-
-                            <div class="col-25">
-                                <div style="padding-top: 10px;">
-                                    <p>&#8377;{{addon.amount}} </p>
+                                <div class="col-75"
+                                     ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                                    <md-select style="padding-top:0px; padding-bottom: 10px;" id="Addon_Quantity" ng-model="selectedaddons[$index].quantity"
+                                               placeholder="Select Quantity" ng-change="setIndex($index)"
+                                               md-on-close="checkAddon($index)">
+                                        <md-option ng-repeat="n in a" value='{{n}}'>{{n}}</md-option>
+                                    </md-select>
                                 </div>
-                            </div>
+
+                                <div class="col-25">
+                                    <div style="padding-top: 10px;">
+                                        <p>&#8377;{{addon.amount}} </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -346,13 +374,13 @@
                 </md-list-item>
 
                 <!--<md-list-item>-->
-                    <!--<a class="md-grid-item-content" ng-click="sharedWhatsApp()">-->
-                        <!--<i class="ion-android-image"></i>-->
-                        <!--<img src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/insta.png" width="40" alt="">-->
+                <!--<a class="md-grid-item-content" ng-click="sharedWhatsApp()">-->
+                <!--<i class="ion-android-image"></i>-->
+                <!--<img src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/insta.png" width="40" alt="">-->
 
 
-                        <!--<div class="md-grid-text"> Instagram</div>-->
-                    <!--</a>-->
+                <!--<div class="md-grid-text"> Instagram</div>-->
+                <!--</a>-->
                 <!--</md-list-item>-->
 
 

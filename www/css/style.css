@@ -609,9 +609,9 @@ md-sidenav {
   #social-login.bg-white {
     background-color: white; }
   #social-login form {
-    margin-top: 33%; }
+    margin-top: 12%; }
     #social-login form.fakeLogin-form {
-      margin-top: 22%; }
+      margin-top: 12%; }
     #social-login form div i {
       font-size: 90px;
       margin-bottom: 16px; }
@@ -1821,12 +1821,10 @@ md-sidenav {
   display: none; }
 
 .background_img_optional {
-  background: url('https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/login-bg.jpg') no-repeat center center fixed;
+  background: url(../img/bg-signin.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
-  background-size: cover;
-  filter: blur(2px);
-}
+  background-size: cover; }
 
 .header_color {
   background-color: #673ab7; }

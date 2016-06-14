@@ -625,3 +625,9 @@ strong{
 .view-container{
     top: 0!important;
 }
+
+@media screen and (max-width : 315px)  {
+    figure img {
+        width: 130px!important;
+    }
+}

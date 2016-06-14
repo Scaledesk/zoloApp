@@ -95,52 +95,78 @@
                     <br/>
 
                     <div class="m-0" ng-show="pec_value">
-                        <div class="row">
-                            <div class="col-50 text-center">
-                                <div class="text-c"><i class="fa fa-star"></i>&nbsp;Ratings:
+                        <div class="row border-bottom p-10">
+                            <div class="col-50 ">
+                                <div class="text-c"><i class="fa fa-star-o zolo-c"></i>&nbsp;Ratings
+                                </div>
+                            </div>
 
+                            <div class="col-50">
                                     <span ng-if="package.average_rating===1||package.average_rating>1">
-                                <i class="fa fa-star"></i></span>
-                                    <div>
-                                        <span class="w-500" ng-if="package.average_rating==0">No rating yet!</span>
-                                        <span ng-if="package.average_rating>1"><i class="fa fa-star"></i></span>
-                                        <span ng-if="package.average_rating>2"><i class="fa fa-star"></i></span>
-                                        <span ng-if="package.average_rating>3"><i class="fa fa-star"></i></span>
-                                        <span ng-if="package.average_rating>4"><i class="fa fa-star"></i></span>
-                                    </div>
+                                <i class="fa fa-star-o"></i></span>
+                                <div>
+                                    <span class="w-500" ng-if="package.average_rating==0">: No rating yet!</span>
+                                    <span ng-if="package.average_rating>1"><i class="fa fa-star-o"></i></span>
+                                    <span ng-if="package.average_rating>2"><i class="fa fa-star-o"></i></span>
+                                    <span ng-if="package.average_rating>3"><i class="fa fa-star-o"></i></span>
+                                    <span ng-if="package.average_rating>4"><i class="fa fa-star-o"></i></span>
                                 </div>
-                                <!--<div class="col text-right grid-pdp">-->
-                                <!--<div class="row">-->
+                            </div>
+                            <!--</div>-->
+                            <!--<div class="col text-right grid-pdp">-->
+                            <!--<div class="row">-->
 
-                                <!--</div>-->
-                                <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+
+                        <div class="row border-bottom p-10">
+                            <div class="col-50">
+                                <div class="text-c"><i class="ion-navicon zolo-c"></i>&nbsp;No. of Sales </div>
+
                             </div>
 
-                            <div class="col-50 text-center">
-                                <div class="text-c"><i class="ion-navicon"></i>&nbsp;No. of Sales: </div>
+                            <div class="col-50">
                                 <div class="w-500">
-                                    {{package.seller_profile.sales.count}}
+                                    : {{package.seller_profile.sales.count}}
                                 </div>
                             </div>
 
                         </div>
 
+                        <!--</div>-->
 
-                        <div class="row m-t-10 border-bottom">
 
-                            <div class="col-50 text-center">
-                                <div class="text-c"> <i class="ion-android-car"></i>&nbsp;Delivery:</div>
-                                <div class="w-500">{{package.delivery_time}}</div>
+                        <div class="row border-bottom p-10">
+
+                            <div class="col-50 ">
+                                <div class="text-c"> <i class="ion-android-car zolo-c"></i>&nbsp;Delivery</div>
                             </div>
 
-                            <div class="col-50 text-center">
-                                <div class="text-c"> <i class="ion-document"></i>&nbsp;Package Type:</div>
+                            <div class="col-50">
+                                <div class="w-500">: {{package.delivery_time}}</div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row border-bottom p-10">
+                            <div class="col-50">
+                                <div class="text-c"> <i class="ion-document zolo-c"></i>&nbsp;Package Type</div>
+
+                            </div>
+
+                            <div class="col-50">
                                 <div class="w-500">
-                                    {{package.PackagesTypes.data.name}}
+                                    : {{package.PackagesTypes.data.name}}
                                 </div>
                             </div>
 
+
+
                         </div>
+
+                        <!--</div>-->
 
 
                         <!--<div class="row">-->
@@ -173,7 +199,7 @@
                     </div>
 
                     <div class="col-50">
-                        <div class="pull-right text-c f-16" ng-click="add_wish_list(package.seller_profile.user_id,package.id)">Wishlist&nbsp;<i class="fa fa-heart f-16" ></i></div>
+                        <div class="pull-right text-c f-16" ng-click="add_wish_list(package.seller_profile.user_id,package.id)">Wishlist&nbsp;<i class="fa fa-heart-o f-16" ></i></div>
                     </div>
 
                 </div>

@@ -1,5 +1,8 @@
 <style>
     .nav-bar-title{
+        margin-left: 30px!important;
+    }
+    .platform-android .bar .title{
         margin-left: 30px;
     }
 </style>
@@ -11,7 +14,7 @@
     </ion-nav-bar>
     <ion-content>
         <p class="f-18 m-t-20 w-200 m-l-10">REVIEW YOUR ORDER</p>
-        <div class="card">
+        <div class="card m-5">
             <div class="row">
                 <div class="col-75">
                     <p>{{orp_result.package_title}}</p>
@@ -31,7 +34,7 @@
         </div>
 
         <p ng-if="orp_result.bookingPackagesAddons.data.length > 0" class="f-18 m-t-20 w-200 m-l-10">ADD ONS</p>
-        <div class="card" ng-if="orp_result.bookingPackagesAddons.data.length > 0">
+        <div class="card m-5" ng-if="orp_result.bookingPackagesAddons.data.length > 0">
             <div class="row" ng-repeat="add_on_list in orp_result.bookingPackagesAddons.data">
 
                 <div class="col-67">
@@ -54,7 +57,7 @@
 
         </div>
 
-        <div class="card">
+        <div class="card m-5">
             <div class="row p-10">
                 <div class="col-50">
                     <p class="w-500 f-14 text-c">TOTAL Amount</p>
@@ -73,7 +76,7 @@
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-assertive p-0">
         <div class="button-bar" ng-click="add_address()">
-            <a class="button button-royal f-18 line-height pdp-buy border-c">CONTINUE TO PAYMENT</a>
+            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">CONTINUE TO PAYMENT</a>
         </div>
     </ion-footer-bar>
 </ion-view>

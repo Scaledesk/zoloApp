@@ -611,3 +611,12 @@ strong{
 .m-0-5{
     margin: 0 5px!important;
 }
+
+.r-wishlist{
+    background-color: rgb(244,67,54);
+    color: #fff;
+    display: block;
+    text-align: center;
+    padding: 5px !important;
+    font-size: 14px;
+}

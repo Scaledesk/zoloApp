@@ -1,15 +1,15 @@
-<ion-view title="Your wish List" id="restaurant">
+<ion-view title="Wishlist" id="restaurant">
     <ion-content>
-        <div class="card m-5" ng-show="wishList.length !='0'" ng-repeat="wishListInfo in wishList" style="max-height: 110px;">
+        <div class="card m-5 p-b-0" ng-show="wishList.length !='0'" ng-repeat="wishListInfo in wishList" style="max-height: 150px;">
             <div class="row">
                 <div class="col-33" ng-click="productDescription(wishListInfo.subcategory_id,wishListInfo.id)">
                     <img width="100%" height="100"  src="{{wishListInfo.first_photo}}" class="pkg-img">
                 </div>
                 <div class="col-67">
                     <div class="w-500 p-r-10 p-l-10 m-b-0" style="height: 30px; line-height: 18px;">{{wishListInfo.name | limitTo: 40}}..</div>
-                    <div class="pull-right">
-                        <i class="icon ion-trash-b" ng-click="remove_wishList(wishListInfo.id)"></i>
-                    </div>
+                    <!--<div class="pull-right">-->
+                        <!--<i class="icon ion-trash-b" ng-click="remove_wishList(wishListInfo.id)"></i>-->
+                    <!--</div>-->
                     <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{wishListInfo.seller_name}}</div>
                     <div class="row">
                         <div class="col-75">
@@ -25,7 +25,15 @@
                     </div>
                 </div>
             </div>
+            <div class="row r-wishlist" ng-click="remove_wishList(wishListInfo.id)">
+                <div class="">Remove From Wishlist</div>
+            </div>
+
+
         </div>
+
+
+
         <div class="card m-5 text-center" ng-if="wishList.length =='0'" style="max-height: 110px;">
            Sorry, no item in your wishlist!
         </div>

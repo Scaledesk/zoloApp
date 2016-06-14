@@ -101,19 +101,19 @@
                     <div class="m-0" ng-show="pec_value">
                         <div class="row border-bottom p-10">
                             <div class="col-50 ">
-                                <div class="text-c"><i class="fa fa-star zolo-c"></i>&nbsp;Ratings
+                                <div class="text-c"><i class="fa fa-star-o zolo-c"></i>&nbsp;Ratings
                                 </div>
                             </div>
 
                             <div class="col-50">
                                     <span ng-if="package.average_rating===1||package.average_rating>1">
-                                <i class="fa fa-star"></i></span>
+                                <i class="fa fa-star-o"></i></span>
                                 <div>
                                     <span class="w-500" ng-if="package.average_rating==0">: No rating yet!</span>
-                                    <span ng-if="package.average_rating>1"><i class="fa fa-star"></i></span>
-                                    <span ng-if="package.average_rating>2"><i class="fa fa-star"></i></span>
-                                    <span ng-if="package.average_rating>3"><i class="fa fa-star"></i></span>
-                                    <span ng-if="package.average_rating>4"><i class="fa fa-star"></i></span>
+                                    <span ng-if="package.average_rating>1"><i class="fa fa-sta-or"></i></span>
+                                    <span ng-if="package.average_rating>2"><i class="fa fa-star-o"></i></span>
+                                    <span ng-if="package.average_rating>3"><i class="fa fa-star-o"></i></span>
+                                    <span ng-if="package.average_rating>4"><i class="fa fa-star-o"></i></span>
                                 </div>
                             </div>
                             <!--</div>-->
@@ -348,7 +348,7 @@
     <script type="text/ng-template" id="bottom-sheet-shared.html">
         <md-bottom-sheet class="md-grid">
             <!--list section-->
-            <md-list id="bottom-sheet-grid-md-list">
+            <md-list id="bottom-sheet-grid-md-list m-t-20">
                 <md-list-item>
                     <a class="md-grid-item-content" ng-click="sharedFacebook()">
                         <!--<md-icon md-svg-src="facebook"></md-icon>-->

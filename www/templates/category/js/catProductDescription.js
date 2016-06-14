@@ -1,4 +1,4 @@
-appControllers.controller('catProductDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory,
+appControllers.controller('catProductDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory,$filter,
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,$sce,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate) {
@@ -31,7 +31,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
         $scope.slideIndex = index;
     };
 
-    
+
 
     $scope.back_to_cat_package = function() {
         $state.go('app.cat_package_list', {'cat_id': $stateParams.cat_id,'sub_cat_id':$stateParams.sub_cat_id});
@@ -51,7 +51,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
     $scope.closeReviewModel = function () {
         $scope.modal.hide();
     };
- 
+
     $scope.setIndex=function(index,checked){
         console.log("checked",checked)
         if(checked==true){
@@ -152,7 +152,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
         $scope.pec_value = false;
         $scope.term_n_cond = true;
     };
-   
+
     $scope.package_summary = function(){
         $scope.active_tab = 'p_summery';
         $scope.des_value = false;
@@ -212,5 +212,5 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
     $scope.getPdpForCat = function(parent_id,sub_cat_id,p_id){
         $state.go('app.cat_product_desc',{'cat_id':parent_id,'sub_cat_id':sub_cat_id,'product_id':p_id});
     };
-    
+
 });

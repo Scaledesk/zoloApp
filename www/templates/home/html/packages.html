@@ -11,14 +11,14 @@
             <span class="back-text"></span></button>
     </ion-nav-bar>
     <ion-content class="bg-c">
-        <div class="card m-10-5 p-10 text-center" ng-show="packages.length =='0'" style="max-height: 110px;">
-           <p class="text-center f-18">No Packages found</p>
+        <div class="card m-5 p-10 text-center" ng-show="packages.length =='0'" style="max-height: 110px;">
+            <p class="text-center f-18">No Packages found</p>
 
             <a class="back-t-z" ng-click="go_home()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to home</a>
         </div>
         <div>
         </div>
-        <div class="card m-10-5" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
+        <div class="card m-5" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
             <div class="row" ng-click="productDescription(package.id)">
                 <div class="col-33">
                     <img width="100%" height="100"  src="{{package.first_photo}}" class="pkg-img">

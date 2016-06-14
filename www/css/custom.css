@@ -376,6 +376,10 @@
     border-right: 1px solid #e0e0e0;
 }
 
+.border{
+    border: 1px solid #e0e0e0;
+}
+
 .pdp-des{
     height: 40px;
     overflow: hidden;
@@ -598,4 +602,12 @@ strong{
 
 .w-800{
     font-weight: 800!important;
+}
+
+.m-5{
+    margin: 5px!important;
+}
+
+.m-0-5{
+    margin: 0 5px!important;
 }

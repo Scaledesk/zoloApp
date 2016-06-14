@@ -1,4 +1,4 @@
-<ion-view title="Seller Profile">
+<ion-view title="Seller Profile" id="restaurant">
     <ion-nav-bar class="header_color">
         <ion-nav-back-button class="button-clear">
             <i class="icon ion-ios-arrow-back"></i>
@@ -13,8 +13,8 @@
             <div class="row">
 
                 <div class="col-50 text-center">
-                    <img ng-show="package.seller_profile.image" src="{{package.seller_profile.image}}" class="profile-img">
-                    <img ng-hide="package.seller_profile.image" src="./img/dummy.png" class="profile-img">
+                    <img ng-show="package.seller_profile.image" src="{{package.seller_profile.image}}" class="profile-img border">
+                    <img ng-hide="package.seller_profile.image" src="./img/dummy.png" class="profile-img border">
                 </div>
 
                 <div class="col-50 m-t-20">
@@ -25,20 +25,20 @@
             </div>
 
 
-        <div class="card m-t-0  m-10-0">
+        <div class="card m-t-0  m-5">
             <p class="p-20 text-c p-b-0">{{package.seller_profile.description}}</p>
 
-            <p class="p-10" ng-hide="package.seller_profile.description">
+            <p class="p-10 text-center" ng-hide="package.seller_profile.description">
                 No, description found for {{package.seller_profile.name}}
             </p>
 
         </div>
 
 
-        <div class="card m-10-0">
+        <div class="card m-5">
             <div class="row border-bottom">
-                <div class="col-50 text-center">
-                    Contact Us
+                <div class="col-50 text-center border-right">
+                    <!--Contact Us-->
                     <p class="m-t-10 text-c"><i class="fa fa-phone text-success "></i>&nbsp;<a ng-href="tel:  08882091091">08882091091</a> </p>
                 </div>
                 <!--<div class="col-50 text-center">-->
@@ -51,7 +51,7 @@
             </div>
 
             <div class="row m-t-10">
-                <div class="col-50 text-center">
+                <div class="col-50 text-center border-right">
                     <p class="m-t-10 text-c">Total Packages&nbsp;  <span class="text-success">{{seller_info.length}}</span> </p>
 
                 </div>
@@ -61,7 +61,8 @@
                 </div>
             </div>
         </div>
-        <div class="card p-5 m-10-0">
+
+        <div class="card p-5 m-5">
             <div class="row border-bottom">
                 <p class=" text-c">Other package by {{package.seller_profile.name}}</p>
             </div>

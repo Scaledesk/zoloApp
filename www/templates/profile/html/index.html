@@ -1,4 +1,4 @@
-<ion-view title="My Profile">
+<ion-view title="My Profile" id="restaurant">
     <ion-content>
 
         <div class="cover-img" ng-show="profile.banner" style="background: url('{{profile.banner}}') center no-repeat; background-size:cover; height: 200px;">
@@ -10,8 +10,8 @@
         <div class="row">
 
             <div class="col-50 text-center">
-                <img ng-show="profile.image" src="{{profile.image}}" class="profile-img">
-                <img ng-hide="profile.image" src="../img/dummy.png" class="profile-img">
+                <img ng-show="profile.image" src="{{profile.image}}" class="profile-img border">
+                <img ng-hide="profile.image" src="../img/dummy.png" class="profile-img border">
             </div>
 
             <div class="col-50 m-t-20">
@@ -22,17 +22,17 @@
         </div>
 
 
-        <div class="card m-t-0  m-10-0" ng-if="profile.is_seller != '0'">
-            <p class="p-20 text-c p-b-0"><b>Description:</b>{{profile.description}}</p>
+        <div class="card m-t-0  m-5" ng-if="profile.is_seller != '0'">
+            <p class="p-20 text-c p-b-0"><b>Description: </b>{{profile.description}}</p>
 
-            <p class="p-10" ng-hide="profile.description">
+            <p class="p-10 text-center" ng-hide="profile.description">
                 No, description found for {{profile.name}}
             </p>
 
         </div>
 
 
-        <div class="card m-10-0">
+        <div class="card m-5">
             <div class="row border-bottom">
 
                 <div class="col-50 text-center">

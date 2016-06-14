@@ -613,10 +613,15 @@ strong{
 }
 
 .r-wishlist{
-    background-color: rgb(244,67,54);
-    color: #fff;
+    background-color: #fff;
+    color: rgb(244,67,54);
+    /*border-top: 1px solid rgb(244,67,54);*/
     display: block;
     text-align: center;
     padding: 5px !important;
     font-size: 14px;
+}
+
+.view-container{
+    top: 0!important;
 }

@@ -1,34 +1,29 @@
-appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaInAppBrowser,$rootScope,$ionicModal,
-                                                   $timeout, $mdUtil,payByPayU) {
+appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaInAppBrowser,$rootScope,$ionicModal,shaService,
+                                                   OrderReviewService, $timeout, $mdUtil,payByPayU) {
 
 
-    $scope.id =  window.localStorage['id'];
+    var id =  window.localStorage['id'];
     var booking_id = window.localStorage['booking_id'];
     $scope.token = window.localStorage['access_token'];
+    var email = window.localStorage['email'];
     $scope.payment = {};
+    var iabRef = null;
+    var shss = '';
+    var orp_data ='';
+    var invoice_id = 'ZOLO-PBA-'+booking_id;
 
-    // networkinterface.getIPAddress(function (ip) {
-    //      $scope.host = ip;
-    // });
-    //
-   $scope.host = location.hostname;
-     var port = location.port;
-    // var host = 'localhost';
-    // $scope.host = 'localhost';
-    // var port = 8000;
-    // alert(host);
-    // alert(port);
+    OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
+        orp_data = data.data.data;
+        // console.log("orp result",JSON.stringify($scope.orp_result))
+    });
+
     $scope.choice={
         val:-1
     };
-    
-
-    var options = {
-        location: 'yes',
-        // clearcache: 'yes',
-        // toolbar: 'no',
-        hardwareback:'yes'
-    };
+    shaService.get_sha(id).then(function(response){
+        shss = response.data.data;
+        console.log("sha data",JSON.stringify(response));
+    });
 
     $ionicModal.fromTemplateUrl('templates/home/html/refundPolicyModal.html', {
         scope: $scope,
@@ -44,59 +39,95 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
     };
 
 
-
-    $scope.pay = function (host) {
-
-        // try {
-        //     var cb = new ChildBrowser();
-        //     console.log(cb);
-        //     cb.showWebPage('http://www.google.com');
-        // }catch (err){
-        //     console.log(JSON.stringify(err));
-        // }
-
-        // window.plugins.childBrowser.showWebPage('http://54.169.76.224/payBookingAmount/'+$scope.id+'?ipadr='+host+'&port='+port+'&access_token='+$scope.token,
-        //     { showLocationBar: true });
-      
-        // $cordovaInAppBrowser.open('http://54.169.76.224/payBookingAmount/'+$scope.id+'?ipadr='+host+'&port='+port+'&access_token='+$scope.token, '_blank',options)
-        //     .then(function(event) {
-        //         // success
-        //         console.log("111",JSON.stringify(event));
-        //     })
-        //     .catch(function(event) {
-        //         alert("fail")
-        //         console.log("222",JSON.stringify(event));
-        //
-        //     });
-
-        ref = window.open('http://54.169.76.224/payBookingAmount/'+$scope.id+'?ipadr='+host+'&port='+port+'&access_token='+$scope.token, '_blank', 'location=yes');
-        ref.addEventListener('loadstart', function(event) {
-            var URL=event.url;
-            var n = URL.startsWith("http://"+$scope.host +':'+port+'/#/app/payment_fail');
-            if(n==true){
-                alert('inside app')
-                iabRef.close();
-                // root reload
-            }
-        });
-    };
-
-
     $scope.payment_option_list = function (val) {
         $scope.value = val;
         // $scope.makePay()
     };
     
+    $scope.pay_by_payU = function(){
+        onDeviceReadyTest();
+    };
 
     $scope.makePay=function(val,host_ip){
         console.log("val",val,host_ip);
         switch(val){
-            case 1:{$scope.pay(host_ip);
+            case 1:{$scope.pay_by_payU(host_ip);
                 break;}
         //        
             // case 2:{$scope.priceltoh();break;}
             // case 3:{$scope.newfirst();break;}
         }
     }
+
+    function iabLoadStart(event) {
+         if (event.url.match("https://payu.herokuapp.com/success")) {
+          iabRef.close();
+         }
+
+
+
+    }
+
+
+    function iabLoadStop(event) {
+        console.log("inside load stop function")
+        if (event.url.match("https://payu.herokuapp.com/success")) {
+            iabRef.executeScript({
+                code: "document.body.innerHTML"
+            }, function(values) {
+                console.log("values",JSON.stringify(values))
+                //incase values[0] contains result string
+                var a = getValue(values[0], 'mihpayid');
+                var b = getValue(values[0], 'status');
+                var c = getValue(values[0], 'unmappedstatus');
+                console.log("sonamma",a + b + c);//you can capture values from return SURL
+                //or
+                //incase values[0] contains result string
+                // console.log(getValue(values, 'mihpayid'))
+                // if(c=='failed'){
+                //     console.log("inside fail");
+                // }
+                // else if(c == 'Cancelled'){
+                //     console.log("inside Cancelled")
+                // }
+            });
+
+            iabRef.close();
+        }
+        else if(event.url.match("https://payu.herokuapp.com/failure")){
+            console.log("inside fail",iabRef);
+        }
+    }
+
+//get values from inner HTML page i.e success page or failure page values
+    function getValue(source, key) {
+        var pattern = key + '=(\\w+)(&amp;)?';
+        var expr = new RegExp(pattern);
+        var result = source.match(expr);
+        return result[1];
+    }
+
+
+//load error event
+    function iabLoadError(event) {
+        alert(event.type + ' - ' + event.message);
+    }
+//close event
+    function iabClose(event) {
+        iabRef.removeEventListener('loadstart', iabLoadStart);
+        iabRef.removeEventListener('loadstop', iabLoadStop);
+        iabRef.removeEventListener('loaderror', iabLoadError);
+        iabRef.removeEventListener('exit', iabClose);
+    }
+// device APIs are available
+//
+    function onDeviceReadyTest() {
+        iabRef = window.open('templates/payment/html/payU.html?trans_id='+id+'&invoice_id='+invoice_id+'&sha_value='+shss+'&amount='+orp_data.total_price+'&buyer_name='+orp_data.buyer_name+'&email='+email, '_blank', 'location=no');
+        iabRef.addEventListener('loadstart', iabLoadStart);
+        iabRef.addEventListener('loadstop', iabLoadStop);
+        iabRef.addEventListener('loaderror', iabLoadError);
+        iabRef.addEventListener('exit', iabClose);
+    }
+
 });
 

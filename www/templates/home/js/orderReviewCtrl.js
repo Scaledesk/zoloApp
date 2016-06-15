@@ -9,6 +9,7 @@ appControllers.controller('orderReviewCtrl', function ($scope, $timeout,$state, 
 
   OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
       $scope.orp_result = data.data.data;
+      console.log("orp result",JSON.stringify($scope.orp_result))
     });
 
   $scope.payment = function(){

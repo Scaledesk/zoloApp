@@ -169,11 +169,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     
     $scope.book_now = function () {
         $scope.booking_add_ons = true;
-        // $timeout(function(){
-        //     $ionicScrollDelegate.scrollBottom(true);
-        // },2000)
         $ionicScrollDelegate.scrollBottom(true);
-
     };
     
     $scope.book_now_confirm = function(){

@@ -42,7 +42,8 @@ window.globalVariable = {
 
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
         'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','algoliasearch','ngSanitize'])
-    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService, $mdDialog, $mdBottomSheet) {
+    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService,
+                   $mdDialog, $mdBottomSheet) {
 
 
         function initialSQLite() {
@@ -234,6 +235,10 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
             initialSQLite();
             initialRootScope();
+
+
+
+
 
             //Checking if view is changing it will go to this function.
             $rootScope.$on('$ionicView.beforeEnter', function () {

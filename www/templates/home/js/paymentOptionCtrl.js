@@ -1,5 +1,5 @@
 appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaInAppBrowser,$rootScope,$ionicModal,shaService,
-                                                   OrderReviewService, $timeout, $mdUtil,payByPayU) {
+                                                   OrderReviewService) {
 
 
     var id =  window.localStorage['id'];
@@ -60,17 +60,21 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
     }
 
     function iabLoadStart(event) {
-         if (event.url.match("https://payu.herokuapp.com/success")) {
-          iabRef.close();
-         }
-
-
-
+        console.log("inside load start",event.url);
+         // if (event.url.match("https://payu.herokuapp.com/success")) {
+         //  iabRef.close();
+         // }
+        // var url = event.url;
+        // if(url.startsWith("https://test.payu.in/cancel")){
+        //     console.log("matched");
+        // }
     }
 
 
+
+
     function iabLoadStop(event) {
-        console.log("inside load stop function")
+
         if (event.url.match("https://payu.herokuapp.com/success")) {
             iabRef.executeScript({
                 code: "document.body.innerHTML"
@@ -80,22 +84,23 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                 var a = getValue(values[0], 'mihpayid');
                 var b = getValue(values[0], 'status');
                 var c = getValue(values[0], 'unmappedstatus');
-                console.log("sonamma",a + b + c);//you can capture values from return SURL
+                // console.log("sonamma",a + b + c);//you can capture values from return SURL
+                console.log("sonamma", c);//you can capture values from return SURL
                 //or
                 //incase values[0] contains result string
                 // console.log(getValue(values, 'mihpayid'))
-                // if(c=='failed'){
-                //     console.log("inside fail");
-                // }
-                // else if(c == 'Cancelled'){
-                //     console.log("inside Cancelled")
-                // }
+                if(c=='failed'){
+                    console.log("inside fail");
+                }
+                else if(c == 'userCancelled'){
+                    console.log("inside Cancelled")
+                }
+                else if(c == 'captured'){
+                    console.log("inside payment success")
+                }
             });
 
             iabRef.close();
-        }
-        else if(event.url.match("https://payu.herokuapp.com/failure")){
-            console.log("inside fail",iabRef);
         }
     }
 

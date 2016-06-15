@@ -42,7 +42,7 @@ window.globalVariable = {
 
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
         'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','algoliasearch','ngSanitize'])
-    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService,
+    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService,$cordovaSplashscreen,
                    $mdDialog, $mdBottomSheet) {
 
 
@@ -228,9 +228,9 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
-                // setTimeout(function() {
-                //     navigator.splashscreen.hide();
-                // }, 100);
+            setTimeout(function () {
+                $cordovaSplashscreen.hide();
+            }, 500);
 
 
             initialSQLite();

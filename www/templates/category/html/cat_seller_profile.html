@@ -21,16 +21,19 @@
         <div class="cover-img" ng-hide="package.seller_profile.banner" style="background: url('../img/profile_cover.jpg') center no-repeat; background-size:cover; height: 200px;">
         </div>
 
-        <div class="row">
+        <div class="card m-0" style="overflow: initial;">
+            <div class="row">
 
-            <div class="col-50 text-center">
-                <img ng-show="package.seller_profile.image" src="{{package.seller_profile.image}}" class="profile-img">
-                <img ng-hide="package.seller_profile.image" src="./img/dummy.png" class="profile-img">
-            </div>
+                <div class="col-50 text-center">
+                    <img ng-show="package.seller_profile.image" src="{{package.seller_profile.image}}" class="profile-img border">
+                    <img ng-hide="package.seller_profile.image" src="./img/dummy.png" class="profile-img border">
+                </div>
 
-            <div class="col-50 m-t-20">
-                <p class="f-18">{{package.seller_profile.name}}</p>
-                <p><i class="fa fa-star review-c"></i>&nbsp;{{package.average_rating}}/5 <span class="text-c">({{package.reviews.data.length}} Reviews)</span></p>
+                <div class="col-50 m-t-20">
+                    <p class="f-18">{{package.seller_profile.name}}</p>
+                    <p><i class="fa fa-star review-c"></i>&nbsp;{{package.average_rating}}/5 <span class="text-c">({{package.reviews.data.length}} Reviews)</span></p>
+                </div>
+
             </div>
 
         </div>

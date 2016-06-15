@@ -1,7 +1,8 @@
-appControllers.controller('CategoryCtrl', function ($scope,CategoryService, $ionicHistory, $state,$stateParams) {
+appControllers.controller('CategoryCtrl', function ($scope,CategoryService, $ionicHistory, $state,$stateParams,$ionicSlideBoxDelegate) {
    
     CategoryService.getAll().then(function(data){
         $scope.categories = data.data.data;
+        $ionicSlideBoxDelegate.update();
     });
 
     $scope.allSubcategory = function(id){

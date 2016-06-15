@@ -1,8 +1,10 @@
-appControllers.controller('subCategoryCtrl', function ($scope, $timeout,subCategoryListService, $ionicHistory,
+appControllers.controller('subCategoryCtrl', function ($scope, $timeout,subCategoryListService,$ionicSlideBoxDelegate, $ionicHistory,
                                                        $state, $stateParams) {
 
     subCategoryListService.getSubCategoryWithId($stateParams.cat_id).then(function(data){
         $scope.sub_catagery_list = data.data.data;
+        $ionicSlideBoxDelegate.update();
+
     });
 
     $scope.getPackages = function(id){

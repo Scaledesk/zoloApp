@@ -5,7 +5,7 @@
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content>
-        <div class="card p-5">
+        <div class="card p-5 m-5">
             <div class="row">
                 <div class="col-50">
                     <p>Order # <b>{{order_detail.id}}</b></p>
@@ -44,16 +44,16 @@
 
             <div class="row m-t-10">
                 <div class="col-50">
-                    <p class="text-c">Amount: </p>
-                    <p class="text-c">Order Status: </p>
-                    <p class="text-c">Order Date:</p>
+                    <p class="text-c">Amount </p>
+                    <p class="text-c">Order Status </p>
+                    <p class="text-c">Order Date</p>
 
                 </div>
 
                 <div class="col-50">
-                    <p>{{total_price}}</p>
-                    <p>{{order_detail.booking_status.replace('_',' ')}}</p>
-                    <p>{{order_detail.order_date}}</p>
+                    <p> : {{total_price}}</p>
+                    <p> : {{order_detail.booking_status.replace('_',' ')}}</p>
+                    <p> : {{order_detail.order_date}}</p>
 
                 </div>
 

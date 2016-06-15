@@ -141,6 +141,10 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                         page:++$scope.current_page
                     }).then(
                     function(content){
+                        console.log("package else result",JSON.stringify(content.hits.length))
+                        if(content.hits.length == 0){
+                            $scope.disable_loadMore = true;
+                        }
                         angular.forEach(content.hits,function(obj){
                             $scope.packages.push(obj);
                         });

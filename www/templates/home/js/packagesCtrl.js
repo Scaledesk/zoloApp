@@ -110,6 +110,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                 }).then(
                 function(content){
                     $scope.packages = content.hits;
+                    console.log("package result",JSON.stringify($scope.packages.length))
                     $scope.total_page=content.nbPages;
                     $scope.current_page=content.page;
                     $rootScope.$broadcast('loading:hide');
@@ -140,6 +141,11 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                         page:++$scope.current_page
                     }).then(
                     function(content){
+                        console.log("package else result",JSON.stringify(content.hits.length))
+                        if(content.hits.length == 0){
+                            $scope.disable_loadMore = true;
+                        }
+
                         angular.forEach(content.hits,function(obj){
                             $scope.packages.push(obj);
                         });

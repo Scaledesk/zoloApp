@@ -319,11 +319,20 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         }
         $scope.makefilters();
     };
+   
+
     $scope.makeSort=function(val){
-        switch($scope.choice.val){
+        $scope.choice.val = val;
+    };
+    $scope.sort_apply = function(val){
+        switch(val){
             case 1:{$scope.pricehtol();break;}
             case 2:{$scope.priceltoh();break;}
             case 3:{$scope.newfirst();break;}
         }
-    }
+    };
+
+    $scope.sort_clear = function(){
+        $scope.choice.val = '';
+    };
 });

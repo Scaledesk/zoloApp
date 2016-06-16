@@ -79,12 +79,8 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         };
     });
     $scope.makefilters = function () {
-        console.log("hhhhhhhhhhhh",JSON.stringify($scope.price_range));
         var my_maximum = Math.max.apply(null, $scope.price_range);
         var my_minimum = Math.min.apply(null, $scope.price_range);
-
-        console.log("filter value:",my_maximum,my_minimum);
-
         stringFilter = "deal_price : " + my_minimum + " TO " + my_maximum;
     };
 
@@ -321,10 +317,23 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         $scope.makefilters();
     };
     $scope.makeSort=function(val){
-        switch($scope.choice.val){
+        $scope.choice.val = val;
+        // $scope.sort_apply(val);
+        // switch($scope.choice.val){
+        //     case 1:{$scope.pricehtol();break;}
+        //     case 2:{$scope.priceltoh();break;}
+        //     case 3:{$scope.newfirst();break;}
+        // }
+    };
+    $scope.sort_apply = function(val){
+        switch(val){
             case 1:{$scope.pricehtol();break;}
             case 2:{$scope.priceltoh();break;}
             case 3:{$scope.newfirst();break;}
         }
-    }
+    };
+
+    $scope.sort_clear = function(){
+        $scope.choice.val = '';
+    };
 });

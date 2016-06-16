@@ -1,9 +1,19 @@
+<style>
+    .nav-bar-title{
+        margin-left: 30px;
+    }
+</style>
 <ion-view title="Seller Profile" id="restaurant">
     <ion-nav-bar class="header_color">
-        <ion-nav-back-button class="button-clear">
-            <i class="icon ion-ios-arrow-back"></i>
-        </ion-nav-back-button>
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_pdp()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
     </ion-nav-bar>
+    <!--<ion-nav-bar class="header_color">-->
+        <!--<ion-nav-back-button class="button-clear">-->
+            <!--<i class="icon ion-ios-arrow-back"></i>-->
+        <!--</ion-nav-back-button>-->
+    <!--</ion-nav-bar>-->
     <ion-content>
             <div class="cover-img" ng-show="package.seller_profile.banner" style="background: url('{{package.seller_profile.banner}}') center no-repeat; background-size:cover; height: 200px;">
             </div>
@@ -72,7 +82,7 @@
             </div>
             <ion-scroll width="500px; height: 500px" direction="xy">
                 <div class="row">
-                    <div class="col-50 card" ng-repeat="seller_package_info in seller_info">
+                    <div class="col-50 card" ng-repeat="seller_package_info in seller_info" ng-if="package.id != seller_package_info.id" ng-click="getPdp(seller_package_info.category.data.id,seller_package_info.id)">
                         <img style="width: 100%; height: 130px" ng-src="{{seller_package_info.first_photo}}">
                         <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
 

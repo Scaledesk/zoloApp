@@ -25,6 +25,23 @@ appControllers.controller('sharedSocialBottomSheetCtrl', function ($scope, $mdBo
         });
         $mdBottomSheet.hide();
     };
+    
+    $scope.more = function(){
+        $cordovaSocialSharing
+            .share(name+' @Zolo_Official', "Find this package on zolo "+ $scope.url, image, $scope.url) // Share via native share sheet
+            .then(function(result) {
+                // Success!
+                console.log("result",JSON.stringify(result))
+
+            }, function(err) {
+                console.log("err",JSON.stringify(err))
+
+                // An error occured. Show a message to the user
+            });
+
+        $mdBottomSheet.hide();
+
+    };
     $scope.sharedMail = function () {
         $cordovaSocialSharing.shareViaEmail(name, "Find this package on zolo "+ $scope.url, null,null,null,image);
         $mdBottomSheet.hide();

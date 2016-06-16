@@ -79,6 +79,10 @@
         <div class="card p-5 m-5">
             <div class="row border-bottom">
                 <p class=" text-c">Other package by {{package.seller_profile.name}}</p>
+
+                <div ng-repeat="seller_package_info in seller_info" ng-if="(package.id == seller_package_info.id)&&(seller_info.length ==1)">
+                    <p>No, more package</p>
+                </div>
             </div>
             <ion-scroll width="500px; height: 500px" direction="xy">
                 <div class="row">
@@ -92,6 +96,8 @@
                             </p>
                         </div>
                     </div>
+
+
                 </div>
             </ion-scroll>
         </div>

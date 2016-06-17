@@ -1,13 +1,24 @@
 <ion-view title="Payment Success">
     <ion-content>
-        <div class="card">
+        <div class="card p-5 m-5">
             <div class="row">
-                <p>Order # <b>{{order_detail.id}}</b></p>
+                <div class="col-50">
+                    <p>Order # <b>{{order_detail.id}}</b></p>
+                </div>
+                <div class="col-50">
+                    <p class="pull-right">By:<b> {{order_detail.seller_profile.name}}</b></p>
+                </div>
             </div>
+            <hr>
+
+            <div class="row">
+                <p class="w-500 f-18">{{order_detail.package_title}}</p>
+            </div>
+
             <div class="row">
                 <div class="col-40">
-                    <img ng-src="{{order_detail.first_photo}}" ng-show="order_detail.first_photo!=null">
-                    <img src=" ../img/default.png" ng-show="order_detail.first_photo==null">
+                    <img ng-src="{{order_detail.first_photo}}" ng-show="order_detail.first_photo!=null" width="400">
+                    <img src=" ../img/default.png" ng-show="order_detail.first_photo==null" width="400">
                 </div>
                 <div class="col-60">
                     <p>Package Name<b>{{order_detail.package_title}}</b></p>
@@ -16,18 +27,21 @@
 
                 </div>
             </div>
-            <div class="row">
-                <p>By<b>{{order_detail.seller_profile.name}}</b></p>
-            </div>
-            <div class="row">
-                <p>Amount: <b>{{total_price}}</b></p>
-            </div>
-            <div class="row">
-                <p>Order Status: <b>{{order_detail.booking_status.replace('_',' ')}}</b></p>
-            </div>
-            <div class="row">
-                <p>Order Date: <b>{{order_detail.order_date}}</b></p>
+
+            <div class="row m-t-10">
+                <div class="col-50">
+                    <p class="text-c">Amount </p>
+                    <p class="text-c">Order Status </p>
+                    <p class="text-c">Order Date</p>
+                </div>
+
+                <div class="col-50">
+                    <p> : {{total_price}}</p>
+                    <p> : {{order_detail.booking_status.replace('_',' ')}}</p>
+                    <p> : {{order_detail.order_date}}</p>
+                </div>
             </div>
         </div>
     </ion-content>
 </ion-view>
+

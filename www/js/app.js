@@ -849,22 +849,30 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             })
 
             .state('app.payment_success', {
-                url: "/payment_success",
+                url: "/payment_success/:b_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/payment_success.html",
                         controller:'paymentSuccessCtrl'
                     }
+                },
+                resolve: {
+                    b_id: function($stateParams) {
+                    }
                 }
             })
 
             .state('app.payment_fail', {
-                url: "/payment_fail",
+                url: "/payment_fail/:t_id/:b_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/payment_fail.html",
                         controller:'paymentFailCtrl'
                         
+                    }
+                },
+                resolve: {
+                    t_id: function($stateParams) {
                     }
                 }
             })

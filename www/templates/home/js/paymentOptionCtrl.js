@@ -1,5 +1,5 @@
 appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaInAppBrowser,$rootScope,$ionicModal,shaService,
-                                                   OrderReviewService) {
+                                                   OrderReviewService,paymentService,$ionicHistory) {
 
 
     var id =  window.localStorage['id'];
@@ -11,6 +11,8 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
     var shss = '';
     var orp_data ='';
     var invoice_id = 'ZOLO-PBA-'+booking_id;
+
+    console.log("email",email);
 
     OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
         orp_data = data.data.data;
@@ -89,14 +91,50 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                 //or
                 //incase values[0] contains result string
                 // console.log(getValue(values, 'mihpayid'))
+
+
                 if(c=='failed'){
                     console.log("inside fail");
+                    // $state.go('app.payment_fail');
+                    paymentService.payment_info_send(values).then(function (response) {
+                        console.log("resopnse in fail",JSON.stringify(response))
+                        if(response.status == 200){
+                            console.log("inside if")
+                            $ionicHistory.nextViewOptions({
+                                disableBack: true
+                            });
+                            $state.go('app.payment_fail',{'t_id':id,'b_id':booking_id});
+                        }
+                    })
                 }
                 else if(c == 'userCancelled'){
-                    console.log("inside Cancelled")
+                    console.log("inside Cancelled");
+                    // $state.go('app.payment_fail');
+
+                    paymentService.payment_info_send(values).then(function (response) {
+                        console.log("resopnse in user cancelled",JSON.stringify(response))
+
+                        if(response.status == 200){
+                            $ionicHistory.nextViewOptions({
+                                disableBack: true
+                            });
+                            $state.go('app.payment_fail',{'t_id':id,'b_id':booking_id});
+                        }
+                    })
                 }
                 else if(c == 'captured'){
-                    console.log("inside payment success")
+                    console.log("inside payment success");
+                  
+                    paymentService.payment_info_send(values).then(function (response) {
+                        if(response.status == 200){
+                            $ionicHistory.nextViewOptions({
+                                disableBack: true
+                            });
+                            $state.go('app.payment_success',{'b_id':booking_id});
+                        }
+                        console.log("resopnse in success",JSON.stringify(response))
+                        
+                    })
                 }
             });
 

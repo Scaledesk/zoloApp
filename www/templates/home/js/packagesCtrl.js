@@ -113,7 +113,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
 
                 }
             ).catch(function (error) {
-                console.log("error",error);
+                console.log("error",JSON.stringify(error));
                 $rootScope.$broadcast('loading:hide');
 
             });

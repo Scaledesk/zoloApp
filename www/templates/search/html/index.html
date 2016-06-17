@@ -13,8 +13,8 @@
         <div class="card m-5" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
             <div class="row" ng-click="productDescription(package.category_id,package.id)">
                 <div class="col-33">
-                    <img width="100%" height="100"  src="{{package.first_photo}}" class="pkg-img">
-                    <img width="100%" height="100" ng-if=!"package.first_photo"  src="../img/noimagefound.png" class="pkg-img">
+                    <img width="100%" height="100" ng-if="package.first_photo != null" src="{{package.first_photo}}" class="pkg-img">
+                    <img width="100%" height="100" ng-if="package.first_photo == null"  src="../img/noimagefound.png" class="pkg-img">
 
                 </div>
                 <div class="col-67">

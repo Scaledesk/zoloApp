@@ -82,6 +82,8 @@ $cordovaOauth, $http,ProfileService) {
 
     $scope.displayData = function($http, access_token)
     {
+        $rootScope.$broadcast('loading:show');
+
         $http.get("https://graph.facebook.com/v2.2/me", {
             params: {
                 access_token: access_token,
@@ -120,6 +122,7 @@ $cordovaOauth, $http,ProfileService) {
                             $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                             window.localStorage['access_token']=data.data.access_token;
                             $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
+                            $rootScope.$broadcast('loading:hide');
 
                         }
                     })
@@ -127,13 +130,15 @@ $cordovaOauth, $http,ProfileService) {
             })
         }, function(error) {
             alert("Error: " + error);
+            $rootScope.$broadcast('loading:hide');
+
         });
     };
 
     $scope.googleLogin = function() {
         $cordovaOauth.google("936213911318-1mnllojl5hqu2b4o17e47hpbk2e4s66c.apps.googleusercontent.com",
             ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
-            console.log(JSON.stringify(result));
+            $rootScope.$broadcast('loading:show');
             var url = 'https://www.googleapis.com/plus/v1/people/me?access_token='+result.access_token;
 
             $.ajax({
@@ -172,6 +177,8 @@ $cordovaOauth, $http,ProfileService) {
                                     $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                                     window.localStorage['access_token']=data.data.access_token;
                                     $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
+                                    $rootScope.$broadcast('loading:hide');
+
                                 }
                             })
                         }
@@ -179,6 +186,8 @@ $cordovaOauth, $http,ProfileService) {
                 },
                 error: function(e) {
                     console.log('error');
+                    $rootScope.$broadcast('loading:hide');
+
 
                 }
             });

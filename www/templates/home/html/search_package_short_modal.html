@@ -58,23 +58,23 @@
                 <ion-list ng-show="price_list">
 
                     <ion-item class="p-0">
-                        <ion-radio ng-model="filter.price1" ng-change="addPrice(0,1000)" value="1">  &#8377; 1000 and Below</ion-radio>
+                        <ion-radio ng-model="filter.price" ng-change="addPrice(0,1000)" value="1">  &#8377; 1000 and Below</ion-radio>
 
                     </ion-item>
                     <ion-item class="p-0">
-                        <ion-radio ng-model="filter.price2" value="2" ng-change="addPrice(1001,10000)"> &#8377; 1001 - &#8377; 10000</ion-radio>
+                        <ion-radio ng-model="filter.price" value="2" ng-change="addPrice(1001,10000)"> &#8377; 1001 - &#8377; 10000</ion-radio>
 
                     </ion-item>
                     <ion-item class="p-0">
-                        <ion-radio ng-model="filter.price3" value="3" ng-change="addPrice(10001,50000)">
+                        <ion-radio ng-model="filter.price" value="3" ng-change="addPrice(10001,50000)">
                             &#8377; 10001 - &#8377; 50000</ion-radio>
                     </ion-item>
                     <ion-item class="p-0">
-                        <ion-radio ng-model="filter.price4" value="4" ng-change="addPrice(50001,100000)">&#8377; 50001 - &#8377; 100000</ion-radio>
+                        <ion-radio ng-model="filter.price" value="4" ng-change="addPrice(50001,100000)">&#8377; 50001 - &#8377; 100000</ion-radio>
 
                     </ion-item>
                     <ion-item class="p-0">
-                        <ion-radio ng-model="filter.price5" value="5" ng-change="addPrice(100001,max_price)"> &#8377; 100001 and Above</ion-radio>
+                        <ion-radio ng-model="filter.price" value="5" ng-change="addPrice(100001,max_price)"> &#8377; 100001 and Above</ion-radio>
 
                     </ion-item>
                 </ion-list>

@@ -1,0 +1,86 @@
+<ion-view>
+    <ion-content>
+
+        <!--<input type="text" name="trans_id" id="trans_id" value="trans_id" />-->
+        <!--<input type="text" name="trans_id" id="trans_id" value="" />-->
+
+        <!--<form name="sendParam" method="post" action="https://test.payu.in/_payment">-->
+            <!--<input type="hidden" name="key" value="gtKFFx" />-->
+            <!--<input type="hidden" name="txnid" value="ZOLO-PBA-1636" />-->
+            <!--<input type="hidden" name="amount" value="1000" />-->
+            <!--<input type="hidden" name="productinfo" value="1901" />-->
+            <!--<input type="hidden" name="firstname" value="sonam" />-->
+            <!--<input type="hidden" name="email" value="sonam.gupta30jan@gmail.com" />-->
+            <!--<input type="hidden" name="phone" value="8152709721" />-->
+            <!--<input type="hidden" name="salt" value="eCwWELxi" />-->
+            <!--<input type="hidden" name="surl" value="https://payu.herokuapp.com/success" />-->
+            <!--<input type="hidden" name="Furl" value="https://payu.herokuapp.com/failure" />-->
+            <!--&lt;!&ndash;<input type="hidden" name="Hash" value="819af9cc2783018edf68e594e1794cfa8bbf6b381f807051840024ef29c021d3962dd88f4dd77d268d1d9199ac6a2e5c4ea6e67514c8c6a1eb56c597165c8958"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<input type="hidden" name="Hash" value={{sha_value}} />&ndash;&gt;-->
+            <!--<input type="hidden" name="Hash" value="dee6c23d7246d18dbb2096c586f74982f257da9a2bb3e9770fc03b2b5e9634bd7509df38ae1b7a86cbefcbdcbe90b36a3a8c5d599a98c32d4e8fea5ba0928800" />-->
+            <!--<input type="submit" value="enter" style="position: absolute; left: -9999px"/>-->
+        <!--</form >-->
+
+        <form name="sendParam" method="post" action="https://test.payu.in/_payment">
+        <input type="hidden" name="key" value="gtKFFx" />
+        <input type="hidden" name="txnid" id="invoice_id" value="" />
+        <input type="hidden" name="amount" id="amount" value="" />
+        <input type="hidden" name="productinfo" id="trans_id" value="" />
+        <input type="hidden" name="firstname" id="buyer_name" value="" />
+        <input type="hidden" name="email" id="email" value="" />
+        <input type="hidden" name="phone" value="8447785980" />
+        <input type="hidden" name="salt" value="eCwWELxi" />
+        <input type="hidden" name="surl" value="https://payu.herokuapp.com/success" />
+        <input type="hidden" name="Furl" value="https://payu.herokuapp.com/failure" />
+        <!--<input type="hidden" name="Hash" value="819af9cc2783018edf68e594e1794cfa8bbf6b381f807051840024ef29c021d3962dd88f4dd77d268d1d9199ac6a2e5c4ea6e67514c8c6a1eb56c597165c8958"/>-->
+        <!--<input type="hidden" name="Hash" value={{sha_value}} />-->
+        <input type="hidden" name="Hash" id="sha_value" value="" />
+        <input type="submit" value="enter" style="position: absolute; left: -9999px"/>
+        </form >
+
+        <!--<script>-->
+            <!--document.sendParam.submit();-->
+        <!--</script>-->
+
+
+        <script type="text/javascript">
+            function getParam(name)
+            {
+                name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+                var regexS = "[\\?&]"+name+"=([^&#]*)";
+                var regex = new RegExp( regexS );
+                var results = regex.exec(window.location.href);
+                if(results == null)
+                    return "";
+                else
+                    return results[1];
+            }
+            function getUrlData()
+            {
+                var trans_id = getParam("trans_id");
+                var invoice_id = getParam("invoice_id");
+                var sha_value = getParam("sha_value");
+                var amount = getParam("amount");
+                var buyer_name = getParam("buyer_name");
+                var email = getParam("email");
+
+//                var tttt = document.getElementById('trans_id');
+//                tttt.value = trans_id;
+                document.getElementById('trans_id').value = trans_id;
+                document.getElementById('invoice_id').value = invoice_id;
+                 document.getElementById('sha_value').value = sha_value;
+                 document.getElementById('amount').value = amount;
+                 document.getElementById('buyer_name').value = buyer_name;
+                 document.getElementById('email').value = email;
+                console.log("trans_id",trans_id,invoice_id,sha_value,amount,buyer_name,email);
+            }
+            getUrlData()
+
+            document.sendParam.submit();
+
+        </script>
+
+
+
+    </ion-content>
+</ion-view>

@@ -79,12 +79,8 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         };
     });
     $scope.makefilters = function () {
-        console.log("hhhhhhhhhhhh",JSON.stringify($scope.price_range));
         var my_maximum = Math.max.apply(null, $scope.price_range);
         var my_minimum = Math.min.apply(null, $scope.price_range);
-
-        console.log("filter value:",my_maximum,my_minimum);
-
         stringFilter = "deal_price : " + my_minimum + " TO " + my_maximum;
     };
 
@@ -110,13 +106,14 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                 }).then(
                 function(content){
                     $scope.packages = content.hits;
+                    console.log("package result",JSON.stringify($scope.packages.length))
                     $scope.total_page=content.nbPages;
                     $scope.current_page=content.page;
                     $rootScope.$broadcast('loading:hide');
 
                 }
             ).catch(function (error) {
-                console.log("error",error);
+                console.log("error",JSON.stringify(error));
                 $rootScope.$broadcast('loading:hide');
 
             });
@@ -140,6 +137,11 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                         page:++$scope.current_page
                     }).then(
                     function(content){
+                        console.log("package else result",JSON.stringify(content.hits.length))
+                        if(content.hits.length == 0){
+                            $scope.disable_loadMore = true;
+                        }
+
                         angular.forEach(content.hits,function(obj){
                             $scope.packages.push(obj);
                         });
@@ -315,10 +317,23 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         $scope.makefilters();
     };
     $scope.makeSort=function(val){
-        switch($scope.choice.val){
+        $scope.choice.val = val;
+        // $scope.sort_apply(val);
+        // switch($scope.choice.val){
+        //     case 1:{$scope.pricehtol();break;}
+        //     case 2:{$scope.priceltoh();break;}
+        //     case 3:{$scope.newfirst();break;}
+        // }
+    };
+    $scope.sort_apply = function(val){
+        switch(val){
             case 1:{$scope.pricehtol();break;}
             case 2:{$scope.priceltoh();break;}
             case 3:{$scope.newfirst();break;}
         }
-    }
+    };
+
+    $scope.sort_clear = function(){
+        $scope.choice.val = '';
+    };
 });

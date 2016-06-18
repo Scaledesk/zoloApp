@@ -54,6 +54,10 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                         page:++$scope.current_page
                     }).then(
                     function(content){
+                        console.log("package else result",JSON.stringify(content.hits.length))
+                        if(content.hits.length == 0){
+                            $scope.disable_loadMore = true;
+                        }
                         angular.forEach(content.hits,function(obj){
                             $scope.packages.push(obj);
                         });
@@ -270,12 +274,18 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         $scope.makefilters();
     };
     $scope.makeSort=function(val){
-        switch($scope.choice.val){
-            case 1:{$scope.pricehtol();
-                break;}
+        $scope.choice.val = val;
+    };
+    $scope.sort_apply = function(val){
+        switch(val){
+            case 1:{$scope.pricehtol();break;}
             case 2:{$scope.priceltoh();break;}
             case 3:{$scope.newfirst();break;}
         }
+    };
+
+    $scope.sort_clear = function(){
+        $scope.choice.val = '';
     };
 
 

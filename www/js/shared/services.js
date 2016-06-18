@@ -771,3 +771,47 @@ angular.module('starter').factory('removeWishListService', function($http,$q,$ro
         }
     }
 });
+
+angular.module('starter').factory('shaService', function($http,$q,$rootScope,serverConfig){
+    return {
+        get_sha:function(t_id){
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+"api/getSha/"+t_id
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+// updateTheBookingStatusMobile
+
+angular.module('starter').factory('paymentService', function($http,$q,$rootScope,serverConfig){
+    return {
+        payment_info_send:function(data){
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"PUT",
+                url:serverConfig.address+"api/updateTheBookingStatusMobile",
+                data: {data:data},
+
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});

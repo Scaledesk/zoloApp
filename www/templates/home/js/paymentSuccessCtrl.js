@@ -1,7 +1,7 @@
 appControllers.controller('paymentSuccessCtrl', function ($scope, $timeout, $mdUtil,$location,orderDetailService,
                                                        $mdSidenav,$stateParams, $log, $ionicHistory, $state,$stateParams) {
 
-    var booking_id = $location.search().booking_id;
+    var booking_id = $stateParams.b_id;
 
     console.log("gvsgv",booking_id);
 

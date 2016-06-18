@@ -1,7 +1,8 @@
 appControllers.controller('paymentFailCtrl', function ($scope,$location,generateNewTransactionService,$stateParams,
                                                        $ionicHistory, $state,$stateParams) {
-    var booking_id = $location.search().booking_id;
-    var transaction_id = $location.search().transaction_id;
+    var booking_id = $stateParams.b_id;
+    var transaction_id = $stateParams.t_id;
+    console.log("sssss",booking_id,transaction_id)
 
     var cat_id = window.localStorage['cat_id'];
     var product_id = window.localStorage['product_id'];

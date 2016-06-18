@@ -42,7 +42,8 @@ window.globalVariable = {
 
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
         'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','algoliasearch','ngSanitize'])
-    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService, $mdDialog, $mdBottomSheet) {
+    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService,$cordovaSplashscreen,
+                   $mdDialog, $mdBottomSheet) {
 
 
         function initialSQLite() {
@@ -227,13 +228,17 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
-                // setTimeout(function() {
-                //     navigator.splashscreen.hide();
-                // }, 100);
+            setTimeout(function () {
+                $cordovaSplashscreen.hide();
+            }, 500);
 
 
             initialSQLite();
             initialRootScope();
+
+
+
+
 
             //Checking if view is changing it will go to this function.
             $rootScope.$on('$ionicView.beforeEnter', function () {
@@ -844,22 +849,30 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             })
 
             .state('app.payment_success', {
-                url: "/payment_success",
+                url: "/payment_success/:b_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/payment_success.html",
                         controller:'paymentSuccessCtrl'
                     }
+                },
+                resolve: {
+                    b_id: function($stateParams) {
+                    }
                 }
             })
 
             .state('app.payment_fail', {
-                url: "/payment_fail",
+                url: "/payment_fail/:t_id/:b_id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/payment_fail.html",
                         controller:'paymentFailCtrl'
                         
+                    }
+                },
+                resolve: {
+                    t_id: function($stateParams) {
                     }
                 }
             })

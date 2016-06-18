@@ -20,6 +20,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         if($scope.access_token && $scope.access_token != 'undefined'){
             profileService.get_profile($scope.access_token).then(function(data){
                 $scope.profile = data.data.data;
+                console.log("djjddd",$scope.profile)
 
             })
         }
@@ -30,6 +31,8 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         if($scope.access_token && $scope.access_token != 'undefined'){
             profileService.get_profile($scope.access_token).then(function(data){
                 $scope.profile = data.data.data;
+                console.log("djjddd",$scope.profile)
+
             })
         }
     }

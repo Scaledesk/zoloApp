@@ -1,12 +1,12 @@
 <ion-view title="ADD ADDRESS">
     <ion-nav-bar class="header_color">
         <ion-nav-back-button class="button-clear">
-            <i class="icon ion-ios-arrow-back white-c"></i>
+            <i class="icon ion-ios-arrow-back text-c"></i>
         </ion-nav-back-button>
     </ion-nav-bar>
 
     <ion-content>
-        <div class="list card">
+        <div class="list card m-5">
             <form>
                 <label class="item item-input">
                     <input type="text" placeholder="Name" ng-model="user.name">
@@ -33,13 +33,22 @@
 
             </form>
         </div>
-            <div class="login-btn pull-left" ng-click="save_address()">
-                <p class="button button-balanced m-l-10">SAVE</p>
-            </div>
-            <div class="login-btn pull-right" ng-click="skip()">
-                <p class="button button-energized m-r-10">SKIP>></p>
+        <div class="row">
+            <div class="col-50">
+                <div class=" pull-left button button-balanced" ng-click="save_address()">
+                    SAVE
+                </div>
+
             </div>
 
+            <div class="col-50">
+                <div class="pull-right button button-energized" ng-click="skip()">
+                    SKIP>>
+                </div>
+            </div>
+
+
+        </div>
 
 
 

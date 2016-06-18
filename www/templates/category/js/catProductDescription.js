@@ -1,7 +1,8 @@
 appControllers.controller('catProductDescriptionCtrl', function ($scope,productService,bookingService, $ionicHistory,$filter,
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
-                                                              $ionicModal, OrderReviewService,$mdBottomSheet,$sce,
-                                                              SellerProfileService,$timeout,$ionicSlideBoxDelegate) {
+                                                              $ionicModal, OrderReviewService,$mdBottomSheet,$sce,profileService,
+                                                              SellerProfileService,$timeout,$ionicSlideBoxDelegate,
+                                                                 removeWishListService,$ionicPopup) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -103,6 +104,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
         }
         addWishList.add_to_wish_list(data).then(function(data){
             if(data.data.message == 'success'){
+                $scope.wish_value = true;
                 $mdToast.show({
                     controller: 'toastController',
                     templateUrl: 'toast.html',
@@ -118,25 +120,130 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
         });
     };
 
-    productService.getProductDescription($stateParams.product_id).then(function(data){
-        $scope.package = data.data.data;
-        $scope.paddons =  $scope.package.Addons.data;
-        $scope.amount_to_show = $scope.package.deal_price;
-        var content = $filter('limitTo')($scope.package.description, 250);
-        $scope.description = $sce.trustAsHtml(content);
+    $scope.remove_wishList = function (p_id) {
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'Are you sure ?',
+            template: 'You want to remove from wish list.'
+        });
+        confirmPopup.then(function(res) {
+            if(res) {
+                removeWishListService.remove_wish_list(p_id,(window.localStorage['access_token'])).then(function(data){
+                    console.log("ddddd",JSON.stringify(data))
+                    if(data.data.message == 'success'){
+
+                        $scope.wish_value = false;
+                        $mdToast.show({
+                            controller: 'toastController',
+                            templateUrl: 'toast.html',
+                            hideDelay: 800,
+                            position: 'top',
+                            locals: {
+                                displayOption: {
+                                    title: 'Package removed successfully.'
+                                }
+                            }
+                        });
+                    }
+                });
+            } else {
+                console.log('You are not sure');
+            }
+        });
+    };
 
 
-        booking_info = {
-            quantity:$scope.book.quantity,
-            package_id:$scope.package.id,
-            addons:[]
-        };
-        if($scope.package.seller_profile.user_id){
-            SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
-                $scope.seller_info = data.data.data;
+
+    $scope.get_pdp_info = function(){
+        $scope.$on('logged_in', function (event, args) {
+            if((window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined'){
+                profileService.get_profile((window.localStorage['access_token'])).then(function(data){
+                    var profile = data.data.data.user_id;
+                    if(profile){
+                        productService.getProductDescription($stateParams.product_id,profile).then(function(data){
+                            $scope.package = data.data.data;
+                            $scope.wish_value = data.data.meta.wishlist_status;
+                            var content = $filter('limitTo')($scope.package.description, 250)
+
+                            $scope.description = $sce.trustAsHtml(content);
+
+                            $scope.paddons =  $scope.package.Addons.data;
+                            $scope.amount_to_show = $scope.package.deal_price;
+                            booking_info = {
+                                quantity:$scope.book.quantity,
+                                package_id:$scope.package.id,
+                                addons:[]
+                            };
+                            if($scope.package.seller_profile.user_id){
+                                SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
+                                    $scope.seller_info = data.data.data;
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        if((window.localStorage['access_token']) && (window.localStorage['access_token'])!= 'undefined') {
+            profileService.get_profile(window.localStorage['access_token']).then(function (data) {
+                var profile = data.data.data.user_id;
+                if(profile){
+                    productService.getProductDescription($stateParams.product_id,profile).then(function(data){
+                        $scope.package = data.data.data;
+                        $scope.wish_value = data.data.meta.wishlist_status;
+
+                        console.log("ssssss",JSON.stringify($scope.wish_value))
+
+                        var content = $filter('limitTo')($scope.package.description, 250)
+
+                        $scope.description = $sce.trustAsHtml(content);
+
+                        $scope.paddons =  $scope.package.Addons.data;
+                        $scope.amount_to_show = $scope.package.deal_price;
+                        booking_info = {
+                            quantity:$scope.book.quantity,
+                            package_id:$scope.package.id,
+                            addons:[]
+                        };
+                        if($scope.package.seller_profile.user_id){
+                            SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
+                                $scope.seller_info = data.data.data;
+                            });
+                        }
+                    });
+                }
             });
         }
-    });
+        else{
+            productService.getProductDescription($stateParams.product_id).then(function(data){
+                $scope.package = data.data.data;
+                $scope.wish_value = data.data.meta.wishlist_status;
+
+                var content = $filter('limitTo')($scope.package.description, 250)
+
+                $scope.description = $sce.trustAsHtml(content);
+
+                $scope.paddons =  $scope.package.Addons.data;
+                $scope.amount_to_show = $scope.package.deal_price;
+                booking_info = {
+                    quantity:$scope.book.quantity,
+                    package_id:$scope.package.id,
+                    addons:[]
+                };
+                if($scope.package.seller_profile.user_id){
+                    SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
+                        $scope.seller_info = data.data.data;
+                    });
+                }
+            });
+
+        }
+
+    };
+
+    $scope.get_pdp_info();
+
+
     $scope.active_tab = 'description';
 
     $scope.description_value = function () {

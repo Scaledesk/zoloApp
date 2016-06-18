@@ -2855,10 +2855,16 @@ md-sidenav {
 }
 
 .background_img_optional {
-  background: url(../img/bg-signin.png) no-repeat center center fixed;
+  background: url(../img/bg-signin.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+  //-webkit-filter: blur(1px) brightness(90%);
+  //-moz-filter: blur(1px) brightness(90%);
+  //-o-filter: blur(1px) brightness(90%);
+  //-ms-filter: blur(1px) brightness(90%);
+  //filter: blur(1px) brightness(90%);
+
 }
 .header_color{
   background-color: rgb(103,58,183);
@@ -2925,3 +2931,4 @@ drawer.right {
   z-index: 999;
   color:#ffffff!important;
 }
+

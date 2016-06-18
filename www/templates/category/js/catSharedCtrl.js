@@ -6,7 +6,17 @@ appControllers.controller('catSharedCtrl', function ($scope, $mdBottomSheet, $ti
         $cordovaSocialSharing.shareViaFacebook(name,null,$scope.url).then(function(result) {
             console.log("result",JSON.stringify(result))
         }, function(err) {
-            window.open("https://www.facebook.com/", "_blank", "location=yes");
+            $mdToast.show({
+                controller: 'toastController',
+                templateUrl: 'toast.html',
+                hideDelay: 800,
+                position: 'top',
+                locals: {
+                    displayOption: {
+                        title: 'Facebook app not found, please install app for share.'
+                    }
+                }
+            });
             console.log("err",JSON.stringify(err))
 
         });
@@ -18,7 +28,17 @@ appControllers.controller('catSharedCtrl', function ($scope, $mdBottomSheet, $ti
         $cordovaSocialSharing.shareViaTwitter(name+' @Zolo_Official',image, $scope.url).then(function(result) {
             console.log("result",JSON.stringify(result))
         }, function(err) {
-            window.open("https://twitter.com/", "_blank", "location=yes");
+            $mdToast.show({
+                controller: 'toastController',
+                templateUrl: 'toast.html',
+                hideDelay: 800,
+                position: 'top',
+                locals: {
+                    displayOption: {
+                        title: 'Twitter app not found, please install app for share.'
+                    }
+                }
+            });
             console.log("err",JSON.stringify(err))
 
             // An error occurred. Show a message to the user
@@ -40,6 +60,17 @@ appControllers.controller('catSharedCtrl', function ($scope, $mdBottomSheet, $ti
             .then(function(result) {
                 // Success!
             }, function(err) {
+                $mdToast.show({
+                    controller: 'toastController',
+                    templateUrl: 'toast.html',
+                    hideDelay: 800,
+                    position: 'top',
+                    locals: {
+                        displayOption: {
+                            title: 'WhatsApp app not found, please install app for share.'
+                        }
+                    }
+                });
                 // An error occurred. Show a message to the user
             });
     }

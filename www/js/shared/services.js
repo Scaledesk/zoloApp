@@ -160,25 +160,24 @@ angular.module('starter').factory('subCategoryListService', function($http,$root
 });
 angular.module('starter').factory('productService', function($http,$q,$rootScope,serverConfig){
     return {
-        getProductDescription:function(product_id){
+        getProductDescription:function(product_id,u_id){
+            console.log("u_id",u_id)
             $rootScope.$broadcast('loading:show');
             var deffer = $q.defer();
             return $http({
                 method:"get",
-                url:serverConfig.address+"api/package/"+product_id
+                url:serverConfig.address+"api/package/"+product_id+"?user_id="+u_id
             }).success(function(data, status, headers, config) {
                 deffer.resolve(data);
                 $rootScope.$broadcast('loading:hide');
             }).
             error(function(data, status, headers, config) {
-                console.log("data",JSON.stringify(data))
                 $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;
         }
     }
 });
-// mpayBookingAmount
 
 angular.module('starter').factory('payByPayU', function($http,$q,$rootScope,serverConfig){
     return {

@@ -5,14 +5,12 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
     var id =  window.localStorage['id'];
     var booking_id = window.localStorage['booking_id'];
     $scope.token = window.localStorage['access_token'];
-    var email = window.localStorage['email'];
+    $scope.disable_value = true;
     $scope.payment = {};
     var iabRef = null;
     var shss = '';
     var orp_data ='';
     var invoice_id = 'ZOLO-PBA-'+booking_id;
-
-    console.log("email",email);
 
     OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
         orp_data = data.data.data;
@@ -24,7 +22,9 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
     };
     shaService.get_sha(id).then(function(response){
         shss = response.data.data;
-        console.log("sha data",JSON.stringify(response));
+        if(shss){
+            $scope.disable_value = false;
+        }
     });
 
     $ionicModal.fromTemplateUrl('templates/home/html/refundPolicyModal.html', {
@@ -165,7 +165,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 // device APIs are available
 //
     function onDeviceReadyTest() {
-        iabRef = window.open('templates/payment/html/payU.html?trans_id='+id+'&invoice_id='+invoice_id+'&sha_value='+shss+'&amount='+orp_data.total_price+'&buyer_name='+orp_data.buyer_name+'&email='+email, '_blank', 'location=no');
+        iabRef = window.open('templates/payment/html/payU.html?trans_id='+id+'&invoice_id='+invoice_id+'&sha_value='+shss+'&amount='+orp_data.total_price+'&buyer_name='+orp_data.buyer_name+'&email='+orp_data.buyer_email, '_blank', 'location=no');
         iabRef.addEventListener('loadstart', iabLoadStart);
         iabRef.addEventListener('loadstop', iabLoadStop);
         iabRef.addEventListener('loaderror', iabLoadError);

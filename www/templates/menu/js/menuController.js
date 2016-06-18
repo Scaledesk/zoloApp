@@ -20,7 +20,6 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         if($scope.access_token && $scope.access_token != 'undefined'){
             profileService.get_profile($scope.access_token).then(function(data){
                 $scope.profile = data.data.data;
-                window.localStorage['email']=$scope.profile.email;
 
             })
         }
@@ -31,9 +30,6 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         if($scope.access_token && $scope.access_token != 'undefined'){
             profileService.get_profile($scope.access_token).then(function(data){
                 $scope.profile = data.data.data;
-                console.log("nsbbsc",JSON.stringify($scope.profile.email))
-                window.localStorage['email']=$scope.profile.email;
-
             })
         }
     }

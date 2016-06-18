@@ -10,6 +10,15 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         val:-1
     };
 
+    $scope.active_index='candybrush_packages';
+
+    $scope.change_index=function(index){
+        $scope.active_index=index;
+    };
+    $scope.get_index=function(){
+        return $scope.active_index;
+    };
+
     $scope.back_to_sub_cat_side = function(){
         $state.go('app.cat_sub_cat_list',{'cat_id':$stateParams.cat_id});
     };
@@ -102,6 +111,8 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                 stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
             }
             stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+            var index = client.initIndex($scope.get_index());
+
             index.search(
                 "", {
                     hitsPerPage: 5,
@@ -132,6 +143,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                     stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
                 }
                 stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+                var index = client.initIndex($scope.get_index());
                 index.search(
                     "", {
                         hitsPerPage: 5,
@@ -157,9 +169,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                 });
             }
             return;
-
         }
-
     };
     $scope.search_packages(stringFilter,false);
 
@@ -167,7 +177,8 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         $rootScope.$broadcast('loading:show');
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
-        var index = client.initIndex('candybrush_packages');
+        var index = client.initIndex($scope.get_index());
+
 
         //remove the draft packages from being shown in the search
         if(stringFilter==''){
@@ -297,38 +308,63 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     };
 
     $scope.addPrice = function (initial, final) {
-        if ($scope.filter.price1) {
-            $scope.price_range = [];
-            $scope.price_range.push(0, 1000);
-        }
-        if ($scope.filter.price2) {
-            $scope.price_range = [];
-            $scope.price_range.push(1001, 10000);
-        }
-        if ($scope.filter.price3) {
-            $scope.price_range = [];
-            $scope.price_range.push(10001, 50000);
-        }
-        if ($scope.filter.price4) {
-            $scope.price_range = [];
-            $scope.price_range.push(50001, 100000);
-        }
-        if ($scope.filter.price5) {
-            $scope.price_range = [];
-            $scope.price_range.push(100001, $scope.max_price);
+        // if ($scope.filter.price1) {
+        //     $scope.price_range = [];
+        //     $scope.price_range.push(0, 1000);
+        // }
+        // if ($scope.filter.price2) {
+        //     $scope.price_range = [];
+        //     $scope.price_range.push(1001, 10000);
+        // }
+        // if ($scope.filter.price3) {
+        //     $scope.price_range = [];
+        //     $scope.price_range.push(10001, 50000);
+        // }
+        // if ($scope.filter.price4) {
+        //     $scope.price_range = [];
+        //     $scope.price_range.push(50001, 100000);
+        // }
+        // if ($scope.filter.price5) {
+        //     $scope.price_range = [];
+        //     $scope.price_range.push(100001, $scope.max_price);
+        // }
+        switch($scope.filter.price){
+            case '1':{
+                $scope.price_range = [];
+                $scope.price_range.push(0, 1000);
+                break;
+            }
+            case '2':{
+                $scope.price_range = [];
+                $scope.price_range.push(1001, 10000);
+                break;
+            }
+            case '3':{
+                $scope.price_range = [];
+                $scope.price_range.push(10001, 50000);break;
+            }
+            case '4':{
+                $scope.price_range = [];
+                $scope.price_range.push(50001, 100000);break;
+            }
+            case '5':{
+                $scope.price_range = [];
+                $scope.price_range.push(100001, $scope.max_price);break;
+            }
         }
         $scope.makefilters();
     };
    
 
     $scope.makeSort=function(val){
+        console.log("ssss",val)
         $scope.choice.val = val;
     };
     $scope.sort_apply = function(val){
         switch(val){
-            case 1:{$scope.pricehtol();break;}
-            case 2:{$scope.priceltoh();break;}
-            case 3:{$scope.newfirst();break;}
+            case 1:{$scope.pricehtol();$scope.change_index("deal_price_desc");break;}
+            case 2:{$scope.priceltoh();$scope.change_index("deal_price_asc");break;}
+            case 3:{$scope.newfirst();$scope.change_index("new_packages_first");break;}
         }
     };
 

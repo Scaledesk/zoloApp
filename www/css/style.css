@@ -331,6 +331,7 @@ md-sidenav {
     vertical-align: text-top;
     font-size: x-large;
     color: white; }
+
 .md-button.md-accent.md-fab.fab-footer {
   float: right;
   right: 25px;
@@ -411,11 +412,13 @@ md-sidenav {
   margin-left: 22px;
   font-size: 22px;
   color: gray; }
+
 .md-list-item-default p {
   font-size: 15px;
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis; }
+
 .md-list-item-default span {
   font-size: 15px;
   margin-right: 20px; }
@@ -606,9 +609,9 @@ md-sidenav {
   #social-login.bg-white {
     background-color: white; }
   #social-login form {
-    margin-top: 12%; }
+    margin-top: 33%; }
     #social-login form.fakeLogin-form {
-      margin-top: 12%; }
+      margin-top: 22%; }
     #social-login form div i {
       font-size: 90px;
       margin-bottom: 16px; }
@@ -1344,6 +1347,7 @@ md-sidenav {
     width: 100px;
     height: 100px;
     margin-top: 0; }
+
 #expense-dashboard #expense-dashboard-content {
   margin-top: 256px; }
   #expense-dashboard #expense-dashboard-content md-list-item {
@@ -1445,6 +1449,7 @@ md-sidenav {
   margin-top: 8px; }
   #cloth-shop-content md-toolbar h2 i {
     color: #e3cf7a !important; }
+
 #cloth-shop-content #product-list .col {
   padding: 3px; }
   #cloth-shop-content #product-list .col .cube-item {
@@ -1640,8 +1645,8 @@ md-sidenav {
         #cube-feed-content .feed-list .feed-item .feed-content .right i {
           font-size: 18px; }
 
-#restaurant ,ion-view {
-  background-color: #e5e4e4!important; }
+#restaurant {
+  background-color: #e5e4e4; }
   #restaurant #restaurant-slide-box {
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.14), 0px 2px 2px 0px rgba(0, 0, 0, 0.098), 0px 1px 5px 0px rgba(0, 0, 0, 0.084);
     height: 180px; }
@@ -1778,7 +1783,7 @@ md-sidenav {
     margin-top: 24px; }
 
 .bg-sign {
-  background: url('..img/bg-signin.png') !important;
+  background: url("..img/bg-signin.png") !important;
   /*background-size: cover;*/
   -webkit-background-size: cover; }
 
@@ -1807,7 +1812,7 @@ md-sidenav {
   height: auto; }
 
 .bg-static {
-  background: url('../img/walk1.png') !important;
+  background: url("../img/walk1.png") !important;
   background-repeat: no-repeat;
   background-size: 100%;
   /*background-image: linear-gradient(0deg, #e42012, #e42012 50%, transparent 50%);*/ }
@@ -1816,7 +1821,7 @@ md-sidenav {
   display: none; }
 
 .background_img_optional {
-  background: url('../img/bg-signin.jpg') no-repeat center center fixed;
+  background: url(../img/bg-signin.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover; }

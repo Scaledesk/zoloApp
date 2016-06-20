@@ -11,6 +11,8 @@ appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, 
         $state.go('app.paymentOption');
     };
 
+    // $scope.num_str = parseInt(num_str, 10);
+
     GetUserAddressService.user_address(user_id).then(function(data){
         $scope.user_address = data.data.data;
         angular.forEach($scope.user_address , function (obj) {
@@ -18,9 +20,12 @@ appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, 
                $scope.address = obj;
                if($scope.address.is_default == '0'){
                    $scope.address.is_default = false;
+                   $scope.address.phone_number = parseInt($scope.address.phone_number);
                }
                else{
                    $scope.address.is_default = true;
+                   $scope.address.phone_number = parseInt($scope.address.phone_number);
+
                }
            }
 

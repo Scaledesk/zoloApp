@@ -264,7 +264,6 @@ console.log("access",(window.localStorage['access_token']))
     };
 
     $scope.seller_Profile = function(id){
-        console.log("ssss",$stateParams.cat_id,id);
         $state.go('app.seller_profile',{'cat_id': $stateParams.cat_id,'product_id':id});
     };
     

@@ -478,6 +478,8 @@ angular.module('starter').factory('wishListService', function($http,$q,$rootScop
 angular.module('starter').factory('removeWishListService', function($http,$q,$rootScope,serverConfig){
     return {
         remove_wish_list:function(p_id,access_token){
+            console.log("sonam",access_token)
+            var headers = { 'Authorization':"Bearer "+ access_token };
             var package = {
                 "package_id":p_id
             }
@@ -485,14 +487,19 @@ angular.module('starter').factory('removeWishListService', function($http,$q,$ro
             var deffer = $q.defer();
             return $http({
                 method:"PUT",
-                url:serverConfig.address+"api/removeWishPackage?access_token="+access_token,
+                headers:headers,
+                // url:serverConfig.address+"api/removeWishPackage?access_token="+access_token,
+                url:serverConfig.address+"api/removeWishPackage",
                 data: package,
 
             }).success(function(data, status, headers, config) {
+                console.log("data",JSON.stringify(data))
                 deffer.resolve(data);
                 $rootScope.$broadcast('loading:hide');
             }).
             error(function(data, status, headers, config) {
+                console.log("error",status)
+                console.log("error config",JSON.stringify(config))
                 $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;
@@ -527,6 +534,7 @@ angular.module('starter').factory('orderListService', function($http,$q,$rootSco
 angular.module('starter').factory('bookingService', function($http,$state,$rootScope,$q,$mdToast,serverConfig){
     return {
         OrpInfo: function (data) {
+            data.access_token = window.localStorage['access_token'];
             $rootScope.$broadcast('loading:show');
             var deffer = $q.defer();
             return $http({
@@ -566,7 +574,7 @@ angular.module('starter').factory('OrderReviewService', function($http,$rootScop
             var deffer = $q.defer();
             return $http({
                 method: "GET",
-                url: serverConfig.address+"api/booking/"+booking_id
+                url: serverConfig.address+"api/booking/"+booking_id+"?access_token="+window.localStorage['access_token']
             }).
             success(function(data, status, headers, config) {
                 deffer.resolve(data);
@@ -590,29 +598,32 @@ angular.module('starter').factory('GetUserAddressService', function($http,$state
             var deffer = $q.defer();
             return $http({
                 method: "GET",
-                url: serverConfig.address+"api/userAddress?user_id="+user_id
+                url: serverConfig.address+"api/userAddress?user_id="+user_id+"&access_token="+window.localStorage['access_token']
             }).
             success(function(data, status, headers, config) {
                 deffer.resolve(data);
                 $rootScope.$broadcast('loading:hide');
             }).
             error(function(data, status, headers, config) {
-                console.log("data in error",JSON.stringify(data))
-                $rootScope.$broadcast('loading:hide');
 
+                console.log("data in error",JSON.stringify(config))
+                $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;
         }
     }
 });
 
+
 angular.module('starter').factory('addUserAddressService', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
     return {
         add_user_address: function (data,user_id) {
             $rootScope.$broadcast('loading:show');
+            var headers = { 'Authorization':"Bearer "+ window.localStorage['access_token'] };
             var deffer = $q.defer();
             return $http({
                 method: "POST",
+                headers:headers,
                 url: serverConfig.address+"api/userAddress?user_id="+user_id,
                 data: data
             }).
@@ -621,6 +632,8 @@ angular.module('starter').factory('addUserAddressService', function($http,$rootS
                 $rootScope.$broadcast('loading:hide');
             }).
             error(function(data, status, headers, config) {
+                console.log("dddd",JSON.stringify(config))
+                console.log("data",JSON.stringify(data))
                 $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;
@@ -631,10 +644,13 @@ angular.module('starter').factory('addUserAddressService', function($http,$rootS
 angular.module('starter').factory('editUserAddressService', function($http,$state,$rootScope,$q,$mdToast,serverConfig){
     return {
         edit_user_address: function (data,id) {
+            var headers = { 'Authorization':"Bearer "+ window.localStorage['access_token'] };
+
             $rootScope.$broadcast('loading:show');
             var deffer = $q.defer();
             return $http({
                 method: "PUT",
+                headers:headers,
                 url: serverConfig.address+"api/userAddress/"+id,
                 data: data
             }).
@@ -643,6 +659,8 @@ angular.module('starter').factory('editUserAddressService', function($http,$stat
                 $rootScope.$broadcast('loading:hide');
             }).
             error(function(data, status, headers, config) {
+                console.log("error config",JSON.stringify(config))
+                console.log("error data",JSON.stringify(data))
                 $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;
@@ -654,10 +672,12 @@ angular.module('starter').factory('editUserAddressService', function($http,$stat
 angular.module('starter').factory('deleteUserAddressService', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
     return {
         delete_user_address: function (id) {
+            var headers = { 'Authorization':"Bearer "+ window.localStorage['access_token'] };
             $rootScope.$broadcast('loading:show');
             var deffer = $q.defer();
             return $http({
                 method: "DELETE",
+                headers:headers,
                 url: serverConfig.address+"api/userAddress/"+id
             }).
             success(function(data, status, headers, config) {
@@ -665,6 +685,7 @@ angular.module('starter').factory('deleteUserAddressService', function($http,$ro
                 $rootScope.$broadcast('loading:hide');
             }).
             error(function(data, status, headers, config) {
+                console.log("error",JSON.stringify(config))
                 $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;
@@ -676,6 +697,7 @@ angular.module('starter').factory('deleteUserAddressService', function($http,$ro
 angular.module('starter').factory('addWishList', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
     return {
         add_to_wish_list: function (data) {
+            data.access_token = window.localStorage['access_token'];
             $rootScope.$broadcast('loading:show');
             var deffer = $q.defer();
             return $http({
@@ -734,6 +756,11 @@ angular.module('starter').factory('ContactService', function($http,$rootScope,$s
     }
 });
 
+
+
+
+
+
 angular.module('starter').factory('generateNewTransactionService', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
     return {
         transaction_generate: function (trans_id) {
@@ -749,6 +776,8 @@ angular.module('starter').factory('generateNewTransactionService', function($htt
             }).
             error(function(data, status, headers, config) {
                 console.log("status",status);
+                console.log("config",JSON.stringify(config));
+                console.log("data",JSON.stringify(data));
                 $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;
@@ -797,6 +826,9 @@ angular.module('starter').factory('shaService', function($http,$q,$rootScope,ser
                 $rootScope.$broadcast('loading:hide');
             }).
             error(function(data, status, headers, config) {
+                console.log("error",status)
+                console.log("config",JSON.stringify(config))
+                console.log("data",JSON.stringify(data))
                 $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;

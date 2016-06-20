@@ -17,7 +17,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.book_new={
         quantity_new:1
     };
-
+console.log("access",(window.localStorage['access_token']))
    $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
    $scope.new_quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 

@@ -22,6 +22,31 @@ angular.module('starter').factory('CategoryService', function($http,$rootScope,$
     }
 });
 
+angular.module('starter').factory('packagesService', function($http,$rootScope,$q,serverConfig){
+    return {
+        getPackagesList:function(sub_category_id){
+            $rootScope.$broadcast('loading:show');
+
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+"api/category/"+sub_category_id+"?include=Packages"
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+
+            }).
+            error(function(data, status, headers, config) {
+                console.log("data",JSON.stringify(data))
+                $rootScope.$broadcast('loading:hide');
+
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+
 angular.module('starter').factory('MaxPriceService', function($http,$rootScope,$q,serverConfig){
     return {
         getMaxPrice : function() {
@@ -179,6 +204,53 @@ angular.module('starter').factory('productService', function($http,$q,$rootScope
     }
 });
 
+angular.module('starter').factory('signUpService', function($http,$state,$rootScope,$q,$mdToast,serverConfig){
+    return {
+        signUp: function (data) {
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"api/signup",
+                data: data
+            }).
+            success(function(data, status, headers, config) {
+                if(data.status_code == '200'){
+                    $mdToast.show({
+                        controller: 'toastController',
+                        templateUrl: 'toast.html',
+                        hideDelay: 800,
+                        position: 'top',
+                        locals: {
+                            displayOption: {
+                                title: data.message
+                            }
+                        }
+                    });
+                }
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                $mdToast.show({
+                    controller: 'toastController',
+                    templateUrl: 'toast.html',
+                    hideDelay: 800,
+                    position: 'top',
+                    locals: {
+                        displayOption: {
+                            title: data.message[0]
+                        }
+                    }
+                });
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+
 angular.module('starter').factory('payByPayU', function($http,$q,$rootScope,serverConfig){
     return {
         get_payment_ifo:function(id){
@@ -200,76 +272,8 @@ angular.module('starter').factory('payByPayU', function($http,$q,$rootScope,serv
     }
 });
 
-angular.module('starter').factory('packagesService', function($http,$rootScope,$q,serverConfig){
-    return {
-        getPackagesList:function(sub_category_id){
-            $rootScope.$broadcast('loading:show');
-
-            var deffer = $q.defer();
-            return $http({
-                method:"get",
-                url:serverConfig.address+"api/category/"+sub_category_id+"?include=Packages"
-            }).success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                $rootScope.$broadcast('loading:hide');
-
-            }).
-            error(function(data, status, headers, config) {
-                console.log("data",JSON.stringify(data))
-                $rootScope.$broadcast('loading:hide');
-
-            });
-            return deffer.promise;
-        }
-    }
-});
 
 
-angular.module('starter').factory('signUpService', function($http,$state,$rootScope,$q,$mdToast,serverConfig){
-    return {
-    signUp: function (data) {
-        $rootScope.$broadcast('loading:show');
-        var deffer = $q.defer();
-        return $http({
-                method: "POST",
-                url: serverConfig.address+"api/signup",
-                data: data
-            }).
-            success(function(data, status, headers, config) {
-            if(data.status_code == '200'){
-                $mdToast.show({
-                    controller: 'toastController',
-                    templateUrl: 'toast.html',
-                    hideDelay: 800,
-                    position: 'top',
-                    locals: {
-                        displayOption: {
-                            title: data.message
-                        }
-                    }
-                });
-            }
-            deffer.resolve(data);
-            $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-            $mdToast.show({
-                controller: 'toastController',
-                templateUrl: 'toast.html',
-                hideDelay: 800,
-                position: 'top',
-                locals: {
-                    displayOption: {
-                        title: data.message[0]
-                    }
-                }
-            });
-            $rootScope.$broadcast('loading:hide');
-            });
-        return deffer.promise;
-        }
-    }
-});
 angular.module('starter').factory('forgetPasswordService', function($http,$state, $rootScope,$q,$mdToast,serverConfig){
     return {
         forget_password: function (data) {
@@ -316,6 +320,209 @@ angular.module('starter').factory('forgetPasswordService', function($http,$state
         }
     };
 });
+angular.module('starter').factory('ProfileService', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
+    return {
+        user_profile: function (access_token) {
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method: "GET",
+                url: serverConfig.address+"api/myProfile?access_token="+access_token
+            }).
+            success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("data in error",JSON.stringify(data))
+                $rootScope.$broadcast('loading:hide');
+
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+angular.module('starter').factory('googleLogin', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
+    return {
+        google_login: function (data) {
+            // $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"api/auth/m_google",
+                data: data
+            }).
+            success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                // $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("status",status)
+                // $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+angular.module('starter').factory('facebookLogin', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
+    return {
+        facebook_login: function (data) {
+            // $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"api/auth/m_facebook",
+                data: data
+            }).
+            success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                // $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("status",status)
+                // $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+
+angular.module('starter').factory('googleToken', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
+    return {
+        google_token: function (data) {
+            // $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method: "POST",
+                url: serverConfig.address+"oauth/access_token",
+                data: data
+            }).
+            success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                // $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("status",status)
+
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+
+angular.module('starter').factory('profileService', function($http,$q,$rootScope,serverConfig){
+    return {
+        get_profile:function(access_token){
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+'api/myProfile?access_token='+access_token
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("data",JSON.stringify(data))
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+angular.module('starter').factory('bannerService', function($http,$q,$rootScope,serverConfig){
+    return {
+        get_banner:function(){
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+'api/banner'
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                console.log("data",JSON.stringify(data))
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+angular.module('starter').factory('wishListService', function($http,$q,$rootScope,serverConfig){
+    return {
+        get_wish_list:function(access_token){
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+"api/getWishlist?access_token="+access_token
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+angular.module('starter').factory('removeWishListService', function($http,$q,$rootScope,serverConfig){
+    return {
+        remove_wish_list:function(p_id,access_token){
+            var package = {
+                "package_id":p_id
+            }
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"PUT",
+                url:serverConfig.address+"api/removeWishPackage?access_token="+access_token,
+                data: package,
+
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+angular.module('starter').factory('orderListService', function($http,$q,$rootScope,serverConfig){
+    return {
+        get_order:function(access_token){
+            $rootScope.$broadcast('loading:show');
+            var deffer = $q.defer();
+            return $http({
+                method:"get",
+                url:serverConfig.address+"api/myPurchases?access_token="+access_token
+            }).success(function(data, status, headers, config) {
+                deffer.resolve(data);
+                $rootScope.$broadcast('loading:hide');
+            }).
+            error(function(data, status, headers, config) {
+                $rootScope.$broadcast('loading:hide');
+            });
+            return deffer.promise;
+        }
+    }
+});
+
+
+
+
 
 angular.module('starter').factory('bookingService', function($http,$state,$rootScope,$q,$mdToast,serverConfig){
     return {
@@ -375,28 +582,6 @@ angular.module('starter').factory('OrderReviewService', function($http,$rootScop
     }
 });
 
-angular.module('starter').factory('ProfileService', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
-    return {
-        user_profile: function (access_token) {
-            $rootScope.$broadcast('loading:show');
-            var deffer = $q.defer();
-            return $http({
-                method: "GET",
-                url: serverConfig.address+"api/myProfile?access_token="+access_token
-            }).
-            success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-                console.log("data in error",JSON.stringify(data))
-                $rootScope.$broadcast('loading:hide');
-
-            });
-            return deffer.promise;
-        }
-    }
-});
 
 angular.module('starter').factory('GetUserAddressService', function($http,$state,$rootScope,$q,$mdToast,serverConfig){
     return {
@@ -523,74 +708,6 @@ angular.module('starter').factory('addWishList', function($http,$rootScope,$stat
     }
 });
 
-angular.module('starter').factory('googleLogin', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
-    return {
-        google_login: function (data) {
-            // $rootScope.$broadcast('loading:show');
-            var deffer = $q.defer();
-            return $http({
-                method: "POST",
-                url: serverConfig.address+"api/auth/m_google",
-                data: data
-            }).
-            success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                // $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-                console.log("status",status)
-                // $rootScope.$broadcast('loading:hide');
-            });
-            return deffer.promise;
-        }
-    }
-});
-angular.module('starter').factory('facebookLogin', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
-    return {
-        facebook_login: function (data) {
-            // $rootScope.$broadcast('loading:show');
-            var deffer = $q.defer();
-            return $http({
-                method: "POST",
-                url: serverConfig.address+"api/auth/m_facebook",
-                data: data
-            }).
-            success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                // $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-                console.log("status",status)
-                // $rootScope.$broadcast('loading:hide');
-            });
-            return deffer.promise;
-        }
-    }
-});
-
-
-angular.module('starter').factory('googleToken', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
-    return {
-        google_token: function (data) {
-            // $rootScope.$broadcast('loading:show');
-            var deffer = $q.defer();
-            return $http({
-                method: "POST",
-                url: serverConfig.address+"oauth/access_token",
-                data: data
-            }).
-            success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                // $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-                console.log("status",status)
-               
-            });
-            return deffer.promise;
-        }
-    }
-});
 
 angular.module('starter').factory('ContactService', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
     return {
@@ -639,25 +756,7 @@ angular.module('starter').factory('generateNewTransactionService', function($htt
     }
 });
 
-angular.module('starter').factory('orderListService', function($http,$q,$rootScope,serverConfig){
-    return {
-        get_order:function(access_token){
-            $rootScope.$broadcast('loading:show');
-            var deffer = $q.defer();
-            return $http({
-                method:"get",
-                url:serverConfig.address+"api/myPurchases?access_token="+access_token
-            }).success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-                $rootScope.$broadcast('loading:hide');
-            });
-            return deffer.promise;
-        }
-    }
-});
+
 
 
 
@@ -684,92 +783,6 @@ angular.module('starter').factory('orderDetailService', function($http,$q,$rootS
     }
 });
 
-angular.module('starter').factory('profileService', function($http,$q,$rootScope,serverConfig){
-    return {
-        get_profile:function(access_token){
-            $rootScope.$broadcast('loading:show');
-            var deffer = $q.defer();
-            return $http({
-                method:"get",
-                url:serverConfig.address+'api/myProfile?access_token='+access_token
-            }).success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-                console.log("data",JSON.stringify(data))
-                $rootScope.$broadcast('loading:hide');
-            });
-            return deffer.promise;
-        }
-    }
-});
-
-angular.module('starter').factory('bannerService', function($http,$q,$rootScope,serverConfig){
-    return {
-        get_banner:function(){
-            $rootScope.$broadcast('loading:show');
-            var deffer = $q.defer();
-            return $http({
-                method:"get",
-                url:serverConfig.address+'api/banner'
-            }).success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-                console.log("data",JSON.stringify(data))
-                $rootScope.$broadcast('loading:hide');
-            });
-            return deffer.promise;
-        }
-    }
-});
-
-angular.module('starter').factory('wishListService', function($http,$q,$rootScope,serverConfig){
-    return {
-        get_wish_list:function(access_token){
-            $rootScope.$broadcast('loading:show');
-            var deffer = $q.defer();
-            return $http({
-                method:"get",
-                url:serverConfig.address+"api/getWishlist?access_token="+access_token
-            }).success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-                $rootScope.$broadcast('loading:hide');
-            });
-            return deffer.promise;
-        }
-    }
-});
-
-angular.module('starter').factory('removeWishListService', function($http,$q,$rootScope,serverConfig){
-    return {
-        remove_wish_list:function(p_id,access_token){
-            var package = {
-                "package_id":p_id
-            }
-            $rootScope.$broadcast('loading:show');
-            var deffer = $q.defer();
-            return $http({
-                method:"PUT",
-                url:serverConfig.address+"api/removeWishPackage?access_token="+access_token,
-                data: package,
-
-            }).success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-                $rootScope.$broadcast('loading:hide');
-            });
-            return deffer.promise;
-        }
-    }
-});
 
 angular.module('starter').factory('shaService', function($http,$q,$rootScope,serverConfig){
     return {

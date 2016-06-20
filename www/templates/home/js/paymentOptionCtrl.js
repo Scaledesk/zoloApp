@@ -76,6 +76,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 
 
     function iabLoadStop(event) {
+        $rootScope.$broadcast('loading:show');
 
         if (event.url.match("https://payu.herokuapp.com/success")) {
             iabRef.executeScript({
@@ -104,6 +105,8 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                                 disableBack: true
                             });
                             $state.go('app.payment_fail',{'t_id':id,'b_id':booking_id});
+                            $rootScope.$broadcast('loading:hide');
+
                         }
                     })
                 }
@@ -119,6 +122,8 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                                 disableBack: true
                             });
                             $state.go('app.payment_fail',{'t_id':id,'b_id':booking_id});
+                            $rootScope.$broadcast('loading:hide');
+
                         }
                     })
                 }
@@ -131,6 +136,8 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                                 disableBack: true
                             });
                             $state.go('app.payment_success',{'b_id':booking_id});
+                            $rootScope.$broadcast('loading:hide');
+
                         }
                         console.log("resopnse in success",JSON.stringify(response))
                         

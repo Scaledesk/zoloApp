@@ -5,6 +5,8 @@ appControllers.controller('subCategoryCtrl', function ($scope, $timeout,subCateg
         $scope.sub_catagery_list = data.data.data;
         $ionicSlideBoxDelegate.update();
 
+        console.log("sub cat",JSON.stringify($scope.sub_catagery_list))
+
     });
 
     $scope.getPackages = function(id){

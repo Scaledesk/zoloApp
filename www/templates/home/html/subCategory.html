@@ -8,7 +8,8 @@
     <ion-content id="restaurant">
         <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
             <ion-slide style="padding-top: 0px !important;">
-                <img ng-src="{{sub_catagery_list.image}}">
+                <img ng-if="sub_catagery_list.image != null" ng-src="{{sub_catagery_list.image}}">
+                <img ng-if="sub_catagery_list.image == null" src="../img/noimagefound.png">
             </ion-slide>
         </ion-slide-box>
         <ion-list>

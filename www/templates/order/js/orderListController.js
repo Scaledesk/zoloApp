@@ -1,4 +1,4 @@
-appControllers.controller('oderListCtrl', function ($scope,orderListService, $timeout,$stateParams, $state,$stateParams) {
+appControllers.controller('oderListCtrl', function ($scope,orderListService, $ionicHistory,$stateParams, $state,$stateParams) {
 var access_token = window.localStorage['access_token'];
 
     if(access_token && access_token != 'undefined'){
@@ -10,6 +10,14 @@ var access_token = window.localStorage['access_token'];
     $scope.order_detail = function(order_id){
         $state.go('app.order_detail',{order_id:order_id})
     }
+
+
+    $scope.go_home = function(){
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+        $state.go('app.home');
+    };
 });
 
 

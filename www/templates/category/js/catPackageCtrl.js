@@ -44,12 +44,86 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         $state.go('app.cat_product_desc', {'cat_id':parent_id,'sub_cat_id':sub_c_id,'product_id': id})
     };
     $scope.sorting_type = 'sort';
-    $scope.filter_clear = function(){
-        $scope.filter.price1 = '';
-        $scope.filter.price2 = '';
-        $scope.filter.price3 = '';
-        $scope.filter.price4 = '';
-        $scope.filter.price5 = '';
+    $scope.filter_clear = function(stringFilter,load_option){
+        $scope.filter.price = 'blank';
+        $scope.choice.val = '';
+        if(stringFilter == undefined){
+            stringFilter = '';
+        }
+        $scope.active_index='candybrush_packages';
+
+        if(load_option == false ||load_option == undefined){
+            console.log("inside if")
+            $rootScope.$broadcast('loading:show');
+            if(stringFilter==''){
+                stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+            }else {
+                stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+            }
+            stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+            var index = client.initIndex('candybrush_packages');
+            
+            index.search(
+                "", {
+                    hitsPerPage: 5,
+                    facets: '*',
+                    filters: stringFilter,
+                    maxValuesPerFacet: 10
+                }).then(
+                function(content){
+                    $scope.packages = content.hits;
+                    $scope.total_page=content.nbPages;
+                    $scope.current_page=content.page;
+                    $scope.modal.hide();
+                    $rootScope.$broadcast('loading:hide');
+
+                }
+            ).catch(function (error) {
+                console.log("error",error);
+                $scope.modal.hide();
+                $rootScope.$broadcast('loading:hide');
+
+            });
+
+        }
+        else{
+            $rootScope.$broadcast('loading:show');
+            if($scope.current_page <= $scope.total_page){
+                if(stringFilter==''){
+                    stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+                }else {
+                    stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+                }
+                stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+                var index = client.initIndex('candybrush_packages');
+                index.search(
+                    "", {
+                        hitsPerPage: 5,
+                        facets: '*',
+                        filters: stringFilter,
+                        maxValuesPerFacet: 10,
+                        page:++$scope.current_page
+                    }).then(
+                    function(content){
+                        console.log("package else result",JSON.stringify(content.hits.length))
+                        if(content.hits.length == 0){
+                            $scope.disable_loadMore = true;
+                        }
+                        angular.forEach(content.hits,function(obj){
+                            $scope.packages.push(obj);
+                        });
+                        $scope.modal.hide();
+                        $rootScope.$broadcast('loading:hide');
+                    }
+                ).catch(function (error) {
+                    console.log("error",error);
+                    $scope.modal.hide();
+                    $rootScope.$broadcast('loading:hide');
+
+                });
+            }
+            return;
+        }
 
     };
 
@@ -208,7 +282,15 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     };
 
     $scope.load_more = function(){
-        $scope.search_packages(stringFilter,true);
+        // $scope.search_packages(stringFilter,true);
+
+        if($scope.filter.price == 'blank'){
+            stringFilter = '';
+            $scope.filter_clear(stringFilter,true);
+        }
+        else{
+            $scope.search_packages(stringFilter,true);
+        }
     };
 
 
@@ -368,7 +450,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         }
     };
 
-    $scope.sort_clear = function(){
-        $scope.choice.val = '';
-    };
+    // $scope.sort_clear = function(){
+    //     $scope.choice.val = '';
+    // };
 });

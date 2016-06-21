@@ -4,6 +4,8 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
     $scope.filterText = $stateParams.search_text;
+
+    var strFilter = $stateParams.search_text;
     
     var index = client.initIndex('candybrush_packages');
 
@@ -38,8 +40,9 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     $scope.search_packages = function(filterText,load_option){
         $rootScope.$broadcast('loading:show');
         if(load_option == false){
-            var index = client.initIndex($scope.get_index());
+            stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
 
+            var index = client.initIndex($scope.get_index());
             index.search(
                 filterText, {
                     hitsPerPage: 5,
@@ -60,8 +63,8 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         }
         else{
             if($scope.current_page <= $scope.total_page){
+                stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
                 var index = client.initIndex($scope.get_index());
-
                 index.search(
                     filterText, {
                         hitsPerPage: 5,
@@ -71,7 +74,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                         page:++$scope.current_page
                     }).then(
                     function(content){
-                        console.log("package else result",JSON.stringify(content.hits.length))
                         if(content.hits.length == 0){
                             $scope.disable_loadMore = true;
                         }
@@ -93,10 +95,97 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     $scope.search_packages($scope.filterText,false);
 
 
-    $scope.load_more = function(){
-        $scope.search_packages($scope.filterText,true);
+    $scope.filter_clear = function(strFilter,load_option){
+        var stringFilter = strFilter;
+        // $scope.filter.price = '';
+        $scope.filter.price = 'blank';
+        $scope.choice.val = '';
+        if(stringFilter == undefined){
+            stringFilter = $stateParams.search_text;
+          var filterText = $stateParams.search_text;
+        }else{
+            stringFilter = stringFilter;
+            var filterText = stringFilter;
+        }
+
+        $scope.active_index='candybrush_packages';
+
+
+
+        if(load_option == false || load_option == undefined){
+                stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+            var index = client.initIndex('candybrush_packages');
+
+            index.search(
+                filterText, {
+                    hitsPerPage: 5,
+                    facets: '*',
+                    filters:stringFilter,
+                    maxValuesPerFacet: 10
+                }).then(
+                function(content){
+                    $scope.packages = content.hits;
+                    $scope.total_page=content.nbPages;
+                    $scope.current_page=content.page;
+                    $scope.modal.hide();
+                    $rootScope.$broadcast('loading:hide');
+                }
+            ).catch(function (error) {
+                console.log("error",error);
+                $scope.modal.hide();
+                $rootScope.$broadcast('loading:hide');
+            });
+        }
+        else{
+            if($scope.current_page <= $scope.total_page){
+                    stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+                var index = client.initIndex('candybrush_packages');
+
+                index.search(
+                    filterText, {
+                        hitsPerPage: 5,
+                        facets: '*',
+                        maxValuesPerFacet: 10,
+                        filters:stringFilter,
+                        page:++$scope.current_page
+                    }).then(
+                    function(content){
+                        if(content.hits.length == 0){
+                            $scope.disable_loadMore = true;
+                        }
+                        angular.forEach(content.hits,function(obj){
+                            $scope.packages.push(obj);
+                        });
+                        $scope.modal.hide();
+                        $rootScope.$broadcast('loading:hide');
+                    }
+                ).catch(function (error) {
+                    console.log("error",error);
+                    $scope.modal.hide();
+                    $rootScope.$broadcast('loading:hide');
+
+                });
+            }
+            return;
+        }
+
     };
-   
+
+    $scope.load_more = function(){
+        console.log("dddd",$scope.filter.price)
+        if($scope.filter.price == 'blank'){
+            console.log("if",$scope.filterText)
+            //
+            // stringFilter = '';
+            $scope.filter_clear($scope.filterText,true);
+        }
+        else{
+            $scope.search_packages($scope.filterText,true);
+            console.log("else ",$scope.filterText)
+
+        }
+    };
+    
     $ionicModal.fromTemplateUrl('templates/search/html/search_sort_modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -342,9 +431,9 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         }
     };
 
-    $scope.sort_clear = function(){
-        $scope.choice.val = '';
-    };
+    // $scope.sort_clear = function(){
+    //     $scope.choice.val = '';
+    // };
 
 
     $scope.productDescription = function(category_id,id){

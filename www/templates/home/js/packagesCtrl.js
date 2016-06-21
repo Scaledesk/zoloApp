@@ -24,6 +24,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     var index = client.initIndex('candybrush_packages');
 
     $scope.filter = {price: false};
+
     packagesService.getPackagesList($stateParams.sub_cat_id).then(function (data) {
         $scope.packages_list = data.data.data;
     });
@@ -40,16 +41,15 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     };
 
     $scope.filter_clear = function(stringFilter,load_option){
-        $scope.filter.price1 = '';
-        $scope.filter.price2 = '';
-        $scope.filter.price3 = '';
-        $scope.filter.price4 = '';
-        $scope.filter.price5 = '';
+        // $scope.filter.price = '';
+        $scope.filter.price = 'blank';
         $scope.choice.val = '';
-
+        if(stringFilter == undefined){
+            stringFilter = '';
+        }
         $scope.active_index='candybrush_packages';
 
-        if(load_option == false){
+        if(load_option == false ||load_option == undefined){
             $rootScope.$broadcast('loading:show');
             if(stringFilter==''){
                 stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
@@ -69,12 +69,16 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                     $scope.packages = content.hits;
                     $scope.total_page=content.nbPages;
                     $scope.current_page=content.page;
+                    $scope.modal.hide();
                     $rootScope.$broadcast('loading:hide');
+
 
                 }
             ).catch(function (error) {
                 console.log("error",JSON.stringify(error));
+                $scope.modal.hide();
                 $rootScope.$broadcast('loading:hide');
+
 
             });
         }
@@ -103,19 +107,20 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                         angular.forEach(content.hits,function(obj){
                             $scope.packages.push(obj);
                         });
+                        $scope.modal.hide();
                         $rootScope.$broadcast('loading:hide');
+
+
                     }
                 ).catch(function (error) {
                     console.log("error",error);
+                    $scope.modal.hide();
                     $rootScope.$broadcast('loading:hide');
 
                 });
             }
             return;
-
         }
-
-
     };
 
     $ionicModal.fromTemplateUrl('templates/home/html/search_package_short_modal.html', {
@@ -171,7 +176,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
                 stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
             }
             gFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
-             var index = client.initIndex($scope.get_index());
+            var index = client.initIndex($scope.get_index());
             index.search(
                 "", {
                     hitsPerPage: 5,
@@ -265,7 +270,14 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     };
 
     $scope.load_more = function(){
-        $scope.search_packages(stringFilter,true);
+        // if(!($scope.filter.price)){
+        if($scope.filter.price == 'blank'){
+            stringFilter = '';
+            $scope.filter_clear(stringFilter,true);
+        }
+        else{
+            $scope.search_packages(stringFilter,true);
+        }
     };
 
 

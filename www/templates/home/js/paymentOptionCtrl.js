@@ -18,8 +18,11 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
     });
 
     $scope.choice={
-        val:-1
+        val:1
     };
+    // $scope.choice={
+    //     val:-1
+    // };
     shaService.get_sha(id).then(function(response){
         shss = response.data.data;
         if(shss){
@@ -50,12 +53,24 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
         onDeviceReadyTest();
     };
 
-    $scope.makePay=function(val,host_ip){
-        console.log("val",val,host_ip);
+    // $scope.makePay=function(val){
+    //     console.log("val",val);
+    //     switch(val){
+    //         case 1:{$scope.pay_by_payU(host_ip);
+    //             break;}
+    //     //
+    //         // case 2:{$scope.priceltoh();break;}
+    //         // case 3:{$scope.newfirst();break;}
+    //     }
+    // }
+
+    $scope.makePay=function(val){
+        val = 1;
+        console.log("val",val);
         switch(val){
-            case 1:{$scope.pay_by_payU(host_ip);
+            case 1:{$scope.pay_by_payU();
                 break;}
-        //        
+            //
             // case 2:{$scope.priceltoh();break;}
             // case 3:{$scope.newfirst();break;}
         }

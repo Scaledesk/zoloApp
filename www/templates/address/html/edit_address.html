@@ -5,7 +5,7 @@
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content>
-        <div class="list">
+        <div class="list card m-5">
             <form>
                 <label class="item item-input">
                     <input type="text" placeholder="Name" ng-model="address.name">
@@ -29,16 +29,20 @@
                     <input type="number" placeholder="Mobile Number" ng-model="address.phone_number">
                 </label>
                 <ion-checkbox ng-model="address.is_default">Default</ion-checkbox>
-                <div class="login-btn pull-left" ng-click="edit_address(address.id)">
-                    <p>EDIT</p>
-                </div>
-                <div class="login-btn pull-right" ng-click="skip()">
-                    <p>SKIP>></p>
-                </div>
             </form>
-
         </div>
 
-
+        <div class="row">
+            <div class="col-50">
+                <div class=" pull-left button button-balanced" ng-click="edit_address(address.id)">
+                    EDIT
+                </div>
+            </div>
+            <div class="col-50">
+                <div class="pull-right button button-energized" ng-click="skip()">
+                    SKIP>>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

@@ -5,9 +5,10 @@ appControllers.controller('wishListCtrl', function ($scope,wishListService,remov
     wishListService.get_wish_list(access_token).then(function(response){
         $scope.wishList = response.data.data;
         console.log("wishlist",JSON.stringify(response))
-    })
+    });
 
-    $scope.$on('wishListChanged', function (event, args) {
+    $rootScope.$on('wishListChanged', function (event, args) {
+        console.log("inside wish list change")
         $scope.message = args.message;
         wishListService.get_wish_list(access_token).then(function(response){
             $scope.wishList = response.data.data;
@@ -27,7 +28,6 @@ appControllers.controller('wishListCtrl', function ($scope,wishListService,remov
         confirmPopup.then(function(res) {
             if(res) {
                 removeWishListService.remove_wish_list(p_id,access_token).then(function(data){
-                    console.log("ddddd",JSON.stringify(data))
                     if(data.data.message == 'success'){
                         $mdToast.show({
                             controller: 'toastController',

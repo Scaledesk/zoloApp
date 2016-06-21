@@ -2,7 +2,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,$sce,profileService,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate,
-                                                                 removeWishListService,$ionicPopup) {
+                                                                 removeWishListService,$ionicPopup,$rootScope) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -116,6 +116,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
                         }
                     }
                 });
+                $rootScope.$broadcast('wishListChanged', { message: 'Change in address list' });
             }
         });
     };
@@ -144,6 +145,8 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
                             }
                         });
                     }
+                    $rootScope.$broadcast('wishListChanged', { message: 'Change in address list' });
+
                 });
             } else {
                 console.log('You are not sure');

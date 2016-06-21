@@ -97,6 +97,13 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         });
     };
 
+    $scope.wish_list = function(){
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+        $state.go('app.wishlist', null, {reload:true});
+
+    };
 
     $scope.filterText = '';
 

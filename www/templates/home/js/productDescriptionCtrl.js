@@ -114,6 +114,9 @@ console.log("access",(window.localStorage['access_token']))
                         }
                     }
                 });
+                $rootScope.$broadcast('wishListChanged', { message: 'Change in address list' });
+
+
             }
         });
     };
@@ -232,6 +235,10 @@ console.log("access",(window.localStorage['access_token']))
                             }
                         });
                     }
+                    // $rootScope.$broadcast('wishListChanged', { message: 'Change in address list' });                        $state.go('app.wishlist', null, {reload:true});
+                    $rootScope.$broadcast('wishListChanged', { message: 'Change in address list' });
+
+
                 });
             } else {
                 console.log('You are not sure');

@@ -2,7 +2,7 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,profileService,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate,
-                                                     removeWishListService,$ionicPopup) {
+                                                     removeWishListService,$ionicPopup,$rootScope) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -115,6 +115,8 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
                         }
                     }
                 });
+                $rootScope.$broadcast('wishListChanged', { message: 'Change in address list' });
+
             }
         });
     };
@@ -142,6 +144,8 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
                                 }
                             }
                         });
+                        $rootScope.$broadcast('wishListChanged', { message: 'Change in address list' });
+
                     }
                 });
             } else {

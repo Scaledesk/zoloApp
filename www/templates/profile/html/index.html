@@ -43,18 +43,23 @@
                 </div>
 
                 <div class="col-50 text-center">
-                    <p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp;{{profile.city}} {{profile.state}} </p>
+                    <!--<p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp;{{profile.city}} {{profile.state}} </p>-->
+                    <p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp; N/A </p>
                 </div>
             </div>
 
             <div class="row m-t-10" ng-if="profile.is_seller != '0'">
-                <div class="col-50 text-center">
+                <div class="col-50 text-center" ng-if="seller_info.length > 0">
                     <p class="m-t-10 text-c">Total Packages&nbsp;  <span class="text-success">{{seller_info.length}}</span> </p>
-
                 </div>
 
+                <div class="col-50 text-center" ng-if="seller_info.length == 0">
+                    <p class="m-t-10 text-c">Total Packages&nbsp;  <span class="text-success">N/A</span> </p>
+                </div>
+
+
                 <div class="col-50 text-center">
-                    <p class="m-t-10 text-c"> Skills</p>
+                    <p class="m-t-10 text-c"> Skills N/A</p>
                 </div>
             </div>
         </div>

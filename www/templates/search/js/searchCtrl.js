@@ -1,5 +1,5 @@
 appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxPriceService,$ionicModal,$rootScope,
-                                                $mdSidenav, $log, $ionicHistory, $state,$stateParams,algolia) {
+                                                $mdSidenav, $cordovaNetwork, $ionicHistory, $state,$stateParams,algolia) {
     
     var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
@@ -36,6 +36,26 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
        });
        $state.go('app.home');
    };
+
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+            $scope.search_packages($scope.filterText,false);
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
 
     $scope.search_packages = function(filterText,load_option){
         $rootScope.$broadcast('loading:show');

@@ -48,8 +48,17 @@
 
         <button class="button f-18 w-500" ng-if="(packages.length > 5 || packages.length ==5) && disable_loadMore != true" ng-click="load_more()" style="width: 100%; color: #565a5c; border: 1px solid #aaa;">Load more</button>
         <button class="button f-18 w-500" ng-if="disable_loadMore == true" ng-disabled='true' style="width: 100%; color: #565a5c; border: 1px solid #aaa;">No more packages</button>
+
+        <div class="card" ng-if="online == false" style="border: 2px solid rgba(255, 0, 0, 0.21);  border-radius: 5px;">
+            <div class="item item-text-wrap">
+                Please check your Internet Connection and try again
+                <button class="button f-18 w-500" ng-click="try_again()" style="width: 100%; height: 10px; padding-bottom: 20px; color: #565a5c; border: 1px solid #aaa; margin-top: 20px;">
+                    Try again
+                </button>
+            </div>
+        </div>
     </ion-content>
-    <div class="footer-fab-bar">
+    <div class="footer-fab-bar" ng-if="online == true">
         <a class="md-button md-accent md-fab fab-footer pkg-filter" ng-click="openSortAndFilterModal()" aria-label="Add" tabindex="0">
             <i class="fa fa-filter"></i>
         </a>

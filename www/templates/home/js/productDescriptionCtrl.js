@@ -2,7 +2,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,$sce,$ionicPopup,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate,
-                                                              profileService,removeWishListService,$rootScope) {
+                                                              profileService,removeWishListService,$rootScope,$cordovaNetwork) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -17,7 +17,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.book_new={
         quantity_new:1
     };
-console.log("access",(window.localStorage['access_token']))
    $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
    $scope.new_quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 
@@ -36,6 +35,27 @@ console.log("access",(window.localStorage['access_token']))
         $state.go('app.package_list', {'sub_cat_id': $stateParams.cat_id});
     };
     var booking_info = {};
+
+
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+            $scope.get_pdp_info();
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
 
 
     $ionicModal.fromTemplateUrl('templates/home/html/review.html', {

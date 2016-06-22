@@ -1,4 +1,4 @@
-appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, $mdUtil,GetUserAddressService,
+appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, $mdUtil,GetUserAddressService,$cordovaNetwork,
                                                       editUserAddressService,$rootScope,$stateParams,$mdToast) {
 
     var access_token = window.localStorage['access_token'];
@@ -32,7 +32,42 @@ appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, 
         });
     });
 
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
 
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+            GetUserAddressService.user_address(user_id).then(function(data){
+                $scope.user_address = data.data.data;
+                angular.forEach($scope.user_address , function (obj) {
+                    if(obj.id == $stateParams.edit_id){
+                        $scope.address = obj;
+                        if($scope.address.is_default == '0'){
+                            $scope.address.is_default = false;
+                            $scope.address.phone_number = parseInt($scope.address.phone_number);
+                        }
+                        else{
+                            $scope.address.is_default = true;
+                            $scope.address.phone_number = parseInt($scope.address.phone_number);
+
+                        }
+                    }
+
+                });
+            });
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
 
     $scope.edit_address = function(add_id){
         var id = add_id;

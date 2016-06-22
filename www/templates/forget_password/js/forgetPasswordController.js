@@ -1,8 +1,30 @@
 /**
  * Created by sonam on 29/4/16.
  */
-appControllers.controller('ForgetPasswordCtrl', function ($scope, $timeout, $mdUtil,forgetPasswordService,
-                                                    $mdSidenav, $log, $ionicHistory, $state,$stateParams) {
+appControllers.controller('ForgetPasswordCtrl', function ($scope, $timeout, $mdUtil,forgetPasswordService,$cordovaNetwork,
+                                                    $mdSidenav, $log, $ionicHistory, $state,$rootScope) {
+
+
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
+  
+  
     $scope.toggleLeft = buildToggler('right');
 
     // buildToggler is for create menu toggle.

@@ -1,9 +1,26 @@
 appControllers.controller('optionalSearchCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
                                                  serverConfig,$rootScope,$location,$ionicHistory,googleToken,
-                                                    $ionicViewSwitcher,$ionicModal,googleLogin,facebookLogin,
-$cordovaOauth, $http,ProfileService) { 
-    
-    
+                                                    $ionicViewSwitcher,$ionicModal,googleLogin,facebookLogin,$cordovaNetwork,
+$cordovaOauth, $http,ProfileService) {
+
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
     $scope.redirection_to = function (){
         $state.go('app.search_pdp',{'search_text': $stateParams.search_text,'cat_id': $stateParams.cat_id,'product_id':$stateParams.product_id});
     };

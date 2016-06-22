@@ -1,5 +1,5 @@
 appControllers.controller('ForgetPwdSearchCtrl', function ($scope, $timeout, $mdUtil,forgetPasswordService,
-                                                     $state,$stateParams) {
+                                                     $state,$stateParams,$cordovaNetwork,$rootScope) {
   
 
     $scope.user = {};
@@ -10,6 +10,24 @@ appControllers.controller('ForgetPwdSearchCtrl', function ($scope, $timeout, $md
         }
     };
 
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
     $scope.submit_forget_pwd = function(){
         forgetPasswordData();
         forgetPasswordService.forget_password(data).then(function(data){

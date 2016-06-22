@@ -1,9 +1,25 @@
 
 appControllers.controller('signUpCatCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,
-                                                        $mdToast,$http, serverConfig,$rootScope,$location,$ionicHistory,
+                                                        $mdToast,$http, serverConfig,$rootScope,$cordovaNetwork,$ionicHistory,
                                                         $ionicViewSwitcher) {
-    console.log("signUP",JSON.stringify($stateParams));
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
 
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
     $scope.redirection = function (){
         $state.go('app.cat_product_desc',{'cat_id':$stateParams.cat_id,'sub_cat_id': $stateParams.sub_cat_id,'product_id':$stateParams.product_id});
     };

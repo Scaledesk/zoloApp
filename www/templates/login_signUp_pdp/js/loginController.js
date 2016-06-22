@@ -1,5 +1,5 @@
 appControllers.controller('LoginPdpCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
-                                                    serverConfig,$rootScope,$location,$ionicHistory,$ionicViewSwitcher,$ionicModal) {
+                                                    serverConfig,$rootScope,$cordovaNetwork,$ionicHistory,$ionicViewSwitcher,$ionicModal) {
 
     $scope.user = {};
 
@@ -9,7 +9,24 @@ appControllers.controller('LoginPdpCtrl', function ($scope,$stateParams, $timeou
      $scope.redirection_to_option = function (){
         $state.go('app.optional_index_pdp',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
      };
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
 
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
   
     $scope.login = function () {
         $rootScope.$broadcast('loading:show');

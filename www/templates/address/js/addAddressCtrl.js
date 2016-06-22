@@ -1,5 +1,5 @@
 appControllers.controller('addAddressCtrl', function ($scope, $timeout,$state, $mdUtil,GetUserAddressService,
-                                                   ProfileService,addUserAddressService,$mdToast) {
+                                                   ProfileService,addUserAddressService,$mdToast,$cordovaNetwork,$rootScope) {
 
     var access_token = window.localStorage['access_token'];
     $scope.user = {};
@@ -22,6 +22,25 @@ appControllers.controller('addAddressCtrl', function ($scope, $timeout,$state, $
             "state": $scope.user.state,
             "phone_number": $scope.user.mobile,
             "is_default": $scope.user.default,
+        }
+    };
+
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
         }
     };
 

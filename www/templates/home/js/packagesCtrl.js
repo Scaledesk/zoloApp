@@ -1,6 +1,6 @@
 appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, packagesService, $ionicModal,
                                                     MaxPriceService, $mdSidenav, $log, $ionicHistory, $state,
-                                                    $stateParams, algolia,$rootScope) {
+                                                    $stateParams, algolia,$rootScope,$cordovaNetwork) {
     
     $scope.price_list = true;
     $scope.sorting_value = false;
@@ -28,6 +28,30 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
     packagesService.getPackagesList($stateParams.sub_cat_id).then(function (data) {
         $scope.packages_list = data.data.data;
     });
+
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+            packagesService.getPackagesList($stateParams.sub_cat_id).then(function (data) {
+                $scope.packages_list = data.data.data;
+            });
+            $scope.search_packages(stringFilter,false);
+
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
 
     $scope.go_home = function(){
         $ionicHistory.nextViewOptions({

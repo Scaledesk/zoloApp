@@ -2,7 +2,7 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,profileService,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate,
-                                                     removeWishListService,$ionicPopup,$rootScope) {
+                                                     removeWishListService,$ionicPopup,$rootScope,$cordovaNetwork) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -49,6 +49,26 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
     };
     $scope.closeReviewModel = function () {
         $scope.modal.hide();
+    };
+
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+            $scope.get_pdp_info();
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
     };
     
     $scope.setIndex=function(index,checked){

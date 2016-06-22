@@ -13,14 +13,9 @@
 
     <ion-content id="restaurant">
         <ion-slide-box id="restaurant-slide-box" show-pager="true" active-slide="0">
-            <!--<a ng-href="{{banner[0].url}}">-->
-                <!--<img ng-if="banner.length=='1'" src="{{banner[0].image_url}}">-->
-            <!--</a>-->
             <ion-slide ng-if="banner.length=='0'">
                     <img src="../img/default.png">
             </ion-slide>
-
-            <!--<img ng-if="banner.length=='0'" src="http://www.imzolo.com/global/images/dummy.png">-->
             <ion-slide style="padding-top: 0px !important;"  ng-if="banner.length >= 1" ng-repeat="banner_url in banner">
                 <a ng-href="{{banner_url.url}}">
                     <img ng-src="{{banner_url.image_url}}" width="100%;">
@@ -44,9 +39,6 @@
                     </p>
                 </div>
             </div>
-
-            <!--<ion-scroll  width="500px; height: 500px" direction="xy" scroll="true" class="m-t-10" >-->
-
                 <div class="row m-t-20">
                     <div class="col-50" ng-repeat="subCategory_detail in category.subCategory.data">
                         <figure class="text-center">
@@ -56,8 +48,14 @@
                         </figure>
                     </div>
                 </div>
-            <!--</ion-scroll>-->
         </div>
-
+        <div class="card" ng-if="online == false" style="border: 2px solid rgba(255, 0, 0, 0.21);  border-radius: 5px;">
+            <div class="item item-text-wrap">
+                Please check your Internet Connection and try again
+                <button class="button f-18 w-500" ng-click="try_again()" style="width: 100%; height: 10px; padding-bottom: 20px; color: #565a5c; border: 1px solid #aaa; margin-top: 20px;">
+                    Try again
+                </button>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

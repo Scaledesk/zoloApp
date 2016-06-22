@@ -15,12 +15,12 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
 
     $scope.login_value = true;
 
-    $scope.$on('logged_in', function (event, args) {
+    $rootScope.$on('logged_in', function (event, args) {
         $scope.login_value = false;
         if($scope.access_token && $scope.access_token != 'undefined'){
             profileService.get_profile($scope.access_token).then(function(data){
                 $scope.profile = data.data.data;
-                console.log("djjddd",$scope.profile)
+                console.log("djjddd",JSON.stringify($scope.profile))
 
             })
         }
@@ -31,7 +31,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         if($scope.access_token && $scope.access_token != 'undefined'){
             profileService.get_profile($scope.access_token).then(function(data){
                 $scope.profile = data.data.data;
-                console.log("djjddd",$scope.profile)
+                console.log("djjddd",JSON.stringify($scope.profile))
 
             })
         }

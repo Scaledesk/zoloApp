@@ -33,6 +33,7 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
             "password": $scope.user.password,
             "password_confirmation": $scope.user.password,
         }
+        console.log("sonamaaaa",JSON.stringify(data))
     };
 
 
@@ -97,7 +98,6 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
                     });
                     $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                     $state.go('app.home', null, {reload:true});
-
                 }
             })
             .catch(function (response) {

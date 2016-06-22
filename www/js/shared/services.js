@@ -228,6 +228,19 @@ angular.module('starter').factory('signUpService', function($http,$state,$rootSc
                         }
                     });
                 }
+              else if(data.status_code == '422'){
+                    $mdToast.show({
+                        controller: 'toastController',
+                        templateUrl: 'toast.html',
+                        hideDelay: 800,
+                        position: 'top',
+                        locals: {
+                            displayOption: {
+                                title: data.message
+                            }
+                        }
+                    });
+                }
                 deffer.resolve(data);
                 $rootScope.$broadcast('loading:hide');
             }).

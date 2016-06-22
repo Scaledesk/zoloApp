@@ -493,7 +493,7 @@ angular.module('starter').factory('removeWishListService', function($http,$q,$ro
                 data: package,
 
             }).success(function(data, status, headers, config) {
-                console.log("data",JSON.stringify(data))
+                console.log("data",JSON.stringify(config))
                 deffer.resolve(data);
                 $rootScope.$broadcast('loading:hide');
             }).

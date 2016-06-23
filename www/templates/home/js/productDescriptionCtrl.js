@@ -43,7 +43,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     else{
         $scope.online = false;
     }
-
+    
     $scope.try_again = function(){
         $rootScope.$broadcast('loading:show');
         if($cordovaNetwork.isOnline() == true){
@@ -179,8 +179,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                     productService.getProductDescription($stateParams.product_id,profile).then(function(data){
                         $scope.package = data.data.data;
                         $scope.wish_value = data.data.meta.wishlist_status;
-
-                        console.log("ssssss",JSON.stringify($scope.wish_value))
 
                         var content = $filter('limitTo')($scope.package.description, 250)
 

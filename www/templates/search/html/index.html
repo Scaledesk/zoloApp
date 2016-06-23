@@ -18,14 +18,14 @@
 
             <a class="back-t-z" ng-click="go_home()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to home</a>
         </div>
-        <div class="card m-5" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
+        <div class="card m-5 zolo_card" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
             <div class="row" ng-click="productDescription(package.category_id,package.id)">
-                <div class="col-33">
+                <div class="col-33" id="image_display_1">
                     <img width="100%" height="100" ng-if="package.first_photo != null" src="{{package.first_photo}}" class="pkg-img">
                     <img width="100%" height="100" ng-if="package.first_photo == null"  src="../img/noimagefound.png" class="pkg-img">
 
                 </div>
-                <div class="col-67">
+                <div class="col-67" id="text_size">
                     <div class="w-500 p-r-10 p-l-10 m-b-0" style="height: 30px; line-height: 18px;">{{package.name | limitTo: 40}}..</div>
                     <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{package.seller_name}}</div>
                     <div class="row">

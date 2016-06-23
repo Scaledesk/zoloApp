@@ -1873,6 +1873,20 @@ drawer.right {
   z-index: 999;
   color: #ffffff !important; }
 
-@media all and (max-device-width: 1200px) and (min-device-width: 480px) {
+.zolo_card {
+  max-height: 110px; }
+
+.clickable_text {
+  border: 1px solid #673ab7;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 5px; }
+
+@media all and (max-device-width: 1536px) and (min-device-width: 480px) {
   #restaurant #restaurant-slide-box {
-    height: initial; } }
+    height: initial; }
+  #image_display_1 {
+    height: 135px; }
+  .zolo_card {
+    max-height: 250px;
+    height: 150px; } }

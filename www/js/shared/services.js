@@ -439,7 +439,6 @@ angular.module('starter').factory('profileService', function($http,$q,$rootScope
                 $rootScope.$broadcast('loading:hide');
             }).
             error(function(data, status, headers, config) {
-                console.log("data",JSON.stringify(data))
                 $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;

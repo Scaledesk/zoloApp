@@ -1,12 +1,12 @@
 <ion-view title="Wishlist" id="restaurant">
     <ion-content>
-        <div class="card m-5 p-b-0" ng-show="wishList.length !='0'" ng-repeat="wishListInfo in wishList" style="max-height: 150px;">
+        <div class="card m-5 p-b-0 zolo_card" ng-show="wishList.length !='0'" ng-repeat="wishListInfo in wishList">
             <div class="row">
-                <div class="col-33" ng-click="productDescription(wishListInfo.subcategory_id,wishListInfo.id)">
+                <div class="col-33" id="image_display_1" ng-click="productDescription(wishListInfo.subcategory_id,wishListInfo.id)">
                     <img width="100%" height="100" ng-if="wishListInfo.first_photo != null"  src="{{wishListInfo.first_photo}}" class="pkg-img">
                     <img width="100%" height="100"  ng-if="wishListInfo.first_photo == null" src="../img/noimagefound.png" class="pkg-img">
                 </div>
-                <div class="col-67">
+                <div class="col-67" id="text_size">
                     <div class="w-500 p-r-10 p-l-10 m-b-0" ng-click="productDescription(wishListInfo.subcategory_id,wishListInfo.id)" style="height: 30px; line-height: 18px;">{{wishListInfo.name | limitTo: 40}}..</div>
 
                     <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{wishListInfo.seller_name}}</div>

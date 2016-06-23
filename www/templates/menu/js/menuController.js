@@ -2,13 +2,14 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                                                $ionicSideMenuDelegate,subCategoryService,bannerService,$rootScope,
                                                $ionicSlideBoxDelegate,$cordovaNetwork) {
 
-
+    
     if($cordovaNetwork.isOnline() == true){
         $scope.online = true;
     }
     else{
         $scope.online = false;
     }
+
 
     $scope.try_again = function(){
         $rootScope.$broadcast('loading:show');

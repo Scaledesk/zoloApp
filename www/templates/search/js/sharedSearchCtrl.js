@@ -48,9 +48,22 @@ appControllers.controller('sharedSearchCtrl', function ($scope, $mdBottomSheet, 
         $cordovaSocialSharing.shareViaEmail(name, "Find this package on zolo "+ $scope.url, null,null,null,image);
         $mdBottomSheet.hide();
     };
-    $scope.sharedMore = function () {
+
+    $scope.more = function(){
+        $cordovaSocialSharing
+            .share(name+' @Zolo_Official', "Find this package on zolo "+ $scope.url, image, $scope.url) // Share via native share sheet
+            .then(function(result) {
+                // Success!
+                console.log("result",JSON.stringify(result))
+
+            }, function(err) {
+                console.log("err",JSON.stringify(err))
+
+                // An error occured. Show a message to the user
+            });
 
         $mdBottomSheet.hide();
+
     };
     
     $scope.sharedWhatsApp = function(){

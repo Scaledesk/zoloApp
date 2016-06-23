@@ -14,7 +14,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 
     OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
         orp_data = data.data.data;
-        // console.log("orp result",JSON.stringify($scope.orp_result))
+        console.log("orp result",JSON.stringify(orp_data.buyer_mobile))
     });
 
     $scope.choice={
@@ -187,7 +187,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 // device APIs are available
 //
     function onDeviceReadyTest() {
-        iabRef = window.open('templates/payment/html/payU.html?trans_id='+id+'&invoice_id='+invoice_id+'&sha_value='+shss+'&amount='+orp_data.total_price+'&buyer_name='+orp_data.buyer_name+'&email='+orp_data.buyer_email, '_blank', 'location=no');
+        iabRef = window.open('templates/payment/html/payU.html?trans_id='+id+'&invoice_id='+invoice_id+'&sha_value='+shss+'&amount='+orp_data.total_price+'&buyer_name='+orp_data.buyer_name+'&email='+orp_data.buyer_email+'&mobile='+orp_data.buyer_mobile, '_blank', 'location=no');
         iabRef.addEventListener('loadstart', iabLoadStart);
         iabRef.addEventListener('loadstop', iabLoadStop);
         iabRef.addEventListener('loaderror', iabLoadError);

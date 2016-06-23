@@ -28,7 +28,7 @@
         <input type="hidden" name="productinfo" id="trans_id" value="" />
         <input type="hidden" name="firstname" id="buyer_name" value="" />
         <input type="hidden" name="email" id="email" value="" />
-        <input type="hidden" name="phone" value="8447785980" />
+        <input type="hidden" name="phone" id="mobile" value="" />
         <input type="hidden" name="salt" value="eCwWELxi" />
         <input type="hidden" name="surl" value="https://payu.herokuapp.com/success" />
         <input type="hidden" name="Furl" value="https://payu.herokuapp.com/failure" />
@@ -63,6 +63,7 @@
                 var amount = getParam("amount");
                 var buyer_name = getParam("buyer_name");
                 var email = getParam("email");
+                var mobile = getParam("mobile");
 
 //                var tttt = document.getElementById('trans_id');
 //                tttt.value = trans_id;
@@ -72,6 +73,7 @@
                  document.getElementById('amount').value = amount;
                  document.getElementById('buyer_name').value = buyer_name;
                  document.getElementById('email').value = email;
+                 document.getElementById('mobile').value = mobile;
                 console.log("trans_id",trans_id,invoice_id,sha_value,amount,buyer_name,email);
             }
             getUrlData()

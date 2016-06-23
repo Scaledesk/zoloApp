@@ -7,7 +7,7 @@
                     <img width="100%" height="100"  ng-if="wishListInfo.first_photo == null" src="../img/noimagefound.png" class="pkg-img">
                 </div>
                 <div class="col-67">
-                    <div class="w-500 p-r-10 p-l-10 m-b-0" style="height: 30px; line-height: 18px;">{{wishListInfo.name | limitTo: 40}}..</div>
+                    <div class="w-500 p-r-10 p-l-10 m-b-0" ng-click="productDescription(wishListInfo.subcategory_id,wishListInfo.id)" style="height: 30px; line-height: 18px;">{{wishListInfo.name | limitTo: 40}}..</div>
 
                     <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{wishListInfo.seller_name}}</div>
                     <div class="row">

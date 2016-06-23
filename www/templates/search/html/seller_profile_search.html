@@ -82,7 +82,7 @@
             </div>
             <ion-scroll width="500px; height: 500px" direction="xy">
                 <div class="row">
-                    <div class="col-50 card" ng-repeat="seller_package_info in seller_info" ng-if="package.id != seller_package_info.id" ng-click="getPdpForSearch(seller_package_info.category.data.id,seller_package_info.id)">
+                    <div class="col-50 card card pdp_card" ng-repeat="seller_package_info in seller_info" ng-if="package.id != seller_package_info.id" ng-click="getPdpForSearch(seller_package_info.category.data.id,seller_package_info.id)">
                         <img style="width: 100%; height: 130px" ng-src="{{seller_package_info.first_photo}}">
                         <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
 

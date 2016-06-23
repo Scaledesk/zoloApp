@@ -37,12 +37,12 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     var booking_info = {};
 
 
-     if($cordovaNetwork.isOnline() == true){
-         $scope.online = true;
-     }
-     else{
-         $scope.online = false;
-    }
+    // if($cordovaNetwork.isOnline() == true){
+    //     $scope.online = true;
+    // }
+    // else{
+    //     $scope.online = false;
+    // }
     
     $scope.try_again = function(){
         $rootScope.$broadcast('loading:show');

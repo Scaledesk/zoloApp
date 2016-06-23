@@ -2935,7 +2935,8 @@ drawer.right {
  max-height: 110px;
 }
 .clickable_text{
-  border: 1px solid #673ab7;
+  //border: 1px solid #673ab7;
+  border: 1px solid #333;
   padding: 5px;
   border-radius: 3px;
   margin: 5px;
@@ -2958,5 +2959,10 @@ drawer.right {
     //font-size: 20px;
     //margin-top: 5%;
 
+  }
+  .pdp_card{
+    -webkit-flex: 0 0 30%;
+    flex: 0 0 30%;
+    padding-bottom: 20px;
   }
 }

@@ -65,6 +65,13 @@
                 var email = getParam("email");
                 var mobile = getParam("mobile");
 
+                trans_id = decodeURI(trans_id);
+                invoice_id = decodeURI(invoice_id);
+                amount = decodeURI(amount);
+                 buyer_name = decodeURI(buyer_name);
+                email = decodeURI(email);
+                mobile = decodeURI(mobile);
+
 //                var tttt = document.getElementById('trans_id');
 //                tttt.value = trans_id;
                 document.getElementById('trans_id').value = trans_id;

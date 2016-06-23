@@ -14,7 +14,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 
     OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
         orp_data = data.data.data;
-        console.log("orp result",JSON.stringify(orp_data.buyer_mobile))
+        console.log("orp result",JSON.stringify(orp_data))
     });
 
     $scope.choice={

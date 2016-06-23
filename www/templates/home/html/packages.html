@@ -19,8 +19,6 @@
 
             <a class="back-t-z" ng-click="go_home()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to home</a>
         </div>
-        <div>
-        </div>
         <div class="card m-5" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
             <div class="row" ng-click="productDescription(package.id)">
                 <div class="col-33">
@@ -58,7 +56,7 @@
             </div>
         </div>
     </ion-content>
-    <div class="footer-fab-bar" ng-if="online == true">
+    <div class="footer-fab-bar" ng-if="(online == true) && (packages.length >'0')">
         <a class="md-button md-accent md-fab fab-footer pkg-filter" ng-click="openSortAndFilterModal()" aria-label="Add" tabindex="0">
             <i class="fa fa-filter"></i>
         </a>

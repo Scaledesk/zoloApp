@@ -3,12 +3,12 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                                                $ionicSlideBoxDelegate,$cordovaNetwork) {
 
     
-    if($cordovaNetwork.isOnline() == true){
-        $scope.online = true;
-    }
-    else{
-        $scope.online = false;
-    }
+    // if($cordovaNetwork.isOnline() == true){
+    //     $scope.online = true;
+    // }
+    // else{
+    //     $scope.online = false;
+    // }
 
 
     $scope.try_again = function(){

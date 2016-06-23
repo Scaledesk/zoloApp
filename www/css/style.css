@@ -1872,3 +1872,7 @@ drawer.right {
 .back-button-custom {
   z-index: 999;
   color: #ffffff !important; }
+
+@media all and (max-device-width: 1200px) and (min-device-width: 480px) {
+  #restaurant #restaurant-slide-box {
+    height: initial; } }

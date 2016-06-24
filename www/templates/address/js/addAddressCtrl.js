@@ -11,6 +11,10 @@ appControllers.controller('addAddressCtrl', function ($scope, $timeout,$state, $
     $scope.skip = function(){
         $state.go('app.paymentOption');
     };
+
+    $scope.back_to_address = function(){
+        $state.go('app.address');
+    };
     
     addAddressData = function () {
         data = {

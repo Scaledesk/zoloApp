@@ -10,7 +10,9 @@ appControllers.controller('editAddressCtrl', function ($scope, $timeout,$state, 
     $scope.skip = function(){
         $state.go('app.paymentOption');
     };
-
+    $scope.back_to_address = function(){
+        $state.go('app.address');
+    };
     // $scope.num_str = parseInt(num_str, 10);
 
     GetUserAddressService.user_address(user_id).then(function(data){

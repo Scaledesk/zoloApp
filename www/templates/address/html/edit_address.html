@@ -1,8 +1,16 @@
+<style>
+    .nav-bar-title{
+        margin-left: 30px;
+    }
+    .platform-android .bar .title{
+        margin-left: 30px;
+    }
+</style>
 <ion-view title="EDIT ADDRESS">
     <ion-nav-bar class="header_color">
-        <ion-nav-back-button class="button-clear">
-            <i class="icon ion-ios-arrow-back"></i>
-        </ion-nav-back-button>
+        <button class="button back-button buttons button-clear header-item back-button-custom" ng-click="back_to_address()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
+            <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
+            <span class="back-text"></span></button>
     </ion-nav-bar>
     <ion-content>
         <div class="list card m-5" ng-if="online == true">

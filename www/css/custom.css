@@ -253,6 +253,12 @@
 .p-20{
     padding: 20px!important;
 }
+.p-b-20{
+    padding-bottom: 20px!important;
+}
+.p-b-30{
+    padding-bottom: 30px!important;
+}
 
 .m-b-5{
     margin-bottom: 5px!important;

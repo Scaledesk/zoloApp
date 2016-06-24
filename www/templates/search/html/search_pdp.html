@@ -204,7 +204,7 @@
                 </div>
             </div>
 
-            <div class="card m-10-0">
+            <div class="card m-10-0 p-b-20">
                 <div class="row m-t-10 p-r-10 p-l-10 border-bottom">
                     <div class="col-75">
                         <p class="text-c">{{seller_info.length - 1}} Other Packages by {{package.seller_name}}</p>
@@ -226,12 +226,12 @@
                             <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
 
                             <div class="row">
-                                <div class="col-50 pull-left">
+                                <div class="col-33 pull-left">
                                     <p class="text-c"><i class="ion-android-pin">&nbsp;{{seller_package_info.location[0].text}}</i></p>
 
                                 </div>
 
-                                <div class="col-50">
+                                <div class="col-67">
                                     <p class="pull-right text-c">&#8377;{{seller_package_info.deal_price}}</p>
 
                                 </div>
@@ -243,7 +243,7 @@
 
             </div>
 
-            <div ng-show="booking_add_ons">
+            <div ng-show="booking_add_ons" class="m-b-20 p-b-30">
                 <b style="margin-left: 10px;">YOUR PACKAGE</b>
                 <div class="card">
                     <ion-checkbox ng-model="booking_add_ons">{{package.name}}</ion-checkbox>

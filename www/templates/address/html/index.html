@@ -20,24 +20,21 @@
 
 
         <div class="card m-t-5" ng-repeat="address in user_address" ng-show="user_address.length != '0'">
-            <div class="item item-text-wrap">
-
+            <!--<div class="item item-text-wrap">-->
+            <div>
                 <ion-radio ng-model="address.is_default" ng-value="1"
                            ng-change="default_address(address,address.id,address.is_default)"
                            ng-selected="address.is_default=='1'">
-                    <b>{{address.name}}</b> <!--<span class="text-c" ng-if="address.is_default == '1'">(Default)</span>-->
+                    <b>{{address.name}}</b>
                 </ion-radio>
-                <br>
 
-                <!--<ion-checkbox ng-change="default_address(address.id,address.is_default)" ng-model="address.is_default" ng-checked="address.is_default=='1'"><b>{{address.name}}{{isChecked}}</b> <span class="text-c" ng-if="address.is_default ==='1'">(Default)</span>-->
-                <!--</ion-checkbox>-->
-                <!--<b>{{address.name}}</b> <span class="text-c" ng-if="address.is_default == '1'">(Default)</span>-->
-                <!--<i class="icon ion-trash-b pull-right" ng-click="delete_add(address.id)"></i>-->
 
-                <p>{{address.street_address}},{{address.landmark}}</p>
-                <p>{{address.city}} {{address.pincode}}</p>
-                <p>{{address.state}}</p>
-                <p>Mobile: {{address.phone_number}} </p>
+                <div class="item item-text-wrap"><p>{{address.street_address}},{{address.landmark}}</p>
+                    <p>{{address.city}} {{address.pincode}}</p>
+                    <p>{{address.state}}</p>
+                    <p>Mobile: {{address.phone_number}} </p>
+                </div>
+
             </div>
 
             <div class="row item p-10" ng-click="edit_address(address.id)">
@@ -50,16 +47,6 @@
                 </div>
             </div>
 
-
-            <!--<div class="row item p-10">-->
-                <!--<div class="col-80">-->
-                    <!--<p ng-click="address_info()">Add New Address</p>-->
-                <!--</div>-->
-
-                <!--<div class="col-20 text-right">-->
-                    <!--<i class="fa fa-angle-right"></i>-->
-                <!--</div>-->
-            <!--</div> -->
             <div class="row item p-10" ng-click="delete_add(address.id)">
                 <div class="col-80">
                     <p>Remove address</p>

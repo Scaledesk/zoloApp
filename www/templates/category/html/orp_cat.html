@@ -25,11 +25,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-75">
-                    <p>QTY&nbsp;:{{orp_result.quantity}}</p>
-                </div>
                 <div class="col-25">
-                    <p class="text-c">Del: {{orp_result.package_delivery_time}} Days</p>
+                    <p>Quantity&nbsp;:{{orp_result.quantity}}</p>
+                </div>
+                <div class="col-75">
+                    <p class="text-c">Delivery Time: {{orp_result.package_delivery_time}} Days</p>
                 </div>
             </div>
         </div>
@@ -43,13 +43,13 @@
                         <ion-item>{{add_on_list.name}}</ion-item>
                     </ion-list>
 
-                    <div style="padding: 5px 16px;"> Del : {{add_on_list.days}}</div>
+                    <div style="padding: 5px 16px;"> Delivery Time : {{add_on_list.days}}</div>
 
                 </div>
 
                 <div class="col-33 text-center">
                     <div class="f-16 zolo-c" style="padding: 16px;">&#8377; {{add_on_list.amount}}</div>
-                    <div style="padding: 5px 16px;">QTY : {{add_on_list.quantity}}</div>
+                    <div style="padding: 5px 16px;">Quantity : {{add_on_list.quantity}}</div>
 
 
                 </div>
@@ -61,7 +61,7 @@
         <div class="card" ng-if="online == true">
             <div class="row p-10">
                 <div class="col-50">
-                    <p class="w-500 f-14 text-c">TOTAL Amount</p>
+                    <p class="w-500 f-14 text-c">Total Amount</p>
 
                 </div>
 

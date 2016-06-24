@@ -17,7 +17,7 @@
     <ion-content id="product-detail-content">
 
        <md-card id="product-detail-tab-detail" class="m-0 bg-c" ng-if="online == true">
-     
+
             <img ng-if="package.photos.data.length=='1'" src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
             <img ng-if="package.photos.data.length=='0'" src="../img/noimagefound.png" class="md-card-image" alt="Card image">
             <ion-slide-box ng-if="package.photos.data.length >'1'" id="restaurant-slide-box" on-slide-changed="slideChanged($index)" show-pager="true" active-slide="0">
@@ -69,17 +69,17 @@
                     </div>
                 </div>
 
-                <div class="card p-10 m-5" style="padding-bottom: 0!important;">
+                <div class="card p-5 m-5" style="padding-bottom: 0!important;">
                     <div class="row border-bottom p-0">
-                        <div class="col-33 text-center">
+                        <div class="col-25 text-center">
                             <p class="f-13 text-c clickable_text" ng-click="description_value()" ng-class="{'z-active':active_tab=='description'}">Description</p>
                         </div>
 
-                        <div class="col-33 text-center">
+                        <div class="col-50 text-center">
                             <p class="f-13 text-c clickable_text" ng-click="package_summary()" ng-class="{'z-active':active_tab == 'p_summery'}">Package Summary</p>
                         </div>
 
-                        <div class="col-33 text-center">
+                        <div class="col-25 text-center">
                             <p class="f-13 text-c clickable_text" ng-click="term_n_condition()" ng-class="{'z-active':active_tab=='term'}">T&C</p>
                         </div>
 
@@ -252,7 +252,7 @@
                                 </div>
 
                                 <div class="col-50">
-                                    <p class="pull-right text-c">&#8377; {{seller_package_info.deal_price}}</p>
+                                    <p class="pull-right text-c">&#8377;{{seller_package_info.deal_price}}</p>
 
                                 </div>
 

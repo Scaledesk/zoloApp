@@ -8,7 +8,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
      }
      else{
          $scope.online = false;
-    }
+     }
 
 
     $scope.try_again = function(){

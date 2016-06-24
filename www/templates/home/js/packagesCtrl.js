@@ -29,12 +29,12 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
         $scope.packages_list = data.data.data;
     });
 
-     if($cordovaNetwork.isOnline() == true){
-         $scope.online = true;
-     }
-     else{
-         $scope.online = false;
-    }
+    //  if($cordovaNetwork.isOnline() == true){
+    //      $scope.online = true;
+    //  }
+    //  else{
+    //      $scope.online = false;
+    // }
 
     $scope.try_again = function(){
         $rootScope.$broadcast('loading:show');

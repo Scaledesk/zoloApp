@@ -7,7 +7,7 @@ appControllers.controller('orderReviewCtrl', function ($scope, $timeout,$state, 
   var access_token = window.localStorage['access_token'];
   window.localStorage['cat_id'] = $stateParams.cat_id;
   window.localStorage['product_id'] = $stateParams.product_id;
-
+  console.log("id result",id,booking_id);
 
   if($cordovaNetwork.isOnline() == true){
     $scope.online = true;

@@ -3,7 +3,7 @@
         <ion-slide-box id="restaurant-slide-box" show-pager="false" active-slide="0">
 
             <ion-slide style="padding-top: 0px !important;" ng-repeat="category in categories" ng-if="category.parent_id == null">
-                <img ng-src="{{category.image}}">
+                <img ng-src="{{category.image}}" width="100%;">
             </ion-slide>
         </ion-slide-box>
         <ion-list ng-if="online == true">

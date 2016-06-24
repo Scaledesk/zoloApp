@@ -311,6 +311,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         if((window.localStorage['access_token']) && (window.localStorage['access_token'] != 'undefined')){
             bookingService.OrpInfo(booking_info).then(function(data) {
                 var info = data.data.data;
+                console.log('info for booking:',JSON.stringify(info))
                 window.localStorage['id'] = info.id;
                 window.localStorage['booking_id'] = info.booking_id;
                 window.localStorage['home_id'] = 'home';
@@ -334,10 +335,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
             }
         });
     };
-    // $scope.seller_Profile = function(category_id,p_id){
-    //     $state.go('app.seller_profile', {'cat_id':category_id,'product_id': p_id})
-    // };
-
+   
     $scope.getPdp = function(category_id,p_id){
         $state.go('app.product_desc', {'cat_id':category_id,'product_id': p_id})
     };

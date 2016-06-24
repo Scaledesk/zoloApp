@@ -9,8 +9,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
      else{
          $scope.online = false;
      }
-
-
+    
     $scope.try_again = function(){
         $rootScope.$broadcast('loading:show');
         if($cordovaNetwork.isOnline() == true){

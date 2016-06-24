@@ -203,16 +203,16 @@
             <div class="card p-10 m-0-5">
                 <div class="row">
 
-                    <div class="col-50 border-right">
+                    <div class="col-50 border-right text-center">
                         <div class="text-c f-16 " ng-click="seller_Profile(package.id)">View Seller Profile</div>
                     </div>
 
-                    <div class="col-50">
-                        <div class="pull-right text-c f-16"
+                    <div class="col-50 text-center">
+                        <div class="text-c f-16"
                              ng-if="(wish_value == false ||wish_value == 'user not logged in')"
                              ng-click="add_wish_list(package.seller_profile.user_id,package.id)">
                             <i class="fa fa-heart-o f-16" ></i>&nbsp;Wishlist</div>
-                        <div class="pull-right text-c f-16" ng-click="remove_wishList(package.id)"
+                        <div class="text-c f-16" ng-click="remove_wishList(package.id)"
                              ng-if="wish_value == true">
                             <i class="fa fa-heart f-16 text-danger" ></i>&nbsp;Wishlist</div>
                     </div>

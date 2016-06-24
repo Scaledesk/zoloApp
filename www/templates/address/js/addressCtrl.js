@@ -1,10 +1,12 @@
 appControllers.controller('addressCtrl', function ($scope, $timeout,$state,$mdToast, $mdUtil,GetUserAddressService,
                                                    ProfileService,$stateParams,$ionicPopup,$cordovaNetwork,
-                                                   deleteUserAddressService,$rootScope) {
+                                                   deleteUserAddressService,$rootScope,editUserAddressService) {
     
     var access_token = window.localStorage['access_token'];
 
     var user_id = window.localStorage['user_id'];
+
+    $scope.address = {};
 
 
     ProfileService.user_profile(access_token).then(function (data) {
@@ -22,6 +24,44 @@ appControllers.controller('addressCtrl', function ($scope, $timeout,$state,$mdTo
             });
         }
     });
+
+    $scope.default_address = function(address,id,default_value){
+        $scope.address = address;
+            $scope.address.is_default = default_value;
+
+        editUserAddressService.edit_user_address($scope.address,id).then(function (data) {
+            if (data.data.message == 'success') {
+                $mdToast.show({
+                    controller: 'toastController',
+                    templateUrl: 'toast.html',
+                    hideDelay: 1000,
+                    position: 'top',
+                    locals: {
+                        displayOption: {
+                            title: 'Delivery address changed!'
+                        }
+                    }
+                });
+                $rootScope.$broadcast('addressListChanged', {message: 'Change in address list'});
+                $state.go('app.address', null, {reload: true});
+
+            }
+            else{
+                $mdToast.show({
+                    controller: 'toastController',
+                    templateUrl: 'toast.html',
+                    hideDelay: 1000,
+                    position: 'top',
+                    locals: {
+                        displayOption: {
+                            title: 'Something went wrong,please try again!'
+                        }
+                    }
+                });
+                $state.go('app.address', null, {reload: true});
+            }
+        })
+    };
 
     if($cordovaNetwork.isOnline() == true){
         $scope.online = true;

@@ -421,6 +421,9 @@
 .pkg-filter{
     background-color: #4caf50!important;
 }
+.pkg-add{
+    background-color: #673ab7;!important;
+}
 
 .filter-btn{
     background-color: #4caf50;

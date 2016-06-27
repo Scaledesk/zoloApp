@@ -46,7 +46,7 @@
 
         <button class="button f-18 w-500" ng-if="(packages.length > 5 || packages.length ==5) && disable_loadMore != true" ng-click="load_more()" style="width: 100%; color: #565a5c; border: 1px solid #aaa;">Load more</button>
         <button class="button f-18 w-500" ng-if="disable_loadMore == true" ng-disabled='true' style="width: 100%; color: #565a5c; border: 1px solid #aaa;">No more packages</button>
-        
+
     </ion-content>
     <div class="footer-fab-bar" ng-if="packages.length >'0'">
         <a class="md-button md-accent md-fab fab-footer pkg-filter" ng-click="openSortAndFilterModal()" aria-label="Add" tabindex="0">

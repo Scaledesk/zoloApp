@@ -13,7 +13,7 @@
             <span class="back-text"></span></button>
     </ion-nav-bar>
     <ion-content>
-        <div class="list card m-5" ng-if="online == true">
+        <div class="list card m-5">
             <form>
                 <label class="item item-input">
                     <input type="text" placeholder="Name" ng-model="address.name">
@@ -40,7 +40,7 @@
             </form>
         </div>
 
-        <div class="row" ng-if="online ==true">
+        <div class="row">
             <div class="col-50">
                 <div class="pull-left button button-balanced" ng-click="edit_address(address.id)">
                     SAVE
@@ -50,15 +50,6 @@
                 <div class="pull-right button button-energized" ng-click="skip()">
                     SKIP>>
                 </div>
-            </div>
-        </div>
-
-        <div class="card" ng-if="online == false" style="border: 2px solid rgba(255, 0, 0, 0.21);  border-radius: 5px;">
-            <div class="item item-text-wrap">
-                Please check your Internet Connection and try again
-                <button class="button f-18 w-500" ng-click="try_again()" style="width: 100%; height: 10px; padding-bottom: 20px; color: #565a5c; border: 1px solid #aaa; margin-top: 20px;">
-                    Try again
-                </button>
             </div>
         </div>
     </ion-content>

@@ -1,5 +1,5 @@
 appControllers.controller('paymentFailCtrl', function ($scope,$location,generateNewTransactionService,$stateParams,
-                                                       $ionicHistory, $state,$cordovaNetwork,$rootScope) {
+                                                       $ionicHistory, $state,$rootScope) {
     var booking_id = $stateParams.b_id;
     var transaction_id = $stateParams.t_id;
 
@@ -8,46 +8,7 @@ appControllers.controller('paymentFailCtrl', function ($scope,$location,generate
     $scope.search_text =  window.localStorage['search_text'];
     $scope.sub_cat_id = window.localStorage['sub_cat_id'];
     $scope.home_id = window.localStorage['home_id'];
-
-    if($cordovaNetwork.isOnline() == true){
-        $scope.online = true;
-    }
-    else{
-        $scope.online = false;
-    }
-
-    $scope.try_again = function(){
-        $rootScope.$broadcast('loading:show');
-        if($cordovaNetwork.isOnline() == true){
-            $scope.online = true;
-            $rootScope.$broadcast('loading:hide');
-            if($scope.home_id != '' && $scope.home_id !="undefined"){
-                $scope.flag_1 = 'true';
-                $scope.flag_2 = 'false';
-                $scope.flag_3 = 'false';
-                window.localStorage['home_id']= "undefined";
-            }
-            else if($scope.search_text != "" && $scope.search_text !="undefined"){
-                window.localStorage['search_text_b'] = $scope.search_text;
-                $scope.flag_2 = 'true';
-                $scope.flag_1 = 'false';
-                $scope.flag_3 = 'false';
-                window.localStorage['search_text'] = "undefined";
-            }
-            else if($scope.sub_cat_id != "" && $scope.sub_cat_id !="undefined"){
-                window.localStorage['sub_cat_id_b'] = $scope.sub_cat_id;
-                $scope.flag_3 = 'true';
-                $scope.flag_1 = 'false';
-                $scope.flag_2 = 'false';
-                window.localStorage['sub_cat_id'] = "undefined";
-            }
-        }
-        else{
-            $scope.online = false;
-            $rootScope.$broadcast('loading:hide');
-        }
-    };
-
+    
 
     if($scope.home_id != '' && $scope.home_id !="undefined"){
         $scope.flag_1 = 'true';

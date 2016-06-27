@@ -1,33 +1,9 @@
 appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,profileService,$ionicHistory,
                                                $ionicSideMenuDelegate,subCategoryService,bannerService,$rootScope,
-                                               $ionicSlideBoxDelegate,$cordovaNetwork) {
+                                               $ionicSlideBoxDelegate) {
 
     
-     if($cordovaNetwork.isOnline() == true){
-         $scope.online = true;
-     }
-     else{
-         $scope.online = false;
-     }
     
-    $scope.try_again = function(){
-        $rootScope.$broadcast('loading:show');
-        if($cordovaNetwork.isOnline() == true){
-            $scope.online = true;
-            $rootScope.$broadcast('loading:hide');
-            bannerService.get_banner().then(function(response){
-                $scope.banner = response.data.data;
-                $ionicSlideBoxDelegate.update();
-            });
-            subCategoryService.getSubCategory().then(function(data){
-                $scope.category_n_sub_catagery_list = data.data.data;
-            });
-        }
-        else{
-            $scope.online = false;
-            $rootScope.$broadcast('loading:hide');
-        }
-    };
 
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();

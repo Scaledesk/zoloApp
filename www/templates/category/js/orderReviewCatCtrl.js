@@ -1,4 +1,4 @@
-appControllers.controller('orderReviewCatCtrl', function ($scope, $rootScope,$state, $stateParams,OrderReviewService,$cordovaNetwork) {
+appControllers.controller('orderReviewCatCtrl', function ($scope, $rootScope,$state, $stateParams,OrderReviewService) {
   
   var id =  window.localStorage['id'];
   var booking_id = window.localStorage['booking_id'];
@@ -11,27 +11,6 @@ appControllers.controller('orderReviewCatCtrl', function ($scope, $rootScope,$st
       $scope.orp_result = data.data.data;
     });
 
-  if($cordovaNetwork.isOnline() == true){
-    $scope.online = true;
-  }
-  else{
-    $scope.online = false;
-  }
-
-  $scope.try_again = function(){
-    $rootScope.$broadcast('loading:show');
-    if($cordovaNetwork.isOnline() == true){
-      $scope.online = true;
-      $rootScope.$broadcast('loading:hide');
-      OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
-        $scope.orp_result = data.data.data;
-      });
-    }
-    else{
-      $scope.online = false;
-      $rootScope.$broadcast('loading:hide');
-    }
-  };
   
   $scope.payment = function(){
     $state.go('app.add_address');

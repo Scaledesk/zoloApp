@@ -1,5 +1,4 @@
-appControllers.controller('orderReviewCtrl', function ($scope, $timeout,$state, $stateParams,OrderReviewService,
-                                                       $cordovaNetwork,$rootScope) {
+appControllers.controller('orderReviewCtrl', function ($scope, $timeout,$state, $stateParams,OrderReviewService,$rootScope) {
   
   var id =  window.localStorage['id'];
   var booking_id = window.localStorage['booking_id'];
@@ -7,29 +6,7 @@ appControllers.controller('orderReviewCtrl', function ($scope, $timeout,$state, 
   var access_token = window.localStorage['access_token'];
   window.localStorage['cat_id'] = $stateParams.cat_id;
   window.localStorage['product_id'] = $stateParams.product_id;
-  console.log("id result",id,booking_id);
-
-  if($cordovaNetwork.isOnline() == true){
-    $scope.online = true;
-  }
-  else{
-    $scope.online = false;
-  }
-
-  $scope.try_again = function(){
-    $rootScope.$broadcast('loading:show');
-    if($cordovaNetwork.isOnline() == true){
-      $scope.online = true;
-      $rootScope.$broadcast('loading:hide');
-      OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
-        $scope.orp_result = data.data.data;
-      });
-    }
-    else{
-      $scope.online = false;
-      $rootScope.$broadcast('loading:hide');
-    }
-  };
+  
 
   OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
       $scope.orp_result = data.data.data;

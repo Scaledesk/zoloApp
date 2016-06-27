@@ -1,31 +1,8 @@
 appControllers.controller('wishListCtrl', function ($scope,wishListService,removeWishListService,$mdToast,$rootScope,
-                                                    $ionicPopup,$state,$cordovaNetwork) {
+                                                    $ionicPopup,$state) {
     var access_token = window.localStorage['access_token'];
 
 
-    if($cordovaNetwork.isOnline() == true){
-        $scope.online = true;
-    }
-    else{
-        $scope.online = false;
-    }
-
-    $scope.try_again = function(){
-        $rootScope.$broadcast('loading:show');
-        if($cordovaNetwork.isOnline() == true){
-            $scope.online = true;
-            $rootScope.$broadcast('loading:hide');
-            wishListService.get_wish_list(access_token).then(function(response){
-                $scope.wishList = response.data.data;
-                console.log("wishlist",JSON.stringify(response))
-            });
-        }
-        else{
-            $scope.online = false;
-            $rootScope.$broadcast('loading:hide');
-        }
-    };
-   
    
     wishListService.get_wish_list(access_token).then(function(response){
         $scope.wishList = response.data.data;

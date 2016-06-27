@@ -1,5 +1,5 @@
 appControllers.controller('addressCtrl', function ($scope, $timeout,$state,$mdToast, $mdUtil,GetUserAddressService,
-                                                   ProfileService,$stateParams,$ionicPopup,$cordovaNetwork,
+                                                   ProfileService,$stateParams,$ionicPopup,
                                                    deleteUserAddressService,$rootScope,editUserAddressService) {
     
     var access_token = window.localStorage['access_token'];
@@ -61,34 +61,6 @@ appControllers.controller('addressCtrl', function ($scope, $timeout,$state,$mdTo
                 $state.go('app.address', null, {reload: true});
             }
         })
-    };
-
-    if($cordovaNetwork.isOnline() == true){
-        $scope.online = true;
-    }
-    else{
-        $scope.online = false;
-    }
-
-    $scope.try_again = function(){
-        $rootScope.$broadcast('loading:show');
-        if($cordovaNetwork.isOnline() == true){
-            $scope.online = true;
-            $rootScope.$broadcast('loading:hide');
-            ProfileService.user_profile(access_token).then(function (data) {
-                window.localStorage['user_id'] = data.data.data.user_id;
-                if (data.data.data.user_id) {
-                    var id = data.data.data.user_id;
-                    GetUserAddressService.user_address(id).then(function (data) {
-                        $scope.user_address = data.data.data;
-                    });
-                }
-            });
-        }
-        else{
-            $scope.online = false;
-            $rootScope.$broadcast('loading:hide');
-        }
     };
 
     $scope.skip = function(){

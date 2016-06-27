@@ -643,3 +643,15 @@ strong{
     }
 }
 
+
+.search-box{
+    height: 55px!important;
+}
+
+.p-40-10{
+    padding: 40px 10px!important;
+}
+
+.bg-white{
+    background-color: #fff!important;
+}

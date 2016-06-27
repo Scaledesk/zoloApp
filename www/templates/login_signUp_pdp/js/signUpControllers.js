@@ -1,27 +1,8 @@
 
-appControllers.controller('signUpPdpCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,$cordovaNetwork,
+appControllers.controller('signUpPdpCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,
                                                         $mdToast,$http, serverConfig,$rootScope,$location,$ionicHistory,
                                                         $ionicViewSwitcher) {
 
-    if($cordovaNetwork.isOnline() == true){
-        $scope.online = true;
-    }
-    else{
-        $scope.online = false;
-    }
-
-    $scope.try_again = function(){
-        $rootScope.$broadcast('loading:show');
-        if($cordovaNetwork.isOnline() == true){
-            $scope.online = true;
-            $rootScope.$broadcast('loading:hide');
-        }
-        else{
-            $scope.online = false;
-            $rootScope.$broadcast('loading:hide');
-        }
-    };
-    
     $scope.redirection = function (){
         $state.go('app.product_desc',{'cat_id':$stateParams.cat_id,'product_id':$stateParams.product_id});
     };

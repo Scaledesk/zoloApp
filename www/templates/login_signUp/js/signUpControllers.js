@@ -1,5 +1,5 @@
 
-appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,$cordovaNetwork,
+appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,
                                                         $mdToast,$http, serverConfig,$rootScope,$location,$ionicHistory,
                                                         $ionicViewSwitcher) {
     $scope.navigateTo = function (stateName,objectData) {
@@ -17,25 +17,7 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
             });
         }
     };
-
-    if($cordovaNetwork.isOnline() == true){
-        $scope.online = true;
-    }
-    else{
-        $scope.online = false;
-    }
-
-    $scope.try_again = function(){
-        $rootScope.$broadcast('loading:show');
-        if($cordovaNetwork.isOnline() == true){
-            $scope.online = true;
-            $rootScope.$broadcast('loading:hide');
-        }
-        else{
-            $scope.online = false;
-            $rootScope.$broadcast('loading:hide');
-        }
-    };
+    
     $scope.user = {};
     $scope.goto=function(path){
         $ionicHistory.nextViewOptions({

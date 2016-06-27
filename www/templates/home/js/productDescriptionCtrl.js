@@ -2,7 +2,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,$sce,$ionicPopup,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate,
-                                                              profileService,removeWishListService,$rootScope,$cordovaNetwork) {
+                                                              profileService,removeWishListService,$rootScope) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -35,29 +35,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         $state.go('app.package_list', {'sub_cat_id': $stateParams.cat_id});
     };
     var booking_info = {};
-
-
-     if($cordovaNetwork.isOnline() == true){
-         $scope.online = true;
-     }
-     else{
-         $scope.online = false;
-    }
     
-    $scope.try_again = function(){
-        $rootScope.$broadcast('loading:show');
-        if($cordovaNetwork.isOnline() == true){
-            $scope.online = true;
-            $rootScope.$broadcast('loading:hide');
-            $scope.get_pdp_info();
-        }
-        else{
-            $scope.online = false;
-            $rootScope.$broadcast('loading:hide');
-        }
-    };
-
-
     $ionicModal.fromTemplateUrl('templates/home/html/review.html', {
         scope: $scope,
         animation: 'slide-in-up'

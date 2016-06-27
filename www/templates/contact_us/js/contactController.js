@@ -1,28 +1,10 @@
 appControllers.controller('contactCtrl', function ($scope, $stateParams, $timeout, ContactService, $state, $auth,
-                                                   $mdToast, $ionicHistory,$cordovaNetwork,$rootScope) {
+                                                   $mdToast, $ionicHistory,$rootScope) {
 
     $scope.customer = {};
 
 
-    if($cordovaNetwork.isOnline() == true){
-        $scope.online = true;
-    }
-    else{
-        $scope.online = false;
-    }
-
-    $scope.try_again = function(){
-        $rootScope.$broadcast('loading:show');
-        if($cordovaNetwork.isOnline() == true){
-            $scope.online = true;
-            $rootScope.$broadcast('loading:hide');
-        }
-        else{
-            $scope.online = false;
-            $rootScope.$broadcast('loading:hide');
-        }
-    };
-   
+    
    
     signUpData = function () {
         data = {

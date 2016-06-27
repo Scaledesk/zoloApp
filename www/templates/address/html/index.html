@@ -58,18 +58,7 @@
             </div>
         </div>
 
-        <p class="text-right p-r-10" ng-click="skip()" ng-if="online == true">Skip>></p>
-
-
-
-        <div class="card" ng-if="online == false" style="border: 2px solid rgba(255, 0, 0, 0.21);  border-radius: 5px;">
-            <div class="item item-text-wrap">
-                Please check your Internet Connection and try again
-                <button class="button f-18 w-500" ng-click="try_again()" style="width: 100%; height: 10px; padding-bottom: 20px; color: #565a5c; border: 1px solid #aaa; margin-top: 20px;">
-                    Try again
-                </button>
-            </div>
-        </div>
+        <p class="text-right p-r-10" ng-click="skip()">Skip>></p>
 
 
     </ion-content>
@@ -78,7 +67,7 @@
             <i class="fa fa-plus"></i>
         </a>
     </div>
-    <ion-footer-bar align-title="left" class="bar-assertive p-0 bar bar-footer" ng-if="online == true">
+    <ion-footer-bar align-title="left" class="bar-assertive p-0 bar bar-footer">
         <div class="button-bar" ng-click="payment_option()">
             <a class="button button-royal f-18 line-height pdp-buy border-c">CONTINUE TO PAYMENT</a>
         </div>

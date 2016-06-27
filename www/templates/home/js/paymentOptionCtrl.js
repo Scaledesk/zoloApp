@@ -14,12 +14,15 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 
     OrderReviewService.booking_info_orp(booking_id,id).then(function(data){
         orp_data = data.data.data;
-        // console.log("orp result",JSON.stringify($scope.orp_result))
+        console.log("orp result",JSON.stringify(orp_data))
     });
 
     $scope.choice={
-        val:-1
+        val:1
     };
+    // $scope.choice={
+    //     val:-1
+    // };
     shaService.get_sha(id).then(function(response){
         shss = response.data.data;
         if(shss){
@@ -50,12 +53,24 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
         onDeviceReadyTest();
     };
 
-    $scope.makePay=function(val,host_ip){
-        console.log("val",val,host_ip);
+    // $scope.makePay=function(val){
+    //     console.log("val",val);
+    //     switch(val){
+    //         case 1:{$scope.pay_by_payU(host_ip);
+    //             break;}
+    //     //
+    //         // case 2:{$scope.priceltoh();break;}
+    //         // case 3:{$scope.newfirst();break;}
+    //     }
+    // }
+
+    $scope.makePay=function(val){
+        val = 1;
+        console.log("val",val);
         switch(val){
-            case 1:{$scope.pay_by_payU(host_ip);
+            case 1:{$scope.pay_by_payU();
                 break;}
-        //        
+            //
             // case 2:{$scope.priceltoh();break;}
             // case 3:{$scope.newfirst();break;}
         }
@@ -76,6 +91,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 
 
     function iabLoadStop(event) {
+        $rootScope.$broadcast('loading:show');
 
         if (event.url.match("https://payu.herokuapp.com/success")) {
             iabRef.executeScript({
@@ -104,6 +120,8 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                                 disableBack: true
                             });
                             $state.go('app.payment_fail',{'t_id':id,'b_id':booking_id});
+                            $rootScope.$broadcast('loading:hide');
+
                         }
                     })
                 }
@@ -119,6 +137,8 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                                 disableBack: true
                             });
                             $state.go('app.payment_fail',{'t_id':id,'b_id':booking_id});
+                            $rootScope.$broadcast('loading:hide');
+
                         }
                     })
                 }
@@ -131,6 +151,8 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                                 disableBack: true
                             });
                             $state.go('app.payment_success',{'b_id':booking_id});
+                            $rootScope.$broadcast('loading:hide');
+
                         }
                         console.log("resopnse in success",JSON.stringify(response))
                         
@@ -165,7 +187,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 // device APIs are available
 //
     function onDeviceReadyTest() {
-        iabRef = window.open('templates/payment/html/payU.html?trans_id='+id+'&invoice_id='+invoice_id+'&sha_value='+shss+'&amount='+orp_data.total_price+'&buyer_name='+orp_data.buyer_name+'&email='+orp_data.buyer_email, '_blank', 'location=no');
+        iabRef = window.open('templates/payment/html/payU.html?trans_id='+id+'&invoice_id='+invoice_id+'&sha_value='+shss+'&amount='+orp_data.total_price+'&buyer_name='+orp_data.buyer_name+'&email='+orp_data.buyer_email+'&mobile='+orp_data.buyer_mobile, '_blank', 'location=no');
         iabRef.addEventListener('loadstart', iabLoadStart);
         iabRef.addEventListener('loadstop', iabLoadStop);
         iabRef.addEventListener('loaderror', iabLoadError);

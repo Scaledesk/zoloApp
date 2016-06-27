@@ -20,57 +20,65 @@
 
 
         <div class="card m-t-5" ng-repeat="address in user_address" ng-show="user_address.length != '0'">
-            <div class="item item-text-wrap">
-                <b>{{address.name}}</b> <span class="text-c" ng-if="address.is_default == '1'">(Default)</span>
-                <i class="icon ion-trash-b pull-right" ng-click="delete_add(address.id)"></i>
+            <!--<div class="item item-text-wrap">-->
+            <div>
+                <ion-radio ng-model="address.is_default" ng-value="1"
+                           ng-change="default_address(address,address.id,address.is_default)"
+                           ng-selected="address.is_default=='1'">
+                    <b>{{address.name}}</b>
+                </ion-radio>
 
-                <p>{{address.street_address}},{{address.landmark}}</p>
-                <p>{{address.city}} {{address.pincode}}</p>
-                <p>{{address.state}}</p>
-                <p>Mobile: {{address.phone_number}} </p>
+
+                <div class="item item-text-wrap"><p>{{address.street_address}},{{address.landmark}}</p>
+                    <p>{{address.city}} {{address.pincode}}</p>
+                    <p>{{address.state}}</p>
+                    <p>Mobile: {{address.phone_number}} </p>
+                </div>
+
             </div>
 
             <div class="row item p-10" ng-click="edit_address(address.id)">
                 <div class="col-80">
                     <p>Edit/Change Address</p>
                 </div>
-
-
                 <div class="col-20 text-right">
                     <i class="fa fa-angle-right"></i>
 
                 </div>
-
-
             </div>
 
-
-            <div class="row item p-10">
+            <div class="row item p-10" ng-click="delete_add(address.id)">
                 <div class="col-80">
-                    <p ng-click="address_info()">Add New Address</p>
+                    <p>Remove address</p>
                 </div>
 
                 <div class="col-20 text-right">
                     <i class="fa fa-angle-right"></i>
                 </div>
-
-
             </div>
-
-
         </div>
 
-        <p class="text-right p-r-10" ng-click="skip()" >Skip>></p>
+        <p class="text-right p-r-10" ng-click="skip()" ng-if="online == true">Skip>></p>
 
 
 
-
+        <div class="card" ng-if="online == false" style="border: 2px solid rgba(255, 0, 0, 0.21);  border-radius: 5px;">
+            <div class="item item-text-wrap">
+                Please check your Internet Connection and try again
+                <button class="button f-18 w-500" ng-click="try_again()" style="width: 100%; height: 10px; padding-bottom: 20px; color: #565a5c; border: 1px solid #aaa; margin-top: 20px;">
+                    Try again
+                </button>
+            </div>
+        </div>
 
 
     </ion-content>
-
-
-    <ion-footer-bar align-title="left" class="bar-assertive p-0 bar bar-footer">
+    <div class="footer-fab-bar" ng-if="(online == true)" style="padding-bottom: 40px;">
+        <a class="md-button md-accent md-fab fab-footer pdp-share" ng-click="address_info()" aria-label="Add" tabindex="0">
+            <i class="fa fa-plus"></i>
+        </a>
+    </div>
+    <ion-footer-bar align-title="left" class="bar-assertive p-0 bar bar-footer" ng-if="online == true">
         <div class="button-bar" ng-click="payment_option()">
             <a class="button button-royal f-18 line-height pdp-buy border-c">CONTINUE TO PAYMENT</a>
         </div>

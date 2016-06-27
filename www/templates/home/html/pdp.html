@@ -1,5 +1,8 @@
 <style>
     .nav-bar-title{
+        margin-left: 30px!important;
+    }
+    .platform-android .bar .title{
         margin-left: 30px;
     }
 </style><!--<ion-view title="{{package.name}}">-->
@@ -13,10 +16,11 @@
 
     <ion-content id="product-detail-content">
 
-        <md-card id="product-detail-tab-detail" class="m-0 bg-c">
+       <md-card id="product-detail-tab-detail" class="m-0 bg-c" ng-if="online == true">
+
             <img ng-if="package.photos.data.length=='1'" src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
             <img ng-if="package.photos.data.length=='0'" src="../img/noimagefound.png" class="md-card-image" alt="Card image">
-            <ion-slide-box ng-if="package.photos.data.length >'1'" id="restaurant-slide-box" on-slide-changed="slideChanged($index)" show-pager="true" active-slide="0" ng-if="package.photos.data.length >'1'" >
+            <ion-slide-box ng-if="package.photos.data.length >'1'" id="restaurant-slide-box" on-slide-changed="slideChanged($index)" show-pager="true" active-slide="0">
                 <ion-slide ng-repeat="image_list in package.photos.data">
                     <img ng-src="{{image_list.url}}">
                     <!--<button ng-click="nextSlide()" ng-show="slideIndex<package.photos.data.length-1">Next slide!</button>-->
@@ -59,24 +63,24 @@
                         </div>
 
                         <div class="col-50">
-                            <p class="pull-right text-c" ng-click="openReviewModel()"> Reviews: {{package.reviews.data.length}}</p>
+                            <p class="pull-right text-c clickable_text" ng-click="openReviewModel()"> Reviews: {{package.reviews.data.length}}</p>
 
                         </div>
                     </div>
                 </div>
 
-                <div class="card p-10 m-5" style="padding-bottom: 0!important;">
+                <div class="card p-5 m-5" style="padding-bottom: 0!important;">
                     <div class="row border-bottom p-0">
-                        <div class="col-33 text-center">
-                            <p class="f-13 text-c" ng-click="description_value()" ng-class="{'z-active':active_tab=='description'}">Description</p>
+                        <div class="col-25 text-center">
+                            <p class="f-13 text-c clickable_text" style="text-decoration: none !important;" ng-click="description_value()" ng-class="{'z-active':active_tab=='description'}">Description</p>
                         </div>
 
-                        <div class="col-33 text-center">
-                            <p class="f-13 text-c" ng-click="package_summary()" ng-class="{'z-active':active_tab == 'p_summery'}">Package Summary</p>
+                        <div class="col-50 text-center">
+                            <p class="f-13 text-c clickable_text" style="text-decoration: none !important;" ng-click="package_summary()" ng-class="{'z-active':active_tab == 'p_summery'}">Package Summary</p>
                         </div>
 
-                        <div class="col-33 text-center">
-                            <p class="f-13 text-c" ng-click="term_n_condition()" ng-class="{'z-active':active_tab=='term'}">T&C</p>
+                        <div class="col-25 text-center">
+                            <p class="f-13 text-c clickable_text" style="text-decoration: none !important;" ng-click="term_n_condition()" ng-class="{'z-active':active_tab=='term'}">T&C</p>
                         </div>
 
 
@@ -199,16 +203,16 @@
             <div class="card p-10 m-0-5">
                 <div class="row">
 
-                    <div class="col-50 border-right">
+                    <div class="col-50 border-right text-center">
                         <div class="text-c f-16 " ng-click="seller_Profile(package.id)">View Seller Profile</div>
                     </div>
 
-                    <div class="col-50">
-                        <div class="pull-right text-c f-16"
+                    <div class="col-50 text-center">
+                        <div class="text-c f-16"
                              ng-if="(wish_value == false ||wish_value == 'user not logged in')"
                              ng-click="add_wish_list(package.seller_profile.user_id,package.id)">
                             <i class="fa fa-heart-o f-16" ></i>&nbsp;Wishlist</div>
-                        <div class="pull-right text-c f-16" ng-click="remove_wishList(package.id)"
+                        <div class="text-c f-16" ng-click="remove_wishList(package.id)"
                              ng-if="wish_value == true">
                             <i class="fa fa-heart f-16 text-danger" ></i>&nbsp;Wishlist</div>
                     </div>
@@ -216,7 +220,7 @@
                 </div>
             </div>
 
-            <div class="card m-5">
+            <div class="card m-5 p-b-20">
                 <div class="row  p-r-10 p-l-10 border-bottom">
                     <div class="col-75">
                         <p class="text-c">{{seller_info.length - 1}} Other Packages by {{package.seller_name}}</p>
@@ -235,20 +239,20 @@
                 <ion-scroll width="500px; height: 500px" direction="xy">
                     <div class="row">
                         <!--<div class="col-50 card" ng-repeat="seller_package_info in seller_info" ng-click="pdp_seller_package(seller_package_info.category.data.id,seller_package_info.id)">-->
-                        <div class="col-50 card" ng-repeat="seller_package_info in seller_info" ng-if="package.id != seller_package_info.id" ng-click="getPdp(seller_package_info.category.data.id,seller_package_info.id)">
+                        <div class="col-50 card pdp_card" ng-repeat="seller_package_info in seller_info" ng-if="package.id != seller_package_info.id" ng-click="getPdp(seller_package_info.category.data.id,seller_package_info.id)">
                             <img style="width: 100%; height: 130px" ng-if="seller_package_info.first_photo != null" ng-src="{{seller_package_info.first_photo}}">
                             <img style="width: 100%; height: 130px" ng-if="seller_package_info.first_photo == null" ng-src="../img/noimagefound.png">
 
                             <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
 
                             <div class="row">
-                                <div class="col-50 pull-left">
+                                <div class="col-33 pull-left">
                                     <p class="text-c"><i class="ion-android-pin">&nbsp;{{seller_package_info.location[0].text}}</i></p>
 
                                 </div>
 
-                                <div class="col-50">
-                                    <p class="pull-right text-c">&#8377; {{seller_package_info.deal_price}}</p>
+                                <div class="col-67">
+                                    <p class="pull-right text-c">&#8377;{{seller_package_info.deal_price}}</p>
 
                                 </div>
 
@@ -259,7 +263,7 @@
 
             </div>
 
-            <div ng-show="booking_add_ons" class="m-b-20">
+            <div ng-show="booking_add_ons" class="m-b-20 p-b-30">
                 <b style="margin-left: 10px;">YOUR PACKAGE</b>
                 <div class="card">
                     <ion-checkbox ng-model="booking_add_ons">{{package.name}}</ion-checkbox>
@@ -293,7 +297,7 @@
 
                 </div>
 
-                <b style="margin-left: 10px">ADD ONS</b>
+                <b style="margin-left: 10px" ng-if="package.Addons.data.length>0">ADD ONS</b>
                 <div>
                     <div ng-repeat="addon in package.Addons.data">
                         <div class="card">
@@ -348,10 +352,16 @@
                     </div>
                 </div>
             </div>
-
-
-
         </md-card>
+
+        <div class="card" ng-if="online == false" style="border: 2px solid rgba(255, 0, 0, 0.21);  border-radius: 5px;">
+            <div class="item item-text-wrap">
+                Please check your Internet Connection and try again
+                <button class="button f-18 w-500" ng-click="try_again()" style="width: 100%; height: 10px; padding-bottom: 20px; color: #565a5c; border: 1px solid #aaa; margin-top: 20px;">
+                    Try again
+                </button>
+            </div>
+        </div>
     </ion-content>
     <script type="text/ng-template" id="bottom-sheet-shared.html">
         <md-bottom-sheet class="md-grid">
@@ -404,13 +414,13 @@
         </md-bottom-sheet>
     </script>
 
-    <ion-footer-bar ng-hide="booking_add_ons" align-title="left" class="bar-assertive p-0 " style="background: none">
+    <ion-footer-bar ng-hide="booking_add_ons" align-title="left" class="bar-assertive p-0 " style="background: none" ng-if="online == true">
         <div class="button-bar" ng-click="book_now()">
             <a class="button button-royal f-18 line-height pdp-buy border-c w-800">BUY NOW &#8377; {{package.deal_price}}</a>
         </div>
     </ion-footer-bar>
 
-    <ion-footer-bar ng-show="booking_add_ons" align-title="left" class="bar-assertive p-0" style="background: none">
+    <ion-footer-bar ng-show="booking_add_ons" align-title="left" class="bar-assertive p-0" style="background: none" ng-if="online == true">
         <div class="button-bar" ng-click="book_now_confirm()">
             <a class="button button-royal f-18 line-height pdp-buy border-c w-800">BUY NOW &#8377; {{amount_to_show}}</a>
         </div>

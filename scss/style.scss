@@ -2931,4 +2931,46 @@ drawer.right {
   z-index: 999;
   color:#ffffff!important;
 }
+.zolo_card{
+ max-height: 110px;
+}
+.clickable_text{
+  //border: 1px solid #673ab7;
+  border: 1px solid #333;
+  padding: 2px;
+  border-radius: 3px;
+  margin-right: 2px;
+}
 
+@media all and (max-device-width: 1536px) and (min-device-width: 480px) {
+  #restaurant #restaurant-slide-box{
+    height: initial;
+  }
+  #image_display {
+    //display:none;
+  }
+  #image_display_1 {
+    height: 135px;
+  }
+  .zolo_card{
+    max-height: 250px;
+    height: 150px;
+  }
+  #text_size{
+    //font-size: 20px;
+    //margin-top: 5%;
+
+  }
+  .pdp_card{
+    -webkit-flex: 0 0 30%;
+    flex: 0 0 30%;
+    padding-bottom: 20px;
+  }
+  .clickable_text{
+    //border: 1px solid #673ab7;
+    border: 1px solid #333;
+    padding: 2px;
+    border-radius: 3px;
+    margin-right: 2px;
+  }
+}

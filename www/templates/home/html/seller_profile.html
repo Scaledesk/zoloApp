@@ -1,5 +1,8 @@
 <style>
     .nav-bar-title{
+        margin-left: 30px!important;
+    }
+    .platform-android .bar .title{
         margin-left: 30px;
     }
 </style>
@@ -9,23 +12,18 @@
             <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
             <span class="back-text"></span></button>
     </ion-nav-bar>
-    <!--<ion-nav-bar class="header_color">-->
-        <!--<ion-nav-back-button class="button-clear">-->
-            <!--<i class="icon ion-ios-arrow-back"></i>-->
-        <!--</ion-nav-back-button>-->
-    <!--</ion-nav-bar>-->
     <ion-content>
             <div class="cover-img" ng-show="package.seller_profile.banner" style="background: url('{{package.seller_profile.banner}}') center no-repeat; background-size:cover; height: 200px;">
             </div>
             <div class="cover-img" ng-hide="package.seller_profile.banner" style="background: url('../img/profile_cover.jpg') center no-repeat; background-size:cover; height: 200px;">
             </div>
 
-        <div class="card m-0" style="overflow: initial;">
+        <div class="card m-0" style="overflow: initial;" ng-if="online == true">
             <div class="row">
 
                 <div class="col-50 text-center">
                     <img ng-show="package.seller_profile.image" src="{{package.seller_profile.image}}" class="profile-img border">
-                    <img ng-hide="package.seller_profile.image" src="./img/dummy.png" class="profile-img border">
+                    <img ng-hide="package.seller_profile.image" src="../img/dummy.png" class="profile-img border">
                 </div>
 
                 <div class="col-50 m-t-20">
@@ -39,7 +37,7 @@
 
 
 
-        <div class="card m-t-0  m-5">
+        <div class="card m-t-0  m-5" ng-if="online == true">
             <p class="p-20 text-c p-b-0">{{package.seller_profile.description}}</p>
 
             <p class="p-10 text-center" ng-hide="package.seller_profile.description">
@@ -49,7 +47,7 @@
         </div>
 
 
-        <div class="card m-5">
+        <div class="card m-5" ng-if="online == true">
             <div class="row border-bottom">
                 <div class="col-50 text-center border-right">
                     <!--Contact Us-->
@@ -60,23 +58,26 @@
                 <!--</div>-->
 
                 <div class="col-50 text-center">
-                    <p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp;{{package.seller_profile.city}} {{package.seller_profile.state}} </p>
+                    <!--<p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp;{{package.seller_profile.city}} {{package.seller_profile.state}} </p>-->
+                    <p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp;N/A</p>
                 </div>
             </div>
 
             <div class="row m-t-10">
-                <div class="col-50 text-center border-right">
-                    <p class="m-t-10 text-c">Total Packages&nbsp;  <span class="text-success">{{seller_info.length}}</span> </p>
-
+                <div class="col-50 text-center border-right" ng-if="seller_info.length > 1">
+                    <p class="m-t-10 text-c">Total Packages&nbsp;  <span class="text-success">{{seller_info.length -1}}</span> </p>
+                </div>
+                <div class="col-50 text-center border-right"  ng-if="seller_info.length == 0 || seller_info.length == 1">
+                    <p class="m-t-10 text-c">Total Packages&nbsp;  <span class="text-success">N/A</span> </p>
                 </div>
 
                 <div class="col-50 text-center">
-                    <p class="m-t-10 text-c"> Skills</p>
+                    <p class="m-t-10 text-c"> Skills  N/A</p>
                 </div>
             </div>
         </div>
 
-        <div class="card p-5 m-5">
+        <div class="card p-5 m-5" ng-if="online == true">
             <div class="row border-bottom">
                 <p class=" text-c">Other package by {{package.seller_profile.name}}</p>
 
@@ -86,7 +87,7 @@
             </div>
             <ion-scroll width="500px; height: 500px" direction="xy">
                 <div class="row">
-                    <div class="col-50 card" ng-repeat="seller_package_info in seller_info" ng-if="package.id != seller_package_info.id" ng-click="getPdp(seller_package_info.category.data.id,seller_package_info.id)">
+                    <div class="col-50 card card pdp_card" ng-repeat="seller_package_info in seller_info" ng-if="package.id != seller_package_info.id" ng-click="getPdp(seller_package_info.category.data.id,seller_package_info.id)">
                         <img style="width: 100%; height: 130px" ng-src="{{seller_package_info.first_photo}}">
                         <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
 
@@ -100,6 +101,15 @@
 
                 </div>
             </ion-scroll>
+        </div>
+
+        <div class="card" ng-if="online == false" style="border: 2px solid rgba(255, 0, 0, 0.21);  border-radius: 5px;">
+            <div class="item item-text-wrap">
+                Please check your Internet Connection and try again
+                <button class="button f-18 w-500" ng-click="try_again()" style="width: 100%; height: 10px; padding-bottom: 20px; color: #565a5c; border: 1px solid #aaa; margin-top: 20px;">
+                    Try again
+                </button>
+            </div>
         </div>
     </ion-content>
 </ion-view>

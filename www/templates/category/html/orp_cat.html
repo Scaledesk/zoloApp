@@ -15,21 +15,21 @@
     </ion-nav-bar>
     <ion-content>
         <p class="f-18 m-t-20 w-200 m-l-10">REVIEW YOUR ORDER</p>
-        <div class="card">
+        <div class="card" ng-if="online == true">
             <div class="row">
                 <div class="col-75">
                     <p>{{orp_result.package_title}}</p>
                 </div>
                 <div class="col-25">
-                    <p class="zolo-c f-18"><i class="fa fa-inr"></i>&nbsp; {{orp_result.deal_price}}</p>
+                    <p class="zolo-c f-18"><i class="fa fa-inr"></i>&nbsp; {{orp_result.quantity * orp_result.deal_price}}</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-75">
-                    <p>QTY&nbsp;:{{orp_result.quantity}}</p>
-                </div>
                 <div class="col-25">
-                    <p class="text-c">Del: {{orp_result.package_delivery_time}} Days</p>
+                    <p>Quantity&nbsp;:{{orp_result.quantity}}</p>
+                </div>
+                <div class="col-75">
+                    <p class="text-c">Delivery Time: {{orp_result.package_delivery_time}} Days</p>
                 </div>
             </div>
         </div>
@@ -40,16 +40,16 @@
 
                 <div class="col-67">
                     <ion-list>
-                        <ion-item>Name of add ons{{add_on_list.name}}</ion-item>
+                        <ion-item>{{add_on_list.name}}</ion-item>
                     </ion-list>
 
-                    <div style="padding: 5px 16px;"> Del : {{add_on_list.days}}</div>
+                    <div style="padding: 5px 16px;"> Delivery Time : {{add_on_list.days}}</div>
 
                 </div>
 
                 <div class="col-33 text-center">
                     <div class="f-16 zolo-c" style="padding: 16px;">&#8377; {{add_on_list.amount}}</div>
-                    <div style="padding: 5px 16px;">QTY : {{add_on_list.quantity}}</div>
+                    <div style="padding: 5px 16px;">Quantity : {{add_on_list.quantity}}</div>
 
 
                 </div>
@@ -58,10 +58,10 @@
 
         </div>
 
-        <div class="card">
+        <div class="card" ng-if="online == true">
             <div class="row p-10">
                 <div class="col-50">
-                    <p class="w-500 f-14 text-c">TOTAL Amount</p>
+                    <p class="w-500 f-14 text-c">Total Amount</p>
 
                 </div>
 
@@ -74,8 +74,16 @@
             </div>
         </div>
 
+        <div class="card" ng-if="online == false" style="border: 2px solid rgba(255, 0, 0, 0.21);  border-radius: 5px;">
+            <div class="item item-text-wrap">
+                Please check your Internet Connection and try again
+                <button class="button f-18 w-500" ng-click="try_again()" style="width: 100%; height: 10px; padding-bottom: 20px; color: #565a5c; border: 1px solid #aaa; margin-top: 20px;">
+                    Try again
+                </button>
+            </div>
+        </div>
     </ion-content>
-    <ion-footer-bar align-title="left" class="bar-assertive p-0">
+    <ion-footer-bar align-title="left" class="bar-assertive p-0" ng-if="online == true">
         <div class="button-bar" ng-click="add_address()">
             <a class="button button-royal f-18 line-height pdp-buy border-c w-800">CONTINUE TO PAYMENT</a>
         </div>

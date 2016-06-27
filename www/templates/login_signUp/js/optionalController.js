@@ -1,5 +1,5 @@
 appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
-                                                 serverConfig,$rootScope,$location,$ionicHistory,googleToken,
+                                                 serverConfig,$rootScope,$location,$ionicHistory,googleToken,$cordovaNetwork,
                                                     $ionicViewSwitcher,$ionicModal,googleLogin,facebookLogin,
 $cordovaOauth, $http,ProfileService) {
 
@@ -24,8 +24,25 @@ $cordovaOauth, $http,ProfileService) {
         });
         $location.path(path);
     };
-    
 
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
     $scope.get_token = function(user){
         $auth.login(user)
             .then(function (response) {

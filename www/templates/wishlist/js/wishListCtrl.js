@@ -1,13 +1,40 @@
 appControllers.controller('wishListCtrl', function ($scope,wishListService,removeWishListService,$mdToast,$rootScope,
-                                                    $ionicPopup,$state) {
+                                                    $ionicPopup,$state,$cordovaNetwork) {
     var access_token = window.localStorage['access_token'];
 
+
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+            wishListService.get_wish_list(access_token).then(function(response){
+                $scope.wishList = response.data.data;
+                console.log("wishlist",JSON.stringify(response))
+            });
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
+   
+   
     wishListService.get_wish_list(access_token).then(function(response){
         $scope.wishList = response.data.data;
         console.log("wishlist",JSON.stringify(response))
-    })
+    });
 
-    $scope.$on('wishListChanged', function (event, args) {
+    
+    $rootScope.$on('wishListChanged', function (event, args) {
+        console.log("inside wish list change")
         $scope.message = args.message;
         wishListService.get_wish_list(access_token).then(function(response){
             $scope.wishList = response.data.data;
@@ -27,7 +54,6 @@ appControllers.controller('wishListCtrl', function ($scope,wishListService,remov
         confirmPopup.then(function(res) {
             if(res) {
                 removeWishListService.remove_wish_list(p_id,access_token).then(function(data){
-                    console.log("ddddd",JSON.stringify(data))
                     if(data.data.message == 'success'){
                         $mdToast.show({
                             controller: 'toastController',

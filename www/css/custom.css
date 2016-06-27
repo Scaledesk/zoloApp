@@ -253,6 +253,12 @@
 .p-20{
     padding: 20px!important;
 }
+.p-b-20{
+    padding-bottom: 20px!important;
+}
+.p-b-30{
+    padding-bottom: 30px!important;
+}
 
 .m-b-5{
     margin-bottom: 5px!important;
@@ -334,6 +340,8 @@
     text-decoration: underline !important;
     color: #673ab7!important;
     font-weight: bolder;
+    border: 1px solid #673ab7;
+
 }
 
 .line-height{
@@ -418,6 +426,9 @@
 
 .pkg-filter{
     background-color: #4caf50!important;
+}
+.pkg-add{
+    background-color: #673ab7;!important;
 }
 
 .filter-btn{

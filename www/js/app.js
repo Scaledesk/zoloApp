@@ -43,7 +43,7 @@ window.globalVariable = {
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
         'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','algoliasearch','ngSanitize'])
     .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService,$cordovaSplashscreen,
-                   $mdDialog, $mdBottomSheet) {
+                   $mdDialog, $mdBottomSheet,$ionicPopup) {
 
 
         function initialSQLite() {
@@ -231,6 +231,20 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             setTimeout(function () {
                 $cordovaSplashscreen.hide();
             }, 500);
+
+            if(window.Connection) {
+                if(navigator.connection.type == Connection.NONE) {
+                    $ionicPopup.confirm({
+                            title: "Internet Disconnected",
+                            content: "The internet is disconnected on your device."
+                        })
+                        .then(function(result) {
+                            if(!result) {
+                                ionic.Platform.exitApp();
+                            }
+                        });
+                }
+            }
 
 
             initialSQLite();
@@ -873,15 +887,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 },
                 resolve: {
                     t_id: function($stateParams) {
-                    }
-                }
-            })
-            .state('app.pay_u', {
-                url: "/pay_u",
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/home/html/pay_u.html",
-                        controller:'paymentCtrl'
                     }
                 }
             })

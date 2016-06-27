@@ -1,5 +1,5 @@
 
-appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,
+appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,$cordovaNetwork,
                                                         $mdToast,$http, serverConfig,$rootScope,$location,$ionicHistory,
                                                         $ionicViewSwitcher) {
     $scope.navigateTo = function (stateName,objectData) {
@@ -15,6 +15,25 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
             $state.go(stateName, {
                 isAnimated: objectData,
             });
+        }
+    };
+
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
         }
     };
     $scope.user = {};
@@ -33,6 +52,7 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
             "password": $scope.user.password,
             "password_confirmation": $scope.user.password,
         }
+        console.log("sonamaaaa",JSON.stringify(data))
     };
 
 
@@ -97,7 +117,6 @@ appControllers.controller('signUpCtrl', function ($scope,$stateParams, $timeout,
                     });
                     $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                     $state.go('app.home', null, {reload:true});
-
                 }
             })
             .catch(function (response) {

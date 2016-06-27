@@ -2,7 +2,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
                                                               $state,$stateParams,addWishList, $mdToast,$ionicScrollDelegate,
                                                               $ionicModal, OrderReviewService,$mdBottomSheet,$sce,profileService,
                                                               SellerProfileService,$timeout,$ionicSlideBoxDelegate,
-                                                                 removeWishListService,$ionicPopup) {
+                                                                 removeWishListService,$ionicPopup,$rootScope,$cordovaNetwork) {
     $scope.des_value = true;
     $scope.pec_value = false;
     $scope.term_n_cond = false;
@@ -32,7 +32,25 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
         $scope.slideIndex = index;
     };
 
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
 
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+            $scope.get_pdp_info();
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
 
     $scope.back_to_cat_package = function() {
         $state.go('app.cat_package_list', {'cat_id': $stateParams.cat_id,'sub_cat_id':$stateParams.sub_cat_id});
@@ -116,6 +134,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
                         }
                     }
                 });
+                $rootScope.$broadcast('wishListChanged', { message: 'Change in address list' });
             }
         });
     };
@@ -144,6 +163,8 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
                             }
                         });
                     }
+                    $rootScope.$broadcast('wishListChanged', { message: 'Change in address list' });
+
                 });
             } else {
                 console.log('You are not sure');

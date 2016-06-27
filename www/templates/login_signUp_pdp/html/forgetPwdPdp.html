@@ -6,7 +6,7 @@
             </a>
             <div class="h1 title login-t">Forget Password</div>
         </div>
-        <div class="login-section">
+        <div class="login-section" ng-if="online == true">
             <div class="card">
                 <div class="item item-text-wrap">
                     <form ng-submit="submit_forget_pwd()">
@@ -18,6 +18,14 @@
                         </button>
                     </form>
                 </div>
+            </div>
+        </div>
+        <div class="card" ng-if="online == false" style="border: 2px solid rgba(255, 0, 0, 0.21);  border-radius: 5px;">
+            <div class="item item-text-wrap">
+                Please check your Internet Connection and try again
+                <button class="button f-18 w-500" ng-click="try_again()" style="width: 100%; height: 10px; padding-bottom: 20px; color: #565a5c; border: 1px solid #aaa; margin-top: 20px;">
+                    Try again
+                </button>
             </div>
         </div>
     </ion-content>

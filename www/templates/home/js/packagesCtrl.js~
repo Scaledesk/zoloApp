@@ -1,15 +1,15 @@
-appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil, packagesService, $ionicModal,
+appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, packagesService, $ionicModal,
                                                     MaxPriceService, $mdSidenav, $log, $ionicHistory, $state,
                                                     $stateParams, algolia,$rootScope,$cordovaNetwork) {
-
+    
     $scope.price_list = true;
     $scope.sorting_value = false;
     $scope.sort_by = false;
     $scope.price_range = [];
+    $scope.sorting_type = 'sort';
     $scope.choice={
         val:-1
     };
-
     $scope.active_index='candybrush_packages';
 
     $scope.change_index=function(index){
@@ -18,27 +18,23 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     $scope.get_index=function(){
         return $scope.active_index;
     };
-
-    $scope.back_to_sub_cat_side = function(){
-        $state.go('app.cat_sub_cat_list',{'cat_id':$stateParams.cat_id});
-    };
-
     var stringFilter = '';
     var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
     var index = client.initIndex('candybrush_packages');
 
     $scope.filter = {price: false};
+
     packagesService.getPackagesList($stateParams.sub_cat_id).then(function (data) {
         $scope.packages_list = data.data.data;
     });
 
-    if($cordovaNetwork.isOnline() == true){
-        $scope.online = true;
-    }
-    else{
-        $scope.online = false;
-    }
+    // if($cordovaNetwork.isOnline() == true){
+    //     $scope.online = true;
+    // }
+    // else{
+    //     $scope.online = false;
+    // }
 
     $scope.try_again = function(){
         $rootScope.$broadcast('loading:show');
@@ -56,7 +52,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
             $rootScope.$broadcast('loading:hide');
         }
     };
-    
+
     $scope.go_home = function(){
         $ionicHistory.nextViewOptions({
             disableBack: true
@@ -64,11 +60,12 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         $state.go('app.home');
     };
 
-    $scope.catProductDescription = function (parent_id,sub_c_id,id) {
-        $state.go('app.cat_product_desc', {'cat_id':parent_id,'sub_cat_id':sub_c_id,'product_id': id})
+    $scope.productDescription = function (id) {
+        $state.go('app.product_desc', {'cat_id':$stateParams.sub_cat_id,'product_id': id})
     };
-    $scope.sorting_type = 'sort';
+
     $scope.filter_clear = function(stringFilter,load_option){
+        // $scope.filter.price = '';
         $scope.filter.price = 'blank';
         $scope.choice.val = '';
         if(stringFilter == undefined){
@@ -77,21 +74,19 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         $scope.active_index='candybrush_packages';
 
         if(load_option == false ||load_option == undefined){
-            console.log("inside if")
             $rootScope.$broadcast('loading:show');
             if(stringFilter==''){
                 stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
             }else {
                 stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
             }
-            stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+            gFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
             var index = client.initIndex('candybrush_packages');
-            
             index.search(
                 "", {
                     hitsPerPage: 5,
                     facets: '*',
-                    filters: stringFilter,
+                    filters: gFilter,
                     maxValuesPerFacet: 10
                 }).then(
                 function(content){
@@ -101,14 +96,15 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                     $scope.modal.hide();
                     $rootScope.$broadcast('loading:hide');
 
+
                 }
             ).catch(function (error) {
-                console.log("error",error);
+                console.log("error",JSON.stringify(error));
                 $scope.modal.hide();
                 $rootScope.$broadcast('loading:hide');
 
-            });
 
+            });
         }
         else{
             $rootScope.$broadcast('loading:show');
@@ -129,7 +125,6 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                         page:++$scope.current_page
                     }).then(
                     function(content){
-                        console.log("package else result",JSON.stringify(content.hits.length))
                         if(content.hits.length == 0){
                             $scope.disable_loadMore = true;
                         }
@@ -138,6 +133,8 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                         });
                         $scope.modal.hide();
                         $rootScope.$broadcast('loading:hide');
+
+
                     }
                 ).catch(function (error) {
                     console.log("error",error);
@@ -148,10 +145,9 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
             }
             return;
         }
-
     };
 
-    $ionicModal.fromTemplateUrl('templates/category/html/cat_sort_modal.html', {
+    $ionicModal.fromTemplateUrl('templates/home/html/search_package_short_modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
     }).then(function (modal) {
@@ -192,14 +188,9 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     $scope.makefilters = function () {
         var my_maximum = Math.max.apply(null, $scope.price_range);
         var my_minimum = Math.min.apply(null, $scope.price_range);
-        
         stringFilter = "deal_price : " + my_minimum + " TO " + my_maximum;
     };
-
-
-
-
-
+    
     $scope.search_packages = function(stringFilter,load_option){
         if(load_option == false){
             $rootScope.$broadcast('loading:show');
@@ -208,14 +199,13 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
             }else {
                 stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
             }
-            stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+            gFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
             var index = client.initIndex($scope.get_index());
-
             index.search(
                 "", {
                     hitsPerPage: 5,
                     facets: '*',
-                    filters: stringFilter,
+                    filters: gFilter,
                     maxValuesPerFacet: 10
                 }).then(
                 function(content){
@@ -226,11 +216,10 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
 
                 }
             ).catch(function (error) {
-                console.log("error",error);
+                console.log("error",JSON.stringify(error));
                 $rootScope.$broadcast('loading:hide');
 
             });
-
         }
         else{
             $rootScope.$broadcast('loading:show');
@@ -251,7 +240,6 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                         page:++$scope.current_page
                     }).then(
                     function(content){
-                        console.log("package else result",JSON.stringify(content.hits.length))
                         if(content.hits.length == 0){
                             $scope.disable_loadMore = true;
                         }
@@ -267,24 +255,24 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                 });
             }
             return;
-        }
-    };
-    $scope.search_packages(stringFilter,false);
 
+        }
+
+    };
+     $scope.search_packages(stringFilter,false);
+    
     $scope.filter_apply = function (filter) {
         $rootScope.$broadcast('loading:show');
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex($scope.get_index());
-
-
-        //remove the draft packages from being shown in the search
         if(stringFilter==''){
             stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
         }else {
             stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
         }
         stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+        // stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
                 hitsPerPage: 5,
@@ -306,8 +294,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     };
 
     $scope.load_more = function(){
-        // $scope.search_packages(stringFilter,true);
-
+        // if(!($scope.filter.price)){
         if($scope.filter.price == 'blank'){
             stringFilter = '';
             $scope.filter_clear(stringFilter,true);
@@ -352,7 +339,6 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     };
     $scope.priceltoh = function (filter) {
         $rootScope.$broadcast('loading:show');
-
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('deal_price_asc');
@@ -460,10 +446,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         }
         $scope.makefilters();
     };
-   
-
     $scope.makeSort=function(val){
-        console.log("ssss",val)
         $scope.choice.val = val;
     };
     $scope.sort_apply = function(val){

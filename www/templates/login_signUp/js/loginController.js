@@ -1,5 +1,6 @@
 appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
-                                                    serverConfig,$rootScope,$location,$ionicHistory,$ionicViewSwitcher,$ionicModal) {
+                                                    serverConfig,$rootScope,$location,$ionicHistory,$cordovaNetwork,
+                                                         $ionicViewSwitcher,$ionicModal) {
 
     $scope.user = {};
 
@@ -9,13 +10,24 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
         });
         $location.path(path);
     };
-    // $scope.product_id = window.localStorage['pro_id'];
-    // var c_id = window.localStorage['cat_id'];
-    //
-    // $scope.redirection = function (){
-    //     $state.go('app.product_desc',{'cat_id':c_id,'product_id':$scope.product_id});
-    // };
-    //
+    if($cordovaNetwork.isOnline() == true){
+        $scope.online = true;
+    }
+    else{
+        $scope.online = false;
+    }
+
+    $scope.try_again = function(){
+        $rootScope.$broadcast('loading:show');
+        if($cordovaNetwork.isOnline() == true){
+            $scope.online = true;
+            $rootScope.$broadcast('loading:hide');
+        }
+        else{
+            $scope.online = false;
+            $rootScope.$broadcast('loading:hide');
+        }
+    };
   
     $scope.login = function () {
         $rootScope.$broadcast('loading:show');

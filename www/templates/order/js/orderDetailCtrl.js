@@ -1,5 +1,5 @@
 appControllers.controller('oderDetailCtrl', function ($scope, $timeout, $mdUtil,orderDetailService,$rootScope,
-                                                       $stateParams,$stateParams) {
+                                                       $stateParams,$stateParams,$state) {
 
     
     
@@ -12,6 +12,9 @@ appControllers.controller('oderDetailCtrl', function ($scope, $timeout, $mdUtil,
         });
     })
 
+    $scope.order_list = function(){
+        $state.go('app.order_list');
+    }
 });
 
 

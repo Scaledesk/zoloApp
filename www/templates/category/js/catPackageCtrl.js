@@ -18,7 +18,13 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     $scope.get_index=function(){
         return $scope.active_index;
     };
+    $scope.back_to_search = function(){
+        var  new_Filter='(isCompleted:true' + ' OR ' + 'isCompleted:1)' + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
 
+        $scope.filter_clear(new_Filter,false);
+    };
+    
+    
     $scope.back_to_sub_cat_side = function(){
         $state.go('app.cat_sub_cat_list',{'cat_id':$stateParams.cat_id});
     };

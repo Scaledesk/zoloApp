@@ -29,6 +29,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     };
 
     $scope.back_to_search = function(){
+        stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
         $scope.filter_clear(strFilter,false);
     };
 

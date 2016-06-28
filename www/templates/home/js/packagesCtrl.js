@@ -42,6 +42,8 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     };
 
     $scope.filter_clear = function(stringFilter,load_option){
+
+        console.log("sonam test",stringFilter,load_option)
         // $scope.filter.price = '';
         $scope.filter.price = 'blank';
         $scope.choice.val = '';
@@ -167,7 +169,13 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
         var my_minimum = Math.min.apply(null, $scope.price_range);
         stringFilter = "deal_price : " + my_minimum + " TO " + my_maximum;
     };
-    
+
+    $scope.back_to_search = function(){
+      var  new_Filter='(isCompleted:true' + ' OR ' + 'isCompleted:1)' + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+
+        $scope.filter_clear(new_Filter,false);
+    };
+
     $scope.search_packages = function(stringFilter,load_option){
         if(load_option == false){
             $rootScope.$broadcast('loading:show');

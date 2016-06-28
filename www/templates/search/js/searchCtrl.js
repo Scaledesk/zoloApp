@@ -52,6 +52,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                 }).then(
                 function(content){
                             $scope.packages = content.hits;
+                    console.log("package",JSON.stringify($scope.packages))
                             $scope.total_page=content.nbPages;
                             $scope.current_page=content.page;
                             $rootScope.$broadcast('loading:hide');

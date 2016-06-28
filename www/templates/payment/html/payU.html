@@ -54,7 +54,7 @@
             <!--document.sendParam.submit();-->
         <!--</script>-->
 
-
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <script type="text/javascript">
             function getParam(name)
             {
@@ -96,15 +96,15 @@
 //                console.log("trans_id",trans_id,invoice_id,sha_value,amount,buyer_name,email);
             }
             getUrlData()
-//            $(document).bind('keydown', function(event) {
-//                if (event.keyCode == 27) {
-//                    alert("inside if:")
+            $(document).bind('keydown', function(event) {
+                if (event.keyCode == 27) {
+                    alert("inside if:")
                     // Prevent default (disable the back button behavior)
-                  //  event.preventDefault();
+                    event.preventDefault();
 
                     // Your code to show another page or whatever...
-//                }
-//            });
+                }
+            });
 
             document.sendParam.submit();
 

@@ -90,6 +90,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 
 
     function iabLoadStop(event) {
+        console.log("dddddddddddddd",event.url)
         $rootScope.$broadcast('loading:show');
 
         if (event.url.match("https://payu.herokuapp.com/success")) {
@@ -145,6 +146,8 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                     console.log("inside payment success");
                   
                     paymentService.payment_info_send(values).then(function (response) {
+                        console.log("resopnse in successsssssss",JSON.stringify(response))
+
                         if(response.status == 200){
                             $ionicHistory.nextViewOptions({
                                 disableBack: true
@@ -207,22 +210,6 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                             $rootScope.$broadcast('loading:hide');
 
                         }
-                    })
-                }
-                else if(c == 'captured'){
-                    console.log("inside payment success");
-
-                    paymentService.payment_info_send(values).then(function (response) {
-                        if(response.status == 200){
-                            $ionicHistory.nextViewOptions({
-                                disableBack: true
-                            });
-                            $state.go('app.payment_success',{'b_id':booking_id});
-                            $rootScope.$broadcast('loading:hide');
-
-                        }
-                        console.log("resopnse in success",JSON.stringify(response))
-
                     })
                 }
             });

@@ -2952,15 +2952,43 @@ drawer.right {
   #image_display_1 {
     height: 135px;
   }
+
+  #image_display_1 img {
+    height: 140px;
+  }
+
   .zolo_card{
     max-height: 250px;
     height: 150px;
   }
   #text_size{
-    //font-size: 20px;
+    font-size: 20px;
+    margin: 10px 10px 10px 0;
+
+  }
+/*////for home pdp//*/
+  #text_size p{
+    font-size: 17px!important;
+
+
+  }
+
+  #text_size div{
+    font-size: 18px !important;
+
+  }
+
+  #text_size .col-75 div{
+    font-size: 20px;
+    margin: 10px 10px 10px 0;
+
+  }
+  #text_size  .pkg-price{
+    font-size: 20px!important;
     //margin-top: 5%;
 
   }
+
   .pdp_card{
     -webkit-flex: 0 0 30%;
     flex: 0 0 30%;

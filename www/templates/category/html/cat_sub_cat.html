@@ -23,7 +23,7 @@
         </ion-slide-box>
         <ion-list>
             <ion-item ng-repeat="sub_catagery in sub_catagery_list.subCategory.data" ng-click="getPackagesForCat(sub_catagery_list.id,sub_catagery.id)">
-                <b>{{sub_catagery.name}}</b>
+                <span>{{sub_catagery.name}}</span>
             </ion-item>
         </ion-list>
         <div ng-show="sub_catagery_list.subCategory.data.length == '0'" class="text-center">

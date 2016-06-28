@@ -1,5 +1,5 @@
-appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, packagesService, $ionicModal,
-                                                    MaxPriceService, $mdSidenav, $log, $ionicHistory, $state,
+appControllers.controller('packagesCtrl', function ($scope, packagesService, $ionicModal,
+                                                    MaxPriceService, $ionicHistory, $state,
                                                     $stateParams, algolia,$rootScope) {
     
     $scope.price_list = true;
@@ -239,6 +239,7 @@ appControllers.controller('packagesCtrl', function ($scope, $timeout, $mdUtil, p
      $scope.search_packages(stringFilter,false);
     
     $scope.filter_apply = function (filter) {
+
         $rootScope.$broadcast('loading:show');
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 

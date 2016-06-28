@@ -49,7 +49,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         $rootScope.$broadcast('loading:show');
         if(load_option == false &&(stringFilter ==''|| stringFilter == undefined)){
             stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
-            console.log("manu",stringFilter)
             var index = client.initIndex($scope.get_index());
             index.search(
                 filterText, {

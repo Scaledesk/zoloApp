@@ -234,6 +234,9 @@
 .m-t-0{
     margin-top: 0!important;
 }
+.m-20{
+    margin: 20px!important;
+}
 
 .m-t-10{
     margin-top: 10px!important;
@@ -645,7 +648,7 @@ strong{
 
 
 .search-box{
-    height: 55px!important;
+    height: 45px!important;
 }
 
 .p-40-10{
@@ -654,4 +657,14 @@ strong{
 
 .bg-white{
     background-color: #fff!important;
+}
+
+.pdp-pkg-rating p{
+    display: inline-block;
+    float: right;
+}
+
+.pdp-pkg-rating span{
+    display: inline-block;
+    float: left;
 }

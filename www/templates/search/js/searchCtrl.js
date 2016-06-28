@@ -6,6 +6,8 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     $scope.filterText = $stateParams.search_text;
 
     var strFilter = $stateParams.search_text;
+
+    var stringFilter = '';
     
     var index = client.initIndex('candybrush_packages');
 
@@ -26,7 +28,12 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         return $scope.active_index;
     };
 
-    var stringFilter = '';
+    $scope.back_to_search = function(){
+        $scope.filter_clear(strFilter,false);
+    };
+
+
+
     $scope.filter = {price: false};
 
 
@@ -37,11 +44,10 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
        $state.go('app.home');
    };
 
-    $scope.search_packages = function(filterText,load_option){
+    $scope.search_packages = function(filterText,stringFilter,load_option){
         $rootScope.$broadcast('loading:show');
-        if(load_option == false){
+        if(load_option == false &&(stringFilter ==''|| stringFilter == undefined)){
             stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
-
             var index = client.initIndex($scope.get_index());
             index.search(
                 filterText, {
@@ -64,8 +70,11 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         }
         else{
             if($scope.current_page <= $scope.total_page){
-                stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+                stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+
+                // stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
                 var index = client.initIndex($scope.get_index());
+                console.log("more search result",index)
                 index.search(
                     filterText, {
                         hitsPerPage: 5,
@@ -93,7 +102,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         }
     };
 
-    $scope.search_packages($scope.filterText,false);
+    $scope.search_packages($scope.filterText,stringFilter,false);
 
 
     $scope.filter_clear = function(strFilter,load_option){
@@ -173,7 +182,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     };
 
     $scope.load_more = function(){
-        console.log("dddd",$scope.filter.price)
         if($scope.filter.price == 'blank'){
             console.log("if",$scope.filterText)
             //
@@ -181,8 +189,8 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             $scope.filter_clear($scope.filterText,true);
         }
         else{
-            $scope.search_packages($scope.filterText,true);
-            console.log("else ",$scope.filterText)
+            $scope.search_packages($scope.filterText,stringFilter,true);
+            // console.log("else ",$scope.filterText)
 
         }
     };
@@ -242,20 +250,26 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         stringFilter = "deal_price : " + my_minimum + " TO " + my_maximum;
 
     };
-    
+
+
+
     $scope.filter_apply = function (filter) {
+
         $rootScope.$broadcast('loading:show');
-
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
-        
+
         var index = client.initIndex($scope.get_index());
-
-
         if(stringFilter==''){
             stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
         }else {
             stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
         }
+        // stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+        stringFilter =stringFilter;
+
+      console.log(stringFilter)
+       //  return;
+        // stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
                 hitsPerPage: 5,
@@ -267,14 +281,50 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                 $scope.packages = content.hits;
                 $scope.closeSortAndFilterModal();
                 $rootScope.$broadcast('loading:hide');
+
             }
         ).catch(function (error) {
             console.log("error",error);
             $rootScope.$broadcast('loading:hide');
 
         });
-
     };
+
+    //
+    // $scope.filter_apply = function (filter) {
+    //     $rootScope.$broadcast('loading:show');
+    //
+    //     var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
+    //
+    //     var index = client.initIndex($scope.get_index());
+    //
+    //     console.log("filter apply",index)
+    //
+    //
+    //     if(stringFilter==''){
+    //         stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+    //     }else {
+    //         stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+    //     }
+    //     index.search(
+    //         "", {
+    //             hitsPerPage: 5,
+    //             facets: '*',
+    //             filters: stringFilter,
+    //             maxValuesPerFacet: 10
+    //         }).then(
+    //         function(content){
+    //             $scope.packages = content.hits;
+    //             $scope.closeSortAndFilterModal();
+    //             $rootScope.$broadcast('loading:hide');
+    //         }
+    //     ).catch(function (error) {
+    //         console.log("error",error);
+    //         $rootScope.$broadcast('loading:hide');
+    //
+    //     });
+    //
+    // };
     $scope.pricehtol = function (filter) {
         $rootScope.$broadcast('loading:show');
 

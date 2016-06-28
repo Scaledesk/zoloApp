@@ -16,7 +16,7 @@
         <div class="card m-5 p-10 text-center" ng-show="packages.length =='0'" style="max-height: 110px;">
             <p class="text-center f-18">No Packages found</p>
 
-            <a class="back-t-z" ng-click="go_home()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to home</a>
+            <a class="back-t-z" ng-click="back_to_search()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to search result</a>
         </div>
         <div class="card m-5 zolo_card" ng-show="packages.length !='0'" ng-repeat="package in packages" style="max-height: 110px;">
             <div class="row" ng-click="productDescription(package.category_id,package.id)">

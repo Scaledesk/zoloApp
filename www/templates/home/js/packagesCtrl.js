@@ -177,6 +177,8 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
                 stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
             }
             gFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+
+
             var index = client.initIndex($scope.get_index());
             index.search(
                 "", {
@@ -207,6 +209,9 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
                     stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
                 }
                 stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+
+                console.log("after load",stringFilter)
+
                 var index = client.initIndex($scope.get_index());
                 index.search(
                     "", {
@@ -378,26 +383,7 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     };
 
     $scope.addPrice = function (initial, final) {
-        // if ($scope.filter.price1) {
-        //     $scope.price_range = [];
-        //     $scope.price_range.push(0, 1000);
-        // }
-        // if ($scope.filter.price2) {
-        //     $scope.price_range = [];
-        //     $scope.price_range.push(1001, 10000);
-        // }
-        // if ($scope.filter.price3) {
-        //     $scope.price_range = [];
-        //     $scope.price_range.push(10001, 50000);
-        // }
-        // if ($scope.filter.price4) {
-        //     $scope.price_range = [];
-        //     $scope.price_range.push(50001, 100000);
-        // }
-        // if ($scope.filter.price5) {
-        //     $scope.price_range = [];
-        //     $scope.price_range.push(100001, $scope.max_price);
-        // }
+     
         switch($scope.filter.price){
             case '1':{
                 $scope.price_range = [];

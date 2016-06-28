@@ -49,6 +49,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         $rootScope.$broadcast('loading:show');
         if(load_option == false &&(stringFilter ==''|| stringFilter == undefined)){
             stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
+            console.log("manu",stringFilter)
             var index = client.initIndex($scope.get_index());
             index.search(
                 filterText, {
@@ -59,7 +60,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                 }).then(
                 function(content){
                             $scope.packages = content.hits;
-                    console.log("package",JSON.stringify($scope.packages))
                             $scope.total_page=content.nbPages;
                             $scope.current_page=content.page;
                             $rootScope.$broadcast('loading:hide');
@@ -71,11 +71,15 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         }
         else{
             if($scope.current_page <= $scope.total_page){
-                stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+                if((stringFilter ==''|| stringFilter == undefined)){
+                    stringFilter= '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+                }
+                else{
+                    stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
+                }
 
                 // stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
                 var index = client.initIndex($scope.get_index());
-                console.log("more search result",index)
                 index.search(
                     filterText, {
                         hitsPerPage: 5,

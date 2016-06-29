@@ -31,6 +31,7 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
 
 
     $scope.go_home = function(){
+      console.log('gsvdgcvsgcsdfcfscxfsfxcsf xfscxf ');
         $ionicHistory.nextViewOptions({
             disableBack: true
         });

@@ -41,6 +41,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     
     
     $scope.go_home = function(){
+        console.log('dsh category');
         $ionicHistory.nextViewOptions({
             disableBack: true
         });

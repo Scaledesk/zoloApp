@@ -12,6 +12,7 @@ var access_token = window.localStorage['access_token'];
     };
     
     $scope.go_home = function(){
+        console.log('dsh order');
         $ionicHistory.nextViewOptions({
             disableBack: true
         });

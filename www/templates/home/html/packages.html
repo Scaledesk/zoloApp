@@ -7,7 +7,7 @@
     }
 </style>
 <ion-view>
-    <ion-nav-title>{{packages_list.name}}</ion-nav-title>
+    <ion-nav-title>{{packages_list.name| capitalizeFirst}}</ion-nav-title>
     <ion-nav-bar class="header_color">
         <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="go_home()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
             <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
@@ -26,7 +26,7 @@
                     <img width="100%" height="100" ng-if="package.first_photo == null"  src="../img/noimagefound.png" class="pkg-img">
                 </div>
                 <div class="col-67" id="text_size">
-                    <div class="w-500 p-r-10 p-l-10 m-b-0" style="height: 30px; line-height: 18px;">{{package.name | limitTo: 40}}..</div>
+                    <div class="w-500 p-r-10 p-l-10 m-b-0" style="height: 30px; line-height: 18px;">{{package.name | limitTo: 40| capitalizeFirst}}..</div>
                     <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{package.seller_name}}</div>
                     <div class="row">
                         <div class="col-75">

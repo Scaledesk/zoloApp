@@ -7,7 +7,7 @@
     }
 </style><!--<ion-view title="{{package.name}}">-->
 <ion-view>
-    <ion-nav-title>{{package.name}}</ion-nav-title>
+    <ion-nav-title>{{package.name| capitalizeFirst}}</ion-nav-title>
     <ion-nav-bar class="header_color">
         <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_cat_package()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
             <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
@@ -33,7 +33,7 @@
             <md-card-content class="p-0">
                 <div class="card m-10-0 p-10 m-t-n-30">
                     <div class="row">
-                        <p class="pdp-pkg-title">{{package.name}}</p>
+                        <p class="pdp-pkg-title">{{package.name| capitalizeFirst}}</p>
                     </div>
 
                     <div class="row">
@@ -237,7 +237,7 @@
                              ng-if="package.id != seller_package_info.id" ng-click="getPdpForCat(seller_package_info.category.data.parent_id,seller_package_info.category.data.id,seller_package_info.id)">
                             <img style="width: 100%; height: 130px" ng-if="seller_package_info.first_photo != null" ng-src="{{seller_package_info.first_photo}}">
                             <img style="width: 100%; height: 130px" ng-if="seller_package_info.first_photo == null"  ng-src="../img/noimagefound.png">
-                            <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name}}</p>
+                            <p class="p-r-5 p-l-5 m-0 pdp-des text-c">{{seller_package_info.name| capitalizeFirst}}</p>
 
                             <div class="row">
                                 <div class="col-33 pull-left">
@@ -260,7 +260,7 @@
             <div ng-show="booking_add_ons" class="m-b-20 p-b-30">
                 <b style="margin-left: 10px;">YOUR PACKAGE</b>
                 <div class="card">
-                    <ion-checkbox ng-model="booking_add_ons">{{package.name}}</ion-checkbox>
+                    <ion-checkbox ng-model="booking_add_ons">{{package.name| capitalizeFirst}}</ion-checkbox>
 
                     <div class="row">
 
@@ -312,7 +312,7 @@
                                         </div>
                                     </div>
                                     <div class="col-90">
-                                        <p style="margin-bottom: 0px; padding-top: 10px; padding-left: 10px;">{{addon.name}}</p>
+                                        <p style="margin-bottom: 0px; padding-top: 10px; padding-left: 10px;">{{addon.name| capitalizeFirst}}</p>
                                     </div>
                                 </div>
                                 <!--<label class="text-indent">-->

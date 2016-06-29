@@ -12,7 +12,7 @@
             <hr>
 
             <div class="row">
-                <p class="w-500 f-18">{{order_detail.package_title}}</p>
+                <p class="w-500 f-18">{{order_detail.package_title| capitalizeFirst}}</p>
             </div>
 
             <div class="row">
@@ -21,7 +21,7 @@
                     <img src=" ../img/default.png" ng-show="order_detail.first_photo==null" width="400">
                 </div>
                 <div class="col-60">
-                    <p>Package Name<b>{{order_detail.package_title}}</b></p>
+                    <p>Package Name<b>{{order_detail.package_title| capitalizeFirst}}</b></p>
                     <br>
                     <p>Quantity<b>{{order_detail.quantity}}</b></p>
 

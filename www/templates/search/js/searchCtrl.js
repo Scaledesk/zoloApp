@@ -4,12 +4,35 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
     $scope.filterText = $stateParams.search_text;
+    
+    $scope.search_title = $stateParams.search_text;
 
     var strFilter = $stateParams.search_text;
 
     var stringFilter = '';
     
     var index = client.initIndex('candybrush_packages');
+    
+    $scope.edit_option = false;
+    
+    $scope.open_edit = function(){
+        $scope.edit_option = true;
+
+    };
+
+    $scope.close_initial = function () {
+        $scope.edit_option = false;
+    };
+
+    $scope.search_result = function(text){
+        if(text){
+            $scope.search_title = text;
+           console.log("tesstts",$scope.filterText)
+            $scope.search_packages(text,stringFilter,false);
+
+        }
+    };
+
 
     $scope.price_list = true;
     $scope.sorting_value = false;

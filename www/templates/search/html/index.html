@@ -7,7 +7,7 @@
     }
 </style>
 <ion-view>
-    <ion-nav-title>{{filterText}}</ion-nav-title>
+    <ion-nav-title>{{search_title}}</ion-nav-title>
 
     <ion-nav-bar class="header_color">
         <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_home()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
@@ -15,6 +15,32 @@
             <span class="back-text"></span></button>
     </ion-nav-bar>
     <ion-content>
+
+
+
+        <div class="card m-5 p-10 " ng-if="edit_option == false">
+            <div class="text-left">Results for {{search_title}}&nbsp; &nbsp; <i class="fa fa-pencil-square-o f-20"
+                                                                              aria-hidden="true" ng-click="open_edit()"></i>
+            </div>
+        </div>
+        <div class="card m-5 p-10" ng-if="edit_option == true">
+            <div class="row">
+                <div class="col-80">
+                    <label class="item item-input border-bottom p-0">
+                        <i class="icon ion-search placeholder-icon"></i>
+                        <input placeholder="Search on Zolo..." ng-model="filterText" ng-keypress="search_result(filterText)" type="search">
+
+                        <!--<input type="text" placeholder="Search">-->
+                    </label>
+                </div>
+                <div class="col-20" ng-click="close_initial()">
+                    <div class="p-t-10 text-center">
+                        <i class="ion-ios-close-outline f-25" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="card m-5 p-10 text-center" ng-show="packages.length =='0'" style="max-height: 110px;">
             <p class="text-center f-18">No Packages found</p>
 

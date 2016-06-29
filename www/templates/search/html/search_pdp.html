@@ -37,7 +37,7 @@
 
                     <div class="row">
                         <div class="col-50">
-                            <p class="zolo-c f-18 w-400"><i class="fa fa-inr"></i>&nbsp;{{package.deal_price}}</p>
+                            <p class="zolo-c f-18 w-400">&nbsp;{{package.deal_price| currency:"&#8377;":0}}</p>
                         </div>
 
                         <div class="col-50">
@@ -204,7 +204,7 @@
                 </div>
             </div>
 
-            <div class="card m-10-0 p-b-20">
+            <div class="card m-10-0 p-b-20" ng-if="seller_info.length>1">
                 <div class="row m-t-10 p-r-10 p-l-10 border-bottom">
                     <div class="col-75">
                         <p class="text-c">{{seller_info.length - 1}} Other Packages by {{package.seller_name}}</p>
@@ -232,7 +232,7 @@
                                 </div>
 
                                 <div class="col-67">
-                                    <p class="pull-right text-c">&#8377;{{seller_package_info.deal_price}}</p>
+                                    <p class="pull-right text-c">{{seller_package_info.deal_price| currency:"&#8377;":0}}</p>
 
                                 </div>
 
@@ -262,7 +262,7 @@
                         </div>
 
                         <div class="col-80">
-                            <p style="margin-bottom: 0px; padding-top: 7px; margin-left: 5px; padding-left: 10px;">&#8377; {{book.quantity * package.deal_price}}</p>
+                            <p style="margin-bottom: 0px; padding-top: 7px; margin-left: 5px; padding-left: 10px;">{{book.quantity * package.deal_price| currency:"&#8377;":0}}</p>
                         </div>
 
                     </div>
@@ -301,7 +301,7 @@
 
                                 <div class="col-25">
                                     <div style="padding-top: 10px;">
-                                        <p>&#8377;{{addon.amount}} </p>
+                                        <p>{{addon.amount| currency:"&#8377;":0}} </p>
                                     </div>
                                 </div>
                             </div>
@@ -362,13 +362,13 @@
 
     <ion-footer-bar ng-hide="booking_add_ons" align-title="left" class="bar-assertive p-0 " style="background: none">
         <div class="button-bar" ng-click="book_now()">
-            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">BUY NOW &#8377; {{package.deal_price}}</a>
+            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">BUY NOW {{package.deal_price| currency:"&#8377;":0}}</a>
         </div>
     </ion-footer-bar>
 
     <ion-footer-bar ng-show="booking_add_ons" align-title="left" class="bar-assertive p-0" style="background: none">
         <div class="button-bar" ng-click="book_now_confirm()">
-            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">BUY NOW &#8377; {{amount_to_show}}</a>
+            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">BUY NOW {{amount_to_show| currency:"&#8377;":0}}</a>
         </div>
     </ion-footer-bar>
 </ion-view>

@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="col-25 text-center">
-                            <div class="zolo-c f-14  w-500"><i class="fa fa-inr"></i>&nbsp;{{wishListInfo.deal_price}}</div>
+                            <div class="zolo-c f-14  w-500">&nbsp;{{wishListInfo.deal_price| currency:"&#8377;":0}}</div>
                             <i class="fa fa-trash-o f-20" ng-click="remove_wishList(wishListInfo.id)"></i>
                         </div>
                     </div>

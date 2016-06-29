@@ -17,7 +17,8 @@
     <ion-content class="bg-c">
         <div class="card m-5 p-10 text-center" ng-show="packages.length =='0'" style="max-height: 110px;">
             <p class="text-center f-18">No Packages found</p>
-            <a class="back-t-z" ng-click="back_to_search()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to search result</a>
+            <a class="back-t-z" ng-click="back_to_search()"><i class="fa fa-angle-double-left"
+                                                               aria-hidden="true"></i> Back to search result</a>
 
         </div>
         <div>
@@ -42,20 +43,22 @@
                         </div>
 
                         <div class="col-25">
-                            <div class="zolo-c f-14  w-500"><i class="fa fa-inr"></i>&nbsp;{{package.deal_price}}</div>
+                            <div class="zolo-c f-14  w-500">&nbsp;{{package.deal_price| currency:"&#8377;":0}}</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <button class="button f-18 w-500" ng-if="(packages.length > 5 || packages.length ==5) && disable_loadMore != true" ng-click="load_more()" style="width: 100%; color: #565a5c; border: 1px solid #aaa;">Load more</button>
+        <button class="button f-18 w-500" ng-if="(packages.length > 5 || packages.length ==5) && disable_loadMore != true"
+                ng-click="load_more()" style="width: 100%; color: #565a5c; border: 1px solid #aaa;">Load more</button>
         <button class="button f-18 w-500" ng-if="disable_loadMore == true" ng-disabled='true' style="width: 100%; color: #565a5c; border: 1px solid #aaa;">No more packages</button>
 
     </ion-content>
     <!--<div class="footer-fab-bar" ng-if="packages.length >'0'">-->
     <div class="footer-fab-bar">
-        <a class="md-button md-accent md-fab fab-footer pkg-filter" ng-click="openSortAndFilterModal()" aria-label="Add" tabindex="0">
+        <a class="md-button md-accent md-fab fab-footer pkg-filter" ng-click="openSortAndFilterModal()"
+           aria-label="Add" tabindex="0">
             <i class="fa fa-filter"></i>
         </a>
     </div>

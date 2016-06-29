@@ -14,36 +14,6 @@
             <span class="back-text"></span></button>
     </ion-nav-bar>
     <ion-content class="bg-c">
-
-        <!--<div class="card m-5 p-10 ">-->
-            <!--<div class="text-left">Results for Keyword&nbsp; &nbsp; <i class="fa fa-pencil-square-o f-20" aria-hidden="true"></i>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
-        <!--<div class="card m-5 p-10">-->
-            <!--<div class="row">-->
-                <!--<div class="col-80">-->
-                    <!--<label class="item item-input border-bottom p-0">-->
-                        <!--<i class="icon ion-search placeholder-icon"></i>-->
-                        <!--<input type="text" placeholder="Search">-->
-                    <!--</label>-->
-                <!--</div>-->
-
-                <!--<div class="col-20">-->
-                    <!--<div class="p-t-10 text-center">-->
-                        <!--<i class="ion-ios-close-outline f-25" aria-hidden="true"></i>-->
-
-
-                    <!--</div>-->
-
-
-                <!--</div>-->
-            <!--</div>-->
-
-        <!--</div>-->
-
-
         <div class="card m-5 p-10 text-center" ng-show="packages.length =='0'" style="max-height: 110px;">
             <p class="text-center f-18">No Packages found</p>
 
@@ -70,7 +40,7 @@
                         </div>
 
                         <div class="col-25">
-                            <div class="zolo-c f-14  w-500 pkg-price"><i class="fa fa-inr"></i>&nbsp;{{package.deal_price}}</div>
+                            <div class="zolo-c f-14  w-500 pkg-price">{{package.deal_price| currency:"&#8377;":0}}</div>
                         </div>
                     </div>
                 </div>

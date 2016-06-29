@@ -1,15 +1,14 @@
 <style>
-    .nav-bar-title{
-        margin-left: 30px!important;
+
+    .title-left{
+        text-align: center!important;
     }
-    .platform-android .bar .title{
-        margin-left: 30px;
-    }
-</style><!--<ion-view title="{{package.name}}">-->
+</style>
+<!--<ion-view title="{{package.name}}">-->
 <ion-view>
     <ion-nav-title>{{package.name}}</ion-nav-title>
     <ion-nav-bar class="header_color">
-        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_cat_package()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_cat_package()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
             <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
             <span class="back-text"></span></button>
     </ion-nav-bar>
@@ -31,8 +30,8 @@
             </div>
 
             <md-card-content class="p-0">
-                <div class="card m-10-0 p-10 m-t-n-30">
-                    <div class="row">
+                <div class="card m-5 p-5" style="margin-top: -37px!important;">
+                    <div class="row m-t-10">
                         <p class="pdp-pkg-title">{{package.name}}</p>
                     </div>
 
@@ -53,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row p-r-0">
                         <div class="col-50">
                             <p class="text-c"><i class="fa fa-map-marker"></i>&nbsp;{{package.location[0].text}}</p>
                         </div>
@@ -183,7 +182,6 @@
                 </div>
 
 
-            </md-card-content>
 
             <!--<div class="card p-10 m-10-0">-->
             <!--<div class="row border-bottom">-->
@@ -194,7 +192,7 @@
             <!--</div>-->
 
 
-            <div class="card p-10 m-0">
+            <div class="card p-5 m-5">
                 <div class="row">
 
                     <div class="col-50 border-right text-center">
@@ -214,7 +212,7 @@
                 </div>
             </div>
 
-            <div class="card m-10-0 p-b-20">
+            <div class="card m-5 p-b-20">
                 <div class="row m-t-10 p-r-10 p-l-10 border-bottom">
                     <div class="col-75">
                         <p class="text-c">{{seller_info.length - 1}} Other Packages by {{package.seller_name}}</p>
@@ -256,6 +254,10 @@
                 </ion-scroll>
 
             </div>
+
+
+            </md-card-content>
+
 
             <div ng-show="booking_add_ons" class="m-b-20 p-b-30">
                 <b style="margin-left: 10px;">YOUR PACKAGE</b>

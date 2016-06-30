@@ -85,7 +85,7 @@
                         <p data-ng-bind-html="package.term_condition"></p>
 
                         <div ng-hide="package.term_condition.length">
-                            <p class="text-center">No term and condition found!</p>
+                            <p class="text-center m-0">No term and condition found!</p>
                         </div>
 
                     </div>
@@ -212,19 +212,17 @@
                 </div>
             </div>
 
-            <div class="card m-5 p-b-20">
-                <div class="row m-t-10 p-r-10 p-l-10 border-bottom">
-                    <div class="col-75">
-                        <p class="text-c">{{seller_info.length - 1}} Other Packages by {{package.seller_name}}</p>
+                <div ng-show="seller_info.length>1" class="card m-10-0 p-b-20">
+                    <div class="row m-t-10 p-r-10 p-l-10 border-bottom">
+                        <div class="col-75">
+                            <p class="text-c">{{seller_info.length - 1}} Other Packages by {{package.seller_name}}</p>
 
-                    </div>
+                        </div>
 
-                    <!--<div class="col-25">-->
+                        <!--<div class="col-25">-->
                         <!--<p class="pull-right"><a href="" ng-click="seller_Profile(package.id)">View All &nbsp;<i class="fa fa-angle-right"></i></a></p>-->
-                    <!--</div>-->
-
-
-                </div>
+                        <!--</div>-->
+                    </div>
 
 
 

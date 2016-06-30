@@ -29,18 +29,26 @@
                 <p class="w-500 f-18">{{order_detail.package_title}}</p>
             </div>
 
-            <div class="row">
-                <div class="col-40">
+            <div class="row p-0 m-b-20 odp-img">
+                <!--<div class="col-40">-->
                     <img ng-src="{{order_detail.first_photo}}" ng-show="order_detail.first_photo!=null" width="400" height="260">
                     <img src=" ../img/default.png" ng-show="order_detail.first_photo==null" width="400" height="260">
+                <!--</div>-->
                 </div>
-                <div class="col-60">
-                    <p>Package Name<b>{{order_detail.package_title}}</b></p>
-                    <br>
-                    <p>Quantity<b>{{order_detail.quantity}}</b></p>
+                <div class="row">
+                    <div class="col-75">
+                        <p>Package Name<b>{{order_detail.package_title}}</b></p>
+
+                    </div>
+
+                    <div class="col-25 text-right">
+                        <p>Quantity:<b> {{order_detail.quantity}}</b></p>
+
+                    </div>
+
 
                 </div>
-            </div>
+            <!--</div>-->
 
 
             <!--<div class="row">-->

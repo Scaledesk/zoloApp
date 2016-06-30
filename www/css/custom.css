@@ -673,3 +673,12 @@ strong{
     display: inline-block;
     float: left;
 }
+
+
+.p-0-40{
+    padding: 0 40px!important;
+}
+
+.m-b-20{
+    margin-bottom: 20px!important;
+}

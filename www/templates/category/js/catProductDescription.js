@@ -51,6 +51,10 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
     $scope.closeReviewModel = function () {
         $scope.modal.hide();
     };
+    
+    $scope.back_to_pdp = function(){
+        $scope.modal.hide();
+    };
 
     $scope.setIndex=function(index,checked){
         console.log("checked",checked)
@@ -61,7 +65,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
             },1000);
         }else{
             $timeout(function(){
-                $scope.currentIndex=index;
+                $scope.currentIndex=index;back_to_pdp
                 calcAmount($scope.currentIndex,true);
             },1000);
         }

@@ -50,7 +50,10 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.closeReviewModel = function () {
         $scope.modal.hide();
     };
-
+    $scope.back_to_pdp = function(){
+        $scope.modal.hide();
+    };
+    
     $scope.setIndex=function(index,checked){
         console.log("checked",checked)
         if(checked==true){

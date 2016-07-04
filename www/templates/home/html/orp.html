@@ -16,7 +16,7 @@
         <div class="card">
             <div class="row p-10 border-bottom">
                 <div class="col-75">
-                    <p>{{orp_result.package_title}}</p>
+                    <p>{{orp_result.package_title| capitalizeFirst}}</p>
                 </div>
                 <div class="col-25">
                     <p class="zolo-c f-18 text-right">&nbsp;{{orp_result.quantity * orp_result.deal_price | currency:"&#8377;":0}}</p>
@@ -57,7 +57,8 @@
                 </div>
 
                 <div class="col-67">
-                    <p class=" text-right"><b>Delivery Time &nbsp;:</b> {{add_on_list.days}} Days</p>
+                    <ion-list>
+                        <ion-item>{{add_on_list.name| capitalizeFirst}}</ion-item>
 
                 </div>
 

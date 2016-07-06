@@ -237,9 +237,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         confirmPopup.then(function(res) {
             if(res) {
                 removeWishListService.remove_wish_list(p_id,(window.localStorage['access_token'])).then(function(data){
-                    console.log("ddddd",JSON.stringify(data))
                     if(data.data.message == 'success'){
-
                         $scope.wish_value = false;
                         $mdToast.show({
                             controller: 'toastController',

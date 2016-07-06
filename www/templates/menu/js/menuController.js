@@ -1,6 +1,6 @@
 appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,profileService,$ionicHistory,
                                                $ionicSideMenuDelegate,subCategoryService,bannerService,$rootScope,
-                                               $ionicSlideBoxDelegate) {
+                                               $ionicSlideBoxDelegate,$auth) {
 
     
     
@@ -27,14 +27,14 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         }
     });
 
-    if($scope.access_token){
-        $scope.login_value = false;
-        if($scope.access_token && $scope.access_token != 'undefined'){
-            profileService.get_profile($scope.access_token).then(function(data){
-                $scope.profile = data.data.data;
-            })
-        }
-    }
+    // if($scope.access_token){
+    //     $scope.login_value = false;
+    //     if($scope.access_token && $scope.access_token != 'undefined'){
+    //         profileService.get_profile($scope.access_token).then(function(data){
+    //             $scope.profile = data.data.data;
+    //         })
+    //     }
+    // }
 
     
 
@@ -66,6 +66,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         });
         confirmPopup.then(function(res) {
             if(res) {
+
                 window.localStorage['access_token'] ='';
                 window.localStorage['pro_id'] ='';
                 window.localStorage['orp_page'] = '';
@@ -73,6 +74,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                 window.localStorage['sub_cat_id'] = '';
                 window.localStorage['home_id'] = '';
                 window.localStorage['satellizer_access_token'] = '';
+                $auth.logout();
 
                 // $window.location.reload();
                 $rootScope.$broadcast('logout', {message: 'log out'});

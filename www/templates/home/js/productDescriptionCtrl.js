@@ -175,8 +175,10 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                             addons:[]
                         };
                         if($scope.package.seller_profile.user_id){
+                            $scope.seller_info = [];
                             SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
                                 $scope.seller_info = data.data.data;
+                                console.log("seler info",JSON.stringify($scope.seller_info.length))
                             });
                         }
                     });
@@ -202,6 +204,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                 if($scope.package.seller_profile.user_id){
                     SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
                         $scope.seller_info = data.data.data;
+                        console.log("seler info",JSON.stringify($scope.seller_info))
                     });
                 }
             });

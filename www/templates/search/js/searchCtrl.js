@@ -53,7 +53,9 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
     $scope.back_to_search = function(){
         stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
-        $scope.filter_clear(strFilter,false);
+        console.log("sssssssss",stringFilter)
+        $scope.filter_clear(stringFilter,false);
+        // $scope.filter_clear(strFilter,false);
     };
 
 
@@ -134,6 +136,8 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
     $scope.filter_clear = function(strFilter,load_option){
         var stringFilter = strFilter;
+
+        console.log("cfrerde",stringFilter)
         // $scope.filter.price = '';
         $scope.filter.price = 'blank';
         $scope.choice.val = '';

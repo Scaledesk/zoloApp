@@ -104,25 +104,42 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
             user_id:id_user,
             package_id:p_id
         }
-        addWishList.add_to_wish_list(data).then(function(data){
-            if(data.data.message == 'success'){
-                $scope.wish_value = true;
+        if((window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined') {
+            addWishList.add_to_wish_list(data).then(function (data) {
+                if (data.data.message == 'success') {
+                    $scope.wish_value = true;
 
-                $mdToast.show({
-                    controller: 'toastController',
-                    templateUrl: 'toast.html',
-                    hideDelay: 800,
-                    position: 'top',
-                    locals: {
-                        displayOption: {
-                            title: 'Package added to wish list successfully!'
+                    $mdToast.show({
+                        controller: 'toastController',
+                        templateUrl: 'toast.html',
+                        hideDelay: 800,
+                        position: 'top',
+                        locals: {
+                            displayOption: {
+                                title: 'Package added to wish list successfully!'
+                            }
                         }
-                    }
-                });
-                $rootScope.$broadcast('wishListChanged', { message: 'Change in address list' });
+                    });
+                    $rootScope.$broadcast('wishListChanged', {message: 'Change in address list'});
 
-            }
-        });
+                }
+            });
+        }
+        else{
+            $mdToast.show({
+                controller: 'toastController',
+                templateUrl: 'toast.html',
+                hideDelay: 800,
+                position: 'top',
+                locals: {
+                    displayOption: {
+                        title: 'Please login'
+                    }
+                }
+            });
+            $state.go('app.optional_login_search',{'search_text': $stateParams.search_text,'cat_id': $stateParams.cat_id,'product_id':$stateParams.product_id});
+
+        }
     };
 
     $scope.remove_wishList = function (p_id) {
@@ -203,8 +220,6 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
                     productService.getProductDescription($stateParams.product_id,profile).then(function(data){
                         $scope.package = data.data.data;
                         $scope.wish_value = data.data.meta.wishlist_status;
-
-                        console.log("ssssss",JSON.stringify($scope.wish_value))
 
                         var content = $filter('limitTo')($scope.package.description, 250)
 

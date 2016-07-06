@@ -135,6 +135,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     });
 
     $scope.allSubcategory = function(id){
+
         $state.go('app.subCategory',{'cat_id':id});
     };
     $scope.getPackages = function(id){

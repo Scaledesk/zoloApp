@@ -32,7 +32,9 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
     $scope.slideChanged = function(index) {
         $scope.slideIndex = index;
     };
-    
+    window.localStorage['cat_id']=$stateParams.cat_id;
+    window.localStorage['sub_cat_id']=$stateParams.sub_cat_id;
+
 
     $scope.back_to_cat_package = function() {
         $state.go('app.cat_package_list', {'cat_id': $stateParams.cat_id,'sub_cat_id':$stateParams.sub_cat_id});

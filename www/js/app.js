@@ -798,6 +798,19 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
              });
              $state.go('app.home');
          }
+         else if(($state.current.name == "app.cat_product_desc") && ((window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined')){
+             $state.go('app.cat_package_list', {'cat_id': window.localStorage['cat_id'],'sub_cat_id':window.localStorage['sub_cat_id']});
+         }
+         else if(($state.current.name == "app.cat_package_list") && ((window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined')){
+             $state.go('app.cat_sub_cat_list',{'cat_id':window.localStorage['cat_id']});
+         }
+         else if(($state.current.name == "app.cat_sub_cat_list") && ((window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined')){
+             $ionicHistory.nextViewOptions({
+                 disableBack: true
+             });
+             $state.go('app.allCategory');
+         }
+
          else {
              navigator.app.backHistory();
          }

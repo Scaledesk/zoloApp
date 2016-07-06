@@ -23,8 +23,9 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
 
         $scope.filter_clear(new_Filter,false);
     };
-    
-    
+
+    window.localStorage['cat_id']=$stateParams.cat_id;
+
     $scope.back_to_sub_cat_side = function(){
         $state.go('app.cat_sub_cat_list',{'cat_id':$stateParams.cat_id});
     };

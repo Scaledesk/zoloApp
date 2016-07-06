@@ -1,10 +1,25 @@
 appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,profileService,$ionicHistory,
                                                $ionicSideMenuDelegate,subCategoryService,bannerService,$rootScope,
                                                $ionicSlideBoxDelegate,$auth) {
-    
+    $scope.title = 'Zolo';
+
+    $scope.$on('title_in', function (event, args) {
+        $scope.title = '';
+    });
+    $scope.$on('title_out', function (event, args) {
+        $scope.title = 'Zolo';
+    });
+
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
+        if($ionicSideMenuDelegate.isOpenLeft() == true){
+            $rootScope.$broadcast('title_out', { message: 'title changed!' });
+        }
+        else if($ionicSideMenuDelegate.isOpenLeft() == false){
+            $rootScope.$broadcast('title_in', { message: 'title changed!' });
+        }
     };
+
     bannerService.get_banner().then(function(response){
         $scope.banner = response.data.data;
         $ionicSlideBoxDelegate.update();

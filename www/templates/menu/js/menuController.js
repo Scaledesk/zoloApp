@@ -1,16 +1,12 @@
 appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$state,$stateParams,profileService,$ionicHistory,
                                                $ionicSideMenuDelegate,subCategoryService,bannerService,$rootScope,
                                                $ionicSlideBoxDelegate,$auth) {
-
     
-    
-
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
     bannerService.get_banner().then(function(response){
         $scope.banner = response.data.data;
-
         $ionicSlideBoxDelegate.update();
     });
 

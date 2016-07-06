@@ -1,5 +1,5 @@
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
-        'ionic.contrib.drawer','ngMessages', 'ngCordova','satellizer','algoliasearch','ngSanitize'])
+    'ngMessages', 'ngCordova','satellizer','algoliasearch','ngSanitize'])
     .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService,
                    $cordovaSplashscreen, $mdDialog, $mdBottomSheet,$ionicPopup) {
 
@@ -729,7 +729,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
         $ionicLoading.hide()
     })
 })
-    
+
 .run(function($ionicPlatform, $ionicPopup) {
     // Disable BACK button on home
     $ionicPlatform.registerBackButtonAction(function(event) {

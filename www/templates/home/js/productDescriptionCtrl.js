@@ -11,6 +11,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.default_quantity_add_ons = 1;
     $scope.default_quantity = 1;
     $scope.selectedaddons=[];
+    $scope.seller_info = [];
     $scope.book={
         quantity:1
     };
@@ -146,7 +147,12 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                             };
                             if($scope.package.seller_profile.user_id){
                                 SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
-                                    $scope.seller_info = data.data.data;
+                                    $scope.p_info = data.data.data;
+                                    angular.forEach($scope.p_info, function(value, key){
+                                        if((value.isCompleted == "1") ||(value.isCompleted == "true") ||(value.isCompleted == true)){
+                                            $scope.seller_info.push(value);
+                                        }
+                                    });
                                 });
                             }
                         });
@@ -177,8 +183,12 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                         if($scope.package.seller_profile.user_id){
                             $scope.seller_info = [];
                             SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
-                                $scope.seller_info = data.data.data;
-                                console.log("seler info",JSON.stringify($scope.seller_info.length))
+                                $scope.p_info = data.data.data;
+                                angular.forEach($scope.p_info, function(value, key){
+                                    if((value.isCompleted == "1") ||(value.isCompleted == "true") ||(value.isCompleted == true)){
+                                        $scope.seller_info.push(value);
+                                    }
+                                });
                             });
                         }
                     });
@@ -203,8 +213,12 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                 };
                 if($scope.package.seller_profile.user_id){
                     SellerProfileService.getSellerInfo($scope.package.seller_profile.user_id).then(function (data) {
-                        $scope.seller_info = data.data.data;
-                        console.log("seler info",JSON.stringify($scope.seller_info))
+                        $scope.p_info = data.data.data;
+                        angular.forEach($scope.p_info, function(value, key){
+                            if((value.isCompleted == "1") ||(value.isCompleted == "true") ||(value.isCompleted == true)){
+                                $scope.seller_info.push(value);
+                            }
+                        });
                     });
                 }
             });

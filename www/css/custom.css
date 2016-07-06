@@ -335,9 +335,11 @@
     padding-top: 10px!important;
 }
 
-.p-b-0{
-    padding-bottom: 0!important;
+.p-r-0{
+    padding-right: 0!important;
 }
+
+
 
 .z-active{
     text-decoration: underline !important;
@@ -363,6 +365,9 @@
     padding: 10px!important;
 }
 
+.p-b-0{
+    padding-bottom: 0!important;
+}
 .p-5{
     padding: 5px!important;
 }
@@ -667,4 +672,13 @@ strong{
 .pdp-pkg-rating span{
     display: inline-block;
     float: left;
+}
+
+
+.p-0-40{
+    padding: 0 40px!important;
+}
+
+.m-b-20{
+    margin-bottom: 20px!important;
 }

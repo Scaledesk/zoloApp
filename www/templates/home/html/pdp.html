@@ -1,15 +1,15 @@
 <style>
-    .nav-bar-title{
-        margin-left: 30px!important;
+
+    .title-left{
+        text-align: center!important;
     }
-    .platform-android .bar .title{
-        margin-left: 30px;
-    }
-</style><!--<ion-view title="{{package.name}}">-->
+</style>
+
+><!--<ion-view title="{{package.name}}">-->
 <ion-view>
     <ion-nav-title>{{package.name| capitalizeFirst}}</ion-nav-title>
     <ion-nav-bar class="header_color">
-        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_package()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="back_to_package()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
             <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
             <span class="back-text"></span></button>
     </ion-nav-bar>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row p-r-0">
                         <div class="col-50">
                             <p class="text-c"><i class="fa fa-map-marker"></i>&nbsp;{{package.location[0].text}}</p>
                         </div>
@@ -189,7 +189,6 @@
                     <!--</div>-->
 
 
-            </md-card-content>
 
             <!--<div class="card p-10 m-10">-->
             <!--<div class="row border-bottom">-->
@@ -200,7 +199,7 @@
             <!--</div>-->
 
 
-            <div class="card p-10 m-0-5">
+            <div class="card p-5 m-0-5">
                 <div class="row">
 
                     <div class="col-50 border-right text-center">
@@ -226,12 +225,10 @@
                         <p class="text-c">{{seller_info.length - 1}} Other Packages by {{package.seller_name}}</p>
                     </div>
 
-                    <!--<div class="col-25">-->
+                        <!--<div class="col-25">-->
                         <!--<p class="pull-right"><a href="" ng-click="seller_Profile(package.id)">View All &nbsp;<i class="fa fa-angle-right"></i></a></p>-->
-                    <!--</div>-->
-
-
-                </div>
+                        <!--</div>-->
+                    </div>
 
 
 
@@ -262,7 +259,10 @@
 
             </div>
 
-            <div ng-show="booking_add_ons" class="m-b-20 p-b-30">
+            </md-card-content>
+
+
+           <div ng-show="booking_add_ons" class="m-b-20 p-b-30">
                 <b style="margin-left: 10px;">YOUR PACKAGE</b>
                 <div class="card">
                     <ion-checkbox ng-model="booking_add_ons">{{package.name| capitalizeFirst}}</ion-checkbox>

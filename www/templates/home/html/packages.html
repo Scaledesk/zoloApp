@@ -1,15 +1,15 @@
 <style>
-    .nav-bar-title{
-        margin-left: 30px!important;
+
+    .title-left{
+        text-align: center!important;
+        text-transform: uppercase!important;
     }
-    .platform-android .bar .title{
-        margin-left: 30px;
-    }
+
 </style>
 <ion-view>
     <ion-nav-title>{{packages_list.name| capitalizeFirst}}</ion-nav-title>
     <ion-nav-bar class="header_color">
-        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="go_home()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="go_home()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
             <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
             <span class="back-text"></span></button>
     </ion-nav-bar>
@@ -29,7 +29,7 @@
                     <div class="w-500 p-r-10 p-l-10 m-b-0" style="height: 30px; line-height: 18px;">{{package.name | limitTo: 40| capitalizeFirst}}..</div>
                     <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{package.seller_name}}</div>
                     <div class="row">
-                        <div class="col-75">
+                        <div class="col-67">
                             <div class="text-c  m-b-0"><i class="fa fa-star review-c"></i>&nbsp;{{package.average_rating}}/5
                                 <!--<span class="text-c f-12">(0 Reviews)</span>-->
 

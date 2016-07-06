@@ -1,14 +1,12 @@
 <style>
-    .nav-bar-title{
-        margin-left: 30px!important;
-    }
-    .platform-android .bar .title{
-        margin-left: 30px;
+
+    .title-left{
+        text-align: center!important;
     }
 </style>
 <ion-view title="Order Detail">
     <ion-nav-bar class="header_color">
-        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="order_list()"  tabindex="0" style="margin-left: -15px; color: #b2b2b2!important;">
+        <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="order_list()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
             <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
             <span class="back-text"></span></button>
     </ion-nav-bar>
@@ -31,18 +29,27 @@
                 <p class="w-500 f-18">{{order_detail.package_title| capitalizeFirst}}</p>
             </div>
 
-            <div class="row">
-                <div class="col-40">
+            <div class="row p-0 m-b-20 odp-img">
+                <!--<div class="col-40">-->
                     <img ng-src="{{order_detail.first_photo}}" ng-show="order_detail.first_photo!=null" width="400" height="260">
                     <img src=" ../img/default.png" ng-show="order_detail.first_photo==null" width="400" height="260">
+                <!--</div>-->
                 </div>
                 <div class="col-60">
                     <p>Package Name<b>{{order_detail.package_title| capitalizeFirst}}</b></p>
                     <br>
                     <p>Quantity<b>{{order_detail.quantity}}</b></p>
 
+                    </div>
+
+                    <div class="col-25 text-right">
+                        <p>Quantity:<b> {{order_detail.quantity}}</b></p>
+
+                    </div>
+
+
                 </div>
-            </div>
+            <!--</div>-->
 
 
             <!--<div class="row">-->

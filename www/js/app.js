@@ -54,13 +54,28 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     })
                 }
             });
-            if(access_token && (access_token != 'undefined')){
-                profileService.get_profile(access_token).then(function(data){
-                    $rootScope.profile = data.data.data;
-                })
-            }
         });
     })
+    .config(
+        function ($authProvider, serverConfig) {
+            $authProvider.httpInterceptor = function() { return true; },
+                $authProvider.tokenName = 'access_token';
+            $authProvider.google({
+                url: serverConfig.address + 'api/auth/google',
+                // clientId: '982638547625-ui0lp1pteh6moug1sgct1ag0ub0aen7g.apps.googleusercontent.com',
+                clientId: '936213911318-1mnllojl5hqu2b4o17e47hpbk2e4s66c.apps.googleusercontent.com',
+                clientSecret: '3_FHOlRYTrJffGBhGAMr59b_',
+                redirectUri: 'http://'+location.hostname+'/'
+                // redirectUri: 'http://localhost/'
+            });
+            $authProvider.facebook({
+                url: serverConfig.address + 'api/auth/facebook',
+                clientId: '953913041345816',
+                clientSecret: 'e9652fa4cea1dca0a1d6658adaa0ab36',
+                redirectUri: 'http://'+location.hostname+'/'
+            });
+            $authProvider.loginUrl = serverConfig.address + 'oauth/access_token';
+        })
 
     .config(function ($ionicConfigProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $mdColorPalette) {
         // Use for change ionic spinner to android pattern.
@@ -730,11 +745,30 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
     })
 })
 
-.run(function($ionicPlatform, $ionicPopup) {
-    // Disable BACK button on home
-    $ionicPlatform.registerBackButtonAction(function(event) {
-        if (true) { // your check here
-            $ionicPopup.confirm({
+// .run(function($ionicPlatform, $ionicPopup,$state) {
+//     // Disable BACK button on home
+//     $ionicPlatform.registerBackButtonAction(function(event) {
+//         if (true) { // your check here
+//             $ionicPopup.confirm({
+//                 title: 'Zolo',
+//                 template: 'Are you sure, you want to exit?'
+//             }).then(function(res) {
+//                 if (res && $state.current.name=='app.home') {
+//                     ionic.Platform.exitApp();
+//                 }
+//             })
+//         }
+//     }, 100);
+// });
+
+ .run(function($ionicPlatform, $ionicPopup,$state,$rootScope,$ionicHistory) {
+
+     $ionicPlatform.registerBackButtonAction(function (event) {
+         // if (($state.current.name == "app.home") ||($state.current.name == "app.search_pdp")||
+         //     ($state.current.name == "app.cat_product_desc")||($state.current.name == "app.product_desc"))
+         //
+         if ($state.current.name == "app.home"){
+             $ionicPopup.confirm({
                 title: 'Zolo',
                 template: 'Are you sure, you want to exit?'
             }).then(function(res) {
@@ -742,10 +776,21 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     ionic.Platform.exitApp();
                 }
             })
-        }
-    }, 100);
-});
-
-
-
+             // navigator.app.exitApp();
+             //<-- remove this line to disable the exit
+         }
+         else if(($state.current.name == "app.search_pdp") &&((window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined')){
+             $state.go('app.search_info', {'search_text':window.localStorage['search_text']});
+         }
+         else if(($state.current.name == "app.search_info") &&((window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined')) {
+             $ionicHistory.nextViewOptions({
+                 disableBack: true
+             });
+             $state.go('app.home');
+         }
+         else {
+             navigator.app.backHistory();
+         }
+     }, 100);
+ });
 

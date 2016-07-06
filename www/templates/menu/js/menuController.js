@@ -46,7 +46,9 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     //         })
     //     }
     // }
-
+    if($scope.access_token) {
+        $scope.login_value = false;
+    }
     
 
     //
@@ -100,7 +102,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                     position: 'top',
                     locals: {
                         displayOption: {
-                            title: 'Logged out successfully.'
+                            title: 'Logging out successfully.'
                         }
                     }
                 });

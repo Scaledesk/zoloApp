@@ -9,6 +9,8 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     $scope.choice={
         val:-1
     };
+    $scope.sorting_type = 'price';
+
 
     $scope.active_index='candybrush_packages';
 
@@ -52,7 +54,6 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     $scope.catProductDescription = function (parent_id,sub_c_id,id) {
         $state.go('app.cat_product_desc', {'cat_id':parent_id,'sub_cat_id':sub_c_id,'product_id': id})
     };
-    $scope.sorting_type = 'sort';
     $scope.filter_clear = function(stringFilter,load_option){
         $scope.filter.price = 'blank';
         $scope.choice.val = '';

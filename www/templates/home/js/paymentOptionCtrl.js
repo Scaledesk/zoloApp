@@ -144,7 +144,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                 }
                 else if(c == 'captured'){
                     console.log("inside payment success");
-                  
+
                     paymentService.payment_info_send(values).then(function (response) {
                         console.log("resopnse in successsssssss",JSON.stringify(response))
 
@@ -157,7 +157,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 
                         }
                         console.log("resopnse in success",JSON.stringify(response))
-                        
+
                     })
                 }
             });

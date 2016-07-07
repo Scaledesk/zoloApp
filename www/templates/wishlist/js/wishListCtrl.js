@@ -6,16 +6,13 @@ appControllers.controller('wishListCtrl', function ($scope,wishListService,remov
    
     wishListService.get_wish_list(access_token).then(function(response){
         $scope.wishList = response.data.data;
-        console.log("wishlist",JSON.stringify(response))
     });
 
     
     $rootScope.$on('wishListChanged', function (event, args) {
-        console.log("inside wish list change")
         $scope.message = args.message;
         wishListService.get_wish_list(access_token).then(function(response){
             $scope.wishList = response.data.data;
-            console.log("wishlist",JSON.stringify(response))
         })
     });
 

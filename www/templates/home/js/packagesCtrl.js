@@ -6,7 +6,7 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     $scope.sorting_value = false;
     $scope.sort_by = false;
     $scope.price_range = [];
-    $scope.sorting_type = 'sort';
+    $scope.sorting_type = 'price';
     $scope.choice={
         val:-1
     };

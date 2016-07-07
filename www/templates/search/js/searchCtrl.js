@@ -10,7 +10,9 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     var strFilter = $stateParams.search_text;
 
     var stringFilter = '';
-    
+    $scope.sorting_type = 'price';
+
+
     var index = client.initIndex('candybrush_packages');
     
     $scope.edit_option = false;

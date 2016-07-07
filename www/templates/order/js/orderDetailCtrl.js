@@ -1,5 +1,5 @@
 appControllers.controller('oderDetailCtrl', function ($scope, $timeout, $mdUtil,orderDetailService,$rootScope,
-                                                       $stateParams,$stateParams,$state) {
+                                                       $stateParams,$stateParams,$state,$ionicHistory) {
 
     
     
@@ -10,9 +10,12 @@ appControllers.controller('oderDetailCtrl', function ($scope, $timeout, $mdUtil,
         angular.forEach($scope.order_detail.bookingPackagesAddons.data, function (value, key) {
             $scope.total_price = parseInt($scope.total_price) + parseInt(value.amount);
         });
-    })
+    });
 
     $scope.order_list = function(){
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
         $state.go('app.order_list');
     }
 });

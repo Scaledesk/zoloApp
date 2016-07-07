@@ -79,7 +79,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             var index = client.initIndex($scope.get_index());
             index.search(
                 filterText, {
-                    hitsPerPage: 5,
+                    hitsPerPage: 10,
                     facets: '*',
                     filters:stringFilter,
                     maxValuesPerFacet: 10
@@ -108,7 +108,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                 var index = client.initIndex($scope.get_index());
                 index.search(
                     filterText, {
-                        hitsPerPage: 5,
+                        hitsPerPage: 10,
                         facets: '*',
                         maxValuesPerFacet: 10,
                         filters:stringFilter,
@@ -161,7 +161,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
             index.search(
                 filterText, {
-                    hitsPerPage: 5,
+                    hitsPerPage: 10,
                     facets: '*',
                     filters:stringFilter,
                     maxValuesPerFacet: 10
@@ -186,7 +186,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
                 index.search(
                     filterText, {
-                        hitsPerPage: 5,
+                        hitsPerPage: 10,
                         facets: '*',
                         maxValuesPerFacet: 10,
                         filters:stringFilter,
@@ -305,7 +305,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
         // stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
-                hitsPerPage: 5,
+                hitsPerPage: 10,
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
@@ -341,7 +341,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     //     }
     //     index.search(
     //         "", {
-    //             hitsPerPage: 5,
+    //             hitsPerPage: 10,
     //             facets: '*',
     //             filters: stringFilter,
     //             maxValuesPerFacet: 10
@@ -373,7 +373,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
         index.search(
             "", {
-                hitsPerPage: 5,
+                hitsPerPage: 10,
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
@@ -405,7 +405,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
         index.search(
             "", {
-                hitsPerPage: 5,
+                hitsPerPage: 10,
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
@@ -439,7 +439,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
         index.search(
             "", {
-                hitsPerPage: 5,
+                hitsPerPage: 10,
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10

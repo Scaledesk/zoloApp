@@ -48,9 +48,14 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             var access_token = window.localStorage['access_token'];
 
             $rootScope.$on('logged_in', function (event, args) {
+                console.log("inside  dededddd")
                 if(access_token && (access_token != 'undefined')){
                     profileService.get_profile(access_token).then(function(data){
-                        $rootScope.profile = data.data.data;
+                        window.localStorage['profile_name']=data.data.data.name;
+                        window.localStorage['profile_img']=data.data.data.image;
+
+                        $rootScope.profile_name = data.data.data.name;
+                        $rootScope.profile_img = data.data.data.image;
                     })
                 }
             });

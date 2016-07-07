@@ -75,7 +75,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
             
             index.search(
                 "", {
-                    hitsPerPage: 5,
+                    hitsPerPage: 10,
                     facets: '*',
                     filters: stringFilter,
                     maxValuesPerFacet: 10
@@ -108,7 +108,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                 var index = client.initIndex('candybrush_packages');
                 index.search(
                     "", {
-                        hitsPerPage: 5,
+                        hitsPerPage: 10,
                         facets: '*',
                         filters: stringFilter,
                         maxValuesPerFacet: 10,
@@ -199,7 +199,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
 
             index.search(
                 "", {
-                    hitsPerPage: 5,
+                    hitsPerPage: 10,
                     facets: '*',
                     filters: stringFilter,
                     maxValuesPerFacet: 10
@@ -230,7 +230,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
                 var index = client.initIndex($scope.get_index());
                 index.search(
                     "", {
-                        hitsPerPage: 5,
+                        hitsPerPage: 10,
                         facets: '*',
                         filters: stringFilter,
                         maxValuesPerFacet: 10,
@@ -273,7 +273,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
-                hitsPerPage: 5,
+                hitsPerPage: 10,
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
@@ -319,7 +319,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
-                hitsPerPage: 5,
+                hitsPerPage: 10,
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
@@ -351,7 +351,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
-                hitsPerPage: 5,
+                hitsPerPage: 10,
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10
@@ -381,7 +381,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
         stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
         index.search(
             "", {
-                hitsPerPage: 5,
+                hitsPerPage: 10,
                 facets: '*',
                 filters: stringFilter,
                 maxValuesPerFacet: 10

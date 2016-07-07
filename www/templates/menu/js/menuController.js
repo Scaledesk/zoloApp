@@ -102,7 +102,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                     position: 'top',
                     locals: {
                         displayOption: {
-                            title: 'Logging out successfully.'
+                            title: 'Logging Out successfully.'
                         }
                     }
                 });

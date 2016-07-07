@@ -43,7 +43,6 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
 
     $scope.filter_clear = function(stringFilter,load_option){
 
-        console.log("sonam test",stringFilter,load_option)
         // $scope.filter.price = '';
         $scope.filter.price = 'blank';
         $scope.choice.val = '';
@@ -211,9 +210,13 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
         else{
             $rootScope.$broadcast('loading:show');
             if($scope.current_page <= $scope.total_page){
+
+                console.log(" load",stringFilter)
+
                 if(stringFilter==''){
                     stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
-                }else {
+                }
+                else {
                     stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
                 }
                 stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
@@ -303,12 +306,15 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
 
         var index = client.initIndex('deal_price_desc');
 
+
         if(stringFilter==''){
             stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
         }else {
             stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
         }
         stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
+        console.log("ppppppp",stringFilter)
+
         index.search(
             "", {
                 hitsPerPage: 5,

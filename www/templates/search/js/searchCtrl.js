@@ -9,6 +9,10 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
     var strFilter = $stateParams.search_text;
 
+    $scope.disable_value = function () {
+        $scope.disable_loadMore = false;
+    };
+
     var stringFilter = '';
     $scope.sorting_type = 'price';
 
@@ -55,7 +59,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
 
     $scope.back_to_search = function(){
         stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
-        console.log("sssssssss",stringFilter)
         $scope.filter_clear(stringFilter,false);
         // $scope.filter_clear(strFilter,false);
     };
@@ -103,8 +106,6 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
                 else{
                     stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
                 }
-
-                // stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
                 var index = client.initIndex($scope.get_index());
                 index.search(
                     filterText, {
@@ -139,7 +140,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     $scope.filter_clear = function(strFilter,load_option){
         var stringFilter = strFilter;
 
-        console.log("cfrerde",stringFilter)
+        $scope.disable_value();
         // $scope.filter.price = '';
         $scope.filter.price = 'blank';
         $scope.choice.val = '';
@@ -360,6 +361,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     // };
     $scope.pricehtol = function (filter) {
         $rootScope.$broadcast('loading:show');
+        $scope.disable_value();
 
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
@@ -380,6 +382,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             }).then(
             function(content){
                 $scope.packages = content.hits;
+                $scope.current_page=content.page;
                 $scope.closeSortAndFilterModal();
                 $rootScope.$broadcast('loading:hide');
             }
@@ -392,6 +395,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     };
     $scope.priceltoh = function (filter) {
         $rootScope.$broadcast('loading:show');
+        $scope.disable_value();
 
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
@@ -412,6 +416,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             }).then(
             function(content){
                 $scope.packages = content.hits;
+                $scope.current_page=content.page;
                 $scope.closeSortAndFilterModal();
                 $rootScope.$broadcast('loading:hide');
 
@@ -426,6 +431,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     };
     $scope.newfirst = function (filter) {
         $rootScope.$broadcast('loading:show');
+        $scope.disable_value();
 
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
@@ -446,6 +452,7 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
             }).then(
             function(content){
                 $scope.packages = content.hits;
+                $scope.current_page=content.page;
                 $scope.closeSortAndFilterModal();
                 $rootScope.$broadcast('loading:hide');
             }

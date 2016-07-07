@@ -10,6 +10,9 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     $scope.choice={
         val:-1
     };
+    $scope.disable_value = function () {
+        $scope.disable_loadMore = false;
+    };
     $scope.active_index='candybrush_packages';
 
     $scope.change_index=function(index){
@@ -44,6 +47,7 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     $scope.filter_clear = function(stringFilter,load_option){
 
         // $scope.filter.price = '';
+        $scope.disable_value();
         $scope.filter.price = 'blank';
         $scope.choice.val = '';
         if(stringFilter == undefined){
@@ -255,7 +259,7 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
      $scope.search_packages(stringFilter,false);
     
     $scope.filter_apply = function (filter) {
-
+        $scope.disable_value();
         $rootScope.$broadcast('loading:show');
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
@@ -301,6 +305,8 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
 
     $scope.pricehtol = function (filter) {
         $rootScope.$broadcast('loading:show');
+        $scope.disable_value();
+
 
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
@@ -313,7 +319,6 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
             stringFilter = stringFilter + ' AND ' + '(isCompleted:true' + ' OR ' + 'isCompleted:1)';
         }
         stringFilter=stringFilter + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
-        console.log("ppppppp",stringFilter)
 
         index.search(
             "", {
@@ -324,6 +329,7 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
             }).then(
             function(content){
                 $scope.packages = content.hits;
+                $scope.current_page=content.page;
                 $scope.closeSortAndFilterModal();
                 $rootScope.$broadcast('loading:hide');
             }
@@ -336,6 +342,8 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     };
     $scope.priceltoh = function (filter) {
         $rootScope.$broadcast('loading:show');
+        $scope.disable_value();
+
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex('deal_price_asc');
@@ -355,6 +363,7 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
             }).then(
             function(content){
                 $scope.packages = content.hits;
+                $scope.current_page=content.page;
                 $scope.closeSortAndFilterModal();
                 $rootScope.$broadcast('loading:hide');
             }
@@ -367,6 +376,8 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     };
     $scope.newfirst = function (filter) {
         $rootScope.$broadcast('loading:show');
+        $scope.disable_value();
+
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
         var index = client.initIndex('new_packages_first');
 
@@ -385,6 +396,7 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
             }).then(
             function(content){
                 $scope.packages = content.hits;
+                $scope.current_page=content.page;
                 $scope.closeSortAndFilterModal();
                 $rootScope.$broadcast('loading:hide');
             }

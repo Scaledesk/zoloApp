@@ -262,10 +262,11 @@
             </md-card-content>
 
 
-           <div ng-show="booking_add_ons" class="m-b-20 p-b-30">
+           <!--<div ng-show="booking_add_ons" class="m-b-20 p-b-30">-->
+           <div class="m-b-20 p-b-30">
                 <b style="margin-left: 10px;">YOUR PACKAGE</b>
                 <div class="card">
-                    <ion-checkbox ng-model="booking_add_ons">{{package.name| capitalizeFirst}}</ion-checkbox>
+                    <ion-checkbox ng-model="booking_package">{{package.name| capitalizeFirst}}</ion-checkbox>
 
                     <div class="row">
 

@@ -12,9 +12,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
 
    $scope.profile_name = window.localStorage['profile_name'];
     $scope.profile_img = window.localStorage['profile_img'];
-
-    console.log("fggfgf",$scope.profile_name)
-
+    
 
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();

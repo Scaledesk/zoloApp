@@ -7,6 +7,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.pec_value = false;
     $scope.term_n_cond = false;
     $scope.booking_add_ons = false;
+    $scope.booking_package = true;
     $scope.booking_add_ons_list = false;
     $scope.default_quantity_add_ons = 1;
     $scope.default_quantity = 1;

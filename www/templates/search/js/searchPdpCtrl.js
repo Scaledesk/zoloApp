@@ -8,6 +8,7 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
     $scope.term_n_cond = false;
     $scope.booking_add_ons = false;
     $scope.booking_add_ons_list = false;
+    $scope.booking_package = true;
     $scope.default_quantity_add_ons = 1;
     $scope.default_quantity = 1;
     $scope.selectedaddons=[];

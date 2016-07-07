@@ -7,7 +7,7 @@
 
 </style>
 <ion-view>
-    <ion-nav-title>{{packages_list.name| capitalizeFirst}}</ion-nav-title>
+    <ion-nav-title>{{packages_list.name| uppercase}}</ion-nav-title>
     <ion-nav-bar class="header_color">
         <button class="button back-button buttons button-clear header-item back-button-custom"  ng-click="go_home()"  tabindex="0" style="margin-left: -15px; color: #fff!important;">
             <i class="icon ion-ios-arrow-back" role="button" tabindex="0"></i>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
 
-                        <div class="col-25">
+                        <div class="col-33 text-right">
                             <div class="zolo-c f-14  w-500 pkg-price">{{package.deal_price| currency:"&#8377;":0}}</div>
                         </div>
                     </div>

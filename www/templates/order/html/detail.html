@@ -35,14 +35,20 @@
                     <img src=" ../img/default.png" ng-show="order_detail.first_photo==null" width="400" height="260">
                 <!--</div>-->
                 </div>
+            <div class="row">
                 <div class="col-75">
-                   {{order_detail.package_title| capitalizeFirst}}</b></p>
-                    </div>
+                    <p><b>{{order_detail.package_title| capitalizeFirst}}</b></p>
+                    <!--<br>-->
+                    <!--<p>Quantity<b>{{order_detail.quantity}}</b></p>-->
 
-                    <div class="col-25 text-right">
-                        <p>Quantity:<b> {{order_detail.quantity}}</b></p>
+                </div>
 
-                    </div>
+                <div class="col-25 text-right">
+                    <p>Quantity:<b> {{order_detail.quantity}}</b></p>
+
+                </div>
+            </div>
+
 
 
                 </div>
@@ -54,7 +60,7 @@
             <!--</div>-->
 
 
-            <div class="row m-t-10">
+            <div class="row m-t-10 p-10">
                 <div class="col-50">
                     <p class="text-c">Amount </p>
                     <p class="text-c">Order Status </p>
@@ -70,7 +76,6 @@
                 </div>
 
             </div>
-        </div>
 
     </ion-content>
 </ion-view>

@@ -75,6 +75,8 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                     // $scope.$broadcast('logout', {message: 'log out'});
                     $rootScope.$broadcast('loading:hide');
 
+                    console.log("loinnn",JSON.stringify(response.data))
+
                     window.localStorage['access_token']=response.data.access_token;
                     $mdToast.show({
                         controller: 'toastController',

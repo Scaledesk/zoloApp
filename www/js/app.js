@@ -54,7 +54,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
              //        })
              // }
 
-            
+
         });
     })
     .config(
@@ -800,6 +800,12 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                  disableBack: true
              });
              $state.go('app.allCategory');
+         }
+         else if(($state.current.name == "app.allCategory") && ((window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined')){
+             $ionicHistory.nextViewOptions({
+                 disableBack: true
+             });
+             $state.go('app.home');
          }
 
          else {

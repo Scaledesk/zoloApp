@@ -38,7 +38,8 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         $scope.login_value = false;
         if($scope.access_token && $scope.access_token != 'undefined'){
             profileService.get_profile($scope.access_token).then(function(data){
-                $scope.profile = data.data.data;
+                $scope.profile_name = data.data.data.name;
+                $scope.profile_img = data.data.data.image;
             })
         }
     });

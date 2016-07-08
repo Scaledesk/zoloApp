@@ -11,7 +11,9 @@ appControllers.controller('paymentSuccessCtrl', function ($scope, $timeout, $mdU
             $scope.total_price = parseInt($scope.total_price) + parseInt(value.amount);
         });
     })
-
+    $scope.order_detail = function(order_id){
+        $state.go('app.order_detail',{order_id:order_id})
+    };
 });
 
 

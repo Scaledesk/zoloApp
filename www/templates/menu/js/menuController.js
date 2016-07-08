@@ -12,9 +12,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
 
    $scope.profile_name = window.localStorage['profile_name'];
     $scope.profile_img = window.localStorage['profile_img'];
-
-    console.log("ddddd",$scope.profile_name,$scope.profile_img)
-
+    
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
         if($ionicSideMenuDelegate.isOpenLeft() == true){
@@ -93,6 +91,10 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                 window.localStorage['sub_cat_id'] = '';
                 window.localStorage['home_id'] = '';
                 window.localStorage['satellizer_access_token'] = '';
+                window.localStorage['profile_name'] = '';
+                window.localStorage['profile_img'] = '';
+                window.localStorage['booking_id'] = '';
+                window.localStorage['product_id'] = '';
                 $auth.logout();
 
                 // $window.location.reload();
@@ -146,6 +148,12 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     };
     $scope.getPackages = function(id){
         $state.go('app.package_list',{'sub_cat_id':id});
+    };
+    $scope.my_profile = function(){
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+        $state.go('app.profile');
     };
 });
 

@@ -34,7 +34,7 @@
         </ion-header-bar>
         <ion-content>
             <ion-list>
-                <ion-item class="border-0 " menu-close href="#/app/profile" ng-show="!login_value">
+                <ion-item class="border-0 " menu-close ng-click="my_profile()" ng-show="!login_value">
                     <!--<i class="fa fa-tags" aria-hidden="true"></i>-->
                     <!--<img src="img/dummy.png" alt="" class="img-circle">-->
                     <img ng-src="{{profile_img || 'img/dummy.png'}}" alt="" class="img-circle">

@@ -1,5 +1,5 @@
 appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
-                                                    serverConfig,$rootScope,$location,$ionicHistory,
+                                                    serverConfig,$rootScope,$location,$ionicHistory,profileService,
                                                          $ionicViewSwitcher,$ionicModal) {
 
     $scope.user = {};
@@ -74,9 +74,10 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                 if(response.status == '200'){
                     // $scope.$broadcast('logout', {message: 'log out'});
                     $rootScope.$broadcast('loading:hide');
-
-                    console.log("loinnn",JSON.stringify(response.data))
-
+                    profileService.get_profile(response.data.access_token).then(function(data){
+                        window.localStorage['profile_name'] = data.data.data.name;
+                        window.localStorage['profile_img'] = data.data.data.image;
+                    })
                     window.localStorage['access_token']=response.data.access_token;
                     $mdToast.show({
                         controller: 'toastController',

@@ -1,6 +1,6 @@
 
 appControllers.controller('optionalCatCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
-                                                 serverConfig,$rootScope,$location,$ionicHistory,googleToken,
+                                                 serverConfig,$rootScope,$location,$ionicHistory,googleToken,profileService,
                                                     $ionicViewSwitcher,$ionicModal,googleLogin,facebookLogin,
 $cordovaOauth, $http,ProfileService) {
     
@@ -114,6 +114,10 @@ $cordovaOauth, $http,ProfileService) {
                                     }
                                 }
                             });
+                            profileService.get_profile(data.data.access_token).then(function(data){
+                                window.localStorage['profile_name'] = data.data.data.name;
+                                window.localStorage['profile_img'] = data.data.data.image;
+                            })
                             $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                             window.localStorage['access_token']=data.data.access_token;
                             $state.go('app.cat_product_desc',{'cat_id':$stateParams.cat_id,'sub_cat_id': $stateParams.sub_cat_id,'product_id':$stateParams.product_id});
@@ -158,6 +162,10 @@ $cordovaOauth, $http,ProfileService) {
                         }
                         if(data){
                             googleToken.google_token(user_1).then(function(data){
+                                profileService.get_profile(data.data.access_token).then(function(data){
+                                    window.localStorage['profile_name'] = data.data.data.name;
+                                    window.localStorage['profile_img'] = data.data.data.image;
+                                })
                                 if(data.status == '200'){
                                     $mdToast.show({
                                         controller: 'toastController',

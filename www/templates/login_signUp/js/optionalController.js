@@ -1,5 +1,5 @@
 appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
-                                                 serverConfig,$rootScope,$location,$ionicHistory,googleToken,
+                                                 serverConfig,$rootScope,$location,$ionicHistory,googleToken,profileService,
                                                     $ionicViewSwitcher,$ionicModal,googleLogin,facebookLogin,
 $cordovaOauth, $http,ProfileService) {
 
@@ -47,7 +47,6 @@ $cordovaOauth, $http,ProfileService) {
                 });
             })
             .catch(function (response) {
-                console.log("response in fail",JSON.stringify(response));
                 $mdToast.show({
                     controller: 'toastController',
                     templateUrl: 'toast.html',
@@ -80,7 +79,7 @@ $cordovaOauth, $http,ProfileService) {
             $scope.displayData($http,result.access_token);
 
         },  function(error){
-            alert("Error: " + error);
+            // alert("Error: " + error);
         });
     };
 
@@ -124,6 +123,10 @@ $cordovaOauth, $http,ProfileService) {
                                     }
                                 }
                             });
+                            profileService.get_profile(data.data.access_token).then(function(data){
+                                window.localStorage['profile_name'] = data.data.data.name;
+                                window.localStorage['profile_img'] = data.data.data.image;
+                            })
                             window.localStorage['access_token']=data.data.access_token;
                             $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                             $ionicHistory.nextViewOptions({
@@ -184,6 +187,10 @@ $cordovaOauth, $http,ProfileService) {
                                             }
                                         }
                                     });
+                                    profileService.get_profile(data.data.access_token).then(function(data){
+                                        window.localStorage['profile_name'] = data.data.data.name;
+                                        window.localStorage['profile_img'] = data.data.data.image;
+                                    })
                                     window.localStorage['access_token']=data.data.access_token;
                                     $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                                     $ionicHistory.nextViewOptions({

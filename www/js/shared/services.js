@@ -119,16 +119,12 @@ angular.module('starter').factory('SellerProfileService', function($http,$rootSc
 angular.module('starter').factory('ProfileService', function($http,$rootScope,$q,serverConfig){
     return {
         get_profile_info:function(access_token){
-            $rootScope.$broadcast('loading:show');
-
             var deffer = $q.defer();
             return $http({
                 method:"get",
                 url:serverConfig.address+"api/myProfile?access_token="+access_token
             }).success(function(data, status, headers, config) {
                 deffer.resolve(data);
-                $rootScope.$broadcast('loading:hide');
-
             }).
             error(function(data, status, headers, config) {
                 $rootScope.$broadcast('loading:hide');

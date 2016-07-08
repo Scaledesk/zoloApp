@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <div class="card p-5 m-5" ng-if="profile.is_seller != '0'">
+        <div class="card p-5 m-5" ng-if="((profile.is_seller != '0')&&(seller_info.length > 0 ))">
             <div class="row border-bottom">
                 <p class=" text-c">Other package by {{profile.name}}</p>
             </div>

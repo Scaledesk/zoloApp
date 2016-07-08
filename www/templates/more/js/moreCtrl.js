@@ -1,4 +1,4 @@
-appControllers.controller('moreCtrl', function($scope,$mdToast,$state) {
+appControllers.controller('moreCtrl', function($scope,$state,$ionicHistory) {
 
     $scope.term_n_cond = function(){
      $state.go('app.term_n_con');
@@ -11,6 +11,13 @@ appControllers.controller('moreCtrl', function($scope,$mdToast,$state) {
     };
     $scope.privacy_policy = function(){
      $state.go('app.privacy_policy');
+    };
+    
+    $scope.back_to_more = function () {
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+        $state.go('app.more');
     };
 
 });

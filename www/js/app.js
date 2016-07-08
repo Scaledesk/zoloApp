@@ -492,7 +492,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/term_n_con",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/tNc/html/index.html"
+                        templateUrl: "templates/tNc/html/index.html",
+                        controller:"moreCtrl"
                     }
                 }
             })
@@ -500,7 +501,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/refund_policy",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/refundsPolicy/html/index.html"
+                        templateUrl: "templates/refundsPolicy/html/index.html",
+                        controller:"moreCtrl"
                     }
                 }
             })
@@ -508,7 +510,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/cancellationPolicy",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/cancellationPolicy/html/index.html"
+                        templateUrl: "templates/cancellationPolicy/html/index.html",
+                        controller:"moreCtrl"
                     }
                 }
             })
@@ -516,7 +519,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 url: "/privacy_policy",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/PrivacyPolicy/html/index.html"
+                        templateUrl: "templates/PrivacyPolicy/html/index.html",
+                        controller:"moreCtrl"
                     }
                 }
             })

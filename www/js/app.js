@@ -53,6 +53,8 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
              //            window.localStorage['profile_img']=data.data.data.image;
              //        })
              // }
+
+            
         });
     })
     .config(
@@ -749,21 +751,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
     })
 })
 
-// .run(function($ionicPlatform, $ionicPopup,$state) {
-//     // Disable BACK button on home
-//     $ionicPlatform.registerBackButtonAction(function(event) {
-//         if (true) { // your check here
-//             $ionicPopup.confirm({
-//                 title: 'Zolo',
-//                 template: 'Are you sure, you want to exit?'
-//             }).then(function(res) {
-//                 if (res && $state.current.name=='app.home') {
-//                     ionic.Platform.exitApp();
-//                 }
-//             })
-//         }
-//     }, 100);
-// });
 
  .run(function($ionicPlatform, $ionicPopup,$state,$rootScope,$ionicHistory) {
 

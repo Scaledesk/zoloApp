@@ -14,11 +14,22 @@
             <span class="back-text"></span></button>
     </ion-nav-bar>
     <ion-content class="bg-c">
-        <div class="card m-5 p-10 text-center" ng-show="packages.length =='0'" style="max-height: 110px;">
-            <p class="text-center f-18">No Packages found</p>
+        <div ng-show="packages.length =='0'">
+            <div class="card m-5 p-10 text-center"  style="max-height: 110px;">
+                <p class="text-center f-18">No Packages found</p>
 
-            <a class="back-t-z" ng-click="back_to_search()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to search result</a>
+            </div>
+
+            <div class="text-center">
+                <a class="back-t-z" ng-click="back_to_search()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to search result</a>
+            </div>
+
+
         </div>
+
+
+
+
         <div class="card m-5 zolo_card" ng-show="packages.length !='0'" ng-repeat="package in packages">
             <div class="row" ng-click="productDescription(package.id)">
                 <div class="col-33" id="image_display_1">
@@ -27,7 +38,7 @@
                 </div>
                 <div class="col-67" id="text_size">
                     <div class="w-500 p-r-10 p-l-10 m-b-0" style="height: 30px; line-height: 18px;">{{package.name | limitTo: 40| capitalizeFirst}}..</div>
-                    <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{package.seller_name}}</div>
+                    <div class="text-c p-r-10 p-l-10 f-12 m-t-5">{{package.seller_name | limitTo: 30}}</div>
                     <div class="row">
                         <div class="col-67">
                             <div class="text-c  m-b-0"><i class="fa fa-star review-c"></i>&nbsp;{{package.average_rating}}/5

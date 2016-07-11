@@ -7,6 +7,11 @@
     .platform-android .bar .title {
         margin-left: 30px;
     }
+
+    .nav-bar-title {
+        margin-left: 10px!important;
+    }
+
 </style><!--<ion-view title="{{package.name}}">-->
 <ion-view>
     <ion-nav-title>{{package.name| uppercase}}</ion-nav-title>
@@ -407,7 +412,6 @@
             </md-list>
         </md-bottom-sheet>
     </script>
-
     <ion-footer-bar ng-hide="booking_add_ons" align-title="left" class="bar-assertive p-0 " style="background: none">
         <div class="button-bar" ng-click="book_now()">
             <a class="button button-royal f-18 line-height pdp-buy border-c w-800">BUY NOW {{package.deal_price|

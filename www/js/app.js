@@ -46,14 +46,16 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             });
 
             var access_token = window.localStorage['access_token'];
-             // if(access_token && (access_token != 'undefined')){
-             //     console.log("inside if")
-             //        profileService.get_profile(access_token).then(function(data){
-             //            window.localStorage['profile_name']=data.data.data.name;
-             //            window.localStorage['profile_img']=data.data.data.image;
-             //        })
-             // }
+                $rootScope.$on('logged_in', function (event, args) {
 
+                    if (access_token && (access_token != 'undefined')) {
+                        console.log("inside if")
+                        profileService.get_profile(access_token).then(function (data) {
+                            $rootScope.profile_name = data.data.data.name;
+                            $rootScope.profile_img = data.data.data.image;
+                        })
+                    }
+                })
 
         });
     })
@@ -107,7 +109,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
               .state('app.home', {
                 url: "/home",
-                  cache:false,
+                cache:false,
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/index.html",

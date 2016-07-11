@@ -97,7 +97,6 @@ appControllers.controller('optionalLoginCtrl', function ($scope,$stateParams, $t
                         });
                         $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                         $state.go('app.home', null, {reload:true});
-                    
                 }
             })
             .catch(function (response) {

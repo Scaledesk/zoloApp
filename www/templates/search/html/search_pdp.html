@@ -14,7 +14,7 @@
             <span class="back-text"></span></button>
     </ion-nav-bar>
     <ion-content id="product-detail-content">
-        <md-card id="product-detail-tab-detail" class="m-0 bg-c">
+        <md-card id="product-detail-tab-detail" class="m-0 bg-c" ng-show="package.name">
             <img ng-if="package.photos.data.length=='1'" src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
             <img ng-if="package.photos.data.length=='0'" src="../img/noimagefound.png" class="md-card-image" alt="Card image">
             <ion-slide-box id="restaurant-slide-box" ng-if="package.photos.data.length >'1'" on-slide-changed="slideChanged($index)" show-pager="true" active-slide="0">

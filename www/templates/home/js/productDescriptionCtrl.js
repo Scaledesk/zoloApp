@@ -181,6 +181,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         });
 
         if((window.localStorage['access_token']) && (window.localStorage['access_token'])!= 'undefined') {
+            console.log("if")
             profileService.get_profile(window.localStorage['access_token']).then(function (data) {
                 var profile = data.data.data.user_id;
                 if(profile){
@@ -215,6 +216,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
             });
         }
         else{
+            console.log("else")
             productService.getProductDescription($stateParams.product_id).then(function(data){
                 $scope.package = data.data.data;
                 $scope.wish_value = data.data.meta.wishlist_status;

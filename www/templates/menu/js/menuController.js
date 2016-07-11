@@ -39,6 +39,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
                 $scope.profile_name = data.data.data.name;
                 $scope.profile_img = data.data.data.image;
             })
+            $state.go('app.home', null, {reload:true});
         }
     });
 
@@ -79,7 +80,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     $scope.logOut = function(){
         var confirmPopup = $ionicPopup.confirm({
             title: 'Are you sure ?',
-            template: 'You want to logOut.'
+            template: 'You want to Logged out.'
         });
         confirmPopup.then(function(res) {
             if(res) {

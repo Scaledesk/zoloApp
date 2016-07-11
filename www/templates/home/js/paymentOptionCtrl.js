@@ -90,7 +90,6 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
 
 
     function iabLoadStop(event) {
-        console.log("dddddddddddddd",event.url)
         $rootScope.$broadcast('loading:show');
 
         if (event.url.match("https://payu.herokuapp.com/success")) {
@@ -102,18 +101,10 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                 var a = getValue(values[0], 'mihpayid');
                 var b = getValue(values[0], 'status');
                 var c = getValue(values[0], 'unmappedstatus');
-                // console.log("sonamma",a + b + c);//you can capture values from return SURL
-                console.log("sonamma", c);//you can capture values from return SURL
-                //or
-                //incase values[0] contains result string
-                // console.log(getValue(values, 'mihpayid'))
-
-
                 if(c=='failed'){
                     console.log("inside fail");
                     // $state.go('app.payment_fail');
                     paymentService.payment_info_send(values).then(function (response) {
-                        console.log("resopnse in fail",JSON.stringify(response))
                         if(response.status == 200){
                             console.log("inside if")
                             $ionicHistory.nextViewOptions({
@@ -126,12 +117,7 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                     })
                 }
                 else if(c == 'userCancelled'){
-                    console.log("inside Cancelled");
-                    // $state.go('app.payment_fail');
-
                     paymentService.payment_info_send(values).then(function (response) {
-                        console.log("resopnse in user cancelled",JSON.stringify(response))
-
                         if(response.status == 200){
                             $ionicHistory.nextViewOptions({
                                 disableBack: true
@@ -143,21 +129,14 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                     })
                 }
                 else if(c == 'captured'){
-                    console.log("inside payment success");
-
                     paymentService.payment_info_send(values).then(function (response) {
-                        console.log("resopnse in successsssssss",JSON.stringify(response))
-
                         if(response.status == 200){
                             $ionicHistory.nextViewOptions({
                                 disableBack: true
                             });
                             $state.go('app.payment_success',{'b_id':booking_id});
                             $rootScope.$broadcast('loading:hide');
-
                         }
-                        console.log("resopnse in success",JSON.stringify(response))
-
                     })
                 }
             });
@@ -167,25 +146,13 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
             iabRef.executeScript({
                 code: "document.body.innerHTML"
             }, function(values) {
-                console.log("values failed",JSON.stringify(values))
                 //incase values[0] contains result string
                 var a = getValue(values[0], 'mihpayid');
                 var b = getValue(values[0], 'status');
                 var c = getValue(values[0], 'unmappedstatus');
-                // console.log("sonamma",a + b + c);//you can capture values from return SURL
-                console.log("sonamma", c);//you can capture values from return SURL
-                //or
-                //incase values[0] contains result string
-                // console.log(getValue(values, 'mihpayid'))
-
-
                 if(c=='failed'){
-                    console.log("inside fail");
-                    // $state.go('app.payment_fail');
                     paymentService.payment_info_send(values).then(function (response) {
-                        console.log("resopnse in fail",JSON.stringify(response))
                         if(response.status == 200){
-                            console.log("inside if")
                             $ionicHistory.nextViewOptions({
                                 disableBack: true
                             });
@@ -196,27 +163,19 @@ appControllers.controller('paymentCtrl', function ($sce,$scope,$state,$cordovaIn
                     })
                 }
                 else if(c == 'userCancelled'){
-                    console.log("inside Cancelled");
-                    // $state.go('app.payment_fail');
-
                     paymentService.payment_info_send(values).then(function (response) {
-                        console.log("resopnse in user cancelled",JSON.stringify(response))
-
                         if(response.status == 200){
                             $ionicHistory.nextViewOptions({
                                 disableBack: true
                             });
                             $state.go('app.payment_fail',{'t_id':id,'b_id':booking_id});
                             $rootScope.$broadcast('loading:hide');
-
                         }
                     })
                 }
             });
-
             iabRef.close();
         }
-
     }
 
 //get values from inner HTML page i.e success page or failure page values

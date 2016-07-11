@@ -45,18 +45,6 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 // $rootScope.customStyle = createCustomStyle($ionicHistory.currentStateName());
             });
 
-            var access_token = window.localStorage['access_token'];
-                $rootScope.$on('logged_in', function (event, args) {
-
-                    if (access_token && (access_token != 'undefined')) {
-                        console.log("inside if")
-                        profileService.get_profile(access_token).then(function (data) {
-                            $rootScope.profile_name = data.data.data.name;
-                            $rootScope.profile_img = data.data.data.image;
-                        })
-                    }
-                })
-
         });
     })
     .config(

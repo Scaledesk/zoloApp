@@ -182,7 +182,6 @@ angular.module('starter').factory('subCategoryListService', function($http,$root
 angular.module('starter').factory('productService', function($http,$q,$rootScope,serverConfig){
     return {
         getProductDescription:function(product_id,u_id){
-            console.log("u_id",u_id)
             $rootScope.$broadcast('loading:show');
             var deffer = $q.defer();
             return $http({

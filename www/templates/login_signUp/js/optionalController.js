@@ -1,5 +1,5 @@
 appControllers.controller('optionalCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
-                                                 serverConfig,$rootScope,$location,$ionicHistory,googleToken,profileService,
+                                                 serverConfig,$rootScope,$location,$ionicHistory,googleToken,
                                                     $ionicViewSwitcher,$ionicModal,googleLogin,facebookLogin,
 $cordovaOauth, $http,ProfileService) {
 
@@ -123,10 +123,6 @@ $cordovaOauth, $http,ProfileService) {
                                     }
                                 }
                             });
-                            profileService.get_profile(data.data.access_token).then(function(data){
-                                window.localStorage['profile_name'] = data.data.data.name;
-                                window.localStorage['profile_img'] = data.data.data.image;
-                            })
                             window.localStorage['access_token']=data.data.access_token;
                             $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                             $ionicHistory.nextViewOptions({
@@ -187,10 +183,6 @@ $cordovaOauth, $http,ProfileService) {
                                             }
                                         }
                                     });
-                                    profileService.get_profile(data.data.access_token).then(function(data){
-                                        window.localStorage['profile_name'] = data.data.data.name;
-                                        window.localStorage['profile_img'] = data.data.data.image;
-                                    })
                                     window.localStorage['access_token']=data.data.access_token;
                                     $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                                     $ionicHistory.nextViewOptions({

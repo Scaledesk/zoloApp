@@ -10,6 +10,8 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     $scope.choice={
         val:-1
     };
+    $scope.home_button = false;
+
     $scope.disable_value = function () {
         $scope.disable_loadMore = false;
     };
@@ -39,7 +41,12 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
         });
         $state.go('app.home');
     };
-
+   $scope.back_to_home = function(){
+    $ionicHistory.nextViewOptions({
+        disableBack: true
+    });
+    $state.go('app.home');
+   };
     $scope.productDescription = function (id) {
         $state.go('app.product_desc', {'cat_id':$stateParams.sub_cat_id,'product_id': id})
     };
@@ -181,6 +188,7 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
 
     $scope.search_packages = function(stringFilter,load_option){
         if(load_option == false){
+            $scope.home_button = true;
             $rootScope.$broadcast('loading:show');
             if(stringFilter==''){
                 stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
@@ -260,6 +268,8 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     
     $scope.filter_apply = function (filter) {
         $scope.disable_value();
+        $scope.home_button = false;
+
         $rootScope.$broadcast('loading:show');
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
@@ -306,6 +316,8 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     $scope.pricehtol = function (filter) {
         $rootScope.$broadcast('loading:show');
         $scope.disable_value();
+        $scope.home_button = false;
+
 
 
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
@@ -342,6 +354,8 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     };
     $scope.priceltoh = function (filter) {
         $rootScope.$broadcast('loading:show');
+        $scope.home_button = false;
+
         $scope.disable_value();
 
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
@@ -377,6 +391,8 @@ appControllers.controller('packagesCtrl', function ($scope, packagesService, $io
     $scope.newfirst = function (filter) {
         $rootScope.$broadcast('loading:show');
         $scope.disable_value();
+        $scope.home_button = false;
+
 
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
         var index = client.initIndex('new_packages_first');

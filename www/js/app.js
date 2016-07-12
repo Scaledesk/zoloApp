@@ -711,6 +711,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
             .state('app.wishlist', {
                 url: "/wishlist",
+                cache:false,
                 views: {
                     'menuContent': {
                         templateUrl: "templates/wishlist/html/index.html",

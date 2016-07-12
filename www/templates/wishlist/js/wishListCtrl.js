@@ -1,18 +1,30 @@
 appControllers.controller('wishListCtrl', function ($scope,wishListService,removeWishListService,$mdToast,$rootScope,
                                                     $ionicPopup,$state) {
     var access_token = window.localStorage['access_token'];
-
+$scope.wishList = [];
 
    
     wishListService.get_wish_list(access_token).then(function(response){
-        $scope.wishList = response.data.data;
+        $scope.List_wish = response.data.data;
+
+        angular.forEach($scope.List_wish, function(value, key){
+            if((value.isCompleted == "1") ||(value.isCompleted == "true") ||(value.isCompleted == true)){
+                $scope.wishList.push(value);
+            }
+        });
     });
 
     
     $rootScope.$on('wishListChanged', function (event, args) {
         $scope.message = args.message;
         wishListService.get_wish_list(access_token).then(function(response){
-            $scope.wishList = response.data.data;
+            $scope.List_wish = response.data.data;
+
+            angular.forEach($scope.List_wish, function(value, key){
+                if((value.isCompleted == "1") ||(value.isCompleted == "true") ||(value.isCompleted == true)){
+                    $scope.wishList.push(value);
+                }
+            });
         })
     });
 

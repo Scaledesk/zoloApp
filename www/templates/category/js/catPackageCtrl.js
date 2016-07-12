@@ -9,6 +9,8 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     $scope.choice={
         val:-1
     };
+    $scope.home_button = false;
+
     $scope.sorting_type = 'price';
 
     $scope.disable_value = function () {
@@ -21,6 +23,10 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     };
     $scope.get_index=function(){
         return $scope.active_index;
+    };
+    $scope.back_to_home = function(){
+        $state.go('app.cat_sub_cat_list',{'cat_id':$stateParams.cat_id});
+
     };
     $scope.back_to_search = function(){
         var  new_Filter='(isCompleted:true' + ' OR ' + 'isCompleted:1)' + ' AND ' + '(category_id:'+$stateParams.sub_cat_id + ' OR ' + 'subcategory_id:'+$stateParams.sub_cat_id+')';
@@ -189,6 +195,8 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
 
     $scope.search_packages = function(stringFilter,load_option){
         if(load_option == false){
+            $scope.home_button = true;
+
             $rootScope.$broadcast('loading:show');
             if(stringFilter==''){
                 stringFilter='(isCompleted:true'+' OR '+'isCompleted:1)';
@@ -260,6 +268,8 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
 
     $scope.filter_apply = function (filter) {
         $rootScope.$broadcast('loading:show');
+        $scope.home_button = false;
+
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
         var index = client.initIndex($scope.get_index());
@@ -308,6 +318,7 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     $scope.pricehtol = function (filter) {
         $rootScope.$broadcast('loading:show');
         $scope.disable_value();
+        $scope.home_button = false;
 
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
@@ -342,6 +353,8 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     $scope.priceltoh = function (filter) {
         $rootScope.$broadcast('loading:show');
         $scope.disable_value();
+        $scope.home_button = false;
+
 
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
 
@@ -376,6 +389,8 @@ appControllers.controller('catPackagesCtrl', function ($scope, $timeout, $mdUtil
     $scope.newfirst = function (filter) {
         $rootScope.$broadcast('loading:show');
         $scope.disable_value();
+        $scope.home_button = false;
+
         var client = algolia.Client('ORMLLAUN2V', '48e614067141870003ebf7c9a1ba4b59');
         var index = client.initIndex('new_packages_first');
 

@@ -215,6 +215,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
             });
         }
         else{
+            console.log("else")
             productService.getProductDescription($stateParams.product_id).then(function(data){
                 $scope.package = data.data.data;
                 $scope.wish_value = data.data.meta.wishlist_status;

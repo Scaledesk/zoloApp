@@ -1,7 +1,7 @@
 
 appControllers.controller('signUpSearchCtrl', function ($scope,$stateParams, $timeout, signUpService, $state, $auth,
                                                         $mdToast,$http, serverConfig,$rootScope,$location,$ionicHistory,
-                                                        $ionicViewSwitcher,profileService) {
+                                                        $ionicViewSwitcher) {
 
     $scope.redirection = function (){
         $state.go('app.search_pdp',{'search_text': $stateParams.search_text,'cat_id': $stateParams.cat_id,'product_id':$stateParams.product_id});
@@ -80,10 +80,6 @@ appControllers.controller('signUpSearchCtrl', function ($scope,$stateParams, $ti
         $auth.login(user)
             .then(function (response) {
                 if(response.status == '200'){
-                    profileService.get_profile(response.data.access_token).then(function(data){
-                        window.localStorage['profile_name'] = data.data.data.name;
-                        window.localStorage['profile_img'] = data.data.data.image;
-                    })
                     window.localStorage['access_token']=response.data.access_token;
                     $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                     $state.go('app.search_pdp',{'search_text': $stateParams.search_text,'cat_id': $stateParams.cat_id,'product_id':$stateParams.product_id});

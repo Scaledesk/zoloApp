@@ -9,10 +9,9 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     $scope.$on('title_out', function (event, args) {
         $scope.title = 'Zolo';
     });
-
-   $scope.profile_name = window.localStorage['profile_name'];
+    $scope.profile_name = window.localStorage['profile_name'];
     $scope.profile_img = window.localStorage['profile_img'];
-    
+
     $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
         if($ionicSideMenuDelegate.isOpenLeft() == true){
@@ -34,12 +33,13 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
 
     $rootScope.$on('logged_in', function (event, args) {
         $scope.login_value = false;
-        if($scope.access_token && $scope.access_token != 'undefined'){
             profileService.get_profile($scope.access_token).then(function(data){
-                $scope.profile_name = data.data.data.name;
-                $scope.profile_img = data.data.data.image;
+
+                window.localStorage['profile_name'] = data.data.data.name;
+                window.localStorage['profile_img'] = data.data.data.image;
+                $scope.profile_name = window.localStorage['profile_name'];
+                $scope.profile_img = window.localStorage['profile_img'];
             })
-        }
     });
 
     // if($scope.access_token){
@@ -79,7 +79,7 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     $scope.logOut = function(){
         var confirmPopup = $ionicPopup.confirm({
             title: 'Are you sure ?',
-            template: 'You want to logOut.'
+            template: 'You want to Logged out.'
         });
         confirmPopup.then(function(res) {
             if(res) {

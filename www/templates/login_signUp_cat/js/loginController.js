@@ -1,5 +1,5 @@
 appControllers.controller('LoginCatCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
-                                                    serverConfig,$rootScope,$ionicHistory,$ionicViewSwitcher,$ionicModal,profileService) {
+                                                    serverConfig,$rootScope,$ionicHistory,$ionicViewSwitcher,$ionicModal) {
 
     $scope.user = {};
 
@@ -75,11 +75,6 @@ appControllers.controller('LoginCatCtrl', function ($scope,$stateParams, $timeou
                 if(response.status == '200'){
                     // $scope.$broadcast('logout', {message: 'log out'});
                     $rootScope.$broadcast('loading:hide');
-                    profileService.get_profile(response.data.access_token).then(function(data){
-                        window.localStorage['profile_name'] = data.data.data.name;
-                        window.localStorage['profile_img'] = data.data.data.image;
-                    })
-
                     window.localStorage['access_token']=response.data.access_token;
                     $mdToast.show({
                         controller: 'toastController',

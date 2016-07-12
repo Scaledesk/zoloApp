@@ -17,12 +17,19 @@
     </ion-nav-bar>
 
     <ion-content class="bg-c">
-        <div class="card m-5 p-10 text-center" ng-show="packages.length =='0'" style="max-height: 110px;">
+        <div class="card m-5 p-10 text-center" ng-show="((packages.length =='0')&& (home_button == false))" style="max-height: 110px;">
             <p class="text-center f-18">No Packages found</p>
-            <a class="back-t-z" ng-click="back_to_search()"><i class="fa fa-angle-double-left"
-                                                               aria-hidden="true"></i> Back to search result</a>
-
+            <a class="back-t-z" ng-click="back_to_search()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to search result</a>
         </div>
+        <div ng-show="((packages.length =='0')&& (home_button == true))">
+            <div class="card m-5 p-10 text-center"  style="max-height: 110px;">
+                <p class="text-center f-18">No Packages found</p>
+            </div>
+            <div class="text-center">
+                <a class="back-t-z" ng-click="back_to_home()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to home</a>
+            </div>
+        </div>
+
         <div>
         </div>
         <div class="card m-5 zolo_card" ng-show="packages.length !='0'" ng-repeat="package in packages">

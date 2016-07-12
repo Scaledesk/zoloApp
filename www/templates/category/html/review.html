@@ -23,12 +23,12 @@
 
         </div>
         <div class="card" ng-show="package.reviews.data.length" ng-repeat="review in package.reviews.data">
-            <img ng-src="{{review.user_image}}"/><p class="pull-right">{{review.average_rating}}/5</p>
+            <img ng-src="{{review.user_image}}"/><p class="pull-right text-success f-20">{{review.average_rating}}/5</p>
             <br>
-            {{review.user_name}}
+           <p class="m-0">{{review.user_name}}</p>
             <div>
-                Date:{{review.review_date}}
-                comment:{{review.comment}}
+                <p class="m-0">Date: <span>{{review.review_date}}</span></p>
+                <p class="m-0">comment: <span>{{review.comment}}</span></p>
             </div>
 
 

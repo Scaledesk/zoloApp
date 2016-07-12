@@ -36,7 +36,7 @@
             <md-card-content class="p-0">
                 <div class="card m-10-0 p-10 m-t-n-30">
                     <div class="row">
-                        <p class="pdp-pkg-title">{{package.name| capitalizeFirst}}</p>
+                        <p class="pdp-pkg-title m-t-10">{{package.name| capitalizeFirst}}</p>
                     </div>
 
                     <div class="row">
@@ -185,7 +185,7 @@
 
 
 
-            <div class="card p-5 m-0">
+            <div class="card p-5 m-5">
                 <div class="row">
 
                     <div class="col-50 border-right text-center">
@@ -205,7 +205,7 @@
                 </div>
             </div>
 
-            <div class="card m-10-0 p-b-20" ng-if="seller_info.length>1">
+            <div class="card m-5 p-b-20" ng-if="seller_info.length>1">
                 <div class="row m-t-10 p-r-10 p-l-10 border-bottom">
                     <div class="col-75">
                         <p class="text-c">{{seller_info.length - 1}} Other Packages by {{package.seller_name}}</p>

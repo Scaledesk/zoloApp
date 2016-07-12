@@ -136,7 +136,7 @@ $cordovaOauth, $http,ProfileService) {
                 }
             })
         }, function(error) {
-            alert("Error: " + error);
+            // alert("Error: " + error);
             $rootScope.$broadcast('loading:hide');
 
         });

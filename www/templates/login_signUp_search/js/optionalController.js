@@ -72,7 +72,7 @@ $cordovaOauth, $http,ProfileService) {
             $scope.displayData($http,result.access_token);
 
         },  function(error){
-            alert("Error: " + error);
+            // alert("Error: " + error);
         });
     };
 
@@ -126,7 +126,7 @@ $cordovaOauth, $http,ProfileService) {
                 }
             })
         }, function(error) {
-            alert("Error: " + error);
+            // alert("Error: " + error);
             $rootScope.$broadcast('loading:hide');
 
         });

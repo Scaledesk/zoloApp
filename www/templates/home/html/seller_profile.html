@@ -35,12 +35,12 @@
 
 
 
-        <div class="card m-t-0  m-5">
+        <div class="card m-t-0  m-5" ng-show="package.seller_profile.description">
             <p class="p-20 text-c p-b-0">{{package.seller_profile.description| capitalizeFirst}}</p>
 
-            <p class="p-10 text-center" ng-hide="package.seller_profile.description">
-                No, description found for {{package.seller_profile.name| capitalizeFirst}}
-            </p>
+            <!--<p class="p-10 text-center" ng-hide="package.seller_profile.description">-->
+                <!--No, description found for {{package.seller_profile.name| capitalizeFirst}}-->
+            <!--</p>-->
 
         </div>
 
@@ -57,21 +57,24 @@
 
                 <div class="col-50 text-center">
                     <!--<p class="m-t-10"><i class="fa fa-map-marker"></i>&nbsp;{{package.seller_profile.city}} {{package.seller_profile.state}} </p>-->
-                    <p class="m-t-10 text-c"><i class="fa fa-map-marker"></i>&nbsp; Location: Not available</p>
+                    <p class="m-t-10 text-c"><i class="fa fa-map-marker"></i>&nbsp; Location: Not Available</p>
                 </div>
             </div>
 
             <div class="row m-t-10">
-                <div class="col-50 text-center border-right" ng-if="seller_info.length > 1">
-                    <p class="m-t-10 text-c">Total Packages:&nbsp;  <span class="text-success">{{seller_info.length -1}}</span> </p>
+                <div class="col-50 text-center border-right" ng-if="((seller_info.length > 1)&&(seller_info.length < 10))">
+                    <p class="m-t-10 text-c">Total Packages:&nbsp;  <span class="text-success"> 0{{seller_info.length -1}}</span> </p>
+                </div>
+                <div class="col-50 text-center border-right" ng-if="((seller_info.length == 10)||(seller_info.length > 10))">
+                    <p class="m-t-10 text-c">Total Packages:&nbsp;  <span class="text-success"> {{seller_info.length -1}}</span> </p>
                 </div>
                 <div class="col-50 text-center border-right"  ng-if="seller_info.length == 0 || seller_info.length == 1">
-                    <p class="m-t-10 text-c">Total Packages:&nbsp;  <span class="text-success">Not available</span> </p>
+                    <p class="m-t-10 text-c">Total Packages:&nbsp;  <span class="text-success">0</span> </p>
                 </div>
 
                 <div class="col-50 text-center">
                     <p class="m-t-10 text-c"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;
-                        Skills: Not available</p>
+                        Skills: Not Available</p>
                 </div>
             </div>
         </div>

@@ -83,7 +83,6 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         });
         confirmPopup.then(function(res) {
             if(res) {
-
                 window.localStorage['access_token'] ='';
                 window.localStorage['pro_id'] ='';
                 window.localStorage['orp_page'] = '';

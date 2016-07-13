@@ -62,7 +62,7 @@
             </div>
 
             <div class="row m-t-10">
-                <div class="col-50 text-center border-right" ng-if="((seller_info.length > 1)||(seller_info.length < 10))">
+                <div class="col-50 text-center border-right" ng-if="((seller_info.length > 1)&&(seller_info.length < 10))">
                     <p class="m-t-10 text-c">Total Packages:&nbsp;  <span class="text-success"> 0{{seller_info.length -1}}</span> </p>
                 </div>
                 <div class="col-50 text-center border-right" ng-if="((seller_info.length == 10)||(seller_info.length > 10))">

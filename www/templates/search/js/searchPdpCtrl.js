@@ -23,7 +23,18 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
     var booking_info = {};
 
     window.localStorage['search_text']=$stateParams.search_text;
-
+    $ionicModal.fromTemplateUrl('templates/search/html/addon_model_search.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.addon_modal = modal;
+    });
+    $scope.close_addon = function () {
+        $scope.addon_modal.hide();
+    };
+    $scope.open_addon = function () {
+        $scope.addon_modal.show();
+    };
 
     $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
     $scope.new_quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
@@ -307,10 +318,10 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
         $scope.term_n_cond = false;
     };
     
-    $scope.book_now = function () {
-        $scope.booking_add_ons = true;
-        $ionicScrollDelegate.scrollBottom(true);
-    };
+    // $scope.book_now = function () {
+    //     $scope.booking_add_ons = true;
+    //     $ionicScrollDelegate.scrollBottom(true);
+    // };
 
     $scope.book_now_confirm = function(){
         booking_info.quantity = $scope.book.quantity;
@@ -329,9 +340,12 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
                 window.localStorage['search_text'] = $stateParams.search_text;
                 $state.go('app.orp_search',{'search_text': $stateParams.search_text,'cat_id': $stateParams.cat_id,'product_id':$stateParams.product_id,'booking_id':info.booking_id,'t_id':info.id});
             });
+            $scope.addon_modal.hide();
+
         }
         else {
             $state.go('app.optional_login_search',{'search_text': $stateParams.search_text,'cat_id': $stateParams.cat_id,'product_id':$stateParams.product_id});
+            $scope.addon_modal.hide();
         }
     };
 

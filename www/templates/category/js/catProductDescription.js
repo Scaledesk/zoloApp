@@ -29,6 +29,18 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
     $scope.prevSlide = function() {
         $ionicSlideBoxDelegate.previous();
     };
+    $ionicModal.fromTemplateUrl('templates/category/html/addon_model_cat.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.addon_modal = modal;
+    });
+    $scope.close_addon = function () {
+        $scope.addon_modal.hide();
+    };
+    $scope.open_addon = function () {
+        $scope.addon_modal.show();
+    };
     $scope.slideIndex = 0;
     $scope.slideChanged = function(index) {
         $scope.slideIndex = index;
@@ -69,7 +81,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
             },1000);
         }else{
             $timeout(function(){
-                $scope.currentIndex=index;back_to_pdp
+                $scope.currentIndex=index;
                 calcAmount($scope.currentIndex,true);
             },1000);
         }
@@ -305,11 +317,11 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
         $scope.pec_value = true;
         $scope.term_n_cond = false;
     };
-
-    $scope.book_now = function () {
-        $scope.booking_add_ons = true;
-        $ionicScrollDelegate.scrollBottom(true);
-    };
+  
+    // $scope.book_now = function () {
+    //     $scope.booking_add_ons = true;
+    //     $ionicScrollDelegate.scrollBottom(true);
+    // };
 
     $scope.book_now_confirm = function(){
         booking_info.quantity = $scope.book.quantity;
@@ -329,9 +341,13 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
 
                 $state.go('app.orp_cat',{'cat_id':$stateParams.cat_id,'sub_cat_id': $stateParams.sub_cat_id,product_id:$stateParams.product_id,'booking_id':info.booking_id,'t_id':info.id});
             });
+            $scope.addon_modal.hide();
+
         }
         else{
             $state.go('app.optional_cat',{'cat_id':$stateParams.cat_id,'sub_cat_id': $stateParams.sub_cat_id,product_id:$stateParams.product_id});
+            $scope.addon_modal.hide();
+
         }
     };
     $scope.shareProduct = function ($event,name,image,slug_url) {

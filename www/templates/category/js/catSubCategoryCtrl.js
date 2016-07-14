@@ -4,9 +4,6 @@ appControllers.controller('catSubCategoryCtrl', function ($scope, $timeout,subCa
    
     subCategoryListService.getSubCategoryWithId($stateParams.cat_id).then(function(data){
         $scope.sub_catagery_list = data.data.data;
-
-        console.log("dddoododd",JSON.stringify($scope.sub_catagery_list))
-        
     });
     $scope.getPackagesForCat = function(category_id,id){
         $state.go('app.cat_package_list',{'cat_id':category_id,'sub_cat_id':id},{reload:true});

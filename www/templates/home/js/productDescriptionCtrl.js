@@ -19,6 +19,20 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.book_new={
         quantity_new:1
     };
+    window.localStorage['sub_cat_id']= $stateParams.cat_id;
+
+    $ionicModal.fromTemplateUrl('templates/home/html/addon_model.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.addon_modal = modal;
+    });
+    $scope.close_addon = function () {
+        $scope.addon_modal.hide();
+    };
+    $scope.open_addon = function () {
+        $scope.addon_modal.show();
+    };
    $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
    $scope.new_quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 
@@ -33,7 +47,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         $scope.slideIndex = index;
     };
 
-    window.localStorage['sub_cat_id']= $stateParams.cat_id;
 
 
     $scope.back_to_package = function() {
@@ -310,11 +323,11 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         $state.go('app.seller_profile',{'cat_id': $stateParams.cat_id,'product_id':id});
     };
     
-    $scope.book_now = function () {
-        $scope.booking_add_ons = true;
-        $ionicScrollDelegate.scrollBottom(true);
-    };
-    
+    // $scope.book_now = function () {
+    //     $scope.booking_add_ons = true;
+    //     $ionicScrollDelegate.scrollBottom(true);
+    // };
+    //
     $scope.book_now_confirm = function(){
         booking_info.quantity = $scope.book.quantity;
         angular.forEach($scope.selectedaddons,function(obj){
@@ -333,9 +346,13 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                 window.localStorage['home_id'] = 'home';
                 $state.go('app.orp',{'cat_id':$stateParams.cat_id,'product_id': $stateParams.product_id,'booking_id':info.booking_id,'t_id':info.id});
             });
+            $scope.addon_modal.hide();
+
         }
         else{
             $state.go('app.optional_index_pdp', {'cat_id':$stateParams.cat_id,'product_id': $stateParams.product_id});
+            $scope.addon_modal.hide();
+
         }
     };
 

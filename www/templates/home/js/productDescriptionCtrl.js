@@ -19,6 +19,8 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     $scope.book_new={
         quantity_new:1
     };
+    window.localStorage['sub_cat_id']= $stateParams.cat_id;
+    
    $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
    $scope.new_quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 
@@ -33,7 +35,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         $scope.slideIndex = index;
     };
 
-    window.localStorage['sub_cat_id']= $stateParams.cat_id;
 
 
     $scope.back_to_package = function() {
@@ -314,7 +315,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         $scope.booking_add_ons = true;
         $ionicScrollDelegate.scrollBottom(true);
     };
-    
+
     $scope.book_now_confirm = function(){
         booking_info.quantity = $scope.book.quantity;
         angular.forEach($scope.selectedaddons,function(obj){

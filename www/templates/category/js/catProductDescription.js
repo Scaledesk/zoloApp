@@ -29,6 +29,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
     $scope.prevSlide = function() {
         $ionicSlideBoxDelegate.previous();
     };
+    
     $scope.slideIndex = 0;
     $scope.slideChanged = function(index) {
         $scope.slideIndex = index;
@@ -69,7 +70,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
             },1000);
         }else{
             $timeout(function(){
-                $scope.currentIndex=index;back_to_pdp
+                $scope.currentIndex=index;
                 calcAmount($scope.currentIndex,true);
             },1000);
         }
@@ -305,7 +306,7 @@ appControllers.controller('catProductDescriptionCtrl', function ($scope,productS
         $scope.pec_value = true;
         $scope.term_n_cond = false;
     };
-
+  
     $scope.book_now = function () {
         $scope.booking_add_ons = true;
         $ionicScrollDelegate.scrollBottom(true);

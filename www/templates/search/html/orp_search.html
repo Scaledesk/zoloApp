@@ -13,7 +13,7 @@
     <ion-content class="bg-c">
         <p class="f-18 m-t-20 w-200 m-l-10 p-l-5">REVIEW YOUR ORDER</p>
 
-        <div class="card">
+        <div class="card m-5">
             <div class="row p-10 border-bottom">
                 <div class="col-75">
                     <p>{{orp_result.package_title| capitalizeFirst}}</p>
@@ -35,7 +35,7 @@
         <p ng-if="orp_result.bookingPackagesAddons.data.length > 0" class="f-18 m-t-20 w-200 m-l-10 p-l-5">ADD ONS</p>
 
 
-        <div class="card" ng-if="orp_result.bookingPackagesAddons.data.length > 0"
+        <div class="card m-5" ng-if="orp_result.bookingPackagesAddons.data.length > 0"
              ng-repeat="add_on_list in orp_result.bookingPackagesAddons.data">
             <div class="row border-bottom p-10">
 
@@ -69,7 +69,7 @@
         </div>
         <!--</div>-->
 
-        <div class="card">
+        <div class="card m-5">
             <div class="row p-10">
                 <div class="col-50">
                     <b class="f-14">Total Amount</b>

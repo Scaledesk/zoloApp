@@ -1,8 +1,7 @@
 <ion-view title="Your Orders">
-    <ion-content>
-        <ion-list>
-            <ion-item class="p-5 border-0 m-5" ng-show="order_list.length!= '0'" ng-repeat="order in order_list"  ng-click="order_detail(order.id)">
-                <div class="card p-5 m-5">
+    <ion-content class="bg-c">
+            <!--<ion-item class="p-5 border-0 m-5" ng-show="order_list.length!= '0'" ng-repeat="order in order_list"  ng-click="order_detail(order.id)">-->
+                <div class="card p-5 m-5"  ng-show="order_list.length!= '0'" ng-repeat="order in order_list"  ng-click="order_detail(order.id)">
 
                 <div class="row">
                     <div class="col-50">

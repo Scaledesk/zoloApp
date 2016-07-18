@@ -328,28 +328,6 @@ angular.module('starter').factory('forgetPasswordService', function($http,$state
         }
     };
 });
-angular.module('starter').factory('ProfileService', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
-    return {
-        user_profile: function (access_token) {
-            $rootScope.$broadcast('loading:show');
-            var deffer = $q.defer();
-            return $http({
-                method: "GET",
-                url: serverConfig.address+"api/myProfile?access_token="+access_token
-            }).
-            success(function(data, status, headers, config) {
-                deffer.resolve(data);
-                $rootScope.$broadcast('loading:hide');
-            }).
-            error(function(data, status, headers, config) {
-                console.log("data in error",JSON.stringify(data))
-                $rootScope.$broadcast('loading:hide');
-
-            });
-            return deffer.promise;
-        }
-    }
-});
 
 angular.module('starter').factory('googleLogin', function($http,$rootScope,$state,$q,$mdToast,serverConfig){
     return {

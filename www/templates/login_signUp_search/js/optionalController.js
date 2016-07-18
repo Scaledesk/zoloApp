@@ -1,7 +1,7 @@
 appControllers.controller('optionalSearchCtrl', function ($scope,$stateParams, $timeout,  $state, $auth, $mdToast,$http,signUpService,
                                                  serverConfig,$rootScope,$location,$ionicHistory,googleToken,
                                                     $ionicViewSwitcher,$ionicModal,googleLogin,facebookLogin,
-$cordovaOauth, $http,ProfileService) {
+$cordovaOauth, $http) {
 
 
     $scope.redirection_to = function (){
@@ -23,20 +23,6 @@ $cordovaOauth, $http,ProfileService) {
                 return;
                 $scope.login_text = 'Sign In';
                 $scope.disabled = false;
-
-
-                ProfileService.get_profile_info(response.access_token).then(function (data) {
-                    $rootScope.user_profile = data.data.data;
-                    console.log(data.data.data.is_seller==="1");
-                    if(data.data.data.is_seller==="1"){
-                        window.localStorage['is_seller'] = "seller";
-                    }else{
-                        window.localStorage['is_seller'] = "buyer";
-                    }
-                    window.localStorage['user_id'] = data.data.data.user_id;
-                    console.log($rootScope.user_profile);
-                    
-                });
             })
             .catch(function (response) {
                 console.log("response in fail",JSON.stringify(response));

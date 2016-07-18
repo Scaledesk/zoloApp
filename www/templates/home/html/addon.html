@@ -23,13 +23,11 @@
                     </div>
                 </div>
             </div>
-
             <b style="margin-left: 10px" ng-if="package.Addons.data.length>0">ADD ONS</b>
             <div>
                 <div ng-repeat="addon in package.Addons.data">
                     <div class="card">
                         <div class="col-md-6 col-xs-6 checkbox-p p-r-0 col-sm-6">
-
                             <div class="row">
                                 <div class="col-10">
                                     <ion-checkbox checklist-model="selectedaddons[$index].id;"
@@ -59,6 +57,5 @@
                 </div>
             </div>
         </div>
-
     </ion-content>
 </ion-modal-view>

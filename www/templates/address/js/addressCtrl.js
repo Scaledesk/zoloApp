@@ -1,5 +1,5 @@
 appControllers.controller('addressCtrl', function ($scope, $timeout,$state,$mdToast, $mdUtil,GetUserAddressService,
-                                                   ProfileService,$stateParams,$ionicPopup,
+                                                   profileService,$stateParams,$ionicPopup,
                                                    deleteUserAddressService,$rootScope,editUserAddressService) {
     
     var access_token = window.localStorage['access_token'];
@@ -9,7 +9,7 @@ appControllers.controller('addressCtrl', function ($scope, $timeout,$state,$mdTo
     $scope.address = {};
 
 
-    ProfileService.user_profile(access_token).then(function (data) {
+    profileService.get_profile(access_token).then(function (data) {
         window.localStorage['user_id']=data.data.data.user_id;
         if(data.data.data.user_id){
             var id = data.data.data.user_id;

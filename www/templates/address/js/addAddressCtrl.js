@@ -1,5 +1,5 @@
-appControllers.controller('addAddressCtrl', function ($scope, $timeout,$state, $mdUtil,GetUserAddressService,
-                                                   ProfileService,addUserAddressService,$mdToast,$rootScope) {
+appControllers.controller('addAddressCtrl', function ($scope, $timeout,$state, $mdUtil,GetUserAddressService
+    ,addUserAddressService,$mdToast,$rootScope) {
 
     var access_token = window.localStorage['access_token'];
     $scope.user = {};

@@ -116,25 +116,6 @@ angular.module('starter').factory('SellerProfileService', function($http,$rootSc
     }
 });
 
-angular.module('starter').factory('ProfileService', function($http,$rootScope,$q,serverConfig){
-    return {
-        get_profile_info:function(access_token){
-            var deffer = $q.defer();
-            return $http({
-                method:"get",
-                url:serverConfig.address+"api/myProfile?access_token="+access_token
-            }).success(function(data, status, headers, config) {
-                deffer.resolve(data);
-            }).
-            error(function(data, status, headers, config) {
-                $rootScope.$broadcast('loading:hide');
-
-            });
-            return deffer.promise;
-        }
-    }
-});
-
 angular.module('starter').factory('subCategoryService', function($http,$rootScope,$q,serverConfig){
     return {
         getSubCategory:function(){

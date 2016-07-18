@@ -764,12 +764,17 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
          else if(($state.current.name == "app.search_pdp") &&((window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined')){
              $state.go('app.search_info', {'search_text':window.localStorage['search_text']});
          }
-         else if((($state.current.name == "app.search_info") || ($state.current.name == "app.profile") ||
-             ($state.current.name == "app.wishlist") || ($state.current.name == "app.allCategory") ||
+         else if((($state.current.name == "app.search_info") || ($state.current.name == "app.allCategory") ||
              ($state.current.name == "app.package_list") ||($state.current.name =="app.subCategory") ||
              ($state.current.name == "app.about_us") ||($state.current.name =="app.more") ||
-             ($state.current.name =="app.contact_us") || ($state.current.name =="app.optional_index"))
-             &&((window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined')) {
+             ($state.current.name =="app.contact_us") || ($state.current.name =="app.optional_index"))) {
+             $ionicHistory.nextViewOptions({
+                 disableBack: true
+             });
+             $state.go('app.home');
+         }
+         else if((($state.current.name == "app.profile") || ($state.current.name == "app.wishlist")) &&
+             (window.localStorage['access_token']) && (window.localStorage['access_token']) != 'undefined'){
              $ionicHistory.nextViewOptions({
                  disableBack: true
              });

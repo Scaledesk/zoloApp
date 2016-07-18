@@ -802,8 +802,6 @@ angular.module('starter').factory('shaService', function($http,$q,$rootScope,ser
     }
 });
 
-// updateTheBookingStatusMobile
-
 angular.module('starter').factory('paymentService', function($http,$q,$rootScope,serverConfig){
     return {
         payment_info_send:function(data){

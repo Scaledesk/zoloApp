@@ -22,6 +22,23 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
 
     var booking_info = {};
 
+    /////////////////// new addon view  start ////////////////
+
+    $ionicModal.fromTemplateUrl('templates/search/html/addon_s.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.Addonmodal = modal;
+    });
+    $scope.open_addon = function () {
+        $scope.Addonmodal.show();
+    };
+    $scope.closeAddon = function () {
+        $scope.Addonmodal.hide();
+    };
+
+    /////////////////// new addon view  end ////////////////
+
     window.localStorage['search_text']=$stateParams.search_text;
 
     $scope.quantities = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
@@ -328,9 +345,13 @@ appControllers.controller('searchPdpCtrl', function ($scope,productService,booki
                 window.localStorage['search_text'] = $stateParams.search_text;
                 $state.go('app.orp_search',{'search_text': $stateParams.search_text,'cat_id': $stateParams.cat_id,'product_id':$stateParams.product_id,'booking_id':info.booking_id,'t_id':info.id});
             });
+            $scope.Addonmodal.hide();
+
         }
         else {
             $state.go('app.optional_login_search',{'search_text': $stateParams.search_text,'cat_id': $stateParams.cat_id,'product_id':$stateParams.product_id});
+            $scope.Addonmodal.hide();
+
         }
     };
 

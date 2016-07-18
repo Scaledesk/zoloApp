@@ -42,6 +42,24 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
     };
     var booking_info = {};
     
+    
+                  /////////////////// new addon view  start ////////////////
+
+    $ionicModal.fromTemplateUrl('templates/home/html/addon.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.Addonmodal = modal;
+    });
+    $scope.open_addon = function () {
+        $scope.Addonmodal.show();
+    };
+    $scope.closeAddon = function () {
+        $scope.Addonmodal.hide();
+    };
+    
+    /////////////////// new addon view  end ////////////////
+
     $ionicModal.fromTemplateUrl('templates/home/html/review.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -334,9 +352,13 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
                 window.localStorage['home_id'] = 'home';
                 $state.go('app.orp',{'cat_id':$stateParams.cat_id,'product_id': $stateParams.product_id,'booking_id':info.booking_id,'t_id':info.id});
             });
+            $scope.Addonmodal.hide();
+
         }
         else{
             $state.go('app.optional_index_pdp', {'cat_id':$stateParams.cat_id,'product_id': $stateParams.product_id});
+            $scope.Addonmodal.hide();
+
         }
     };
 

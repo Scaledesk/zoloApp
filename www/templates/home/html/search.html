@@ -1,0 +1,24 @@
+<style>
+    .bar .button.button-icon:before, .bar .button .icon:before, .bar .button.icon:before, .bar .button.icon-left:before, .bar .button.icon-right:before {
+        padding-right: 2px!important;
+        padding-left: 2px!important;
+        font-size: 24px!important;
+        line-height: 41px!important;
+    }
+</style>
+<ion-view title="" hide-nav-bar="true">
+    <ion-content>
+        <div class="bar bar-header item-input-inset">
+            <button class="button button-clear pull-left" ng-click="back_to_home()">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="search" placeholder="Search" ng-model="filterText" ng-keypress="search_result(filterText)">
+            </label>
+            <button class="button button-clear" ng-click="back_to_home()">
+                Cancel
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

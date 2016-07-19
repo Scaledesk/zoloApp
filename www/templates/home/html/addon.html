@@ -24,6 +24,7 @@
                 </div>
             </div>
 
+
             <p class="f-16 w-600 p-l-15" ng-if="package.Addons.data.length>0">ADD ONS</p>
             <div>
                 <div ng-repeat="addon in package.Addons.data">
@@ -43,6 +44,7 @@
                                     <div class="col-50">
                                             <p class="pull-right p-b-0 p-20 f-16">{{addon.amount| currency:"&#8377;":0}} </p>
                                     </div>
+
 
                                 </div>
                             <!--</div>-->
@@ -68,6 +70,5 @@
                 </div>
             </div>
         </div>
-
     </ion-content>
 </ion-modal-view>

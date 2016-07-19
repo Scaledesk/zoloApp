@@ -1,37 +1,5 @@
 <ion-view>
     <ion-content>
-        <!--<input type="text" name="trans_id" id="trans_id" value="trans_id" />-->
-        <!--<input type="text" name="trans_id" id="trans_id" value="" />-->
-
-        <!--<form name="sendParam" method="post" action="https://test.payu.in/_payment">-->
-            <!--<input type="hidden" name="key" value="gtKFFx" />-->
-            <!--<input type="hidden" name="txnid" value="ZOLO-PBA-1636" />-->
-            <!--<input type="hidden" name="amount" value="1000" />-->
-            <!--<input type="hidden" name="productinfo" value="1901" />-->
-            <!--<input type="hidden" name="firstname" value="sonam" />-->
-            <!--<input type="hidden" name="email" value="sonam.gupta30jan@gmail.com" />-->
-            <!--<input type="hidden" name="phone" value="8152709721" />-->
-            <!--<input type="hidden" name="salt" value="eCwWELxi" />-->
-            <!--<input type="hidden" name="surl" value="https://payu.herokuapp.com/success" />-->
-            <!--<input type="hidden" name="Furl" value="https://payu.herokuapp.com/failure" />-->
-            <!--&lt;!&ndash;<input type="hidden" name="Hash" value="819af9cc2783018edf68e594e1794cfa8bbf6b381f807051840024ef29c021d3962dd88f4dd77d268d1d9199ac6a2e5c4ea6e67514c8c6a1eb56c597165c8958"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<input type="hidden" name="Hash" value={{sha_value}} />&ndash;&gt;-->
-            <!--<input type="hidden" name="Hash" value="dee6c23d7246d18dbb2096c586f74982f257da9a2bb3e9770fc03b2b5e9634bd7509df38ae1b7a86cbefcbdcbe90b36a3a8c5d599a98c32d4e8fea5ba0928800" />-->
-            <!--<input type="submit" value="enter" style="position: absolute; left: -9999px"/>-->
-        <!--</form >-->
-
-
-
-
-
-
-        <!--<form name="sendParam" method="post" action="https://test.payu.in/_payment">-->
-        <!--<input type="hidden" name="key" value="gtKFFx" />-->
-        <!--<input type="hidden" name="salt" value="eCwWELxi" />-->
-        <!--<input type="hidden" name="Hash" value="819af9cc2783018edf68e594e1794cfa8bbf6b381f807051840024ef29c021d3962dd88f4dd77d268d1d9199ac6a2e5c4ea6e67514c8c6a1eb56c597165c8958"/>-->
-        <!--<input type="hidden" name="Hash" value={{sha_value}} />-->
-
-
         <form name="sendParam" method="post" action="https://secure.payu.in/_payment">
         <input type="hidden" name="key" value="zZDqoj" />
         <input type="hidden" name="txnid" id="invoice_id" value="" />
@@ -43,7 +11,6 @@
         <input type="hidden" name="salt" value="jxzmrx8L" />
         <input type="hidden" name="surl" value="https://payu.herokuapp.com/success" />
         <input type="hidden" name="Furl" value="https://payu.herokuapp.com/failure" />
-        <!--<input type="hidden" name="Curl" value="https://payu.herokuapp.com/cance" />-->
         <input type="hidden" name="Hash" id="sha_value" value="" />
         <input type="hidden" name="service_provider" value="payu_paisa" /><br/>
         <input type="submit" value="enter" style="position: absolute; left: -9999px"/>
@@ -51,7 +18,6 @@
 
         <div style="text-align: center;">
             <img id="image" name="image" src="https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/preloadergif.gif"  alt="Something went wrong.">
-
         </div>
 
         <!--<script>-->
@@ -63,7 +29,7 @@
             window.onload = function() {
                 document.getElementById("image").src = 'https://s3-ap-southeast-1.amazonaws.com/zolo/zolo-app-resources/preloadergif.gif';
             };
-            setTimeout(window.onload(), 10000);
+            setTimeout(window.onload(), 3000);
 
 
             function getParam(name)

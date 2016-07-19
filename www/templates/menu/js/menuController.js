@@ -27,6 +27,10 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
         $ionicSlideBoxDelegate.update();
     });
 
+    $scope.open_search = function () {
+       $state.go('app.search_page');
+    };
+    
     $scope.access_token = window.localStorage['access_token'];
 
     $scope.login_value = true;

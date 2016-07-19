@@ -1,7 +1,7 @@
 <ion-modal-view>
     <ion-header-bar>
         <div class="row">
-            <div class="col-50 text-left" style="color:red;" ng-click="book_now_confirm()"> Next </div>
+            <div class="col-50 text-left text-c f-18 w-800" ng-click="book_now_confirm()">Customize your order</div>
             <div class="col-50 text-right" ng-click="closeAddon()">
                 <i  class=" black-c ion-close-round f-20 l-h-25" aria-hidden="true"></i>
             </div>
@@ -9,52 +9,61 @@
     </ion-header-bar>
     <ion-content class="bg-c">
         <div class="m-b-20 p-b-30">
-            <b style="margin-left: 10px;">YOUR PACKAGE</b>
-            <div class="card">
+            <p class="f-16 w-600 p-l-15 m-t-10">YOUR PACKAGE</p>
+            <div class="card m-5">
                 <ion-checkbox ng-model="booking_package">{{package.name| capitalizeFirst}}</ion-checkbox>
                 <div class="row">
-                    <div class="col-20" style="margin-left: 10px;" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
-                        <select style="padding-top: 0px; padding-bottom: 10px;" id="Quantity" ng-model="book.quantity" placeholder="Select Quantity">
+                    <div class="col-50 pull-left" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                        <select class="p-b-0 p-20 f-16" id="Quantity" ng-model="book.quantity" placeholder="Select Quantity">
                             <option ng-repeat="n in a" value='{{n}}'>{{n}}</option>
                         </select>
                     </div>
-                    <div class="col-80">
-                        <p style="margin-bottom: 0px; padding-top: 7px; margin-left: 5px; padding-left: 10px;">{{book.quantity * package.deal_price | currency:"&#8377;":0}}</p>
+                    <div class="col-50 ">
+                        <p class="pull-right p-b-0 p-20 f-16">{{book.quantity * package.deal_price | currency:"&#8377;":0}}</p>
                     </div>
                 </div>
             </div>
 
-            <b style="margin-left: 10px" ng-if="package.Addons.data.length>0">ADD ONS</b>
+            <p class="f-16 w-600 p-l-15" ng-if="package.Addons.data.length>0">ADD ONS</p>
             <div>
                 <div ng-repeat="addon in package.Addons.data">
-                    <div class="card">
-                        <div class="col-md-6 col-xs-6 checkbox-p p-r-0 col-sm-6">
+                    <div class="card m-5">
+                        <!--<div class="col-md-6 col-xs-6 checkbox-p p-r-0 col-sm-6">-->
+                        <ion-checkbox checklist-model="selectedaddons[$index].id;" checklist-value="addon.id" ng-change="setIndex($index,checked)">{{addon.name| capitalizeFirst}}</ion-checkbox>
+                                <!--</div>-->
+                                <div class="row">
+                                    <!--<p>{{addon.name| capitalizeFirst}}</p>-->
+                                    <div class="col-50" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                                        <select class="p-b-0 p-20 f-16" id="Addon_Quantity" ng-model="selectedaddons[$index].quantity" placeholder="Select Quantity" ng-change="setIndex($index)">
 
-                            <div class="row">
-                                <div class="col-10">
-                                    <ion-checkbox checklist-model="selectedaddons[$index].id;"
-                                                  checklist-value="addon.id" ng-change="setIndex($index,checked)">
-                                    </ion-checkbox>
+                                            <option ng-repeat="n in a" value='{{n}}'>{{n}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-50">
+                                            <p class="pull-right p-b-0 p-20 f-16">{{addon.amount| currency:"&#8377;":0}} </p>
+                                    </div>
+
                                 </div>
-                                <div class="col-90">
-                                    <p style="margin-bottom: 0px; padding-top: 10px; padding-left: 10px;">{{addon.name| capitalizeFirst}}</p>
-                                </div>
-                            </div>
+                            <!--</div>-->
                         </div>
-                        <div class="row">
-                            <div class="col-75"
-                                 ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
-                                <select style="padding-top:0px; padding-bottom: 10px;" id="Addon_Quantity" ng-model="selectedaddons[$index].quantity"
-                                           placeholder="Select Quantity" ng-change="setIndex($index)">
-                                    <option ng-repeat="n in a" value='{{n}}'>{{n}}</option>
-                                </select>
-                            </div>
-                            <div class="col-25">
-                                <div style="padding-top: 10px;">
-                                    <p>{{addon.amount| currency:"&#8377;":0}} </p>
-                                </div>
-                            </div>
-                        </div>
+
+
+
+                        <!--<div class="row">-->
+                            <!--<div class="col-75"-->
+                                 <!--ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">-->
+                                <!--<select style="padding-top:0px; padding-bottom: 10px;" id="Addon_Quantity" ng-model="selectedaddons[$index].quantity"-->
+                                           <!--placeholder="Select Quantity" ng-change="setIndex($index)">-->
+                                    <!--<option ng-repeat="n in a" value='{{n}}'>{{n}}</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                            <!--<div class="col-25">-->
+                                <!--<div style="padding-top: 10px;">-->
+                                    <!--<p>{{addon.amount| currency:"&#8377;":0}} </p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>

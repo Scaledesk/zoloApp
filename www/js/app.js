@@ -719,6 +719,16 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('app.search_page', {
+                url: "/search_page",
+                cache:false,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/home/html/search.html",
+                        controller:'searchController'
+                    }
+                }
+            })
         if(window.localStorage['SkipIntro']== 'true'){
             $urlRouterProvider.otherwise("app/home");
         }else{

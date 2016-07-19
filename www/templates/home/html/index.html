@@ -1,15 +1,14 @@
 <ion-view back-button-hide="false">
-    <ion-nav-title>{{title}}</ion-nav-title>
-
-    <ion-header-bar class="bar bar-subheader item-input-inset p-0 search-box">
-        <label class="item-input-wrapper search bg-white p-l-20">
-            <i class="ion-ios-search-strong placeholder-icon f-25"></i>
-            <input class="f-16 p-40-10"  placeholder="Search on Zolo..." ng-model="filterText" ng-keypress="search_result($event.keyCode == 32)" type="search">
-
-        </label>
-        <!--<div class="title title-left header-item" ng-if="hide_title == false">Zolo</div>-->
-
-    </ion-header-bar>
+    <ion-nav-title>{{title}}
+        <i class="icon ion-ios-search-strong placeholder-icon f-25 pull-right search_icon" ng-click="open_search()">
+        </i>
+    </ion-nav-title>
+    <!--<ion-header-bar class="bar bar-subheader item-input-inset p-0 search-box">-->
+        <!--<label class="item-input-wrapper search bg-white p-l-20">-->
+            <!--<i class="ion-ios-search-strong placeholder-icon f-25"></i>-->
+            <!--<input class="f-16 p-40-10"  placeholder="Search on Zolo..." ng-model="filterText" ng-keypress="search_result($event.keyCode == 32)" type="search">-->
+        <!--</label>-->
+    <!--</ion-header-bar>-->
 
     <ion-nav-buttons side="right">
     </ion-nav-buttons>

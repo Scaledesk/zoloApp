@@ -21,14 +21,11 @@
     <ion-content id="product-detail-content">
 
        <md-card id="product-detail-tab-detail" class="m-0 bg-c" ng-show="package.name">
-
             <img ng-if="package.photos.data.length=='1'" src="{{package.photos.data[0].url}}" class="md-card-image" alt="Card image">
             <img ng-if="package.photos.data.length=='0'" src="../img/noimagefound.png" class="md-card-image" alt="Card image">
-            <ion-slide-box ng-if="package.photos.data.length >'1'" id="restaurant-slide-box" on-slide-changed="slideChanged($index)" show-pager="true" active-slide="0">
+            <ion-slide-box ng-if="package.photos.data.length >'1'" id="restaurant-slide-box" show-pager="true" active-slide="0">
                 <ion-slide ng-repeat="image_list in package.photos.data">
-                    <img ng-src="{{image_list.url}}">
-                    <!--<button ng-click="nextSlide()" ng-show="slideIndex<package.photos.data.length-1">Next slide!</button>-->
-                    <!--<button ng-show="slideIndex > 0" ng-click="prevSlide()">Previous slide!</button>-->
+                    <img ng-src="{{image_list.url}}" class="md-card-image" alt="Card image">
                 </ion-slide>
             </ion-slide-box>
             <div>
@@ -43,6 +40,7 @@
                     <div class="row">
                         <p class="pdp-pkg-title m-t-10">{{package.name| capitalizeFirst}}</p>
                     </div>
+
                     <div class="row">
                         <div class="col-50">
                             <p class="zolo-c f-18 w-400">&nbsp;{{package.deal_price| currency:"&#8377;":0}}</p>

@@ -91,8 +91,6 @@ appControllers.controller('LoginCatCtrl', function ($scope,$stateParams, $timeou
                     $scope.user.password = '';
                         $rootScope.$broadcast('logged_in', { message: 'login successfully' });
                     $state.go('app.cat_product_desc',{'cat_id':$stateParams.cat_id,'sub_cat_id': $stateParams.sub_cat_id,'product_id':$stateParams.product_id});
-
-
                 }
             })
             .catch(function (response) {
@@ -114,6 +112,5 @@ appControllers.controller('LoginCatCtrl', function ($scope,$stateParams, $timeou
     };
     $scope.forget_pwd = function(){
         $state.go('app.forget_pwd_cat',{'cat_id':$stateParams.cat_id,'sub_cat_id': $stateParams.sub_cat_id,'product_id':$stateParams.product_id});
-
     };
 });

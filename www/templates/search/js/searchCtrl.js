@@ -68,11 +68,11 @@ appControllers.controller('searchCtrl', function ($scope, $timeout, $mdUtil,MaxP
     $scope.filter = {price: false};
 
 
-    $scope.back_to_home = function(){
-       $ionicHistory.nextViewOptions({
-           disableBack: true
-       });
-       $state.go('app.home');
+    $scope.back_to_search_page = function(){
+       // $ionicHistory.nextViewOptions({
+       //     disableBack: true
+       // });
+       $state.go('app.search_page');
    };
 
     $scope.search_packages = function(filterText,stringFilter,load_option){

@@ -1,8 +1,7 @@
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
     'ngMessages', 'ngCordova','satellizer','algoliasearch','ngSanitize'])
-    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state,profileService,
+    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $state,profileService,
                    $cordovaSplashscreen, $mdDialog, $mdBottomSheet,$ionicPopup) {
-
 
         function hideActionControl() {
             //For android if user tap hardware back button, Action and Dialog should be hide.

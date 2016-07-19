@@ -132,17 +132,19 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
 
     };
 
-    $scope.filterText = '';
-
-    $scope.search_result = function(){
-        if($scope.filterText){
-            $state.go('app.search_info',{'search_text':$scope.filterText});
-
-        }
-    };
-    
+    // $scope.filterText = '';
+    //
+    // $scope.search_result = function(){
+    //     if($scope.filterText){
+    //         $state.go('app.search_info',{'search_text':$scope.filterText});
+    //
+    //     }
+    // };
+    //
     subCategoryService.getSubCategory().then(function(data){
         $scope.category_n_sub_catagery_list = data.data.data;
+        $ionicSlideBoxDelegate.update();
+
     });
 
     $scope.allSubcategory = function(id){

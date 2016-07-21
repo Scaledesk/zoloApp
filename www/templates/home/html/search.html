@@ -20,5 +20,44 @@
                 Cancel
             </button>
         </div>
+        <div class="card m-5 p-b-20 zolo_card"  id="text_size">
+            <div class="row" ng-show="text_1">
+                <div class="col-67" ng-click="search_package(text_1)">
+                   <i class="icon ion-android-time pull-left p-r-10"></i> {{text_1}}
+                </div>
+                <div class="col-33" ng-click="clear_text_1()">
+                  <i class="icon ion-close pull-right"></i>
+                </div>
+            </div>
+            <div class="row item" ng-show="text_2">
+                <div class="col-67" ng-click="search_package(text_2)">
+                    <i class="icon ion-android-time pull-left p-r-10"></i>{{text_2}}
+                </div>
+                <div class="col-33" ng-click="clear_text_2()">
+                    <i class="icon ion-close pull-right"></i>
+
+                </div>
+            </div>
+            <div class="row item" ng-show="text_3">
+                <div class="col-67" ng-click="search_package(text_3)">
+                    <i class="icon ion-android-time pull-left p-r-10"></i> {{text_3}}
+                </div>
+                <div class="col-33" ng-click="clear_text_3()">
+                    <i class="icon ion-close pull-right"></i>
+                </div>
+            </div>
+            <div class="m-5"> <b>Your Views</b></div>
+        </div>
+        <div class="card m-5 p-b-20">
+            <div class="row item" ng-repeat="package in special_packages" ng-click="search_package(package)">
+                <div class="col-67">
+                    {{package}}
+                </div>
+                <div class="col-33">
+                  <i class="icon ion-chevron-right pull-right"></i>
+                </div>
+            </div>
+        </div>
+
     </ion-content>
 </ion-view>

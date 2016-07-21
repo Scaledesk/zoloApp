@@ -35,6 +35,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                         });
                 }
             }
+            
 
             //Checking if view is changing it will go to this function.
             $rootScope.$on('$ionicView.beforeEnter', function () {

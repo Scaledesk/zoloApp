@@ -1942,3 +1942,8 @@ drawer.right {
 .search_icon {
   margin-top: 10px;
   color: #ffffff; }
+
+.row_presentation {
+  height: 30px;
+  width: 25px;
+  margin-top: 2px; }

@@ -46,26 +46,9 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
             })
     });
 
-    // if($scope.access_token){
-    //     $scope.login_value = false;
-    //     if($scope.access_token && $scope.access_token != 'undefined'){
-    //         profileService.get_profile($scope.access_token).then(function(data){
-    //             $scope.profile = data.data.data;
-    //         })
-    //     }
-    // }
     if($scope.access_token) {
         $scope.login_value = false;
     }
-    
-
-    //
-    // if($scope.access_token && $scope.access_token != 'undefined'){
-    //     profileService.get_profile($scope.access_token).then(function(data){
-    //         $scope.profile = data.data.data;
-    //         console.log("sonam",JSON.stringify($scope.profile))
-    //     })
-    // }
 
     $scope.$on('logout', function (event, args) {
         $scope.message = args.message;
@@ -129,26 +112,14 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
             disableBack: true
         });
         $state.go('app.wishlist', null, {reload:true});
-
     };
 
-    // $scope.filterText = '';
-    //
-    // $scope.search_result = function(){
-    //     if($scope.filterText){
-    //         $state.go('app.search_info',{'search_text':$scope.filterText});
-    //
-    //     }
-    // };
-    //
     subCategoryService.getSubCategory().then(function(data){
         $scope.category_n_sub_catagery_list = data.data.data;
         $ionicSlideBoxDelegate.update();
-
     });
 
     $scope.allSubcategory = function(id){
-
         $state.go('app.subCategory',{'cat_id':id});
     };
     $scope.getPackages = function(id){

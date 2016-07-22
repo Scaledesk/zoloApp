@@ -262,6 +262,9 @@
 .p-b-30{
     padding-bottom: 30px!important;
 }
+.m-5{
+    margin: 5px!important;
+}
 
 .m-b-5{
     margin-bottom: 5px!important;
@@ -383,6 +386,10 @@
 .p-5{
     padding: 5px!important;
 }
+.p-15{
+    padding: 15px!important;
+}
+
 
 .p-l-5{
     padding-left: 5px!important;
@@ -639,9 +646,7 @@ strong{
     font-weight: 800!important;
 }
 
-.m-5{
-    margin: 5px!important;
-}
+
 
 .m-0-5{
     margin: 0 5px!important;

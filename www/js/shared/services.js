@@ -444,7 +444,6 @@ angular.module('starter').factory('wishListService', function($http,$q,$rootScop
 angular.module('starter').factory('removeWishListService', function($http,$q,$rootScope,serverConfig){
     return {
         remove_wish_list:function(p_id,access_token){
-            console.log("sonam",access_token)
             var headers = { 'Authorization':"Bearer "+ access_token };
             var package = {
                 "package_id":p_id

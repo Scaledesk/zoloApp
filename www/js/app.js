@@ -120,6 +120,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             })
             .state('app.orp', {
                 url: "/orp/:cat_id/:product_id",
+                cache:false,
                 views: {
                     'menuContent': {
                         templateUrl: "templates/home/html/orp.html",
@@ -156,6 +157,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
             .state('app.orp_search', {
                 url: "/orp_search/:search_text/:cat_id/:product_id",
+                cache:false,
                 views: {
                     'menuContent': {
                         templateUrl: "templates/search/html/orp_search.html",
@@ -329,6 +331,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             })
             .state('app.orp_cat', {
                 url: "/orp_cat/:cat_id/:sub_cat_id/:product_id",
+                cache:false,
                 views: {
                     'menuContent': {
                         templateUrl: "templates/category/html/orp_cat.html",

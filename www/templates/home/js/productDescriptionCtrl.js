@@ -336,6 +336,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
 
     $scope.book_now_confirm = function(){
         booking_info.quantity = $scope.book.quantity;
+        
         angular.forEach($scope.selectedaddons,function(obj){
             var ff={
                 id:obj.id[0],
@@ -343,10 +344,10 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
             }
             booking_info.addons.push(ff);
         });
+        
         if((window.localStorage['access_token']) && (window.localStorage['access_token'] != 'undefined')){
             bookingService.OrpInfo(booking_info).then(function(data) {
                 var info = data.data.data;
-                console.log('info for booking:',JSON.stringify(info))
                 window.localStorage['id'] = info.id;
                 window.localStorage['booking_id'] = info.booking_id;
                 window.localStorage['home_id'] = 'home';

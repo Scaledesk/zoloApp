@@ -525,6 +525,19 @@ angular.module('starter').factory('bookingService', function($http,$state,$rootS
                         }
                     });
                 }
+                else if(data.status_code == 401){
+                    $mdToast.show({
+                        controller: 'toastController',
+                        templateUrl: 'toast.html',
+                        hideDelay: 800,
+                        position: 'top',
+                        locals: {
+                            displayOption: {
+                                title: data.message
+                            }
+                        }
+                    });
+                }
                 $rootScope.$broadcast('loading:hide');
             });
             return deffer.promise;

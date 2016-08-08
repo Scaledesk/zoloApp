@@ -11,10 +11,13 @@
         <div class="m-b-20 p-b-30">
             <p class="f-16 w-600 p-l-15 m-t-10">YOUR PACKAGE</p>
             <div class="card m-5">
-                <ion-checkbox ng-model="booking_package" ng-disabled="booking_package">{{package.name| capitalizeFirst}}</ion-checkbox>
+                <!--<ion-checkbox ng-model="booking_package" ng-disabled="booking_package">{{package.name| capitalizeFirst}}</ion-checkbox>-->
+                <div class="p-10 f-18 text-muted"> {{package.name| capitalizeFirst}}</div>
+
                 <div class="row">
                     <div class="col-50 pull-left" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
-                        <select class="p-10 f-16" id="Quantity" ng-model="book.quantity" placeholder="Select Quantity">
+                        <select class="p-10 f-16" id="Quantity" ng-model="book.quantity" placeholder="Select Quantity" ng-change="setIndex(book.quantity,booking_package)">
+                        <!--<select class="p-10 f-16" id="Quantity" ng-model="book.quantity" placeholder="Select Quantity">-->
                             <option value="" disabled selected>Quantity</option>
                             <option ng-repeat="n in a" value='{{n}}'>{{n}}</option>
                         </select>
@@ -41,8 +44,12 @@
                                 </select>
                             </div>
                             <div class="col-50">
-                                <p class="pull-right p-20 f-16">{{addon.amount| currency:"&#8377;":0}} </p>
+                                <p class="pull-right p-20 f-16" ng-if="selectedaddons[$index].quantity !=0">{{selectedaddons[$index].quantity * addon.amount| currency:"&#8377;":0}} </p>
+                                <p class="pull-right p-20 f-16" ng-hide="selectedaddons[$index].quantity">{{addon.amount| currency:"&#8377;":0}} </p>
                             </div>
+                            <!--<div class="col-50">-->
+                                <!--<p class="pull-right p-20 f-16">{{addon.amount| currency:"&#8377;":0}} </p>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -52,7 +59,7 @@
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-assertive p-0">
         <div class="button-bar" ng-click="book_now_confirm()">
-            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">CONTINUE</a>
+            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">CONTINUE TO PAY {{amount_to_show}}</a>
         </div>
     </ion-footer-bar>
 </ion-modal-view>

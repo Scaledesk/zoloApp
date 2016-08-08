@@ -88,6 +88,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         }else{
             $timeout(function(){
                 $scope.currentIndex=index;
+                console.log("sonam",$scope.currentIndex)
                 calcAmount($scope.currentIndex,true);
             },1000);
         }
@@ -101,6 +102,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         //index is used, just to get the amount of the addons and nothing else
         if(index!=-1){
             if(typeof ($scope.selectedaddons[index])!='undefined') {
+                console.log("if")
                 $scope.selectedaddons[index].amount = $scope.paddons[index].amount;
             }
         }
@@ -234,7 +236,6 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
             });
         }
         else{
-            console.log("else")
             productService.getProductDescription($stateParams.product_id).then(function(data){
                 $scope.package = data.data.data;
                 $scope.wish_value = data.data.meta.wishlist_status;
@@ -336,6 +337,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
 
     $scope.book_now_confirm = function(){
         booking_info.quantity = $scope.book.quantity;
+        
         angular.forEach($scope.selectedaddons,function(obj){
             var ff={
                 id:obj.id[0],
@@ -343,10 +345,10 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
             }
             booking_info.addons.push(ff);
         });
+        
         if((window.localStorage['access_token']) && (window.localStorage['access_token'] != 'undefined')){
             bookingService.OrpInfo(booking_info).then(function(data) {
                 var info = data.data.data;
-                console.log('info for booking:',JSON.stringify(info))
                 window.localStorage['id'] = info.id;
                 window.localStorage['booking_id'] = info.booking_id;
                 window.localStorage['home_id'] = 'home';

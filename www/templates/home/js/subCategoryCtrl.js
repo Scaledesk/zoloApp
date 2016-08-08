@@ -12,4 +12,8 @@ appControllers.controller('subCategoryCtrl', function ($scope, $timeout,subCateg
         $state.go('app.package_list',{'sub_cat_id':id});
     };
 
+    $scope.back_to_home = function(){
+        $state.go('app.home');
+    }
+
 }); 

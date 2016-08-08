@@ -88,6 +88,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         }else{
             $timeout(function(){
                 $scope.currentIndex=index;
+                console.log("sonam",$scope.currentIndex)
                 calcAmount($scope.currentIndex,true);
             },1000);
         }
@@ -101,6 +102,7 @@ appControllers.controller('productDescriptionCtrl', function ($scope,productServ
         //index is used, just to get the amount of the addons and nothing else
         if(index!=-1){
             if(typeof ($scope.selectedaddons[index])!='undefined') {
+                console.log("if")
                 $scope.selectedaddons[index].amount = $scope.paddons[index].amount;
             }
         }

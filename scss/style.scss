@@ -2934,13 +2934,6 @@ drawer.right {
 .zolo_card{
  max-height: 110px;
 }
-.clickable_text{
-  //border: 1px solid #673ab7;
-  border: 1px solid #333;
-  padding: 2px;
-  border-radius: 3px;
-  margin-right: 2px;
-}
 
 @media all and (max-device-width: 1536px) and (min-device-width: 480px) {
   #restaurant #restaurant-slide-box{
@@ -2993,13 +2986,6 @@ drawer.right {
     -webkit-flex: 0 0 30%;
     flex: 0 0 30%;
     padding-bottom: 20px;
-  }
-  .clickable_text{
-    //border: 1px solid #673ab7;
-    border: 1px solid #333;
-    padding: 2px;
-    border-radius: 3px;
-    margin-right: 2px;
   }
 }
 

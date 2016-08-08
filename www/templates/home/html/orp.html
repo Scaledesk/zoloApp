@@ -32,6 +32,18 @@
             </div>
         </div>
 
+        <div class="card m-5">
+            <div class="row p-10">
+                <div class="col-50">
+                    <b class="f-14">Total Amount</b>
+                </div>
+
+                <div class="col-50">
+                    <p class="text-right f-18  zolo-c m-0">{{orp_result.total_price | currency:"&#8377;":0}}</p>
+                </div>
+            </div>
+        </div>
+
         <p ng-if="orp_result.bookingPackagesAddons.data.length > 0" class="f-18 m-t-20 w-200 m-l-10 p-l-5">ADD ONS</p>
 
 
@@ -60,8 +72,6 @@
                         <p class="text-right"><b> Delivery Time </b> &nbsp;: {{add_on_list.days}} Days </p>
 
                 </div>
-
-
             </div>
 
 
@@ -69,17 +79,7 @@
         </div>
         <!--</div>-->
 
-        <div class="card m-5">
-            <div class="row p-10">
-                <div class="col-50">
-                    <b class="f-14">Total Amount</b>
-                </div>
 
-                <div class="col-50">
-                    <p class="text-right f-18  zolo-c m-0">{{orp_result.total_price | currency:"&#8377;":0}}</p>
-                </div>
-            </div>
-        </div>
 
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-assertive p-0">

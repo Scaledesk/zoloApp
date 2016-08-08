@@ -1877,7 +1877,9 @@ drawer.right {
   max-height: 110px; }
 
 .clickable_text {
+  border: 1px solid #333;
   padding: 2px;
+  border-radius: 3px;
   margin-right: 2px; }
 
 @media all and (max-device-width: 1536px) and (min-device-width: 480px) {

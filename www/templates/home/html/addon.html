@@ -11,7 +11,7 @@
         <div class="m-b-20 p-b-30">
             <p class="f-16 w-600 p-l-15 m-t-10">YOUR PACKAGE</p>
             <div class="card m-5">
-                <ion-checkbox ng-model="booking_package">{{package.name| capitalizeFirst}}</ion-checkbox>
+                <ion-checkbox ng-model="booking_package" ng-disabled="booking_package">{{package.name| capitalizeFirst}}</ion-checkbox>
                 <div class="row">
                     <div class="col-50 pull-left" ng-init="a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
                         <select class="p-10 f-16" id="Quantity" ng-model="book.quantity" placeholder="Select Quantity">

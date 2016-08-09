@@ -1,4 +1,5 @@
-appControllers.controller('subCategoryCtrl', function ($scope, $timeout,subCategoryListService,$ionicSlideBoxDelegate, $ionicHistory,
+appControllers.controller('subCategoryCtrl', function ($scope, $timeout,subCategoryListService,$ionicSlideBoxDelegate,
+                                                       $ionicHistory,
                                                        $state, $stateParams,$rootScope) {
 
     
@@ -13,6 +14,9 @@ appControllers.controller('subCategoryCtrl', function ($scope, $timeout,subCateg
     };
 
     $scope.back_to_home = function(){
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
         $state.go('app.home');
     }
 

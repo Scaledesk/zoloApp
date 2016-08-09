@@ -59,7 +59,7 @@
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-assertive p-0">
         <div class="button-bar" ng-click="book_now_confirm()">
-            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">CONTINUE TO PAY {{amount_to_show}}</a>
+            <a class="button button-royal f-18 line-height pdp-buy border-c w-800">CONTINUE TO PAY {{amount_to_show| currency:"&#8377;":0}}</a>
         </div>
     </ion-footer-bar>
 </ion-modal-view>

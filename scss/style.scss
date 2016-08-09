@@ -3031,3 +3031,9 @@ drawer.right {
   padding: 2px;
   margin-right: 2px;
 }
+.placeholder-icon:last-child {
+  padding-left: 0px;
+}
+.placeholder-icon:first-child {
+  padding-right: 0px;
+}

@@ -36,8 +36,11 @@ appControllers.controller('MenuCtrl', function($scope,$ionicPopup,$mdToast,$stat
     $scope.login_value = true;
 
     $rootScope.$on('logged_in', function (event, args) {
+        console.log("dddddddd")
         $scope.login_value = false;
-            profileService.get_profile($scope.access_token).then(function(data){
+            profileService.get_profile(window.localStorage['access_token']).then(function(data){
+
+                console.log("data in case socila",JSON.stringify(data))
 
                 window.localStorage['profile_name'] = data.data.data.name;
                 window.localStorage['profile_img'] = data.data.data.image;

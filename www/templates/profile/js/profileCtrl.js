@@ -7,6 +7,7 @@ appControllers.controller('profileCtrl', function($scope,$rootScope,$state,$stat
         $rootScope.$broadcast('loading:show');
         profileService.get_profile(access_token).then(function(data){
             $scope.profile = data.data.data;
+            console.log("fufudhh",JSON.stringify(data));
             $rootScope.$broadcast('loading:hide');
              if((($scope.profile.is_seller == '1') ||($scope.profile.is_seller == 1)) &&($scope.profile.user_id)){
                     $scope.seller_info = [];

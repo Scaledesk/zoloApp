@@ -1,6 +1,6 @@
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial',
     'ngMessages', 'ngCordova','satellizer','algoliasearch','ngSanitize'])
-    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $state,profileService,
+    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $state,
                    $cordovaSplashscreen, $mdDialog, $mdBottomSheet,$ionicPopup) {
 
         function hideActionControl() {
@@ -91,6 +91,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             .state('app', {
                 url: "/app",
                 abstract: true,
+                cache:false,
                 templateUrl: "templates/menu/html/index.html",
                 controller: 'MenuCtrl'
             })

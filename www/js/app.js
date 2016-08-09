@@ -646,6 +646,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
             })
             .state('app.order_list', {
                 url: "/order_list",
+                cache:false,
                 views: {
                     'menuContent': {
                         templateUrl: "templates/order/html/index.html",
